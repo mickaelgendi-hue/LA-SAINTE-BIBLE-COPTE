@@ -1884,7 +1884,9 @@ const SRC_OT="Septante (traduction grecque de l'Ancien Testament), traduite en f
 const SRC_NT="Nouveau Testament traduit du texte grec original, traduction A. Crampon, 1923.";
 const cache={};
 function getBook(en){
-  if(!cache[en]) cache[en]=fetch(en.toLowerCase().replace(/ /g,"-")+".json").then(r=>{if(!r.ok) throw new Error(r.status); return r.json();}).catch(e=>{delete cache[en]; throw e;});
+  const url=DATA_PREFIX+en.toLowerCase().replace(/ /g,"-")+".json";
+  if(!cache[en]) cache[en]=fetch(url).then(r=>{if(!r.ok) throw new Error(r.status); return r.json();})
+    .catch(async e=>{try{const c=await caches.open(OFF_CACHE);const r=await c.match(url);if(r) return r.json();}catch(_){} delete cache[en]; throw e;});
   return cache[en];
 }
 // ---------- Views ----------
@@ -1912,9 +1914,11 @@ function viewHome(){
     <p class="muted small" style="margin:0 0 12px">Étape ${SECTIONS[nd.si].n} : ${esc(SECTIONS[nd.si].theme)}</p>
     <span class="btn main">${started?"Lire la suite":"Commencer le jour 1"}</span>
   </div></a>
+  <div class="card"><h3 style="margin:0 0 8px">📴 Lire sans connexion</h3><div id="offbox"></div></div>
   <h2 style="margin:26px 0 4px">Les ${SECTIONS.length} étapes</h2>
   <div class="steps">${SECTIONS.map(stepCard).join("")}</div>
   <footer>Prends ton temps : mieux vaut un chapitre compris que quatre survolés.</footer>`;
+  offlineCard();
 }
 function stepCard(s){
   const days=DAYS.filter(d=>d.si===s.n-1), r=days.reduce((a,d)=>a+dayCount(d),0), full=r===s.total;
@@ -2004,7 +2008,7 @@ function viewRead(g,idx){
     const nt=NT.has(b.en), vs=ch[it.c-1]||[];
     document.getElementById("rt").innerHTML=vs.map(([n,t,m])=>`<p><sup>${n}</sup>${esc(state.orig||!m?t:m)}</p>`).join("")+
       `<div class="src">${nt?SRC_NT:SRC_OT}${state.orig?"":" Les mots anciens ou difficiles sont remplacés par des mots courants qui gardent le sens du message (« Texte d'origine » pour la traduction exacte)."}</div>`;
-  }).catch(()=>{document.getElementById("rt").innerHTML='<p class="err">Le texte n\'a pas pu se charger. Vérifie ta connexion et réessaie.</p>';});
+  }).catch(()=>{document.getElementById("rt").innerHTML='<p class="err">Le texte n\'a pas pu se charger. Vérifie ta connexion, ou télécharge toute la Bible depuis l\'accueil pour lire sans internet.</p>';});
   render();
   app.querySelectorAll(".pillbtn").forEach(p=>p.onclick=()=>{state.orig=p.dataset.m==="1";save();app.querySelectorAll(".pillbtn").forEach(q=>q.classList.toggle("on",q===p));render();});
   document.getElementById("nextBtn").onclick=()=>{
@@ -2050,6 +2054,42 @@ function viewGuide(){
   <p>À chaque messe on lit : le <b>Boulos</b> (une lettre de Paul), le <b>Katholikon</b> (Jacques, Pierre, Jean ou Jude), le <b>Praxis</b> (Actes), puis le <b>Psaume</b> et l'<b>Évangile</b>. Avec ce parcours, tu connaîtras tous ces livres.</p></div>
   <div class="card guide"><h2>Recommencer</h2><p class="muted small">Efface toute ta progression.</p><button class="btn ghost" id="reset">Remettre à zéro</button></div>`;
   document.getElementById("reset").onclick=()=>confirmBox("Remettre à zéro ?","Toute ta progression sera effacée.",()=>{state={read:{}};save();toast("Progression effacée");viewHome();location.hash="accueil";});
+}
+// ---------- Hors connexion ----------
+const OFF_CACHE="bible-copte-v1";
+const DATA_PREFIX="";
+function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
+let offlineOK=false;
+try{ if("serviceWorker" in navigator && "caches" in window && (location.protocol==="https:"||location.hostname==="localhost") && !/claude|anthropic|claudeusercontent/.test(location.hostname)){
+  navigator.serviceWorker.register("sw.js").then(()=>{offlineOK=true;}).catch(()=>{});
+  offlineOK=true;
+}}catch(e){}
+async function offlineCount(){
+  try{const c=await caches.open(OFF_CACHE);let n=0;for(const f of bookFiles()){if(await c.match(f))n++;}return n;}catch(e){return -1;}
+}
+async function offlineCard(){
+  const box=document.getElementById("offbox"); if(!box) return;
+  if(!offlineOK){box.innerHTML='<p class="small muted" style="margin:0">La lecture sans connexion fonctionne quand l\'app est ouverte depuis son adresse GitHub (ou installée sur l\'écran d\'accueil).</p>';return;}
+  const tot=bookFiles().length, n=await offlineCount();
+  if(n===tot){box.innerHTML=`<p style="margin:0"><b>✓ Toute la Bible est téléchargée.</b> Tu peux lire sans connexion.</p>`;return;}
+  box.innerHTML=`<p style="margin:0 0 10px">Télécharge toute la Bible sur cet appareil (environ 7 Mo) pour lire même sans internet.${n>0?` <span class="muted small">(${n} livres sur ${tot} déjà téléchargés)</span>`:""}</p>
+    <button class="btn main" id="dlBtn">⬇️ Tout télécharger</button><div class="bar" style="margin-top:10px;display:none" id="dlBar"><i style="width:0"></i></div><p class="small muted" id="dlTxt" style="margin:6px 0 0"></p>`;
+  document.getElementById("dlBtn").onclick=downloadAll;
+}
+async function downloadAll(){
+  const btn=document.getElementById("dlBtn"),bar=document.getElementById("dlBar"),txt=document.getElementById("dlTxt");
+  btn.disabled=true;btn.textContent="Téléchargement en cours…";bar.style.display="block";
+  const files=["./","index.html","manifest.json","logo.svg","favicon-32.png","apple-touch-icon.png","logo-192.png","logo-512.png"].concat(bookFiles());
+  let ok=0,fail=0;
+  try{
+    const c=await caches.open(OFF_CACHE);
+    for(let i=0;i<files.length;i++){
+      try{const r=await fetch(files[i],{cache:"reload"}); if(r.ok){await c.put(files[i],r);ok++;} else fail++;}catch(e){fail++;}
+      bar.firstElementChild.style.width=((i+1)/files.length*100)+"%"; txt.textContent=`${i+1} / ${files.length}`;
+    }
+  }catch(e){fail++;}
+  if(fail){txt.textContent=`${fail} fichier(s) n'ont pas pu être téléchargés. Vérifie ta connexion et réessaie.`;btn.disabled=false;btn.textContent="Réessayer";}
+  else {toast("✓ Toute la Bible est disponible sans connexion");offlineCard();}
 }
 // ---------- UI utils ----------
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600);}
