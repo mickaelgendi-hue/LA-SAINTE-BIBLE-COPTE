@@ -29,6 +29,11 @@ header.top a{color:var(--wine);text-decoration:none}
 .nav{margin-left:auto;display:flex;gap:4px}
 .nav a{font-size:14px;font-weight:600;padding:6px 10px;border-radius:999px}
 .nav a.on{background:var(--wine);color:#fff}
+.nav a.gear{display:grid;place-items:center;padding:6px 8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.opt{border:1.5px solid var(--gold2);background:#fff;color:var(--wine2);font:600 15px var(--sans);padding:10px 14px;border-radius:12px;cursor:pointer;min-width:64px}
+.opt.on{background:var(--wine);border-color:var(--wine);color:#fff}
+.planinfo{background:#f7ecda;border-radius:12px;padding:10px 12px;margin-top:12px;font-size:15px}
 h1,h2,h3{font-family:var(--serif);color:var(--wine2);line-height:1.15;margin:0}
 h1{font-size:34px}
 h2{font-size:26px}
@@ -96,6 +101,39 @@ h3{font-size:22px}
 .text sup{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--gold);margin-right:3px}
 .text .src{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
 .text .err{font-family:var(--sans);font-size:15px;color:var(--wine)}
+.text p.vs{cursor:pointer;border-radius:6px;padding:1px 3px;margin-left:-3px;margin-right:-3px;transition:background .15s}
+.text p.sel{outline:2px solid var(--wine);outline-offset:1px}
+.text p.flash{animation:flash 2s ease}
+@keyframes flash{0%,40%{background:#f3dc9b}100%{background:transparent}}
+.hl-yellow{background:#fbeea0}.hl-green{background:#cdeec0}.hl-blue{background:#cfe3f7}.hl-pink{background:#f7d3e1}
+.text p .fav{font-size:12px;margin-left:4px}
+.gw{text-decoration:underline dotted #b8862f;text-decoration-thickness:2px;text-underline-offset:3px;cursor:help}
+.gw.on{background:#f3dc9b;border-radius:3px}
+.glossbox{position:fixed;left:50%;top:70px;transform:translateX(-50%);width:min(520px,calc(100% - 20px));background:#fffaf1;border:2px solid var(--gold);border-radius:16px;box-shadow:0 12px 30px -10px rgba(60,20,10,.5);padding:12px 40px 12px 16px;z-index:30;font-family:var(--sans)}
+.glossbox[hidden]{display:none}
+.glossbox b{font-family:var(--serif);font-size:22px;color:var(--wine2)}
+.glossbox p{margin:4px 0 0;font-size:16px}
+.glossbox .selx{position:absolute;right:8px;top:8px}
+.selbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(560px,calc(100% - 20px));background:var(--paper);border:1.5px solid var(--gold2);border-radius:16px;box-shadow:0 10px 30px -10px rgba(60,20,10,.45);padding:10px 12px;z-index:25}
+.selbar[hidden]{display:none}
+.selrow{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.selrow+.selrow{margin-top:8px}
+.selx{border:0;background:none;font-size:18px;color:var(--muted);cursor:pointer}
+.selbtn{border:1.5px solid var(--gold2);background:#fff;color:var(--wine2);font:600 14px var(--sans);padding:8px 10px;border-radius:10px;cursor:pointer}
+.dots{display:flex;gap:6px}
+.dot-c{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(0,0,0,.12);cursor:pointer}
+.dot-none{background:#fff;font-size:13px;color:var(--muted)}
+.search{display:flex;gap:8px}
+.search input{flex:1;font:16px var(--sans);padding:12px 14px;border-radius:12px;border:1.5px solid var(--gold2);background:#fff;color:var(--ink)}
+.res{display:block;padding:12px 4px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.res:last-child{border-bottom:0}
+.res b{color:var(--wine2)}
+.res mark{background:#f3dc9b;border-radius:3px;padding:0 1px}
+.favitem{border-left:4px solid var(--gold);padding-left:12px;margin:4px 0}
+.favitem .ref{font-weight:700;color:var(--wine2)}
+.favitem .vt{font-family:var(--serif);font-size:19px;margin:6px 0 8px}
+.favact{display:flex;gap:8px;flex-wrap:wrap}
+.favact a,.favact button{font-size:14px;padding:7px 11px}
 .modebar{display:flex;gap:6px;margin:16px 0 0}
 .pillbtn{border:1.5px solid var(--gold2);background:transparent;color:var(--wine);font:600 13px var(--sans);padding:6px 12px;border-radius:999px;cursor:pointer}
 .pillbtn.on{background:var(--wine);border-color:var(--wine);color:#fff}
@@ -122,11 +160,20 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 <body>
 <header class="top"><div class="in">
   <a class="brand" href="#accueil"><img src="logo.svg" alt="" width="30" height="30" style="border-radius:8px"><span>La Sainte Bible copte</span></a>
-  <nav class="nav"><a href="#accueil" data-n="accueil">Accueil</a><a href="#plan" data-n="plan">Plan</a><a href="#guide" data-n="guide">Guide</a></nav>
+  <nav class="nav"><a href="#accueil" data-n="accueil">Accueil</a><a href="#plan" data-n="plan">Plan</a><a href="#guide" data-n="guide">Guide</a><a href="#recherche" data-n="recherche" class="gear" aria-label="Rechercher" title="Rechercher"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a><a href="#favoris" data-n="favoris" class="gear" aria-label="Mes versets" title="Mes versets"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg></a><a href="#parametres" data-n="parametres" class="gear" aria-label="Paramètres" title="Paramètres"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a></nav>
 </div></header>
 <main class="wrap" id="app"></main>
 <div class="modal" id="modal"><div class="card"><h3 id="mt">Confirmer</h3><p id="mb"></p><div class="pager"><button class="btn ghost" id="mno">Annuler</button><button class="btn main" id="myes">Oui</button></div></div></div>
 <div class="toast" id="toast"></div>
+<div class="glossbox" id="gloss" hidden><button class="selx" aria-label="Fermer" onclick="hideGloss()">✕</button><b></b><p></p></div>
+<div class="selbar" id="selbar" hidden>
+  <div class="selrow"><b id="selcount"></b><button class="selx" id="selclose" aria-label="Annuler">✕</button></div>
+  <div class="selrow">
+    <button class="selbtn" id="selfav">❤️ Enregistrer</button>
+    <span class="dots"><button class="dot-c hl-yellow" data-c="yellow" aria-label="Jaune"></button><button class="dot-c hl-green" data-c="green" aria-label="Vert"></button><button class="dot-c hl-blue" data-c="blue" aria-label="Bleu"></button><button class="dot-c hl-pink" data-c="pink" aria-label="Rose"></button><button class="dot-c dot-none" data-c="" aria-label="Enlever le surlignage">⌫</button></span>
+    <button class="selbtn" id="selcopy">Copier</button>
+  </div>
+</div>
 <script>
 const SECTIONS=[];
 function S(_,title,theme,days,intro){SECTIONS.push({n:SECTIONS.length+1,title,theme,days,intro,books:[]});}
@@ -1261,7 +1308,7 @@ B("Ézéchiel","Ezekiel",
 "Partage entre les tribus ; la ville s'appelle « Le Seigneur est là »."]);
 
 S(6,"Daniel et les 12 petits prophètes","La loyauté de Dieu, son armure pour nous et la justice sociale",27,
-"Daniel montre la fidélité à Dieu en terre étrangère. Les 12 « petits » prophètes (petits par la taille, pas par l'importance) parlent de justice pour les pauvres, de repentance et de l'amour obstiné de Dieu. Dans la Bible copte, Daniel a 14 chapitres : il y a donc 81 chapitres ici (27 jours de 3 chapitres).");
+"Daniel montre la fidélité à Dieu en terre étrangère. Les 12 « petits » prophètes (petits par la taille, pas par l'importance) parlent de justice pour les pauvres, de repentance et de l'amour obstiné de Dieu. Dans la Bible copte, Daniel a 14 chapitres.");
 B("Daniel","Daniel",
 "Daniel et ses trois amis, déportés à Babylone, restent fidèles à Dieu malgré les menaces : la fournaise, la fosse aux lions. La seconde partie contient des visions sur l'avenir et le « Fils de l'homme » venant sur les nuées.",
 "Ch. 1-6 = récits faciles et encourageants ; ch. 7-12 = visions plus difficiles (ne cherche pas à tout décoder). Jésus s'est appelé lui-même « Fils de l'homme » en référence à Daniel 7.",
@@ -1841,24 +1888,34 @@ function BK(en){for(const s of SECTIONS)for(const b of s.books)if(b.en===en)retu
 </script>
 <script>
 // ---------- Plan ----------
-const DAYS=[]; // {g, sec, items:[{book,c}]}
-SECTIONS.forEach((s,si)=>{
-  const all=[]; s.books.forEach(b=>b.ch.forEach((t,i)=>all.push({book:b,c:i+1,text:t})));
-  s.total=all.length; s.firstDay=DAYS.length+1;
-  const d=s.days;
-  for(let i=0;i<d;i++){
-    const items=all.slice(Math.floor(i*all.length/d),Math.floor((i+1)*all.length/d));
-    DAYS.push({g:DAYS.length+1,si,local:i+1,items});
-  }
-  s.lastDay=DAYS.length;
-});
-const TOTAL_CH=DAYS.reduce((a,d)=>a+d.items.length,0);
-
+let DAYS=[]; // {g, sec, items:[{book,c}]}
+SECTIONS.forEach(s=>{s.origDays=s.days; s.all=[]; s.books.forEach(b=>b.ch.forEach((t,i)=>s.all.push({book:b,c:i+1,text:t}))); s.total=s.all.length;});
+const TOTAL_CH=SECTIONS.reduce((a,s)=>a+s.total,0);
+const ORIG_DAYS=SECTIONS.reduce((a,s)=>a+s.origDays,0);
+function sectionDays(s,plan){
+  if(!plan||plan.mode==="orig") return s.origDays;
+  if(plan.mode==="cpd") return Math.ceil(s.total/plan.n);
+  const D=plan.days; return Math.min(s.total,Math.max(1,Math.round(s.total/TOTAL_CH*D)));
+}
+function buildPlan(plan){
+  DAYS=[];
+  SECTIONS.forEach((s,si)=>{
+    s.days=sectionDays(s,plan); s.firstDay=DAYS.length+1;
+    const all=s.all,d=s.days;
+    for(let i=0;i<d;i++){
+      const items=plan&&plan.mode==="cpd"?all.slice(i*plan.n,(i+1)*plan.n):all.slice(Math.floor(i*all.length/d),Math.floor((i+1)*all.length/d));
+      if(items.length) DAYS.push({g:DAYS.length+1,si,local:i+1,items});
+    }
+    s.days=DAYS.length-s.firstDay+1; s.lastDay=DAYS.length;
+  });
+}
 // ---------- State ----------
 const KEY="parcours-biblique-copte-v1";
 let state={read:{}};
+const isOrig=()=>state.orig!==false;
 try{const r=localStorage.getItem(KEY); if(r) state=Object.assign({read:{}},JSON.parse(r));}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+buildPlan(state.plan);
 const ck=it=>it.book.en+"|"+it.c;
 const isRead=it=>!!state.read[ck(it)];
 const dayCount=d=>d.items.filter(isRead).length;
@@ -1914,6 +1971,7 @@ function viewHome(){
     <p class="muted small" style="margin:0 0 12px">Étape ${SECTIONS[nd.si].n} : ${esc(SECTIONS[nd.si].theme)}</p>
     <span class="btn main">${started?"Lire la suite":"Commencer le jour 1"}</span>
   </div></a>
+  <div class="pager" style="margin-top:4px"><a class="btn ghost" href="#recherche">🔍 Rechercher</a><a class="btn ghost" href="#favoris">❤️ Mes versets${(state.favs||[]).length?" ("+state.favs.length+")":""}</a></div>
   <div class="card"><h3 style="margin:0 0 8px">📴 Lire sans connexion</h3><div id="offbox"></div></div>
   <h2 style="margin:26px 0 4px">Les ${SECTIONS.length} étapes</h2>
   <div class="steps">${SECTIONS.map(stepCard).join("")}</div>
@@ -1998,7 +2056,8 @@ function viewRead(g,idx){
   if(d.local===1&&idx===0) html+=`<div class="card sec-intro"><div class="k">Nouvelle étape · ${s.n} sur ${SECTIONS.length}</div><h2 style="margin:4px 0 8px">${esc(s.title)}</h2><p style="margin:0 0 6px"><b>${esc(s.theme)}</b></p><p style="margin:0">${esc(s.intro)}</p></div>`;
   if(it.c===1) html+=bookCard(b);
   html+=`<div class="card"><div class="lbl" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">Ce qui va se passer</div><p style="margin:4px 0 0">${esc(it.text)}</p></div>
-  <div class="modebar"><button class="pillbtn ${state.orig?"":"on"}" data-m="0">Mots d'aujourd'hui</button><button class="pillbtn ${state.orig?"on":""}" data-m="1">Texte d'origine</button></div>
+  <div class="modebar"><button class="pillbtn ${isOrig()?"on":""}" data-m="1">Texte d'origine</button><button class="pillbtn ${isOrig()?"":"on"}" data-m="0">Mots d'aujourd'hui</button></div>
+  <p class="small muted" style="margin:6px 0 0">Touche un mot <span class="gw">souligné</span> pour voir son explication.</p>
   <div class="text" id="rt"><p class="muted small" style="font-family:var(--sans)">Chargement…</p></div>
   <button class="btn main" id="nextBtn" style="margin-top:14px">${nextIt?`✓ Lu · Chapitre suivant : ${esc(nextLbl)} →`:"✓ J'ai fini toute la Bible !"}</button>
   ${isLast&&nd?`<p class="small muted" style="text-align:center;margin:6px 0 0">C'est le dernier chapitre du jour ${g}. Le suivant commence le jour ${g+1}.</p>`:""}
@@ -2006,10 +2065,15 @@ function viewRead(g,idx){
   app.innerHTML=html;
   const render=()=>getBook(b.en).then(ch=>{
     const nt=NT.has(b.en), vs=ch[it.c-1]||[];
-    document.getElementById("rt").innerHTML=vs.map(([n,t,m])=>`<p><sup>${n}</sup>${esc(state.orig||!m?t:m)}</p>`).join("")+
-      `<div class="src">${nt?SRC_NT:SRC_OT}${state.orig?"":" Les mots anciens ou difficiles sont remplacés par des mots courants qui gardent le sens du message (« Texte d'origine » pour la traduction exacte)."}</div>`;
+    document.getElementById("rt").innerHTML=vs.map(([n,t,m])=>{const k=vk(b.en,it.c,n),h=(state.hl||{})[k];return `<p class="vs${h?" hl-"+h:""}" data-v="${n}"><sup>${n}</sup>${glossify(isOrig()||!m?t:m)}${isFav(b.en,it.c,n)?'<span class="fav">❤️</span>':""}</p>`}).join("")+
+      `<div class="src">${nt?SRC_NT:SRC_OT}${isOrig()?"":" Les mots anciens ou difficiles sont remplacés par des mots courants qui gardent le sens du message (« Texte d'origine » pour la traduction exacte)."}</div>`;
+    curRead={b,c:it.c,vs};
+    if(restoreY!=null){window.scrollTo(0,restoreY);restoreY=null;}
+    document.querySelectorAll("#rt p.vs").forEach(p=>p.onclick=e=>{const g=e.target.closest&&e.target.closest(".gw");if(g){showGloss(g);return;}toggleSel(+p.dataset.v,p);});
+    if(pendingVerse){const p=document.querySelector(`#rt p[data-v="${pendingVerse}"]`);pendingVerse=null;if(p){p.scrollIntoView({block:"center"});p.classList.add("flash");}}
   }).catch(()=>{document.getElementById("rt").innerHTML='<p class="err">Le texte n\'a pas pu se charger. Vérifie ta connexion, ou télécharge toute la Bible depuis l\'accueil pour lire sans internet.</p>';});
   render();
+  clearSel();
   app.querySelectorAll(".pillbtn").forEach(p=>p.onclick=()=>{state.orig=p.dataset.m==="1";save();app.querySelectorAll(".pillbtn").forEach(q=>q.classList.toggle("on",q===p));render();});
   document.getElementById("nextBtn").onclick=()=>{
     const k=ck(it); state.read[k]=1; save();
@@ -2035,9 +2099,12 @@ function viewGuide(){
   <div class="card guide"><h2>Comment fonctionne l'app</h2>
   <ul><li>Chaque jour, ouvre le jour proposé sur l'accueil.</li>
   <li>L'ordre suit une logique : Jésus d'abord, puis la prière (Psaumes), ensuite l'histoire du peuple de Dieu dans l'ordre (de la Genèse à l'exil), puis les prophètes qui ont parlé pendant cette histoire, le retour d'exil, les livres propres à la Bible copte qui mènent jusqu'à Jésus, et enfin les dernières lettres et l'Apocalypse.</li>
+  <li><b>Les mots difficiles sont soulignés en pointillé</b> : touche-les pour voir leur explication ou un mot plus simple. Ce petit dictionnaire est dans l'app : il marche aussi sans connexion.</li>
+  <li>Le texte s'affiche d'abord dans sa <b>version d'origine</b>. Le bouton « Mots d'aujourd'hui » remplace les mots anciens par des mots courants.</li>
+  <li><b>Pendant la lecture, touche un verset</b> (ou plusieurs) : tu peux l'enregistrer dans « Mes versets » ❤️, le surligner en couleur ou le copier. La loupe 🔍 en haut permet de chercher un chapitre ou une phrase.</li>
   <li>Au début de chaque <b>étape</b>, tu as son but ; au début de chaque <b>livre</b>, une présentation (de quoi il parle, comment le lire, ce qu'il représente pour les Coptes) ; avant chaque <b>chapitre</b>, un résumé de ce qui va se passer.</li>
   <li>« Lire le chapitre » ouvre une page de lecture avec le texte complet. En bas, « Chapitre suivant » valide automatiquement le chapitre lu et t'emmène au suivant, même d'un jour à l'autre. Ta progression reste enregistrée dans ce navigateur.</li>
-  <li>Par défaut, les mots anciens ou difficiles sont remplacés par des mots courants qui gardent le sens du message : « iniquité » → « faute », « glaive » → « épée », « nuée » → « nuage », « tabernacle » → « tente sacrée », « engendra » → « eut pour fils », « ne… point » → « ne… pas »… Le bouton « Texte d'origine » affiche la traduction exacte, sans aucun changement.</li>
+  <li>Avec « Mots d'aujourd'hui », les mots anciens ou difficiles sont remplacés par des mots courants qui gardent le sens du message : « iniquité » → « faute », « glaive » → « épée », « nuée » → « nuage », « ne… point » → « ne… pas »…</li>
   <li>Si tu rates un jour, ce n'est pas grave : reprends simplement là où tu en es.</li></ul></div>
   <div class="card guide"><h2>Le texte que tu lis</h2>
   <p><b>Ancien Testament : la Septante.</b> C'est la traduction grecque de l'Ancien Testament faite à Alexandrie, en Égypte, avant Jésus-Christ. C'est la Bible citée par les apôtres et celle sur laquelle repose la tradition de l'Église copte. Tu la lis dans la traduction française de Pierre Giguet (1872), en version révisée.</p>
@@ -2052,11 +2119,495 @@ function viewGuide(){
   <p><b>Rois</b> : la Septante appelle les livres de Samuel et des Rois les « quatre livres des Règnes », et les Chroniques les « Paralipomènes ».</p></div>
   <div class="card guide"><h2>Les lectures de la messe copte</h2>
   <p>À chaque messe on lit : le <b>Boulos</b> (une lettre de Paul), le <b>Katholikon</b> (Jacques, Pierre, Jean ou Jude), le <b>Praxis</b> (Actes), puis le <b>Psaume</b> et l'<b>Évangile</b>. Avec ce parcours, tu connaîtras tous ces livres.</p></div>
-  <div class="card guide"><h2>Recommencer</h2><p class="muted small">Efface toute ta progression.</p><button class="btn ghost" id="reset">Remettre à zéro</button></div>`;
-  document.getElementById("reset").onclick=()=>confirmBox("Remettre à zéro ?","Toute ta progression sera effacée.",()=>{state={read:{}};save();toast("Progression effacée");viewHome();location.hash="accueil";});
+  <p class="small muted" style="text-align:center">Pour changer ton rythme de lecture ou remettre ta progression à zéro, ouvre les paramètres (⚙︎ en haut à droite).</p>`;
+}
+// Petit dictionnaire des mots difficiles : "formes|séparées|par|des|barres": "explication"
+const GLOSS_RAW={
+"iniquité|iniquités":"faute, péché ; ce qui est contraire à la justice de Dieu",
+"inique|iniques":"injuste, méchant",
+"impie|impies":"celui qui rejette Dieu, méchant",
+"impiété|impiétés":"le fait de rejeter Dieu ; méchanceté",
+"lévite|lévites":"membre de la tribu de Lévi, chargé du service du Temple (aide des prêtres)",
+"coudée|coudées":"ancienne mesure de longueur : environ 45 cm (du coude au bout des doigts)",
+"airain":"bronze (métal)",
+"holocauste|holocaustes":"sacrifice où l'animal offert à Dieu est entièrement brûlé",
+"chair|chairs":"le corps, la viande ; parfois l'être humain avec ses faiblesses",
+"affliction|afflictions":"grande souffrance, malheur",
+"affligé|affligée|affligés|affligées|affliger":"plongé dans la peine, malheureux",
+"sicle|sicles":"ancienne monnaie ou poids d'argent (environ 11 g)",
+"scribe|scribes":"spécialiste de la loi de Moïse, qui l'enseignait et la recopiait",
+"pharisien|pharisiens":"juif très strict dans l'observance de la loi et des traditions",
+"sadducéens":"groupe de prêtres juifs qui ne croyaient pas à la résurrection",
+"sacrificateur|sacrificateurs":"prêtre qui offre les sacrifices",
+"souverain sacrificateur":"grand prêtre",
+"aquilon":"vent du nord ; le nord",
+"septentrion":"le nord",
+"prodige|prodiges":"miracle, fait extraordinaire",
+"bélier|béliers":"mâle de la brebis",
+"glorifier|glorifie|glorifié|glorifiés|glorifiée|glorifierai|glorifia|glorifiez":"rendre gloire, louer, honorer",
+"opprobre|opprobres":"honte, humiliation",
+"ignominie":"grande honte, déshonneur",
+"chérubin|chérubins":"anges puissants qui entourent le trône de Dieu",
+"séraphins":"anges de feu qui chantent « Saint, Saint, Saint »",
+"hostie|hosties":"victime offerte en sacrifice",
+"oblation|oblations":"offrande faite à Dieu",
+"libation|libations":"offrande de vin (ou d'huile) versée en l'honneur de Dieu",
+"insensé|insensés|insensée":"fou, qui agit sans réfléchir et sans Dieu",
+"paternelles|paternelle":"du père, de la famille du père",
+"purifier|purifié|purifiée|purifiés|purifie|purifia|purifierai":"rendre pur, nettoyer du péché ou de l'impureté",
+"impur|impure|impurs|impures|impureté":"qui n'est pas pur selon la loi (ne peut pas approcher de Dieu)",
+"lèpre":"grave maladie de la peau",
+"nuée|nuées":"nuage",
+"suavité":"douceur ; « odeur de suavité » : parfum agréable à Dieu",
+"advint|advenu|adviendra":"arriva, se produisit",
+"enseveli|ensevelir|ensevelis":"enterré, mis au tombeau",
+"paître":"manger l'herbe ; « faire paître » : mener le troupeau manger",
+"incirconcis":"homme non circoncis ; dans la Bible : qui n'appartient pas au peuple de Dieu",
+"circoncire|circoncis|circoncision":"rite où l'on coupe le prépuce, signe de l'alliance avec Dieu",
+"éphod":"vêtement sacré du grand prêtre, porté sur la poitrine",
+"prophétiser|prophétise|prophétisé|prophétisaient":"parler de la part de Dieu",
+"tribulation|tribulations":"grande épreuve, souffrance",
+"oint|oints|oindre|oignit|oindras":"consacré en versant de l'huile sainte (rois, prêtres, et le Christ = « l'Oint »)",
+"onction":"huile sainte versée pour consacrer ; aussi la grâce de l'Esprit Saint",
+"chandelier|chandeliers":"support à plusieurs lampes (dans le Temple : 7 branches)",
+"azyme|azymes":"pain sans levain ; les Azymes : fête de la Pâque",
+"chantre|chantres":"chanteur du Temple",
+"sanctifier|sanctifié|sanctifiés|sanctifie|sanctifia|sanctifieras|sanctification":"rendre saint, mettre à part pour Dieu",
+"sabbat|sabbats":"septième jour de la semaine, jour de repos consacré à Dieu",
+"pétrie|pétri":"(pâte) travaillée avec les mains",
+"exterminer|exterminé|exterminés|exterminées|extermine|extermineras|exterminateur":"détruire complètement",
+"exalter|exaltez|exalté|exalte":"élever, louer, glorifier",
+"affermir|affermi|affermis|affermira":"rendre solide, fortifier",
+"outrage|outrages|outragé|outrager|outragent":"insulte grave",
+"souiller|souillé|souillée|souillés|souillées|souille|souillure|souillures":"salir, rendre impur",
+"profaner|profané|profanera|profaneront":"manquer de respect à une chose sainte",
+"drachme|drachmes":"pièce de monnaie grecque en argent",
+"propitiatoire":"couvercle d'or de l'arche, où Dieu pardonne les péchés",
+"propitiation":"sacrifice qui obtient le pardon de Dieu",
+"prosélyte|prosélytes":"étranger converti à la foi d'Israël",
+"eunuque|eunuques":"serviteur de confiance à la cour d'un roi (homme castré)",
+"sépulcre|sépulcres":"tombeau",
+"impudicité":"débauche, péchés sexuels",
+"tabernacle|tabernacles":"tente sacrée où Dieu habitait au milieu d'Israël ; fête des Tabernacles : fête des Tentes",
+"inique":"injuste",
+"myrrhe":"résine parfumée et précieuse",
+"javeline|javelines":"lance qu'on lance à la main",
+"fléau|fléaux":"grand malheur, catastrophe",
+"vanité|vanités":"ce qui est vide, sans valeur ; parfois les idoles",
+"génisse|génisses":"jeune vache",
+"exaucer|exauce|exaucé|exauça":"écouter et répondre à une prière",
+"endurci|endurcit|endurcir":"rendu dur, fermé à Dieu",
+"cilice|cilices":"vêtement rugueux en poil, porté en signe de deuil ou de pénitence",
+"anathème":"malédiction ; chose vouée à la destruction",
+"adultère|adultères":"le fait de tromper son mari ou sa femme",
+"myriade|myriades":"dix mille ; un très grand nombre",
+"magnificence":"splendeur, grandeur",
+"portier|portiers":"gardien des portes",
+"parabole|paraboles":"petite histoire de Jésus qui enseigne une vérité",
+"mamelle|mamelles":"sein",
+"cymbale|cymbales":"instrument de musique en métal qu'on frappe",
+"défaillir|défailli|défaillants":"perdre ses forces, s'évanouir",
+"consumer|consumé|consumée|consumés|consume":"détruire peu à peu, brûler entièrement",
+"centenier|centeniers":"officier qui commande cent soldats",
+"tunique|tuniques":"vêtement long porté près du corps",
+"rational":"pectoral : pièce d'étoffe ornée de pierres sur la poitrine du grand prêtre",
+"lamentation|lamentations":"plainte, chant de deuil",
+"devin|devins":"personne qui prétend prédire l'avenir",
+"cithare|cithares":"instrument à cordes (sorte de harpe)",
+"asservi|asservis":"réduit en esclavage",
+"sanhédrin":"conseil suprême des Juifs à Jérusalem",
+"préau":"cour",
+"intendant|intendants":"homme chargé de gérer les biens d'un maître",
+"cime|cimes":"sommet",
+"aïeul|aïeux":"ancêtre, grand-père",
+"vestibule|vestibules":"entrée d'un bâtiment",
+"survint":"arriva",
+"répudier|répudie|répudié|répudiée":"renvoyer sa femme, divorcer",
+"labeur|labeurs":"travail pénible",
+"indocile|indociles":"qui n'obéit pas",
+"incorruptible|incorruptibles":"qui ne pourrit pas, qui dure toujours",
+"glaive|glaives":"épée",
+"fiel":"liquide très amer ; amertume",
+"rejeton":"descendant, nouvelle pousse",
+"servile":"« œuvre servile » : travail ordinaire (interdit le jour du sabbat)",
+"quadrupède|quadrupèdes":"animal à quatre pattes",
+"pestilence":"épidémie, peste",
+"concubine|concubines":"épouse de second rang",
+"éphi|épha":"mesure de grain (environ 22 litres)",
+"publicain|publicains":"collecteur d'impôts pour les Romains (détesté des Juifs)",
+"péager|péagers":"collecteur d'impôts",
+"pourceau|pourceaux":"porc, cochon",
+"imputer|imputé|imputée":"compter, mettre au compte de quelqu'un",
+"expiation":"le fait de réparer un péché pour obtenir le pardon",
+"encensoir|encensoirs":"récipient où l'on brûle l'encens",
+"tribut|tributs":"impôt payé à un roi étranger",
+"tiare":"coiffure du grand prêtre",
+"outre|outres":"sac en peau pour transporter le vin ou l'eau",
+"perversité":"méchanceté, goût du mal",
+"décime|décimes|dîme|dîmes":"le dixième de ses revenus, donné à Dieu",
+"clameur|clameurs":"grand cri",
+"châtier|châtie|châtié|châtiés|châtiant|châtiment|châtiments":"punir pour corriger",
+"broyer|broyé|broyés|broie|broiera":"écraser",
+"aromate|aromates":"plantes ou parfums qui sentent bon",
+"ânon":"petit de l'âne",
+"lionceau|lionceaux":"jeune lion",
+"indigent|indigents|indigence|nécessiteux":"très pauvre ; la pauvreté",
+"impétueux":"violent, très rapide",
+"gosier":"gorge",
+"augure|augures":"devin ; présage",
+"pâtre|pâtres":"berger",
+"monceau|monceaux":"tas",
+"limitrophe":"voisin, à la frontière",
+"incrédule|incrédules":"qui ne croit pas",
+"diadème":"couronne",
+"courroux|courroucé|courrouça":"colère ; en colère",
+"cordeau":"corde pour mesurer",
+"contristé|contrister":"attristé",
+"ébranler|ébranlé|ébranlés|ébranlées|ébranlée":"secouer, faire trembler",
+"vivifier|vivifie":"donner la vie",
+"teigne":"mite (insecte qui mange les vêtements)",
+"supplication|supplications":"prière insistante",
+"satrape|satrapes":"gouverneur de province (empire perse)",
+"réprimande|réprimandes":"reproche",
+"pressoir|pressoirs":"machine pour presser le raisin",
+"palissade|palissades":"barrière de bois",
+"hysope":"petite plante utilisée pour asperger (purification)",
+"géhenne":"l'enfer, lieu de châtiment",
+"gomor":"mesure (environ 2 litres)",
+"dérèglement|dérèglements":"désordre, mauvaise conduite",
+"assujetti":"soumis",
+"échanson":"serviteur qui sert à boire au roi",
+"panetier":"serviteur chargé du pain du roi",
+"susciterai|susciter":"faire naître, faire apparaître",
+"raillerie":"moquerie",
+"paralytique":"personne paralysée",
+"inimitié":"hostilité, haine",
+"environné":"entouré",
+"concupiscence":"désir mauvais",
+"calamité|calamités":"catastrophe, grand malheur",
+"aspersion|aspersions":"le fait d'asperger (projeter) un liquide pour purifier",
+"tressaillir|tressaille|tressailli|tressailliront|tressaillez":"sauter de joie, trembler d'émotion",
+"schéol":"séjour des morts",
+"rédempteur":"celui qui rachète, qui libère (le Sauveur)",
+"marchepied":"petit banc où l'on pose les pieds",
+"geôlier":"gardien de prison",
+"fiente":"excréments",
+"fange":"boue",
+"faucille":"outil en forme de croissant pour couper les céréales",
+"carquois":"étui où l'on met les flèches",
+"aînesse":"droit d'aînesse : privilèges du fils aîné",
+"ulcère|ulcères":"plaie qui ne guérit pas",
+"rétribuer|rétribuerai|rétribuera|rétribution":"rendre à chacun selon ce qu'il a fait",
+"ivraie":"mauvaise herbe qui ressemble au blé",
+"satiété":"au point d'être rassasié",
+"meurtrissure|meurtrissures":"blessure, bleu",
+"ceindre|ceignit|ceints|ceignez|ceint":"attacher autour de la taille ; « ceindre ses reins » : se préparer",
+"térébinthe":"grand arbre",
+"prétoire":"palais du gouverneur romain",
+"jaspe|onyx|topaze":"pierre précieuse",
+"cheminer|cheminé|chemine":"marcher",
+"maxime|maximes":"phrase de sagesse",
+"lapider|lapidé|lapidèrent":"tuer à coups de pierres",
+"enorgueillir|enorgueilli|enorgueillis":"devenir orgueilleux",
+"tétrarque":"gouverneur d'une partie d'un pays",
+"prévaricateur|prévaricateurs|prévarication":"celui qui trahit, désobéit à Dieu",
+"précepte|préceptes":"commandement",
+"oracle|oracles":"parole de Dieu transmise par un prophète",
+"jactance":"vantardise",
+"cataracte|cataractes":"« cataractes du ciel » : écluses, grandes ouvertures d'où tombe la pluie",
+"sédition":"révolte",
+"solennité|solennités":"fête religieuse",
+"sarment|sarments":"branche de vigne",
+"mansuétude":"douceur, bonté",
+"mandragore|mandragores":"plante qu'on croyait favoriser la naissance d'enfants",
+"luminaire|luminaires":"astre qui éclaire (soleil, lune)",
+"intempérance":"excès (boire, manger…)",
+"cognée":"hache",
+"casleu|adar|nisan":"nom d'un mois de l'année juive",
+"théraphim":"petites idoles de la maison",
+"sénevé":"moutarde (graine de moutarde)",
+"sabaoth":"« des armées » (Seigneur Sabaoth : Seigneur des armées célestes)",
+"derechef":"de nouveau",
+"ouïr|ouï|ouït|ouïrent|ouïs":"entendre",
+"quérir|querir":"chercher",
+"opprimer|oppresseur|oppresseurs":"écraser, faire souffrir les faibles",
+"aspic|aspics":"serpent venimeux (vipère)",
+"dard|dards":"flèche ; pointe",
+"tributaire|tributaires":"obligé de payer un impôt à un vainqueur",
+"verge|verges":"bâton",
+"géhenne":"l'enfer",
+"rémission":"pardon",
+"prémices":"premiers fruits de la récolte, offerts à Dieu",
+"hyacinthe":"couleur violette ; tissu teint en violet",
+"holocaustes":"sacrifices entièrement brûlés",
+"tabernacle":"tente sacrée",
+"cantique|cantiques":"chant",
+"allégresse":"grande joie",
+"sentinelle|sentinelles":"garde qui surveille",
+"vaillant|vaillants":"courageux, brave",
+"malice":"méchanceté",
+"stupeur":"grand étonnement mêlé de peur",
+"désolation":"ruine, dévastation",
+"perdition":"perte, ruine (souvent : perte éternelle)",
+"citerne|citernes":"réservoir creusé pour garder l'eau de pluie",
+"vieillard|vieillards":"vieil homme ; les anciens (chefs du peuple)",
+"froment":"blé",
+"centurion":"officier romain qui commande cent soldats",
+"Gentils|gentils":"les païens (ceux qui ne sont pas juifs)",
+"pâque":"fête de la libération d'Égypte ; pour les chrétiens : la Résurrection",
+"pentecôte":"fête 50 jours après Pâque ; descente de l'Esprit Saint",
+"messie":"« l'Oint » : le sauveur promis, Jésus-Christ",
+"apôtre|apôtres":"envoyé ; les Douze choisis par Jésus",
+"disciple|disciples":"élève qui suit un maître",
+"Verbe":"la Parole de Dieu ; le Fils de Dieu (Jean 1)",
+"repentance|repentir|repens":"regretter son péché et revenir à Dieu",
+"justifié|justifiés|justifier|justification":"rendu juste devant Dieu, pardonné",
+"rachat|racheté|rachetés|racheter":"libérer en payant le prix",
+"alliance":"engagement solennel entre Dieu et son peuple",
+"arche":"coffre sacré contenant les tables de la loi (ou le bateau de Noé)",
+"parvis":"cour devant le Temple",
+"encens":"résine qui sent bon quand on la brûle (prière qui monte vers Dieu)",
+"idole|idoles":"statue de faux dieu",
+"idolâtrie|idolâtres":"adoration des idoles",
+"blasphème|blasphèmes|blasphémé":"parole qui insulte Dieu",
+"zèle":"ardeur, amour passionné",
+"tentation":"envie de faire le mal",
+"miséricorde|miséricordes":"amour qui pardonne, pitié",
+"grâce":"don gratuit de Dieu, sa bienveillance",
+"béatitude|béatitudes":"bonheur ; les paroles « Heureux… » de Jésus",
+"épître|épîtres":"lettre",
+"Praxis|Katholikon":"lectures de la messe copte (Actes, lettres catholiques)",
+"Agpeya":"livre des heures de prière de l'Église copte",
+"exhorter|exhorte|exhorta|exhortation":"encourager vivement",
+"recouvré":"retrouvé",
+"congédier|congédia|congédié":"renvoyer",
+"fortunée":"heureuse, riche",
+"touffu|touffus":"épais, plein de feuilles",
+"palmes":"feuilles de palmier",
+"lyre|lyres":"instrument à cordes",
+"carquois":"étui à flèches",
+"cuirasse|cuirasses":"protection de métal pour la poitrine",
+"bouclier|boucliers":"plaque pour se protéger des coups",
+"écuyer|écuyers":"celui qui porte les armes d'un guerrier",
+"mulet|mulets":"animal né d'un âne et d'une jument",
+"gerbe|gerbes":"botte d'épis de blé",
+"vanner|vannerai":"secouer le grain pour enlever la paille",
+"aire":"terrain où l'on bat le blé",
+"tonte":"le fait de couper la laine des moutons",
+"laboureur|laboureurs":"paysan qui laboure la terre",
+"moissonneur|moissonneurs":"celui qui récolte les céréales",
+"semailles":"le fait de semer",
+"grincements":"« grincements de dents » : signe de grande douleur",
+"édifier|édifie|édifiés":"construire ; faire grandir dans la foi",
+"sevré":"enfant qui ne boit plus le lait de sa mère",
+"veuvage":"le fait d'être veuve",
+"jeûne|jeûné|jeûner":"se priver de nourriture pour prier",
+"consolateur":"celui qui console ; le Paraclet (l'Esprit Saint)",
+"Paraclet":"le Consolateur, l'Esprit Saint",
+"sacerdoce|sacerdotaux":"fonction de prêtre",
+"absous":"pardonné",
+"hardiesse":"courage, audace",
+"irrépréhensible|irrépréhensibles":"qu'on ne peut pas reprocher, sans faute",
+"démoniaque|démoniaques":"possédé par un démon",
+"embrasé|embrasés":"en feu",
+"enchantement|enchantements|enchanteur|enchanteurs":"magie, sortilège ; magicien",
+"cavale|cavales":"jument",
+"balistes":"machines de guerre qui lancent des pierres",
+"abondants":"nombreux",
+"aspergera":"projettera du liquide (pour purifier)",
+"frontispice":"façade",
+};
+Object.assign(GLOSS_RAW,{"engendrer|engendra|engendré|engendrée|engendrés|engendrent|engendrera|engendrèrent|engendrait": "avoir pour enfant, être le père de ; pour Dieu : faire naître (le Fils)", "enfanter|enfanta|enfanté|enfantée|enfantera|enfantèrent|enfante|enfantes|enfantent|enfanteras|enfanteront|enfantait": "mettre au monde, accoucher", "conçut|conçurent|concevra|concevras|conçu|conçue": "devenir enceinte (ou : avoir une idée, un projet)", "point": "dans « ne… point » : « ne… pas »", "pareillement": "de la même façon", "promptement": "rapidement", "incontinent": "aussitôt", "jadis": "autrefois", "naguère": "il y a peu de temps", "nonobstant": "malgré", "voire": "et même", "certes": "bien sûr, vraiment", "dorénavant": "à partir de maintenant", "aucunement": "pas du tout", "sitôt": "aussitôt, dès que", "puis": "« je puis » : je peux ; sinon : ensuite", "nul|nulle": "aucun, personne", "céans": "ici", "icelui": "celui-ci", "or": "au début d'une phrase : « et », « mais », « alors » (pas le métal)","prostituée|prostituées":"femme qui vend son corps ; dans la Bible : image du peuple infidèle à Dieu","ânesse|ânesses": "femelle de l'âne", "chamelle|chamelles": "femelle du chameau", "pectoral": "pièce d'étoffe ornée de pierres précieuses, portée sur la poitrine du grand prêtre", "enfantement": "accouchement, naissance", "nominativement": "en les nommant un à un", "tourterelle|tourterelles": "petit oiseau proche du pigeon (offert en sacrifice)", "achoppement": "« pierre d'achoppement » : obstacle qui fait trébucher, tomber", "enfoncement": "creux, renfoncement", "rognon|rognons": "reins d'un animal", "figuier|figuiers": "arbre qui donne des figues", "chevreau|chevreaux": "petit de la chèvre", "tortueux|tortueuse|tortueuses": "tordu, plein de détours ; malhonnête", "déréglé|déréglée|déréglés": "désordonné, qui vit mal", "persécuteur|persécuteurs|persécuter": "celui qui maltraite quelqu'un à cause de sa foi", "harpiste|harpistes": "joueur de harpe", "toison|toisons": "laine d'un mouton", "tenture|tentures": "grand tissu suspendu (rideau)", "semeur": "celui qui sème les graines", "impudique|impudiques": "qui manque de pudeur, débauché", "fourchu": "fendu en deux (sabot des animaux)", "corruptible": "qui peut pourrir, qui ne dure pas", "psaltérion": "instrument à cordes (sorte de harpe)", "prophétesse": "femme prophète", "imprécation|imprécations": "malédiction", "endurcissement": "cœur fermé, refus d'écouter Dieu", "accusateur|accusateurs": "celui qui accuse", "égarement|égarements": "erreur, le fait de se perdre loin de Dieu", "rapine|rapines": "vol, pillage", "menteuse|menteuses": "qui ment", "jointure|jointures": "articulation", "difformité": "défaut physique", "épeautre": "sorte de blé", "traînant|traînante": "qui traîne par terre", "revêche": "désagréable, difficile", "préteur|préteurs": "magistrat romain", "libéralité|libéralités": "générosité, don", "imitateur|imitateurs": "celui qui imite, qui suit l'exemple", "hautain|hautains|hautaine|hautaines": "orgueilleux, méprisant", "expiatoire|expiatoires": "qui sert à obtenir le pardon des péchés", "emportement": "colère violente", "assoupissement": "sommeil, engourdissement", "vantardise": "le fait de se vanter", "votif|votives": "offert pour accomplir une promesse faite à Dieu", "retors": "tordu, tressé (fil)", "menstrues|menstruel": "règles des femmes", "larcin": "vol", "judaïque": "juif", "inébranlable|inébranlables": "solide, qu'on ne peut pas faire bouger", "essaim|essaims": "groupe d'abeilles", "cinnamome": "cannelle (épice parfumée)", "burette|burettes": "petit vase", "brisement|brisements": "le fait de briser", "bigarré|bigarrés": "de plusieurs couleurs", "verjus": "raisin pas mûr, acide", "ventriloque|ventriloques": "sorcier qui prétend faire parler les morts", "tâtons": "« à tâtons » : en cherchant avec les mains, sans voir", "séducteur|séducteurs|séduire|séduise|séduisait": "celui qui trompe, qui détourne du bien", "scel": "sceau, cachet", "saumâtre": "salé (eau)", "saphir|saphirs|sardoine|béryl|améthyste|escarboucle|porphyre": "pierre précieuse", "rugir|rugira|rugissements|rugissement|rugit|rugissent|rugi|rugissant": "cri du lion", "panetière": "sac de berger", "orgueilleusement": "avec orgueil", "nard": "parfum très précieux", "mitre|mitres": "haute coiffure de prêtre", "longanime|longanimité": "patient, qui pardonne longtemps", "ivrognerie": "le fait de s'enivrer souvent", "incirconcision": "état de celui qui n'est pas circoncis", "flagellation|flagellations|flageller|flagellé|flagellés|flagellera": "coups de fouet", "faon|faons": "petit de la biche", "escarpé|escarpée|escarpées": "très en pente, difficile à grimper", "escabeau": "petit banc où l'on pose les pieds", "componction": "regret sincère de ses péchés", "chardon|chardons": "plante à épines", "cellier|celliers": "réserve, cave", "cabas": "panier", "blasphémateur|blasphémateurs|blasphémer|blasphémèrent": "qui insulte Dieu", "voluptueux|voluptueuse|volupté|voluptés": "qui recherche le plaisir", "vendangeur|vendangeurs|vendanger|vendangeras": "celui qui récolte le raisin", "tentateur": "celui qui pousse au mal (le diable)", "suave|suaves": "doux, agréable", "stupéfait|stupéfaits|stupéfaites": "très étonné", "soufflet|soufflets": "gifle ; instrument pour souffler sur le feu", "réprouvé|réprouvés|réprouve|réprouver": "rejeté, condamné", "retranchement|retrancher|retranche|retranchée|retranchées": "couper, enlever, exclure", "puîné": "plus jeune, cadet", "prédestiné|prédestinés": "choisi à l'avance par Dieu", "pierreux": "plein de pierres", "onocentaure|onocentaures": "créature sauvage imaginaire (animal du désert)", "obole|oboles": "petite pièce de monnaie", "nielle": "mauvaise herbe ; maladie des céréales", "nantissement": "gage, garantie", "monnayé": "transformé en pièces de monnaie", "maraudeur|maraudeurs": "voleur", "malfaisant|malfaisantes": "qui fait du mal", "licteur|licteurs": "garde d'un magistrat romain", "journellement": "chaque jour", "irascible": "qui se met vite en colère", "importun|importune": "qui dérange", "incision|incisions": "coupure dans la peau", "gynécée": "appartement des femmes", "fendeur|fendeurs": "celui qui fend le bois", "exténué|exténués": "très fatigué", "estropié|estropiés": "blessé, infirme", "dartre": "maladie de la peau", "crépi|recrépie": "enduit sur un mur", "contradicteur": "celui qui contredit", "consanguin|consanguine": "de même sang (même père)", "charnel|charnelles": "du corps, de la chair", "centuple": "cent fois plus", "étoupe|étoupes": "déchets de fibres (lin, chanvre)", "épaulière|épaulières": "pièce de vêtement sur les épaules", "zélateur": "celui qui défend une cause avec ardeur", "verrouillé|verrouillées": "fermé à clé", "tacheté|tachetés": "couvert de taches", "septuple": "sept fois plus", "scélératesse": "grande méchanceté", "sacrilège|sacrilèges": "manque de respect envers ce qui est sacré", "pusillanime": "peureux, sans courage", "prépuce|prépuces": "peau qui recouvre le bout du sexe de l'homme", "proconsul": "gouverneur romain d'une province", "pigeonneau|pigeonneaux": "petit pigeon", "perfidie": "trahison", "opiniâtre": "têtu, obstiné", "odoriférant": "qui sent bon", "nubile": "en âge de se marier", "mûrier|mûriers": "arbre qui donne des mûres", "lambrissé|lambrissés": "recouvert de boiseries", "jarret|jarrets": "arrière du genou (chez l'animal)", "irrévocablement": "définitivement", "insatiable|insatiables": "qui n'est jamais rassasié", "impétueusement|impétuosité": "avec violence, très vite", "genièvre": "arbuste du désert", "effilé": "très fin, pointu", "didrachme|didrachmes": "pièce de deux drachmes (impôt du Temple)", "cupidité|cupidités": "amour de l'argent", "contrit|contrits": "qui regrette son péché", "cohéritier|cohéritiers": "qui hérite avec un autre", "coalisé|coalisés": "allié contre quelqu'un", "chambranle|chambranles": "encadrement d'une porte", "cep|ceps": "pied de vigne", "bourgade|bourgades": "petit village", "aposté": "placé en embuscade", "admonester|admonestés": "faire des reproches", "abreuvoir|abreuvoirs": "bac où boivent les animaux", "abreuver|abreuvé|abreuvés|abreuve|abreuva|abreuverez": "donner à boire", "xanthique|casleu|nisan|adar|élul|tisri": "nom d'un mois du calendrier", "violateur": "celui qui ne respecte pas (une loi)", "verdoyant": "vert, plein de verdure", "velu|velues": "couvert de poils", "vanneur": "celui qui sépare le grain de la paille", "tortu": "tordu", "séditieux": "révolté", "sommité|sommités": "sommet", "réchaud|réchauds": "petit fourneau", "querelleur|querelleuse": "qui aime se disputer", "prescience": "connaissance de l'avenir", "pommelé": "couvert de taches rondes (cheval)", "oisif|oisifs": "qui ne fait rien", "oiseleur": "chasseur d'oiseaux", "médisance|médisant|médisantes|médire": "dire du mal des autres", "moyeu|moyeux": "centre d'une roue", "mouchette|mouchettes": "ciseaux pour couper la mèche des lampes", "laitage": "lait, produits du lait", "jambage|jambages": "montant d'une porte", "irréligieux": "qui ne respecte pas Dieu", "inopinément": "soudain, sans prévenir", "impérissable": "qui ne périt jamais", "impudent": "effronté, sans gêne", "huppe": "oiseau à crête", "guetteur|guetteurs": "qui surveille", "glèbe|glèbes": "motte de terre", "galbanum": "résine parfumée", "froidure": "froid", "fourberie|fourberies": "tromperie", "exacteur": "celui qui exige l'argent par la force", "escarbot": "insecte (scarabée)", "entrefaites": "« sur ces entrefaites » : à ce moment-là", "efféminé|efféminés": "homme débauché", "déshonnête|déshonnêtes": "honteux, immoral", "dépravé": "corrompu, vicieux", "rassasier|rassasié|rassasiés|rassasiée|rassasiées|rassasie|rassasient|rassasiera|rassasieront|rassasierez|rassasierai|rassasiez": "avoir assez mangé, être comblé", "prosterner|prosterna|prosternèrent|prosterneront|prosternent|prosternant|prosternés|prosterné|prosternait|prosternaient": "se mettre à genoux le front contre terre (pour adorer)", "égorger|égorgea|égorgera|égorgeait|égorgé|égorgés|égorgeaient|égorge": "tuer en coupant la gorge", "vaincre|vainquit|vainquirent|vaincu": "battre l'ennemi, gagner", "accabler|accablés|accablé|accablent": "écraser (sous le poids, la peine)", "élancer|élança|élanceront|élancèrent|élançant|élancera": "se jeter en avant", "prescrire|prescrivit|prescris|prescrivant|prescrivait|prescrit": "ordonner", "résoudre|résolut|résolurent": "décider", "assiéger|assiégea|assiégèrent|assiégeait|assiégera": "encercler une ville pour la prendre", "paître|paissaient|paissait|paîtra|paissent|paissant|repaître|repaîtrai|repaîtront": "manger l'herbe ; nourrir le troupeau", "circoncire|circoncit|circoncisez|circoncirent": "pratiquer la circoncision", "dessécher|desséché|desséchée|desséchés|dessèche": "rendre sec", "instituer|institua": "établir, créer", "haïr|haïe|haïs|haïssaient|haïssant|haïront|haïsse|haïssez|haïssais|haïras": "détester", "déshonorer|déshonore|déshonorés|déshonorée|déshonorent": "faire perdre l'honneur", "convoiter|convoiteras|convoitez": "désirer ce qui appartient à un autre", "enivrer|enivrez|enivré|enivrés|enivrée|enivre|enivrait|enivrante|enivreront|enivrerai|enivrera|enivrent": "rendre ivre (soûl)", "immoler|immolé|immolèrent|immole|immolera|immola|immoleras|immolation": "tuer en sacrifice", "gémir|gémissant|gémissent|gémiront|gémissez|gémis|gémi|gémira|gémirai": "se plaindre en soupirant", "asperger|aspergé|aspergera": "projeter un liquide en gouttes", "endurcir|endurcissez": "fermer son cœur", "assigner|assigna": "attribuer, désigner", "resplendir|resplendit|resplendissant|resplendirent": "briller très fort", "obscurcir|obscurcis|obscurci|obscurcit|obscurcie|obscurcira|obscurcissent": "rendre sombre", "dilater|dilaté|dilate": "élargir (le cœur : remplir de joie)", "complaire|complu|complaît|complaira|complaise|complaisait": "faire plaisir ; prendre plaisir", "trafiquer|trafiquaient|trafiquerons": "faire du commerce", "pervertir|pervertie|pervertis|pervertit|pervertissez|pervertirent": "détourner du bien, corrompre", "dompter|dompté|dompte|indompté": "maîtriser, apprivoiser", "chanceler|chancelé": "tituber, perdre l'équilibre", "adonner|adonné|adonnés": "se consacrer à quelque chose (souvent un vice)", "adjurer|adjuré|adjure|adjura": "supplier solennellement", "intercéder|intercède|intercèdera": "prier en faveur de quelqu'un", "réédifier|réédifierai|réédifié|réédifiée": "reconstruire", "rebâtir|rebâtit|rebâtie|rebâtira|rebâti|rebâtiront|rebâtis|rebâtirent": "reconstruire", "moissonner|moissonne|moissonnera|moissonnée|moissonné|moissonnerez|moissonnent": "récolter les céréales", "déraciner|déraciné|déracinée|déracinerez|déracine|déracinerai": "arracher avec les racines", "assoupir|assoupis": "endormir", "persévérer|persévéré|persévère|persévérera": "continuer avec courage", "succomber|succombèrent|succomberont": "céder, mourir", "calomnier|calomnient|calomnie|calomnies": "accuser faussement", "scandaliser|scandalisait": "choquer, faire tomber dans le péché", "sceller|scella": "fermer avec un sceau", "flétrir|flétri|flétrit|flétris": "faner, perdre sa fraîcheur", "appesantir|appesantie|appesantit|appesantira|appesanti": "rendre lourd", "assouvir|assouvirai|assouvi": "satisfaire complètement", "empresser|empressa|empressèrent": "se dépêcher", "exhaler|exhale|exhala|exhalé|exhalant": "dégager (une odeur, un souffle)", "injurier|injurié|injurièrent|injurier|injuria|injurieuses": "insulter", "inhumer|inhumèrent|inhuma": "enterrer", "implorer|implorèrent|implora": "supplier", "engraisser|engraissé|engraissés|engraisse": "rendre gras", "enlacer|enlacé": "entourer, attraper", "dénouer|dénoue": "défaire un nœud", "ruminer|rumine|ruminent": "mâcher de nouveau la nourriture (vache, mouton)", "épier|épié|épie|épiaient": "surveiller en cachette", "égarer|égarent|égareront|égara|égarées": "perdre son chemin, tromper", "proférer|proféraient|proférés|proférée|profèrera": "prononcer", "prostituer|prostituèrent|prostituent|prostitue|prostituera|prostitueront": "se vendre ; dans la Bible : abandonner Dieu pour les idoles", "transgresser|transgressé|transgresses|transgressent|transgressant|transgressez|transgresse|transgresseur": "désobéir à une loi", "réprimander|réprimandés|réprimandé|réprimandent|réprimanda|réprimandai": "faire des reproches", "railler|raillée|raillaient|raillés|raillé|raillèrent|raillera|railleurs": "se moquer", "regorger|regorgeant|regorgeaient|regorgeront": "être plein à déborder", "jaillir|jaillissait|jaillirent|jailli|jaillissent": "sortir avec force (eau)", "mander": "faire venir, envoyer chercher", "frémir|frémi|frémit": "trembler (de peur, de colère)", "fendre|fendit|fendirent|fendant": "couper en deux", "glaner|glané": "ramasser les épis restés dans le champ", "germer|germera|germent": "commencer à pousser", "entasser|entasseront|entasse": "mettre en tas", "ensemencer|ensemenceras": "semer des graines dans un champ", "enrôler|enrôlèrent": "inscrire dans l'armée", "embaumer": "préparer un mort avec des parfums", "dévaster|dévastèrent|dévastaient": "détruire, ravager", "dépérir|dépéri": "s'affaiblir peu à peu", "dépecer|dépecé|dépeça": "couper en morceaux", "délibérer|délibérèrent": "discuter avant de décider", "dédaigner|dédaigne|dédaigné|dédaigna": "mépriser", "déchaîner|déchaînerai": "libérer avec violence", "exécrer|exècre": "détester", "thésauriser|thésaurisé|thésaurisent": "amasser des richesses", "supputer|supputera": "calculer", "subjuguer|subjuguera": "soumettre, dominer", "tâtonner|tâtonnant": "chercher sans voir", "vanner|vannerai": "secouer le grain pour enlever la paille", "spolier|spoliateur": "voler, dépouiller", "réfuter|réfutait": "montrer qu'une parole est fausse", "grappiller|grappillez|grappillon": "ramasser les raisins oubliés", "ciseler|ciselés": "sculpter finement", "tresser|tressés|tressées|tressée": "entrelacer des fils", "émouvoir|émeuve|émues": "toucher, troubler", "éluder|éludé": "éviter", "ériger|érigea": "construire, dresser", "emmuseler|emmuselleras": "mettre une muselière", "indemniser|indemnisera": "rembourser un dommage", "pressurer|pressuraient": "écraser ; exploiter", "dépeupler|dépeuplée|dépeuplés|dépeuplées|repeuplée": "vider (ou remplir) de ses habitants", "subsister|subsistera|subsisteront": "durer, rester", "offenser|offenses": "blesser, manquer de respect", "libéralement": "généreusement", "ceindre|ceins|ceindra|ceindront|ceignirent": "attacher autour de la taille", "évanouir|évanouissent|évanouis|évanouira|évanouies": "disparaître ; perdre connaissance", "vêtir|vêtira": "habiller", "amasser|amassez|amassera|amassent|amasse": "rassembler, accumuler", "affermisse|affermir": "rendre solide", "accroître|accrut": "augmenter", "acquérir|acquiers": "obtenir", "absoudre|absolvez|absous": "pardonner", "affliger|affligea|affligeait|affligeaient": "faire souffrir", "maltraiter|maltraitez|maltraita|maltraitent|maltraiterez|maltraitera": "traiter durement", "flatteuse|flatteuses": "qui dit des compliments faux", "façonner|façonnés|façonnées": "fabriquer, modeler", "engourdir|engourdit": "rendre lourd et lent", "discerner|discerne": "voir clairement, distinguer", "conjurer|conjurant": "supplier", "agréer|agréerai|agréera": "accepter avec plaisir", "importune": "qui dérange, insistant", "hennir|hennissements": "cri du cheval", "crucifier|crucifiés|crucifièrent|crucifient": "clouer sur une croix", "baptiser|baptisait": "plonger dans l'eau (baptême)", "gonorrhée": "écoulement maladif (impureté selon la loi)", "captif|captive|captives|captifs": "prisonnier", "aumône|aumônes": "argent ou aide donnés aux pauvres", "passereau|passereaux": "moineau (petit oiseau)", "courtine|courtines": "rideau, tenture", "solive|solives": "poutre", "péristyle": "galerie à colonnes", "sceptre|sceptres": "bâton que tient le roi, signe de son pouvoir", "luire|luisante|luisantes|luit": "briller", "cruche|cruches": "grand vase pour l'eau", "poivrette": "plante aux graines épicées (nigelle)", "jaunisse": "maladie des céréales qui les fait jaunir", "mœlle|moelle": "intérieur des os", "rebut|rebuts": "déchet, ce qu'on jette", "rapt|rapts": "enlèvement", "nourrisseur|nourrisseurs": "éleveur de troupeaux", "labourage": "travail de la terre", "changeur|changeurs": "celui qui échange l'argent", "athersastha": "titre du gouverneur perse", "hérodiens": "partisans du roi Hérode", "chrême": "huile sainte", "chrysolithe|cornaline|cornalines|sardonyx|chrysoprase|hyacinthe|émeraude|émeraudes|onyx": "pierre précieuse", "aloès": "bois ou plante parfumée", "stacte": "résine parfumée", "spithame": "ancienne mesure (environ 22 cm)", "sabachthani": "« pourquoi m'as-tu abandonné ? » (en araméen)", "tamaris|sycomore|sycomores": "sorte d'arbre", "testateur": "celui qui fait un testament", "tertre|tertres": "petite colline", "taon": "grosse mouche qui pique", "tanière|tanières": "abri d'un animal sauvage", "torsade|torsades": "fils tordus ensemble", "usurier": "celui qui prête de l'argent avec un intérêt trop élevé", "vexation|vexations": "humiliation", "vermisseau|vermisseaux": "petit ver", "vantail|vantaux": "battant d'une porte", "âtre|âtres": "foyer de la cheminée", "émollient|émollients": "qui adoucit", "émeri": "pierre très dure", "épieu|épieux": "gros bâton pointu (arme)", "corroyeur": "celui qui travaille le cuir", "colique": "douleur au ventre", "cannelure|cannelures|ciselure|ciselures": "sculpture décorative", "démangeaison": "envie de se gratter", "docilité": "obéissance", "diligent": "travailleur, rapide", "animosité|animosités": "hostilité", "altier|altières": "fier, orgueilleux", "argileuse": "faite d'argile (terre)", "acéré|acérée": "très pointu, tranchant", "accablement": "grande fatigue, désespoir", "sodomites": "hommes qui commettent des actes impurs (comme à Sodome)", "rescrit": "lettre officielle du roi", "repu": "rassasié", "rétif": "qui refuse d'avancer, désobéissant", "verbeux": "qui parle trop", "traîneur|traîneurs": "celui qui reste en arrière", "trombe|trombes": "pluie très violente", "saponaire": "plante qui sert de savon", "transfiguré": "transformé, rayonnant de lumière", "incorruptibilité": "état de ce qui ne pourrit jamais", "répudiation": "renvoi d'une épouse (divorce)", "pécheresse": "femme pécheresse", "sacerdotal|sacerdotale|sacerdotales": "des prêtres", "innombrable": "qu'on ne peut pas compter", "désobéissant|désobéissants": "qui n'obéit pas", "accoutumé|accoutumés": "habitué", "assaillir|assaillis": "attaquer", "infréquenté|infréquentés": "où personne ne passe", "impraticable|impraticables": "où l'on ne peut pas passer", "ombrager|ombragera|ombrageront": "faire de l'ombre", "niveler|nivellera": "rendre plat", "brouter|brouteront": "manger l'herbe", "avoisiner|avoisinent": "être voisin", "enclore": "entourer d'une clôture", "déchaussé": "sans chaussures", "dispensateur|dispensateurs": "celui qui distribue", "discourir": "parler longuement", "concitoyen": "habitant de la même ville", "surabondamment|surabonder|surabondé": "en très grande quantité", "saintement": "de façon sainte", "traîtreusement": "en trahissant", "souverainement": "avec un pouvoir total", "inconsidéré": "irréfléchi", "hardiment": "avec courage", "droitement": "avec honnêteté", "virilement": "avec courage", "témérairement": "sans réfléchir au danger", "tumultueusement": "dans le désordre et le bruit", "chaste|chastes": "pur", "compatissant|compatissants": "qui partage la peine des autres", "calomniateur|calomniateurs": "celui qui accuse faussement", "secourable": "qui aide", "serviable|serviables": "qui aime rendre service", "venimeux|venimeuses": "qui a du venin", "éhonté": "sans honte", "tyranniser|tyrannisent|tyrannisaient": "opprimer", "anathématiser|anathématisa": "maudire", "conspirer|conspiré|conspirèrent": "comploter", "décamper|décamperont|décampa": "partir rapidement", "déchoir": "perdre son rang", "disséminer|disséminerai": "disperser", "devancer|devança": "arriver avant", "celer|cèle": "cacher", "cohabiter|cohabité": "habiter ensemble", "ameuter|ameute": "rassembler pour une émeute", "abstenir|abstiendrai": "se priver de", "tarir|tarie|taries|tariront|tarirai|tarira": "sécher, s'épuiser (source)", "scruter|scrutez|scruterez|scrutera": "examiner attentivement", "roidir|roidit": "raidir, rendre dur", "émonder|émondés|émonde": "tailler les branches", "épancher|épanché|épancherai": "verser, répandre", "épiler|épileront": "arracher les poils", "étourdir|étourdissaient": "assommer, troubler", "transvaser|transvasé": "verser d'un vase dans un autre", "submerger|submergera": "recouvrir d'eau", "souffleter|souffletèrent": "gifler", "saupoudrer|saupoudreront": "répandre en fine couche", "tondre|tondras|tondaient|tond": "couper la laine", "vacillé|vaciller": "trembler, ne plus tenir debout", "épouvantement|épouvantements|épouvante": "grande peur, terreur", "entour": "« à l'entour » : autour", "éphiod": "éphod (vêtement sacré du prêtre)", "nerprun": "arbuste épineux", "naphte": "liquide inflammable (pétrole)", "nitre": "sorte de sel (soude) qui sert à laver", "onagre|onagres": "âne sauvage", "lombes": "bas du dos, reins", "larron|larrons": "voleur, brigand", "lumignon": "mèche d'une lampe qui fume", "lunatique|lunatiques": "malade (épileptique)", "myrte": "arbuste parfumé", "munificence": "grande générosité", "mortifié|mortification": "privé, dompté ; le fait de se priver pour Dieu", "malignité": "méchanceté", "langueur": "faiblesse, abattement", "languir|languissons|languissante|languissantes": "s'affaiblir, attendre en souffrant", "lampion": "petite lampe", "judaïser|judaïsèrent": "adopter les coutumes juives", "irréflexion": "manque de réflexion", "insoumission": "refus d'obéir", "intempérant": "qui fait des excès", "munitions": "provisions, armes", "pusillanimité": "manque de courage", "pernicieux|pernicieuses": "dangereux, nuisible", "parricide|parricides": "meurtrier de son père ou de sa mère", "parjurer": "jurer faussement", "pacificateur": "celui qui fait la paix", "outrageux": "insultant", "opulent|opulente|opulentes": "très riche", "oisillon|oisillons": "petit oiseau", "observance|observances": "règle religieuse qu'on suit", "porphyrion": "oiseau aquatique", "populeux|populeuse": "très peuplé", "planchéié": "couvert de planches", "pierreries": "pierres précieuses", "perdreau|perdreaux": "jeune perdrix (oiseau)", "provigner|provigna": "planter des branches de vigne pour qu'elles prennent racine", "regimber": "se révolter, résister", "raboteux": "plein de bosses", "radeau|radeaux": "bateau plat fait de troncs attachés", "réticulé|réticulées": "en forme de filet", "pétillement": "petits bruits secs (feu)", "pétrifié|pétrifiés": "changé en pierre ; figé de peur", "ébranchement": "le fait de couper les branches", "ébranlement|ébranlements": "tremblement", "émietté": "réduit en miettes", "vêler|vêlé": "mettre bas (vache)", "vomissement": "le fait de vomir", "tambouriner|tambourina": "frapper comme sur un tambour", "suffoquer|suffoques": "étouffer", "nébel": "instrument de musique à cordes (harpe)", "mesureur": "celui qui mesure", "indignement": "de façon indigne", "impuni|impunie": "qui n'est pas puni", "prévaloir|prévaudra|prévaudrons|prévaudront|prévaudras|prévaudrai|prévaille|prévalu": "être le plus fort, l'emporter", "tressaillir|tressaillirons": "sauter de joie", "pécher|pèchent|pècheront|pécheront|pécherez|pécheras|pécherait|pèches|pècherez|pèchera|péchez|péchons|péchiez|péchaient|pécha|péchèrent": "commettre un péché, désobéir à Dieu", "épouvanter|épouvantés|épouvanté|épouvantées|épouvantez|épouvantera": "faire très peur", "oppressé": "qui a du mal à respirer ; écrasé", "crépir|crépissent": "recouvrir un mur d'enduit", "enchâsser|enchâssées": "fixer (une pierre précieuse) dans un support", "méconnaître|méconnaît": "ne pas reconnaître", "liquéfié|liquéfiée": "devenu liquide", "régir|régissait": "diriger, gouverner", "siéger|siégeaient": "être assis (en tant que juge, chef)", "stationner|stationneront|stationnaient": "rester à un endroit", "quoiqu|quoique": "même si, bien que", "infirmité|infirmités": "maladie, faiblesse", "débonnaire|débonnaires": "doux, bon", "ineffable": "qu'on ne peut pas exprimer avec des mots", "inextricable|inextricables": "impossible à démêler", "exorciste|exorcistes": "celui qui chasse les démons", "héraut|hérauts": "messager officiel qui annonce les nouvelles", "herse|herses": "outil pour briser la terre ; grille d'une porte", "haillon|haillons": "vêtement déchiré", "cédule": "écrit, reconnaissance de dette", "coudrier": "noisetier", "cotyle|cotyles": "petite mesure (une coupe)", "cotte|cottes": "« cotte de mailles » : vêtement de protection en métal", "emmailloter|emmaillota": "envelopper un bébé dans des langes", "fustiger|fustigés": "frapper à coups de bâton", "farder|farda": "maquiller", "glanure|glanures": "épis ramassés après la moisson", "exaction": "action d'exiger de l'argent injustement", "déférence": "respect", "dessiller|dessillés": "ouvrir (les yeux)", "daim|daims": "animal proche du cerf", "gangrené|gangrenées": "pourri (blessure)", "dispensation": "distribution ; plan de Dieu", "divination|divinations|divinatoire": "art de deviner l'avenir (interdit par Dieu)", "encenser|encensement": "offrir de l'encens", "effronterie|effrontément": "manque de honte, insolence", "dédaigneux": "méprisant", "frivole|frivoles|frivolité": "léger, sans importance", "flétrissure": "honte ; tache", "dépravation": "corruption", "délecter|délectera|délectables": "se réjouir, prendre plaisir", "inanimé|inanimée": "sans vie", "inaltérable": "qui ne change pas", "inadvertance|inadvertances": "erreur faite sans le vouloir", "incohérent|incohérentes": "sans logique", "industrieux|industrieuse": "habile, travailleur", "transgression|transgressions": "désobéissance à une loi", "insolemment|impudemment": "avec insolence, sans respect", "lugubre|lugubres": "sinistre, triste"});
+const GLOSS={};
+for(const k in GLOSS_RAW){ for(const f of k.split("|")){ GLOSS[f.toLowerCase()]=GLOSS_RAW[k]; } }
+
+const GLOSS_AUTO={"naquirent": "forme du verbe « naître » (passé : « ils ont … »)", "désobéit": "forme du verbe « désobéir »", "survécurent": "forme du verbe « survivre » (passé : « ils ont … »)", "apprirent": "forme du verbe « apprendre » (passé : « ils ont … »)", "rejoignirent": "forme du verbe « rejoindre » (passé : « ils ont … »)", "punisse": "forme du verbe « punir »", "irrita": "forme du verbe « irriter »", "fortifiait": "forme du verbe « fortifier »", "réjouisse": "forme du verbe « réjouir »", "protégea": "forme du verbe « protéger »", "reviendrez": "forme du verbe « revenir » (futur : « vous … »)", "ravagea": "forme du verbe « ravager »", "recommença": "forme du verbe « recommencer »", "maintiendrai": "forme du verbe « maintenir » (futur : « je … »)", "fusse": "forme du verbe « être » (subjonctif ancien)", "burent": "forme du verbe « boire » (passé : « ils ont … »)", "soumirent": "forme du verbe « soumettre » (passé : « ils ont … »)", "idolâtre": "forme du verbe « idolâtrer »", "fussiez": "forme du verbe « être »", "buviez": "forme du verbe « boire »", "réunissez": "forme du verbe « réunir »", "survienne": "forme du verbe « survenir »", "fortifiez": "forme du verbe « fortifier »", "tranquillisé": "forme du verbe « tranquilliser »", "croyions": "forme du verbe « croire »", "assiérait": "forme du verbe « asseoir » (conditionnel : « il … »)", "assiéra": "forme du verbe « asseoir » (futur : « il … »)", "chaussaient": "forme du verbe « chausser »", "régnasse": "forme du verbe « régner » (subjonctif ancien)", "accomplît": "forme du verbe « accomplir » (subjonctif ancien : « qu'il … »)", "accomplisse": "forme du verbe « accomplir »", "perça": "forme du verbe « percer »", "tinrent": "forme du verbe « tenir »", "parqués": "forme du verbe « parquer »", "disserta": "forme du verbe « disserter »", "sculpta": "forme du verbe « sculpter »", "rattachait": "forme du verbe « rattacher »", "retiendront": "forme du verbe « retenir » (futur : « ils … »)", "bénirent": "forme du verbe « bénir » (passé : « ils ont … »)", "eusse": "forme du verbe « avoir » (subjonctif ancien)", "attristait": "forme du verbe « attrister »", "ensevelissez": "forme du verbe « ensevelir » : enterré, mis au tombeau", "devînt": "forme du verbe « devenir »", "pétrirai": "forme du verbe « pétrir » (futur : « je … »)", "pétrit": "forme du verbe « pétrir »", "accourut": "forme du verbe « accourir »", "effleura": "forme du verbe « effleurer » (futur : « il … »)", "enfonça": "forme du verbe « enfoncer »", "consens": "forme du verbe « consentir »", "renverra": "forme du verbe « renvoyer » (futur : « il … »)", "renverrai": "forme du verbe « renvoyer » (futur : « je … »)", "enfla": "forme du verbe « enfler »", "joignirent": "forme du verbe « joindre » (passé : « ils ont … »)", "fortifièrent": "forme du verbe « fortifier » (passé : « ils ont … »)", "fissent": "forme du verbe « faire »", "joignit": "forme du verbe « joindre »", "irritait": "forme du verbe « irriter »", "défit": "forme du verbe « défaire »", "craignit": "forme du verbe « craindre »", "revînt": "forme du verbe « revenir »", "vinssent": "forme du verbe « venir »", "fortifia": "forme du verbe « fortifier »", "prît": "forme du verbe « prendre » (subjonctif ancien : « qu'il … »)", "précédaient": "forme du verbe « précéder »", "remît": "forme du verbe « remettre » (subjonctif ancien : « qu'il … »)", "établisse": "forme du verbe « établir »", "appartiendront": "forme du verbe « appartenir » (futur : « ils … »)", "voyions": "forme du verbe « voyer »", "revêtît": "forme du verbe « revêtir » (subjonctif ancien : « qu'il … »)", "eussions": "forme du verbe « avoir » (subjonctif ancien)", "craignirent": "forme du verbe « craindre » (passé : « ils ont … »)", "aperçurent": "forme du verbe « apercevoir » (passé : « ils ont … »)", "combattît": "forme du verbe « combattre » (subjonctif ancien : « qu'il … »)", "renverrons": "forme du verbe « renvoyer » (futur : « nous … »)", "établît": "forme du verbe « établir » (subjonctif ancien : « qu'il … »)", "viendrons": "forme du verbe « venir » (futur : « nous … »)", "parcourussent": "forme du verbe « parcourir » (subjonctif ancien : « qu'ils … »)", "accourait": "forme du verbe « accourir » (conditionnel : « il … »)", "rendormit": "forme du verbe « rendormir »", "connût": "forme du verbe « connaître » (subjonctif ancien : « qu'il … »)", "asservissent": "forme du verbe « asservir »", "transcrivit": "forme du verbe « transcrire »", "précédait": "forme du verbe « précéder »", "entonnaient": "forme du verbe « entonnoir »", "ruisselait": "forme du verbe « ruisseler »", "assiègent": "forme du verbe « assiéger » : encercler une ville pour la prendre", "ravagent": "forme du verbe « ravager »", "précédèrent": "forme du verbe « précéder » (passé : « ils ont … »)", "accours": "forme du verbe « accourir »", "trahisse": "forme du verbe « trahir »", "ranimèrent": "forme du verbe « ranimer » (passé : « ils ont … »)", "récrièrent": "forme du verbe « récrire » (passé : « ils ont … »)", "défigurèrent": "forme du verbe « défigurer » (passé : « ils ont … »)", "aplanissent": "forme du verbe « aplanir »", "affligiez": "forme du verbe « affliger » : faire souffrir", "avertissez": "forme du verbe « avertir »", "engageai": "forme du verbe « engager » (passé : « j'ai … »)", "servisse": "forme du verbe « servir »", "répondît": "forme du verbe « répondre » (subjonctif ancien : « qu'il … »)", "raffermit": "forme du verbe « raffermir »", "servît": "forme du verbe « servir » (subjonctif ancien : « qu'il … »)", "nourrisse": "forme du verbe « nourrir »", "périsse": "forme du verbe « périr »", "abondait": "forme du verbe « abonder »", "contiens": "forme du verbe « contenir »", "aguerrie": "forme du verbe « aguerrir »", "chaussèrent": "forme du verbe « chausser » (passé : « ils ont … »)", "différez": "forme du verbe « différer » (futur : « vous … »)", "offrît": "forme du verbe « offrir » (subjonctif ancien : « qu'il … »)", "rôtirent": "forme du verbe « rôtir » (passé : « ils ont … »)", "jouît": "forme du verbe « jouer » (subjonctif ancien : « qu'il … »)", "désespérions": "forme du verbe « désespérer »", "eussiez": "forme du verbe « avoir »", "falsifions": "forme du verbe « falsifier »", "vissent": "forme du verbe « voir »", "gémissons": "forme du verbe « gémir » : se plaindre en soupirant", "asservit": "forme du verbe « asservir »", "échappai": "forme du verbe « échapper » (passé : « j'ai … »)", "guérisse": "forme du verbe « guérir »", "ensevelisse": "forme du verbe « ensevelir » : enterré, mis au tombeau", "attela": "forme du verbe « atteler »", "affaissa": "forme du verbe « affaisser »", "vînt": "forme du verbe « venir »", "effaça": "forme du verbe « effacer »", "eusses": "forme du verbe « avoir »", "secourût": "forme du verbe « secourir » (subjonctif ancien : « qu'il … »)", "maintiendront": "forme du verbe « maintenir » (futur : « ils … »)", "vouant": "forme du verbe « vouer »", "convertît": "forme du verbe « convertir » (subjonctif ancien : « qu'il … »)", "accomplissiez": "forme du verbe « accomplir »", "établissez": "forme du verbe « établir »", "obstrua": "forme du verbe « obstruer »", "efforçait": "forme du verbe « efforcer »", "reverras": "forme du verbe « revoir » (futur : « tu … »)", "tînt": "forme du verbe « tenir »", "comprirent": "forme du verbe « comprendre » (passé : « ils ont … »)", "entonna": "forme du verbe « entonnoir »", "permît": "forme du verbe « permettre » (subjonctif ancien : « qu'il … »)", "tinssent": "forme du verbe « tenir »", "rendît": "forme du verbe « rendre » (subjonctif ancien : « qu'il … »)", "délectent": "forme du verbe « délecter »", "affaissée": "forme du verbe « affaisser »", "dévêtirai": "forme du verbe « dévêtir » (futur : « je … »)", "accoururent": "forme du verbe « accourir » (passé : « ils ont … »)", "chuchotaient": "forme du verbe « chuchoter »", "affaiblisses": "forme du verbe « affaiblir »", "avili": "forme du verbe « avilir »", "complais": "forme du verbe « complaire » : faire plaisir ; prendre plaisir", "hérissé": "forme du verbe « hérisser »", "irritez": "forme du verbe « irriter »", "maintiendrez": "forme du verbe « maintenir » (futur : « vous … »)", "affermirez": "forme du verbe « affermir » (futur : « vous … ») : rendre solide", "raffermi": "forme du verbe « raffermir »", "vécussent": "forme du verbe « vivre » (subjonctif ancien : « qu'ils … »)", "vengea": "forme du verbe « venger »", "grinçaient": "forme du verbe « grincer »", "reçussent": "forme du verbe « recevoir » (subjonctif ancien : « qu'ils … »)", "examinai": "forme du verbe « examiner » (passé : « j'ai … »)", "précéda": "forme du verbe « précéder »", "fortifiant": "forme du verbe « fortifier »", "fortifiaient": "forme du verbe « fortifier »", "fîmes": "forme du verbe « faire » (passé : « nous avons … »)", "battît": "forme du verbe « battre » (subjonctif ancien : « qu'il … »)", "fûmes": "forme du verbe « être » (passé : « nous avons … »)", "mîmes": "forme du verbe « mettre » (passé : « nous avons … »)", "envoyasse": "forme du verbe « envoyer » (subjonctif ancien)", "joignais": "forme du verbe « joindre »", "forçais": "forme du verbe « forcer »", "eûmes": "forme du verbe « avoir » (passé : « nous avons … »)", "parût": "forme du verbe « parer » (subjonctif ancien : « qu'il … »)", "surviendra": "forme du verbe « survenir » (futur : « il … »)", "buvions": "forme du verbe « boire »", "désaltérés": "forme du verbe « désaltérer »", "trafiquions": "forme du verbe « trafiquer » : faire du commerce", "périssons": "forme du verbe « périr »", "conversé": "forme du verbe « converser »", "annonçasse": "forme du verbe « annoncer » (subjonctif ancien)", "ravisse": "forme du verbe « ravir »", "obéissez": "forme du verbe « obéir »", "assaisonnée": "forme du verbe « assaisonner »", "fussions": "forme du verbe « être » (subjonctif ancien)", "incommoda": "forme du verbe « incommoder »", "mouvez": "forme du verbe « mouvoir »", "désobéirent": "forme du verbe « désobéir » (passé : « ils ont … »)", "bussent": "forme du verbe « bure » (subjonctif ancien : « qu'ils … »)", "approchai": "forme du verbe « approcher » (passé : « j'ai … »)", "informai": "forme du verbe « informer » (passé : « j'ai … »)", "conservai": "forme du verbe « conserver » (passé : « j'ai … »)", "retombai": "forme du verbe « retomber » (passé : « j'ai … »)", "mangeai": "forme du verbe « manger » (passé : « j'ai … »)", "parlai": "forme du verbe « parler » (passé : « j'ai … »)", "fortifiai": "forme du verbe « fortifier » (passé : « j'ai … »)", "conçurent": "forme du verbe « concevoir » (passé : « ils ont … »)", "refusâtes": "forme du verbe « refuser » (passé : « vous avez … »)", "montâtes": "forme du verbe « montre » (passé : « vous avez … »)", "répétai": "forme du verbe « répéter » (passé : « j'ai … »)", "écoutâtes": "forme du verbe « écouter » (passé : « vous avez … »)", "obéîtes": "forme du verbe « obéir » (passé : « vous avez … »)", "pleurâtes": "forme du verbe « pleurer » (passé : « vous avez … »)", "voyiez": "forme du verbe « voyer »", "vengeant": "forme du verbe « venger »", "obéiras": "forme du verbe « obéir » (futur : « tu … »)", "jetai": "forme du verbe « jeter » (passé : « j'ai … »)", "priai": "forme du verbe « prier » (passé : « j'ai … »)", "irritâtes": "forme du verbe « irriter » (passé : « vous avez … »)", "déposai": "forme du verbe « déposer » (passé : « j'ai … »)", "endurciras": "forme du verbe « endurcir » (futur : « tu … ») : fermer son cœur", "renverras": "forme du verbe « renvoyer » (futur : « tu … »)", "jouisse": "forme du verbe « jouer »", "nourrissez": "forme du verbe « nourrir »", "revêtiras": "forme du verbe « revêtir » (futur : « tu … »)", "fustigera": "forme du verbe « fustiger » (futur : « il … »)", "reconduira": "forme du verbe « reconduire » (futur : « il … »)", "reverrez": "forme du verbe « revoir » (futur : « vous … »)", "fulminant": "forme du verbe « fulminer »", "viendriez": "forme du verbe « venir »", "périsses": "forme du verbe « périr »", "gâtent": "forme du verbe « gâter »", "nourrissais": "forme du verbe « nourrir »", "allégeant": "forme du verbe « alléger »", "désobéira": "forme du verbe « désobéir » (futur : « il … »)", "enfouit": "forme du verbe « enfouir »", "obéisse": "forme du verbe « obéir »", "punissez": "forme du verbe « punir »", "maudiras": "forme du verbe « maudire » (futur : « tu … »)", "aspergea": "forme du verbe « asperger » : projeter un liquide en gouttes", "enverrez": "forme du verbe « enver » (futur : « vous … »)", "disculpant": "forme du verbe « disculper »", "couvriras": "forme du verbe « couvrir » (futur : « tu … »)", "tètes": "forme du verbe « téter »", "enjoins": "forme du verbe « enjoindre »", "creusai": "forme du verbe « creuser » (passé : « j'ai … »)", "criai": "forme du verbe « crier » (passé : « j'ai … »)", "fendra": "forme du verbe « fendre » (futur : « il … ») : couper en deux", "apitoyé": "forme du verbe « apitoyer »", "prodigué": "forme du verbe « prodiguer »", "protégeai": "forme du verbe « protéger » (passé : « j'ai … »)", "sussent": "forme du verbe « savoir » (subjonctif ancien : « qu'ils … »)", "irritèrent": "forme du verbe « irriter » (passé : « ils ont … »)", "médit": "forme du verbe « médire » : dire du mal des autres", "bouillonné": "forme du verbe « bouillonner »", "pressentiront": "forme du verbe « pressentir » (futur : « ils … »)", "lamentant": "forme du verbe « lamenter »", "subissiez": "forme du verbe « subir »", "souviendrez": "forme du verbe « se souvenir » (futur : « vous … »)", "assainies": "forme du verbe « assainir »", "retentissait": "forme du verbe « retenter »", "pesai": "forme du verbe « peser » (passé : « j'ai … »)", "arrachai": "forme du verbe « arracher » (passé : « j'ai … »)", "gardai": "forme du verbe « garder » (passé : « j'ai … »)", "affermissiez": "forme du verbe « affermir » : rendre solide", "exposai": "forme du verbe « exposer » (passé : « j'ai … »)", "reçussions": "forme du verbe « recevoir » (subjonctif ancien)", "encourrait": "forme du verbe « encourir » (conditionnel : « il … »)", "proviendront": "forme du verbe « provenir » (futur : « ils … »)", "maintiendras": "forme du verbe « maintenir » (futur : « tu … »)", "assiégeaient": "forme du verbe « assiéger » : encercler une ville pour la prendre", "ensemença": "forme du verbe « ensemencer » : semer des graines dans un champ", "ensevelisses": "forme du verbe « ensevelir » : enterré, mis au tombeau", "interrogeai": "forme du verbe « interroger » (passé : « j'ai … »)", "rebrousse": "forme du verbe « rebrousser » (subjonctif ancien)", "chérit": "forme du verbe « chérir »", "rendormis": "forme du verbe « rendormir »", "réunisse": "forme du verbe « réunir »", "enseveliras": "forme du verbe « ensevelir » (futur : « tu … ») : enterré, mis au tombeau", "complairai": "forme du verbe « complaire » (futur : « je … ») : faire plaisir ; prendre plaisir", "souffrît": "forme du verbe « souffrir » (subjonctif ancien : « qu'il … »)", "professons": "forme du verbe « professer »", "endurcisse": "forme du verbe « endurcir » : fermer son cœur", "désobéi": "forme du verbe « désobéir »", "éteignirent": "forme du verbe « éteindre » (passé : « ils ont … »)", "sevra": "forme du verbe « sever » (futur : « il … »)", "retentissez": "forme du verbe « retenter »", "guérissais": "forme du verbe « guérir »", "échauffé": "forme du verbe « échauffer »", "exaspérée": "forme du verbe « exaspérer »", "refleuri": "forme du verbe « refleurir »", "transplanté": "forme du verbe « transplanter »", "accourrai": "forme du verbe « accourir » (futur : « je … »)", "maudirez": "forme du verbe « maudire » (futur : « vous … »)", "adjoindront": "forme du verbe « adjoindre » (futur : « ils … »)", "retentissent": "forme du verbe « retenter »", "aplani": "forme du verbe « aplanir »", "bégayent": "forme du verbe « bégayer »", "alourdi": "forme du verbe « alourdir »", "ranimé": "forme du verbe « ranimer »", "aplanis": "forme du verbe « aplanir »", "reconnût": "forme du verbe « reconnaître » (subjonctif ancien : « qu'il … »)", "croyiez": "forme du verbe « croire »", "divaguez": "forme du verbe « divaguer »", "aplanirai": "forme du verbe « aplanir » (futur : « je … »)", "fléchira": "forme du verbe « fléchir » (futur : « il … »)", "mouds": "forme du verbe « moudre »", "obéît": "forme du verbe « obéir » (subjonctif ancien : « qu'il … »)", "convertisse": "forme du verbe « convertir »", "acquerront": "forme du verbe « acquerir » (futur : « ils … »)", "raffermis": "forme du verbe « raffermir »", "gâtez": "forme du verbe « gâter »", "accomplissez": "forme du verbe « accomplir »", "bronchons": "forme du verbe « broncher »", "sortisses": "forme du verbe « sortir »", "jaillisse": "forme du verbe « jaillir » : sortir avec force (eau)", "enfreindra": "forme du verbe « enfreindre » (futur : « il … »)", "désobéiront": "forme du verbe « désobéir » (futur : « ils … »)", "pétrissent": "forme du verbe « pétrir »", "effaçons": "forme du verbe « effacer »", "achetai": "forme du verbe « acheter » (passé : « j'ai … »)", "cachai": "forme du verbe « cacher » (passé : « j'ai … »)", "rougiras": "forme du verbe « rougir » (futur : « tu … »)", "retentira": "forme du verbe « retenter » (futur : « il … »)", "évaporé": "forme du verbe « évaporer »", "affranchît": "forme du verbe « affranchir » (subjonctif ancien : « qu'il … »)", "affranchiras": "forme du verbe « affranchir » (futur : « tu … »)", "irritiez": "forme du verbe « irriter »", "mourût": "forme du verbe « mourir » (subjonctif ancien : « qu'il … »)", "ensemençaient": "forme du verbe « ensemencer » : semer des graines dans un champ", "ranime": "forme du verbe « ranimer »", "surviendront": "forme du verbe « survenir » (futur : « ils … »)", "franchisse": "forme du verbe « franchir »", "importuné": "forme du verbe « importuner »", "retiendrez": "forme du verbe « retenir » (futur : « vous … »)", "appose": "forme du verbe « apposer »", "amortit": "forme du verbe « amortir »", "irritent": "forme du verbe « irriter »", "grincé": "forme du verbe « grincer »", "grandissez": "forme du verbe « grandir »", "étreignent": "forme du verbe « étreindre »", "récrient": "forme du verbe « récrire »", "éteigne": "forme du verbe « éteindre »", "repaît": "forme du verbe « repaître » (subjonctif ancien : « qu'il … ») : manger l'herbe ; nourrir le troupeau", "déboîte": "forme du verbe « déboîter »", "absoudrai": "forme du verbe « absoudre » (futur : « je … ») : pardonner", "profère": "forme du verbe « proférer » : prononcer", "mendiait": "forme du verbe « mendier »", "saisît": "forme du verbe « saisir » (subjonctif ancien : « qu'il … »)", "lurent": "forme du verbe « lire » (passé : « ils ont … »)", "rompît": "forme du verbe « rompre » (subjonctif ancien : « qu'il … »)", "retranchiez": "forme du verbe « retrancher » : couper, enlever, exclure", "pérît": "forme du verbe « périr » (subjonctif ancien : « qu'il … »)", "embarrassèrent": "forme du verbe « embarrasser » (passé : « ils ont … »)", "craigne": "forme du verbe « craindre »", "faiblisse": "forme du verbe « faiblir »", "émigrèrent": "forme du verbe « émigrer » (passé : « ils ont … »)", "repeuplé": "forme du verbe « repeupler »", "retentirent": "forme du verbe « retenter » (passé : « ils ont … »)", "expatriée": "forme du verbe « expatrier »", "tiendrez": "forme du verbe « tenir » (futur : « vous … »)", "fécondée": "forme du verbe « féconder »", "menaça": "forme du verbe « menacer »", "lamentaient": "forme du verbe « lamenter »", "redemandée": "forme du verbe « redemander »", "moudront": "forme du verbe « moudre » (futur : « ils … »)", "repeuplons": "forme du verbe « repeupler »", "désobéissez": "forme du verbe « désobéir »", "renverrait": "forme du verbe « renvoyer » (conditionnel : « il … »)", "anéantissez": "forme du verbe « anéantir »", "déraciniez": "forme du verbe « déraciner » : arracher avec les racines", "suspendît": "forme du verbe « suspendre » (subjonctif ancien : « qu'il … »)", "fendent": "forme du verbe « fendre » : couper en deux", "révèrent": "forme du verbe « réver » (passé : « ils ont … »)", "lamentai": "forme du verbe « lamenter » (passé : « j'ai … »)", "plaçai": "forme du verbe « placer » (passé : « j'ai … »)", "renonçons": "forme du verbe « renoncer »", "extorquai": "forme du verbe « extorquer » (passé : « j'ai … »)", "fisse": "forme du verbe « fier »", "tombasse": "forme du verbe « tomber » (subjonctif ancien)", "abondé": "forme du verbe « abonder »", "rassemblai": "forme du verbe « rassembler » (passé : « j'ai … »)", "frappai": "forme du verbe « frapper » (passé : « j'ai … »)", "rasai": "forme du verbe « raser » (passé : « j'ai … »)", "chassai": "forme du verbe « chasser » (passé : « j'ai … »)", "reconnussent": "forme du verbe « reconnaître » (subjonctif ancien : « qu'ils … »)", "précédez": "forme du verbe « précéder »", "froissa": "forme du verbe « froisser »", "remplissons": "forme du verbe « remplir »", "délaissez": "forme du verbe « délaisser »", "trébuchent": "forme du verbe « trébucher »", "pourchassent": "forme du verbe « pourchasser » (subjonctif ancien : « qu'ils … »)", "disculpé": "forme du verbe « disculper »", "jouissons": "forme du verbe « jouer »", "délectait": "forme du verbe « délecter »", "professent": "forme du verbe « professer »", "distillent": "forme du verbe « distiller »", "délaissent": "forme du verbe « délaisser »", "périssiez": "forme du verbe « périr »", "assiège": "forme du verbe « assiéger » : encercler une ville pour la prendre", "gratifie": "forme du verbe « gratifier »", "rebuté": "forme du verbe « rebuter »", "engloutisse": "forme du verbe « engloutir »", "résignée": "forme du verbe « résigner »", "pussent": "forme du verbe « pouvoir » (subjonctif ancien : « qu'ils … »)", "engloutit": "forme du verbe « engloutir »", "coagulé": "forme du verbe « coaguler »", "agrandiras": "forme du verbe « agrandir » (futur : « tu … »)", "secourt": "forme du verbe « secourir »", "repentît": "forme du verbe « repentir » (subjonctif ancien : « qu'il … ») : regretter son péché et revenir à Dieu", "perdît": "forme du verbe « perdre » (subjonctif ancien : « qu'il … »)", "reparaîtra": "forme du verbe « reparaître » (futur : « il … »)", "redemandant": "forme du verbe « redemander »", "rougissez": "forme du verbe « rougir »", "acquerras": "forme du verbe « acquerir » (futur : « tu … »)", "accoutume": "forme du verbe « accoutumer »", "habitai": "forme du verbe « habiter » (passé : « j'ai … »)", "gesse": "forme du verbe « ger »", "attristent": "forme du verbe « attrister »", "cligne": "forme du verbe « cligner »", "naissez": "forme du verbe « naître »", "refleurissent": "forme du verbe « refleurir »", "invoquai": "forme du verbe « invoquer » (passé : « j'ai … »)", "distillant": "forme du verbe « distiller »", "ensevelissais": "forme du verbe « ensevelir » : enterré, mis au tombeau", "couchai": "forme du verbe « coucher » (passé : « j'ai … »)", "partisse": "forme du verbe « partir »", "émerveillaient": "forme du verbe « émerveiller »", "enfouiront": "forme du verbe « enfouir » (futur : « ils … »)", "pervertît": "forme du verbe « pervertir » (subjonctif ancien : « qu'il … ») : détourner du bien, corrompre", "imputions": "forme du verbe « imputer » : compter, mettre au compte de quelqu'un", "ranimant": "forme du verbe « ranimer »", "souvinssent": "forme du verbe « se souvenir »", "rejetai": "forme du verbe « rejeter » (passé : « j'ai … »)"};
+const GSTEM={};
+for(const k in GLOSS){ if(/(er|ir)$/.test(k)&&k.length>4){ const st=k.slice(0,-2); const isVerb=Object.keys(GLOSS).some(f=>f!==k&&f!==k+"s"&&f.startsWith(st)&&GLOSS[f]===GLOSS[k]); if(isVerb) GSTEM[st]=GLOSS[k]; } }
+const GEND=["eraient","eront","erons","erez","erai","eras","era","èrent","assent","aient","ait","ais","ant","ent","ons","ez","ées","ée","és","é","es","e","a","ât","issent","issait","issaient","issant","irent","iront","irai","ira","it","is","ies","ie","i","îmes","âmes"];
+function glossLookup(w){
+  const l=w.toLowerCase();
+  if(GLOSS[l]) return GLOSS[l];
+  for(const s of ["s","x","e","es"]) if(l.endsWith(s)&&GLOSS[l.slice(0,-s.length)]) return GLOSS[l.slice(0,-s.length)];
+  for(const e of GEND){ if(l.length>e.length+2&&l.endsWith(e)){ const st=l.slice(0,-e.length); if(GSTEM[st]) return GSTEM[st]; } }
+  return GLOSS_AUTO[l]||null;
+}
+
+const GCACHE={};
+function glossOf(w){const l=w.toLowerCase();if(!(l in GCACHE)) GCACHE[l]=w.length>3?glossLookup(w):null;return GCACHE[l];}
+function glossify(t){
+  return t.split(/([A-Za-zÀ-ÖØ-öø-ÿœŒ]+)/).map((p,i)=>{ if(i%2===0) return esc(p); const g=glossOf(p); return g?`<span class="gw" data-w="${esc(p)}">${esc(p)}</span>`:esc(p); }).join("");
+}
+function showGloss(el){
+  const w=el.dataset.w, g=glossOf(w)||"";
+  const box=document.getElementById("gloss");
+  box.querySelector("b").textContent=w; box.querySelector("p").textContent=g.charAt(0).toUpperCase()+g.slice(1);
+  box.hidden=false; document.querySelectorAll(".gw.on").forEach(x=>x.classList.remove("on")); el.classList.add("on");
+}
+function hideGloss(){const b=document.getElementById("gloss");if(b){b.hidden=true;document.querySelectorAll(".gw.on").forEach(x=>x.classList.remove("on"));}}
+// ---------- Versets : sélection, favoris, surlignage ----------
+let curRead=null, sel=new Set(), pendingVerse=null;
+const vk=(en,c,v)=>en+"|"+c+"|"+v;
+function isFav(en,c,v){return (state.favs||[]).some(f=>f.en===en&&f.c===c&&f.v.includes(v));}
+function refLabel(b,c,vv){const s=[...vv].sort((x,y)=>x-y);let r=[],st=s[0],pr=s[0];for(let i=1;i<=s.length;i++){if(s[i]===pr+1){pr=s[i];continue;}r.push(st===pr?st:st+"-"+pr);st=pr=s[i];}
+  return (b.ch.length===1?b.name:b.name+" "+c)+", "+r.join(", ");}
+function verseText(n){const v=curRead.vs.find(x=>x[0]===n);return v?(isOrig()||!v[2]?v[1]:v[2]):"";}
+function toggleSel(n,p){ if(sel.has(n)){sel.delete(n);p.classList.remove("sel");} else {sel.add(n);p.classList.add("sel");} updSel(); }
+function clearSel(){sel=new Set();document.querySelectorAll("#rt p.sel").forEach(p=>p.classList.remove("sel"));updSel();}
+function updSel(){
+  const bar=document.getElementById("selbar");
+  if(!sel.size||!curRead){bar.hidden=true;return;}
+  bar.hidden=false;
+  document.getElementById("selcount").textContent=refLabel(curRead.b,curRead.c,sel);
+  const allFav=[...sel].every(v=>isFav(curRead.b.en,curRead.c,v));
+  document.getElementById("selfav").textContent=allFav?"💔 Retirer":"❤️ Enregistrer";
+}
+document.getElementById("selclose").onclick=clearSel;
+document.getElementById("selfav").onclick=()=>{
+  const {b,c}=curRead, vv=[...sel].sort((x,y)=>x-y); state.favs=state.favs||[];
+  const allFav=vv.every(v=>isFav(b.en,c,v));
+  if(allFav){ state.favs=state.favs.map(f=>f.en===b.en&&f.c===c?{...f,v:f.v.filter(x=>!vv.includes(x))}:f).filter(f=>f.v.length); toast("Retiré de « Mes versets »"); }
+  else { state.favs.unshift({id:Date.now(),en:b.en,c,v:vv,text:vv.map(n=>verseText(n)).join(" "),at:new Date().toISOString().slice(0,10)}); toast("❤️ Enregistré dans « Mes versets »"); }
+  save(); rerenderRead();
+};
+document.querySelectorAll("#selbar .dot-c").forEach(d=>d.onclick=()=>{
+  const {b,c}=curRead; state.hl=state.hl||{};
+  sel.forEach(v=>{const k=vk(b.en,c,v); if(d.dataset.c) state.hl[k]=d.dataset.c; else delete state.hl[k];});
+  save(); rerenderRead(); toast(d.dataset.c?"Passage surligné":"Surlignage enlevé");
+});
+document.getElementById("selcopy").onclick=()=>{
+  const {b,c}=curRead, vv=[...sel].sort((x,y)=>x-y);
+  const txt=vv.map(n=>verseText(n)).join(" ")+" ("+refLabel(b,c,vv)+")";
+  try{navigator.clipboard.writeText(txt).then(()=>toast("Copié"),()=>toast("Copie impossible ici"));}catch(e){toast("Copie impossible ici");}
+};
+let restoreY=null;
+function rerenderRead(){const h=(location.hash||"").slice(1);const m=h.match(/^lire-(\d+)-(\d+)$/);if(m){restoreY=window.scrollY;viewRead(+m[1],+m[2]);}}
+function findChapter(en,c){for(const d of DAYS){const i=d.items.findIndex(it=>it.book.en===en&&it.c===c);if(i>=0) return [d.g,i];}return null;}
+function gotoVerse(en,c,v){const r=findChapter(en,c);if(!r) return;pendingVerse=v||null;location.hash=`lire-${r[0]}-${r[1]}`;}
+function viewFavs(){
+  setNav("favoris");
+  const favs=state.favs||[], hls=Object.entries(state.hl||{});
+  const byBook={};SECTIONS.forEach(s=>s.books.forEach(b=>byBook[b.en]=b));
+  app.innerHTML=`<div class="dayhead"><h1>Mes versets</h1><p class="muted">Pendant ta lecture, touche un ou plusieurs versets pour les enregistrer ici ❤️ ou les surligner.</p></div>
+  ${favs.length?favs.map(f=>{const b=byBook[f.en];if(!b) return "";return `<div class="card favitem"><div class="ref">${esc(refLabel(b,f.c,f.v))}</div><div class="vt">« ${esc(f.text)} »</div><div class="small muted">Enregistré le ${f.at.split("-").reverse().join("/")}</div>
+    <div class="favact" style="margin-top:8px"><a class="btn ghost" href="#" data-go="${f.id}">📖 Lire le chapitre</a><button class="btn ghost" data-cp="${f.id}">Copier</button><button class="btn ghost" data-del="${f.id}">Supprimer</button></div></div>`}).join(""):`<div class="card"><p style="margin:0">Tu n'as pas encore enregistré de verset.</p></div>`}
+  ${hls.length?`<h2 style="margin:22px 0 4px">Passages surlignés</h2><div class="card">${(()=>{const g={};hls.forEach(([k,col])=>{const [en,c,v]=k.split("|");const key=en+"|"+c;(g[key]=g[key]||{en,c:+c,v:[],col}).v.push(+v);});
+      return Object.values(g).map(x=>{const b=byBook[x.en];return b?`<a class="res" href="#" data-gv="${x.en}|${x.c}|${Math.min(...x.v)}"><span class="hl-${x.col}" style="padding:0 6px;border-radius:4px">&nbsp;</span> <b>${esc(refLabel(b,x.c,x.v))}</b></a>`:""}).join("")})()}</div>`:""}`;
+  app.querySelectorAll("[data-go]").forEach(a=>a.onclick=e=>{e.preventDefault();const f=favs.find(x=>x.id==a.dataset.go);gotoVerse(f.en,f.c,f.v[0]);});
+  app.querySelectorAll("[data-gv]").forEach(a=>a.onclick=e=>{e.preventDefault();const [en,c,v]=a.dataset.gv.split("|");gotoVerse(en,+c,+v);});
+  app.querySelectorAll("[data-cp]").forEach(bn=>bn.onclick=()=>{const f=favs.find(x=>x.id==bn.dataset.cp);const b=byBook[f.en];
+    try{navigator.clipboard.writeText(`« ${f.text} » (${refLabel(b,f.c,f.v)})`).then(()=>toast("Copié"),()=>toast("Copie impossible ici"));}catch(e){toast("Copie impossible ici");}});
+  app.querySelectorAll("[data-del]").forEach(bn=>bn.onclick=()=>confirmBox("Supprimer ce passage ?","Il sera retiré de « Mes versets ».",()=>{state.favs=favs.filter(x=>x.id!=bn.dataset.del);save();viewFavs();}));
+}
+// ---------- Recherche ----------
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’']/g,"'").replace(/\s+/g," ").trim();
+const ABBR={Genesis:"gn gen",Exodus:"ex exo",Leviticus:"lv lev",Numbers:"nb nomb",Deuteronomy:"dt deut",Joshua:"jos",Judges:"jg",Ruth:"rt",
+ "1 Samuel":"1 s 1 sam 1 regnes","2 Samuel":"2 s 2 sam 2 regnes","1 Kings":"1 r 1 rois 3 regnes","2 Kings":"2 r 2 rois 4 regnes","1 Chronicles":"1 ch 1 chr 1 paralipomenes","2 Chronicles":"2 ch 2 chr 2 paralipomenes",
+ Ezra:"esd",Nehemiah:"ne neh",Esther:"est",Job:"jb",Psalms:"ps psaume",Proverbs:"pr prov proverbe",Ecclesiastes:"qo ecc eccl",
+ "Song of Songs":"ct cant cantique",Isaiah:"is es esaie",Jeremiah:"jr jer",Lamentations:"lm lam",Baruch:"ba",Ezekiel:"ez",Daniel:"dn dan",Hosea:"os",Joel:"jl",Amos:"am",Obadiah:"ab abd",Jonah:"jon",Micah:"mi mich michee",Nahum:"na",Habakkuk:"ha hab",Zephaniah:"so soph",Haggai:"ag",Zechariah:"za zach",Malachi:"ml mal",
+ Tobit:"tb",Judith:"jdt",Wisdom:"sg sag",Sirach:"si sir ecclesiastique","1 Maccabees":"1 m 1 mac","2 Maccabees":"2 m 2 mac",
+ Matthew:"mt matt",Mark:"mc mr",Luke:"lc lu",John:"jn",Acts:"ac act actes",Romans:"rm rom","1 Corinthians":"1 co 1 cor","2 Corinthians":"2 co 2 cor",Galatians:"ga gal",Ephesians:"ep eph",Philippians:"ph phil",Colossians:"col",
+ "1 Thessalonians":"1 th 1 thess","2 Thessalonians":"2 th 2 thess","1 Timothy":"1 tm 1 tim","2 Timothy":"2 tm 2 tim",Titus:"tt tite",Philemon:"phm",Hebrews:"he heb",James:"jc jq",
+ "1 Peter":"1 p 1 pi 1 pierre","2 Peter":"2 p 2 pi 2 pierre","1 John":"1 jn 1 jean","2 John":"2 jn 2 jean","3 John":"3 jn 3 jean",Jude:"jude jud",Revelation:"ap apo apoc"};
+function allBooks(){const r=[];SECTIONS.forEach(s=>s.books.forEach(b=>r.push(b)));return r;}
+function bookAliases(b){const n=norm(b.name);const out=[n,n.replace(/s$/,"")];
+  const ab=(ABBR[b.en]||"").match(/(\d )?[a-z]+/g)||[];ab.forEach(x=>out.push(norm(x)));if(b.alt) out.push(norm(b.alt));return out;}
+function parseRef(q){
+  let nq0=norm(q).replace(/^(saint|st|ste|sainte|livre de|livre d'|evangile selon|evangile de|epitre aux|epitre a|lettre aux)\s+/,"");
+  let m=nq0.match(/^(\d?\s?[a-z][a-z\s'-]*?)\.?\s*(\d+)(?:\s*[:,.\s]\s*(\d+))?$/);
+  if(!m){ const m2=nq0.match(/^(\d?\s?[a-z][a-z\s'-]*?)$/); if(m2) m=[nq0,m2[1],"1",null,true]; else return null; }
+  const bk=m[1].trim().replace(/^(\d)(?=[a-z])/,"$1 "); let best=null;
+  for(const b of allBooks()){ for(const al of bookAliases(b)){ if(al===bk){best=b;break;} if(!best&&bk.length>=3&&al.startsWith(bk)) best=b; } if(best&&bookAliases(best).includes(bk)) break; }
+  if(!best) return null; if(m[4]&&!bookAliases(best).includes(m[1].trim().replace(/^(\d)(?=[a-z])/,"$1 "))) return null;
+  const c=+m[2], v=m[3]?+m[3]:null;
+  if(c<1||c>best.ch.length) return null; return {b:best,c,v};
+}
+let searchQ="";
+function viewSearch(){
+  setNav("recherche");
+  app.innerHTML=`<div class="dayhead"><h1>Rechercher</h1><p class="muted">Un chapitre (« Jean 3 », « Ps 50 », « Mt 5:9 ») ou des mots d'un verset (« le Seigneur est mon berger »).</p></div>
+  <form class="search" id="sf"><input id="sq" type="search" placeholder="Chapitre ou phrase…" autocomplete="off" value="${esc(searchQ)}"><button class="btn main" style="width:auto">OK</button></form>
+  <div id="sr"></div>`;
+  const inp=document.getElementById("sq"); inp.focus();
+  document.getElementById("sf").onsubmit=e=>{e.preventDefault();runSearch(inp.value);};
+  if(searchQ) runSearch(searchQ);
+}
+async function runSearch(q){
+  searchQ=q.trim(); const out=document.getElementById("sr"); if(!searchQ){out.innerHTML="";return;}
+  let html=""; const ref=parseRef(searchQ);
+  if(ref){ const lab=ref.b.ch.length===1?ref.b.name:`${ref.b.name} ${ref.c}`;
+    html+=`<div class="card"><a class="res" href="#" id="refgo"><b>📖 ${esc(lab)}${ref.v?", verset "+ref.v:""}</b><br><span class="small muted">${esc(ref.b.ch[ref.c-1])}</span></a>`;
+    if(ref.b.en==="Psalms"&&ref.c>=10&&ref.c<=148){ const lx=ref.c-1; html+=`<a class="res" href="#" id="refgo2"><b>📖 Psaumes ${lx}</b> <span class="small muted">— c'est le Psaume ${ref.c} des Bibles hébraïques (Segond…)</span><br><span class="small muted">${esc(ref.b.ch[lx-1])}</span></a>`; }
+    html+=`</div>`; }
+  const nq=norm(searchQ);
+  const refOnly=ref&&(/\d\s*([:,.\s]\s*\d+)?\s*$/.test(searchQ)&&searchQ.trim().split(/\s+/).length<=4 || allBooks().some(b=>bookAliases(b).includes(norm(searchQ))));
+  if(nq.length<3||refOnly){ out.innerHTML=html||'<p class="muted">Écris au moins 3 lettres.</p>'; bindRef(ref); return; }
+  out.innerHTML=html+`<div class="card"><p class="muted small" id="sprog" style="margin:0">Recherche dans toute la Bible…</p></div>`; bindRef(ref);
+  const books=allBooks(); const res=[], loose=[]; let loaded=0;
+  const STOP=new Set("le la les l de du des d et a au aux un une en que qu qui est sont pour par sur dans ne pas se sa son ses ce cette il elle ils elles je tu nous vous on y me te mon ton ma ta mes tes leur leurs ou mais donc or ni car".split(" "));
+  const SYN={amour:["amour","charite","aime"],charite:["charite","amour"],berger:["berger","pasteur"],pasteur:["pasteur","berger"],epee:["epee","glaive"],glaive:["glaive","epee"],faute:["faute","iniquite","peche"],peche:["peche","iniquite","faute"],
+    nuage:["nuage","nuee"],tombeau:["tombeau","sepulcre"],eternel:["eternel","seigneur"],seigneur:["seigneur","eternel"],patient:["patient","patiente"],soit:["soit","fut"]};
+  const words=nq.split(/[^a-z0-9]+/).filter(w=>w.length>1&&!STOP.has(w)).map(w=>(SYN[w]||[w]).map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,"")));
+  try{
+    await Promise.all(books.map(b=>getBook(b.en).then(ch=>{loaded++; const p=document.getElementById("sprog"); if(p) p.textContent=`Recherche dans toute la Bible… ${loaded}/${books.length}`;
+      ch.forEach((vs,ci)=>vs.forEach(([n,t,m])=>{const pref=isOrig()||!m?t:m, other=pref===t?(m||t):t; const np=norm(pref), no=norm(other);
+        if(np.includes(nq)) res.push({b,c:ci+1,n,t:pref}); else if(no.includes(nq)) res.push({b,c:ci+1,n,t:other});
+        else if(words.length) { const hay=np+" "+no; if(words.every(ws=>ws.some(w=>new RegExp("(^|[^a-z])"+w).test(hay)))){ const sc=words.filter(ws=>new RegExp("(^|[^a-z])"+ws[0]+"([^a-z]|$)").test(hay)).length; loose.push({b,c:ci+1,n,t:pref,sc,len:pref.length}); } }
+      }));})));
+  }catch(e){ out.innerHTML=html+'<div class="card"><p class="err" style="margin:0">Impossible de charger tous les livres. Vérifie ta connexion (ou télécharge toute la Bible pour chercher sans internet).</p></div>'; bindRef(ref); return; }
+  if(searchQ!==q.trim()) return;
+  if(res.length<5&&words.length>=1&&nq.includes(" ")){ const have=new Set(res.map(r=>r.b.en+"|"+r.c+"|"+r.n)); loose.forEach(r=>{if(!have.has(r.b.en+"|"+r.c+"|"+r.n)){r.loose=true;res.push(r);}}); }
+  const order=new Map(books.map((b,i)=>[b.en,i])); res.sort((x,y)=>(x.loose?1:0)-(y.loose?1:0)||(x.loose?(y.sc-x.sc)||(x.len-y.len):0)||order.get(x.b.en)-order.get(y.b.en)||x.c-y.c||x.n-y.n);
+  const mark=t=>{const nt=norm(t);const i=nt.indexOf(nq);if(i<0) return esc(t);return esc(t.slice(0,i))+"<mark>"+esc(t.slice(i,i+nq.length))+"</mark>"+esc(t.slice(i+nq.length));};
+  const nLoose=res.filter(r=>r.loose).length;
+  if(!res.length){ out.innerHTML=html+`<div class="card"><p style="margin:0">Aucun verset trouvé pour « ${esc(searchQ)} ». Essaie avec moins de mots, ou d'autres mots (le texte d'origine utilise parfois des mots anciens).</p></div>`; bindRef(ref); return; }
+  html+=`<div class="card"><p class="small muted" style="margin:0 0 4px">${res.length} verset${res.length>1?"s":""} trouvé${res.length>1?"s":""}${nLoose?` (dont ${nLoose} qui contiennent les mêmes mots, ou des mots de même sens, sans la phrase exacte)`:""}${res.length>150?" (les 150 premiers sont affichés : précise ta recherche pour voir les autres)":""}</p>`+
+    res.slice(0,150).map((r,i)=>`<a class="res" href="#" data-r="${i}"><b>${esc(r.b.ch.length===1?r.b.name:r.b.name+" "+r.c)}:${r.n}</b> ${mark(r.t)}</a>`).join("")+`</div>`;
+  out.innerHTML=html; bindRef(ref);
+  out.querySelectorAll("[data-r]").forEach(a=>a.onclick=e=>{e.preventDefault();const r=res[+a.dataset.r];gotoVerse(r.b.en,r.c,r.n);});
+}
+function bindRef(ref){const a=document.getElementById("refgo");if(a&&ref) a.onclick=e=>{e.preventDefault();gotoVerse(ref.b.en,ref.c,ref.v);};
+  const a2=document.getElementById("refgo2");if(a2&&ref) a2.onclick=e=>{e.preventDefault();gotoVerse(ref.b.en,ref.c-1,ref.v);};}
+// ---------- Paramètres ----------
+function dur(days){
+  const tm=Math.round(days/30.44), y=Math.floor(tm/12), m=tm%12;
+  const parts=[]; if(y) parts.push(y+" an"+(y>1?"s":"")); if(m) parts.push(m+" mois");
+  return parts.join(" et ")||days+" jours";
+}
+function planLabel(p){
+  if(!p||p.mode==="orig") return "Plan conseillé";
+  if(p.mode==="cpd") return p.n+" chapitre"+(p.n>1?"s":"")+" par jour";
+  return "Toute la Bible en "+p.label;
+}
+function viewSettings(){
+  setNav("parametres");
+  const p=state.plan||{mode:"orig"};
+  const DUR=[["6 mois",182],["1 an",365],["2 ans",730],["3 ans",1095]];
+  const perDay=(DAYS.length?TOTAL_CH/DAYS.length:0);
+  app.innerHTML=`<div class="dayhead"><h1>Paramètres</h1></div>
+  <div class="card"><h2 style="font-size:24px">Rythme de lecture</h2>
+    <p class="muted small" style="margin:4px 0 0">Choisis UNE des trois façons. Ta progression est gardée : les chapitres déjà lus restent cochés.</p>
+    <h3 style="font-size:19px;margin-top:16px">Plan conseillé</h3>
+    <div class="opts"><button class="opt ${p.mode==="orig"?"on":""}" data-mode="orig">${ORIG_DAYS} jours (3 ou 4 chapitres selon l'étape)</button></div>
+    <h3 style="font-size:19px;margin-top:16px">Nombre de chapitres par jour</h3>
+    <div class="opts">${[1,2,3,4].map(n=>`<button class="opt ${p.mode==="cpd"&&p.n===n?"on":""}" data-mode="cpd" data-n="${n}">${n}</button>`).join("")}</div>
+    <h3 style="font-size:19px;margin-top:16px">Lire toute la Bible en…</h3>
+    <div class="opts">${DUR.map(([l,d])=>`<button class="opt ${p.mode==="dur"&&p.days===d?"on":""}" data-mode="dur" data-d="${d}" data-l="${l}">${l}</button>`).join("")}</div>
+    <div class="planinfo"><b>Ton plan actuel : ${esc(planLabel(p))}</b><br>${DAYS.length} jours (environ ${dur(DAYS.length)}), soit ${perDay.toFixed(1).replace(".",",").replace(",0","")} chapitre${Math.round(perDay*10)/10>=2?"s":""} par jour en moyenne.</div>
+  </div>
+  <div class="card"><h2 style="font-size:24px">Recommencer</h2><p class="muted small">Efface toute ta progression (les chapitres cochés).</p><button class="btn ghost" id="reset">Remettre à zéro</button></div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    const m=b.dataset.mode; let np;
+    if(m==="orig") np={mode:"orig"};
+    else if(m==="cpd") np={mode:"cpd",n:+b.dataset.n};
+    else np={mode:"dur",days:+b.dataset.d,label:b.dataset.l};
+    state.plan=np; save(); buildPlan(np); viewSettings();
+    toast(`Plan mis à jour : ${DAYS.length} jours`);
+  });
+  document.getElementById("reset").onclick=()=>confirmBox("Remettre à zéro ?","Toute ta progression sera effacée.",()=>{state.read={};save();toast("Progression effacée");location.hash="accueil";});
 }
 // ---------- Hors connexion ----------
-const OFF_CACHE="bible-copte-v2";
+const OFF_CACHE="bible-copte-v5";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
 let offlineOK=false;
@@ -2097,6 +2648,8 @@ function confirmBox(t,b,yes){const m=document.getElementById("modal");document.g
   document.getElementById("mno").onclick=()=>m.classList.remove("on");document.getElementById("myes").onclick=()=>{m.classList.remove("on");yes();};}
 // ---------- Router ----------
 function route(){
+  hideGloss();
+  if(typeof clearSel==='function'&&!/^#lire-/.test(location.hash)){curRead=null;clearSel();}
   const h=(location.hash||"").slice(1);
   let m;
   if((m=h.match(/^jour-(\d+)$/))) viewDay(+m[1]);
@@ -2104,6 +2657,9 @@ function route(){
   else if((m=h.match(/^etape-(\d+)$/))) viewStep(+m[1]);
   else if(h==="plan") viewPlan();
   else if(h==="guide") viewGuide();
+  else if(h==="parametres") viewSettings();
+  else if(h==="recherche") viewSearch();
+  else if(h==="favoris") viewFavs();
   else viewHome();
   window.scrollTo(0,0);
 }

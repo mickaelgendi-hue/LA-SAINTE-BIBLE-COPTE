@@ -8,6 +8,10 @@ Une application web pour lire **toute la Bible de l'Église copte orthodoxe** en
 - **Nouveau Testament** : traduction Louis Segond (1910), faite sur le texte grec original.
 - Avant chaque étape, chaque livre et chaque chapitre : une explication pour comprendre ce qu'on va lire.
 - Les mots anciens ou difficiles sont remplacés par des mots courants (bouton « Texte d'origine » pour la traduction exacte).
+- Recherche d'un chapitre (« Jean 3 », « Ps 50 ») ou d'une phrase dans toute la Bible.
+- « Mes versets » : enregistrer ses passages préférés, surligner en couleur, copier.
+- Paramètres : 1 à 4 chapitres par jour, ou toute la Bible en 6 mois à 4 ans.
+- Lecture sans connexion après téléchargement.
 - Lecture chapitre par chapitre : « Chapitre suivant » valide automatiquement le chapitre lu.
 - Livres propres à la Bible copte inclus : Tobie, Judith, Sagesse, Siracide, Baruch, 1-2 Maccabées, Daniel 13-14, Esther grec, Psaume 151.
 - Numérotation des Psaumes de la Septante (la même que l'Agpeya).
