@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Sainte Bible copte</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7b1e2b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6efe2; --paper:#fffaf1; --ink:#2b1d14; --muted:#7a6656; --line:#e6d9c3;
+  --wine:#7b1e2b; --wine2:#5c1520; --gold:#b8862f; --gold2:#e9d29c; --green:#3f6b3a;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Source Sans 3",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{background-image:radial-gradient(circle at 20% 0%,#fbf4e6 0,transparent 60%),radial-gradient(circle at 100% 100%,#f0e4cf 0,transparent 50%);min-height:100vh}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px 90px}
+header.top{position:sticky;top:0;z-index:5;background:rgba(246,239,226,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .in{max-width:720px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:10px}
+header.top a{color:var(--wine);text-decoration:none}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-weight:700;font-size:21px;color:var(--wine2)}
+.brand svg{width:26px;height:26px}
+.nav{margin-left:auto;display:flex;gap:4px}
+.nav a{font-size:14px;font-weight:600;padding:6px 10px;border-radius:999px}
+.nav a.on{background:var(--wine);color:#fff}
+h1,h2,h3{font-family:var(--serif);color:var(--wine2);line-height:1.15;margin:0}
+h1{font-size:34px}
+h2{font-size:26px}
+h3{font-size:22px}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin:14px 0;box-shadow:0 1px 0 rgba(0,0,0,.02),0 6px 18px -12px rgba(80,40,10,.25)}
+.hero{text-align:center;padding:28px 6px 8px}
+.hero .cross{width:54px;height:54px;margin:0 auto 8px;display:block}
+.hero p{margin:8px auto 0;max-width:520px}
+.bar{height:8px;background:#efe3cd;border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--wine));border-radius:999px;transition:width .4s}
+.stat{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.stat b{font-family:var(--serif);font-size:30px;color:var(--wine2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:12px 18px;font:600 16px var(--sans);cursor:pointer;text-decoration:none;transition:transform .08s,background .2s}
+.btn:active{transform:scale(.98)}
+.btn.main{background:var(--wine);color:#fff;width:100%}
+.btn.main:hover{background:var(--wine2)}
+.btn.ghost{background:transparent;color:var(--wine);border:1.5px solid var(--gold2)}
+.btn.ghost:hover{background:#fbf1dc}
+.btn.done{background:var(--green);color:#fff;width:100%}
+.continue{border:1.5px solid var(--gold2);background:linear-gradient(180deg,#fffaf1,#fbf0dc)}
+.continue .k{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.steps a{display:block;text-decoration:none;color:inherit}
+.step{display:flex;gap:14px;align-items:center}
+.num{flex:0 0 42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:20px;color:var(--wine2);background:#f4e6c8;border:1px solid var(--gold2)}
+.num.full{background:var(--green);color:#fff;border-color:var(--green)}
+.step .t{flex:1;min-width:0}
+.step .t h3{font-size:20px}
+.step .t p{margin:2px 0 8px;font-size:14px;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:#f4e6c8;color:#7a5a1e;margin-right:6px}
+.daylist{list-style:none;margin:0;padding:0}
+.daylist li a{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.daylist li:last-child a{border-bottom:0}
+.dot{flex:0 0 22px;height:22px;border-radius:50%;border:2px solid var(--gold2);display:grid;place-items:center}
+.dot.ok{background:var(--green);border-color:var(--green)}
+.dot.half{background:linear-gradient(90deg,var(--gold) 50%,transparent 50%)}
+.dot svg{width:13px;height:13px}
+.daylist .dn{font-weight:600;width:70px;flex:0 0 70px}
+.daylist .dr{flex:1;color:var(--muted);font-size:15px}
+.sec-intro{border-left:4px solid var(--gold);background:linear-gradient(180deg,#fff7e6,#fffaf1)}
+.sec-intro .k,.book .k{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.book{border:1.5px solid var(--gold2)}
+.book h2{margin:4px 0 10px}
+.book .blk{margin-top:12px}
+.book .blk b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--wine)}
+.book .blk p{margin:3px 0 0}
+.book .copte{background:#f7ecda;border-radius:12px;padding:10px 12px}
+.ch{display:flex;gap:14px;align-items:flex-start}
+.ch .body{flex:1;min-width:0}
+.ch h3{font-size:23px}
+.ch .ag{font-size:13px;color:var(--gold);font-weight:600;margin-left:6px;font-family:var(--sans)}
+.ch .lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.ch p.sum{margin:2px 0 12px;font-size:17px}
+.ch .links{display:flex;gap:8px;flex-wrap:wrap}
+.ch .links a{font-size:14px;padding:8px 12px}
+.check{flex:0 0 auto;width:34px;height:34px;border-radius:10px;border:2px solid var(--gold2);background:#fff;cursor:pointer;display:grid;place-items:center;margin-top:2px}
+.check.on{background:var(--green);border-color:var(--green)}
+.check svg{width:18px;height:18px;opacity:0}
+.check.on svg{opacity:1}
+.ch.read h3{color:var(--green)}
+.readbtn{margin-top:2px}
+.text{margin:14px 0 4px;padding:16px 16px 12px;border-radius:12px;background:#fdf6e9;border:1px solid var(--line);font-family:var(--serif);font-size:20px;line-height:1.6;color:#2b1d14}
+.text p{margin:0 0 6px}
+.text sup{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--gold);margin-right:3px}
+.text .src{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.text .err{font-family:var(--sans);font-size:15px;color:var(--wine)}
+.modebar{display:flex;gap:6px;margin:16px 0 0}
+.pillbtn{border:1.5px solid var(--gold2);background:transparent;color:var(--wine);font:600 13px var(--sans);padding:6px 12px;border-radius:999px;cursor:pointer}
+.pillbtn.on{background:var(--wine);border-color:var(--wine);color:#fff}
+.alt{font-size:14px;color:var(--muted);margin:-6px 0 4px;font-style:italic}
+.ps151{margin-top:10px;padding:12px 14px;border-radius:12px;background:#f9f1e2;font-family:var(--serif);font-size:19px;line-height:1.5}
+.ps151 sup{font-family:var(--sans);font-size:11px;color:var(--gold);margin-right:3px}
+.pray{font-family:var(--serif);font-size:19px;font-style:italic;color:#4a3426}
+.pager{display:flex;gap:10px;margin-top:16px}
+.pager .btn{flex:1}
+.dayhead{padding:22px 0 4px}
+.dayhead .k{font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+details summary{cursor:pointer;font-weight:600;color:var(--wine)}
+.guide p,.guide li{margin:6px 0}
+.guide h2{margin-top:6px}
+.modal{position:fixed;inset:0;background:rgba(40,20,10,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+.modal.on{display:flex}
+.modal .card{max-width:420px;width:100%}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:var(--wine2);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;opacity:0;transition:.3s;pointer-events:none;z-index:30}
+.toast.on{opacity:1;transform:translateX(-50%)}
+footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
+@media (max-width:480px){h1{font-size:29px}.nav a{padding:6px 8px;font-size:13px}.brand span{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="#accueil"><img src="assets/logo.svg" alt="" width="30" height="30" style="border-radius:8px"><span>La Sainte Bible copte</span></a>
+  <nav class="nav"><a href="#accueil" data-n="accueil">Accueil</a><a href="#plan" data-n="plan">Plan</a><a href="#guide" data-n="guide">Guide</a></nav>
+</div></header>
+<main class="wrap" id="app"></main>
+<div class="modal" id="modal"><div class="card"><h3 id="mt">Confirmer</h3><p id="mb"></p><div class="pager"><button class="btn ghost" id="mno">Annuler</button><button class="btn main" id="myes">Oui</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const SECTIONS=[];
+function S(_,title,theme,days,intro){SECTIONS.push({n:SECTIONS.length+1,title,theme,days,intro,books:[]});}
+function B(name,en,resume,cle,copte,ch,aelf){SECTIONS[SECTIONS.length-1].books.push({name,en,resume,cle,copte,ch,aelf});}
+// Section 1 & 2
+S(1,"Évangiles","La vie de Jésus, ce qu'il a fait et comment vivre comme lui",22,
+"On commence par le cœur de tout : Jésus lui-même. Les quatre Évangiles racontent la même vie, chacun sous un angle différent. Ne cherche pas à tout retenir : regarde Jésus, ce qu'il dit, ce qu'il fait, comment il traite les gens.");
+B("Matthieu","Matthew",
+"Écrit par l'apôtre Matthieu, ancien collecteur d'impôts, surtout pour des lecteurs juifs. Il montre que Jésus est le Messie annoncé par les prophètes : tu verras souvent « afin que s'accomplisse ce qui avait été dit… ».",
+"Repère les 5 grands discours de Jésus (ch. 5-7, 10, 13, 18, 24-25). Le Sermon sur la montagne (5-7) est le « mode d'emploi » de la vie chrétienne : lis-le lentement.",
+"Matthieu 2 raconte la fuite de la Sainte Famille en Égypte. L'Église copte fête l'entrée du Christ en Égypte le 24 Bachans (1er juin) : beaucoup d'églises et de monastères sont construits sur les lieux de leur passage.",
+["Généalogie de Jésus depuis Abraham ; l'ange rassure Joseph ; naissance de Jésus.",
+"Les mages ; fuite de la Sainte Famille en Égypte ; massacre des enfants ; retour à Nazareth.",
+"Jean-Baptiste appelle à la repentance ; baptême de Jésus, l'Esprit descend comme une colombe.",
+"Jésus tenté au désert ; il commence à prêcher ; appel des premiers disciples ; guérisons.",
+"Sermon sur la montagne (1) : les Béatitudes, le sel et la lumière, aimer ses ennemis.",
+"Sermon (2) : l'aumône, la prière (le Notre Père) et le jeûne en secret ; ne pas s'inquiéter.",
+"Sermon (3) : ne pas juger ; demandez, cherchez, frappez ; la porte étroite ; la maison sur le roc.",
+"Un lépreux, le serviteur du centurion guéris ; la tempête apaisée ; les démoniaques de Gadara.",
+"Un paralysé pardonné et guéri ; appel de Matthieu ; la fille de Jaïre ; une femme guérie ; deux aveugles.",
+"Jésus envoie les Douze en mission et les prépare aux persécutions.",
+"Questions de Jean-Baptiste ; « Venez à moi, vous tous qui êtes fatigués et chargés ».",
+"Jésus, Seigneur du sabbat ; accusé d'agir par Béelzébul ; le signe de Jonas ; sa vraie famille.",
+"Paraboles du Royaume : semeur, ivraie, grain de moutarde, levain, trésor, perle, filet.",
+"Mort de Jean-Baptiste ; multiplication des pains (5000 personnes) ; Jésus marche sur l'eau.",
+"La pureté vient du cœur ; la foi de la Cananéenne ; seconde multiplication (4000).",
+"Pierre reconnaît Jésus comme le Christ ; première annonce de la Passion ; porter sa croix.",
+"La Transfiguration ; un enfant guéri ; deuxième annonce de la Passion ; l'impôt du Temple.",
+"Devenir comme un enfant ; la brebis perdue ; pardonner « soixante-dix fois sept fois ».",
+"Le mariage ; Jésus bénit les enfants ; le jeune homme riche.",
+"Les ouvriers de la dernière heure ; servir plutôt que dominer ; deux aveugles guéris.",
+"Entrée à Jérusalem (les Rameaux) ; le Temple purifié ; le figuier ; paraboles des deux fils et des vignerons.",
+"Le festin des noces ; l'impôt à César ; la résurrection ; le plus grand commandement.",
+"Jésus dénonce l'hypocrisie des scribes et des pharisiens ; il pleure sur Jérusalem.",
+"Discours sur la fin des temps : destruction du Temple, signes, « veillez ».",
+"Les dix vierges, les talents ; le jugement dernier : « ce que vous avez fait au plus petit… ».",
+"Onction à Béthanie ; trahison de Judas ; dernière Cène ; Gethsémani ; arrestation ; reniement de Pierre.",
+"Jésus devant Pilate ; mort de Judas ; crucifixion, mort et mise au tombeau.",
+"La Résurrection ; Jésus apparaît aux femmes et aux disciples ; « Allez, faites de toutes les nations des disciples »."]);
+B("Marc","Mark",
+"Le plus court et le plus rapide des Évangiles, écrit par saint Marc à partir de la prédication de Pierre. Jésus y agit beaucoup : le mot « aussitôt » revient sans cesse.",
+"Lis-le comme un récit d'action. La question centrale est : « Qui est Jésus ? » La réponse éclate au ch. 8 (Pierre) et au pied de la croix (15,39, le centurion).",
+"Saint Marc est le fondateur de l'Église d'Alexandrie et son premier patriarche, martyr en Égypte. Le pape copte est appelé « successeur de saint Marc ». C'est donc « l'Évangile de notre Église ».",
+["Jean-Baptiste ; baptême et tentation de Jésus ; appel des disciples ; guérisons à Capharnaüm.",
+"Un paralysé descendu par le toit ; appel de Lévi ; le jeûne ; Jésus, Seigneur du sabbat.",
+"Une main paralysée guérie ; choix des Douze ; l'accusation de Béelzébul ; la vraie famille.",
+"Paraboles : semeur, lampe, graine qui pousse seule, grain de moutarde ; la tempête apaisée.",
+"Le démoniaque de Gérasa (« Légion ») ; une femme guérie en touchant son vêtement ; la fille de Jaïre ressuscitée.",
+"Rejet à Nazareth ; envoi des Douze ; mort de Jean-Baptiste ; 5000 nourris ; marche sur l'eau.",
+"Ce qui souille vraiment l'homme ; la foi de la Syro-phénicienne ; un sourd-muet guéri (« Ephphata »).",
+"4000 nourris ; un aveugle guéri ; Pierre : « Tu es le Christ » ; première annonce de la Passion.",
+"La Transfiguration ; un enfant possédé ; « qui est le plus grand ? ».",
+"Le mariage ; les enfants ; l'homme riche ; « le Fils de l'homme est venu pour servir » ; l'aveugle Bartimée.",
+"Entrée à Jérusalem ; le figuier ; le Temple purifié ; la foi qui déplace les montagnes.",
+"Les vignerons ; l'impôt à César ; la résurrection ; le grand commandement ; l'offrande de la veuve.",
+"Discours sur la fin des temps : « Veillez ! ».",
+"Onction à Béthanie ; la Cène ; Gethsémani ; arrestation ; procès ; reniement de Pierre.",
+"Pilate ; Barabbas ; crucifixion ; mort ; mise au tombeau par Joseph d'Arimathée.",
+"Le tombeau vide ; apparitions ; envoi en mission ; Ascension."]);
+B("Luc","Luke",
+"Écrit par Luc, médecin et compagnon de saint Paul, après une enquête soignée. Il montre la tendresse de Jésus pour les pauvres, les femmes, les pécheurs et les étrangers.",
+"Luc a les plus belles paraboles de miséricorde (ch. 10, 15, 18). Note aussi la place de la prière et de l'Esprit Saint. Il a écrit une suite : les Actes des Apôtres.",
+"Luc raconte en détail l'Annonciation et le cantique de la Vierge Marie (ch. 1), très aimée dans l'Église copte qui l'appelle Théotokos, « Mère de Dieu ».",
+["Annonce à Zacharie et à Marie ; Marie visite Élisabeth ; le Magnificat ; naissance de Jean-Baptiste.",
+"Naissance de Jésus à Bethléem ; les bergers ; présentation au Temple (Siméon, Anne) ; Jésus à 12 ans.",
+"Prédication de Jean-Baptiste ; baptême de Jésus ; généalogie jusqu'à Adam.",
+"Tentation au désert ; Jésus lit Isaïe à la synagogue de Nazareth ; guérisons.",
+"Pêche miraculeuse et appel de Pierre ; un lépreux ; un paralysé ; appel de Lévi.",
+"Le sabbat ; choix des Douze ; Béatitudes ; aimer ses ennemis ; l'arbre et ses fruits.",
+"Le serviteur du centurion ; le fils de la veuve de Naïn ressuscité ; la pécheresse pardonnée.",
+"Les femmes qui suivent Jésus ; le semeur ; la tempête ; le démoniaque ; la fille de Jaïre.",
+"Envoi des Douze ; 5000 nourris ; Pierre reconnaît le Christ ; Transfiguration ; départ vers Jérusalem.",
+"Envoi des 72 disciples ; le bon Samaritain ; Marthe et Marie.",
+"Le Notre Père et la prière persévérante ; le signe de Jonas ; reproches aux pharisiens.",
+"Ne pas craindre ; le riche insensé ; ne pas s'inquiéter ; serviteurs vigilants.",
+"Appel à la repentance ; une femme courbée guérie ; la porte étroite.",
+"Choisir la dernière place ; le grand festin ; ce que coûte de suivre Jésus.",
+"La brebis perdue, la pièce perdue et le fils prodigue : la joie de Dieu quand un pécheur revient.",
+"L'intendant habile ; le riche et le pauvre Lazare.",
+"Pardon et foi ; dix lépreux guéris, un seul revient remercier.",
+"La veuve insistante ; le pharisien et le publicain ; l'homme riche ; l'aveugle de Jéricho.",
+"Zachée ; parabole des pièces d'or ; entrée à Jérusalem ; Jésus pleure sur la ville.",
+"L'autorité de Jésus ; les vignerons ; l'impôt à César ; la résurrection.",
+"L'offrande de la veuve ; discours sur la fin des temps.",
+"La Cène ; Gethsémani (sueur de sang) ; arrestation ; reniement de Pierre.",
+"Devant Pilate et Hérode ; crucifixion ; le bon larron ; mort et mise au tombeau.",
+"La Résurrection ; les disciples d'Emmaüs ; apparition aux Onze ; Ascension."]);
+B("Jean","John",
+"Écrit par l'apôtre Jean, « le disciple que Jésus aimait ». Plus méditatif que les trois autres, il insiste sur la divinité de Jésus : « Le Verbe était Dieu ».",
+"Repère les 7 « Je suis » (le pain de vie, la lumière, la porte, le bon berger, la résurrection, le chemin, la vraie vigne) et les 7 signes (miracles). Jean écrit « pour que vous croyiez » (20,31).",
+"Le début de Jean (1,1-17) est l'Évangile de la prière du matin (1re heure) de l'Agpeya, le livre des heures copte.",
+["« Au commencement était le Verbe » ; témoignage de Jean-Baptiste ; premiers disciples.",
+"Les noces de Cana (premier signe) ; Jésus chasse les marchands du Temple.",
+"Nicodème : naître de nouveau ; « Dieu a tant aimé le monde… » (3,16).",
+"La Samaritaine au puits : l'eau vive ; guérison du fils d'un officier.",
+"Le paralysé de Béthesda guéri un sabbat ; Jésus parle de son unité avec le Père.",
+"5000 nourris ; marche sur l'eau ; « Je suis le pain de vie » (l'Eucharistie).",
+"Jésus à la fête des Tentes ; « des fleuves d'eau vive » ; les gens divisés à son sujet.",
+"La femme adultère ; « Je suis la lumière du monde » ; « avant qu'Abraham fût, Je suis ».",
+"Guérison de l'aveugle-né ; l'enquête des pharisiens ; l'aveuglement spirituel.",
+"« Je suis le bon berger » ; « le Père et moi, nous sommes un ».",
+"Résurrection de Lazare : « Je suis la résurrection et la vie ».",
+"Marie verse le parfum ; entrée à Jérusalem ; le grain de blé qui meurt.",
+"Jésus lave les pieds des disciples ; commandement nouveau : « aimez-vous les uns les autres ».",
+"« Je suis le chemin, la vérité et la vie » ; promesse de l'Esprit Saint (le Paraclet).",
+"La vigne et les sarments ; demeurer dans son amour.",
+"L'œuvre de l'Esprit ; la tristesse changée en joie ; « J'ai vaincu le monde ».",
+"La grande prière de Jésus pour ses disciples et pour leur unité.",
+"Arrestation ; devant Anne et Caïphe ; reniement de Pierre ; devant Pilate.",
+"Flagellation ; crucifixion ; Marie et Jean au pied de la croix ; mort et mise au tombeau.",
+"Le tombeau vide ; Marie-Madeleine ; Thomas : « Mon Seigneur et mon Dieu ! ».",
+"Apparition au bord du lac ; Pierre pardonné : « Pais mes brebis »."]);
+
+S(2,"Actes et lettres de Paul","Les règles d'une vie chrétienne",31,
+"Après la vie de Jésus, tu vois naître l'Église : l'Esprit Saint descend, les apôtres annoncent la Résurrection, puis saint Paul écrit aux premières communautés pour leur apprendre à vivre en chrétiens.");
+B("Actes","Acts",
+"La suite de l'Évangile de Luc : l'Esprit Saint descend à la Pentecôte et l'Église se répand de Jérusalem jusqu'à Rome. D'abord Pierre (ch. 1-12), puis Paul (ch. 13-28).",
+"Suis le mouvement : Jérusalem → Judée et Samarie → jusqu'aux extrémités de la terre (1,8). Les ch. 13 à 28 suivent les voyages de Paul : une carte aide beaucoup.",
+"À chaque messe copte, on lit un passage des Actes : c'est le « Praxis ».",
+["Ascension ; les disciples attendent l'Esprit ; Matthias remplace Judas.",
+"Pentecôte : l'Esprit Saint descend ; discours de Pierre ; 3000 baptisés ; la vie de la première Église.",
+"Pierre et Jean guérissent un boiteux au Temple ; discours de Pierre.",
+"Pierre et Jean arrêtés puis relâchés ; prière de l'Église ; tout est mis en commun.",
+"Ananias et Saphira ; les apôtres arrêtés, libérés par un ange ; le conseil de Gamaliel.",
+"Choix des sept diacres, dont Étienne ; Étienne accusé.",
+"Discours d'Étienne ; il est lapidé, premier martyr ; Saul (Paul) est présent.",
+"Persécution ; Philippe en Samarie ; baptême de l'eunuque éthiopien.",
+"Conversion de Saul sur le chemin de Damas ; Pierre ressuscite Tabitha.",
+"Vision de Pierre ; le centurion Corneille, premier païen baptisé.",
+"Pierre s'explique ; à Antioche, on appelle les disciples « chrétiens » pour la première fois.",
+"Martyre de l'apôtre Jacques ; Pierre libéré de prison par un ange.",
+"Barnabé et Paul envoyés : premier voyage missionnaire.",
+"Iconium, Lystre (Paul lapidé), Derbé ; retour à Antioche.",
+"Concile de Jérusalem : les païens n'ont pas à suivre la loi de Moïse.",
+"Deuxième voyage : Timothée ; Lydie ; prison de Philippes et conversion du gardien.",
+"Thessalonique, Bérée ; discours de Paul à Athènes.",
+"Corinthe avec Aquilas et Priscille ; début du troisième voyage ; Apollos.",
+"Éphèse : miracles ; émeute des orfèvres de la déesse Artémis.",
+"Eutyche ressuscité ; adieux émouvants de Paul aux anciens d'Éphèse.",
+"Paul monte à Jérusalem malgré les avertissements ; il est arrêté au Temple.",
+"Paul raconte sa conversion à la foule ; il est citoyen romain.",
+"Paul devant le Sanhédrin ; complot pour le tuer ; transféré à Césarée.",
+"Paul devant le gouverneur Félix ; deux ans de prison.",
+"Devant Festus, Paul fait appel à César ; arrivée du roi Agrippa.",
+"Paul témoigne devant Agrippa : « Encore un peu et tu me persuades de devenir chrétien ».",
+"Voyage vers Rome ; tempête et naufrage ; tous sont sauvés.",
+"Malte ; arrivée à Rome ; Paul annonce l'Évangile librement pendant deux ans."]);
+B("Romains","Romans",
+"La lettre la plus complète de Paul : comment Dieu sauve l'homme. Tous ont péché, mais Dieu nous rend justes par la foi en Jésus-Christ et nous donne une vie nouvelle dans l'Esprit.",
+"C'est dense : lis lentement. Ch. 1-8 = le salut ; ch. 9-11 = Israël ; ch. 12-16 = la vie concrète. Le ch. 8 est un sommet à relire souvent.",
+"Les lettres de Paul (14 avec Hébreux) sont lues à chaque messe copte : c'est la lecture du « Boulos ».",
+["L'Évangile, puissance de Dieu ; l'humanité s'est détournée de Dieu.",
+"Dieu juge sans favoritisme : Juifs et païens sont responsables.",
+"Tous ont péché ; justifiés gratuitement par la foi en Jésus-Christ.",
+"Abraham, rendu juste par sa foi.",
+"La paix avec Dieu ; Adam et le Christ.",
+"Morts au péché et vivants pour Dieu par le baptême.",
+"La lutte intérieure : « je ne fais pas le bien que je veux ».",
+"La vie selon l'Esprit ; « rien ne pourra nous séparer de l'amour de Dieu ».",
+"La tristesse de Paul pour Israël ; la liberté de Dieu.",
+"« Quiconque invoquera le nom du Seigneur sera sauvé. »",
+"Israël n'est pas rejeté ; l'olivier et les branches greffées.",
+"S'offrir à Dieu en sacrifice vivant ; les dons ; l'amour sincère.",
+"Le respect des autorités ; l'amour accomplit la loi.",
+"Ne pas juger son frère sur la nourriture et les jours.",
+"S'accueillir les uns les autres ; projets de voyage de Paul.",
+"Salutations ; mises en garde ; louange finale."]);
+B("1 Corinthiens","1 Corinthians",
+"Paul écrit à une Église pleine de dons mais aussi de problèmes : divisions, immoralité, procès, désordre dans la messe. Il répond à chaque question.",
+"Très concret : chaque chapitre répond à un problème. Ne rate pas le ch. 13 (l'amour) et le ch. 15 (la résurrection).",
+"Le ch. 11 sur la Cène fonde la manière de communier dignement, avec préparation et jeûne, très importante dans la tradition copte.",
+["Divisions dans l'Église ; la croix, folie pour le monde et sagesse de Dieu.",
+"Paul annonce le Christ crucifié ; la sagesse donnée par l'Esprit.",
+"Le Christ seul fondement ; « vous êtes le temple de Dieu ».",
+"Les apôtres, serviteurs du Christ ; Paul, père spirituel.",
+"Un péché grave toléré dans l'Église ; un peu de levain fait lever toute la pâte.",
+"Procès entre frères ; le corps, temple du Saint-Esprit.",
+"Mariage, célibat et vie de couple.",
+"Viandes offertes aux idoles : la connaissance et l'amour du frère.",
+"Paul renonce à ses droits pour l'Évangile ; courir pour gagner le prix.",
+"Leçons de l'histoire d'Israël ; fuir l'idolâtrie ; la communion au corps du Christ.",
+"La tenue dans l'assemblée ; la Cène du Seigneur et communier dignement.",
+"Les dons de l'Esprit : un seul corps, beaucoup de membres.",
+"L'hymne à l'amour : « l'amour est patient… le plus grand, c'est l'amour ».",
+"Prophétie et langues : tout doit se faire avec ordre.",
+"La résurrection du Christ et la nôtre : « Ô mort, où est ta victoire ? ».",
+"La collecte pour Jérusalem ; salutations."]);
+B("2 Corinthiens","2 Corinthians",
+"La lettre la plus personnelle de Paul : il ouvre son cœur, ses souffrances et ses faiblesses, et défend son ministère contre de faux apôtres.",
+"Le thème central : la force de Dieu se manifeste dans notre faiblesse (12,9). Un livre consolant quand on traverse une épreuve.",
+"",
+["Le Dieu de toute consolation ; Paul explique ses changements de projet.",
+"Pardonner celui qui a péché ; nous sommes le parfum du Christ.",
+"Une lettre écrite dans les cœurs ; la gloire de la nouvelle alliance.",
+"Un trésor dans des vases d'argile ; ne pas perdre courage.",
+"Notre demeure céleste ; une nouvelle création ; réconciliés avec Dieu.",
+"Les épreuves de Paul ; ne pas s'associer aux incroyants.",
+"La tristesse qui mène à la repentance ; la joie de Paul.",
+"La générosité des Macédoniens ; le Christ s'est fait pauvre pour nous.",
+"« Dieu aime celui qui donne avec joie. »",
+"Paul défend son autorité ; soumettre toute pensée au Christ.",
+"Les faux apôtres ; Paul énumère ses souffrances.",
+"Vision du paradis ; l'écharde dans la chair : « Ma grâce te suffit ».",
+"Derniers avertissements ; bénédiction de la Trinité."]);
+B("Galates","Galatians",
+"Lettre enflammée : des prédicateurs voulaient imposer la loi de Moïse aux païens convertis. Paul défend la liberté chrétienne : on est sauvé par la foi au Christ.",
+"Lis-la d'un coup si tu peux. Ch. 5 : les œuvres de la chair contre le fruit de l'Esprit (amour, joie, paix…) : un bon examen de conscience.",
+"",
+["Il n'y a pas d'autre Évangile ; Paul raconte son appel.",
+"Paul reconnu à Jérusalem ; il reprend Pierre à Antioche.",
+"La foi d'Abraham ; la loi conduisait au Christ ; tous un en Christ.",
+"Enfants et héritiers, plus esclaves ; Agar et Sara.",
+"La liberté chrétienne ; le fruit de l'Esprit.",
+"Porter les fardeaux les uns des autres ; on récolte ce qu'on sème."]);
+B("Éphésiens","Ephesians",
+"Lettre écrite en prison : le plan de Dieu de réunir tout en Christ, l'Église comme corps du Christ, et la vie nouvelle qui en découle.",
+"Ch. 1-3 = ce que Dieu a fait pour nous ; ch. 4-6 = comment vivre en réponse. Finis par « l'armure de Dieu » (ch. 6).",
+"",
+["Toutes les bénédictions spirituelles en Christ ; prière pour connaître Dieu.",
+"Sauvés par grâce, par la foi ; Juifs et païens réunis en un seul corps.",
+"Le mystère révélé ; prière pour connaître l'amour du Christ.",
+"L'unité du corps ; vieil homme et homme nouveau.",
+"Vivre en enfants de lumière ; mari et femme, image du Christ et de l'Église.",
+"Enfants et parents ; l'armure de Dieu."]);
+B("Philippiens","Philippians",
+"La lettre de la joie, écrite par Paul en prison à une Église qu'il aimait beaucoup.",
+"Compte combien de fois revient le mot « joie ». Le ch. 2 contient un hymne sur l'humilité du Christ.",
+"",
+["La joie de Paul en prison : « pour moi, vivre c'est le Christ ».",
+"Le Christ qui s'est abaissé (hymne) ; Timothée et Épaphrodite.",
+"Tout perdre pour connaître le Christ ; courir vers le but.",
+"« Réjouissez-vous toujours » ; « je peux tout en celui qui me fortifie »."]);
+B("Colossiens","Colossians",
+"Paul montre la grandeur du Christ, au-dessus de toute création, contre des enseignements qui voulaient y ajouter d'autres « sagesses ».",
+"Le ch. 1 (15-20) est un des plus beaux textes sur qui est Jésus.",
+"",
+["Le Christ, image du Dieu invisible, premier-né de toute création.",
+"Toute la plénitude en Christ ; attention aux fausses philosophies.",
+"Chercher les choses d'en haut ; revêtir l'homme nouveau ; la famille chrétienne.",
+"La prière persévérante ; salutations (Luc, Marc, Onésime)."]);
+
+S(3,"Psaumes et Proverbes","Construire une relation avec Dieu et développer ta sagesse",45,
+"Les Psaumes t'apprennent à parler à Dieu dans toutes les situations : joie, peur, colère, repentance. Les Proverbes t'apprennent la sagesse du quotidien. Essaie de prier un verset qui te touche chaque jour.");
+B("Psaumes","Psalms",
+"150 prières et chants, dont beaucoup écrits par le roi David. C'était le livre de prière de Jésus lui-même, et c'est encore celui de l'Église.",
+"Ne lis pas les Psaumes comme une histoire : prie-les. Si un psaume exprime une émotion que tu ne vis pas, prie-le pour quelqu'un qui la vit. Repère les annonces du Christ (Ps 2, 15, 21, 109, 117).",
+"Les Coptes prient les Psaumes chaque jour dans l'Agpeya (prière des heures). L'app suit la numérotation de la Septante, la même que l'Agpeya : « Aie pitié de moi, ô Dieu » est le Psaume 50 (51 dans les Bibles traduites de l'hébreu). Le Psaume 151 fait partie de la Bible copte. Tu remarqueras aussi les titres anciens des psaumes, comme « Jusqu'à la fin », qui viennent de la Septante.",
+["Les deux chemins : le juste est comme un arbre planté près de l'eau.",
+"Le Seigneur et son Messie face aux nations révoltées.",
+"Confiance au milieu des ennemis (David fuyant son fils Absalom).",
+"Prière du soir : « en paix je me couche et je dors ».",
+"Prière du matin pour être guidé.",
+"Supplication dans la détresse (psaume de repentance).",
+"Appel à Dieu, juge juste.",
+"« Qu'est-ce que l'homme pour que tu penses à lui ? » La grandeur de Dieu dans la création.",
+"Action de grâce pour la justice de Dieu.",
+"Pourquoi Dieu semble-t-il loin quand le méchant triomphe ?",
+"Confiance : le Seigneur est dans son saint temple.",
+"La parole de Dieu est pure face au mensonge des hommes.",
+"« Jusqu'à quand, Seigneur ? » De l'angoisse à la confiance.",
+"L'insensé dit dans son cœur : « Il n'y a pas de Dieu ».",
+"Qui peut habiter chez le Seigneur ?",
+"« Tu ne laisseras pas ton fidèle voir la corruption » (annonce de la Résurrection).",
+"Prière d'un innocent : « garde-moi comme la prunelle de l'œil ».",
+"Chant de victoire de David : « Je t'aime, Seigneur, ma force ».",
+"Les cieux racontent la gloire de Dieu ; la loi du Seigneur est parfaite.",
+"Prière pour le roi avant la bataille.",
+"Joie du roi après la victoire.",
+"« Mon Dieu, mon Dieu, pourquoi m'as-tu abandonné ? » Le psaume de la Passion.",
+"« Le Seigneur est mon berger, je ne manquerai de rien. »",
+"Le Roi de gloire entre : « Portes, élevez vos linteaux ! ».",
+"Prière pour être guidé et pardonné.",
+"Vivre avec intégrité devant Dieu.",
+"« Le Seigneur est ma lumière et mon salut, de qui aurais-je peur ? »",
+"Cri vers Dieu, mon rocher.",
+"La voix du Seigneur dans l'orage.",
+"Action de grâce après la guérison : « le soir, les pleurs ; le matin, la joie ».",
+"« Entre tes mains je remets mon esprit. »",
+"Le bonheur de celui dont la faute est pardonnée.",
+"Un chant nouveau pour le Créateur.",
+"« Goûtez et voyez combien le Seigneur est bon. »",
+"Appel à l'aide contre des accusateurs injustes.",
+"La méchanceté humaine et la bonté de Dieu, source de vie.",
+"Ne t'irrite pas contre les méchants ; confie-toi au Seigneur.",
+"Psaume de repentance dans la souffrance.",
+"La brièveté de la vie.",
+"« J'ai attendu le Seigneur » ; « me voici, je viens faire ta volonté ».",
+"Heureux qui pense au faible ; la trahison d'un ami.",
+"« Comme une biche soupire après l'eau » : la soif de Dieu.",
+"« Envoie ta lumière et ta vérité, qu'elles me guident. »",
+"Lamentation du peuple vaincu malgré sa fidélité.",
+"Chant des noces du roi (lu pour le Christ et l'Église, et pour la Vierge).",
+"« Dieu est notre refuge et notre force. »",
+"Dieu, roi de toute la terre.",
+"Sion, la ville du grand Roi.",
+"Les richesses ne rachètent pas la vie.",
+"Dieu veut un cœur reconnaissant plus que des sacrifices.",
+"« Aie pitié de moi, ô Dieu » : la repentance de David. Le psaume prié à chaque heure de l'Agpeya.",
+"Le méchant arraché ; le juste comme un olivier vert.",
+"L'insensé nie Dieu (proche du Ps 13).",
+"Prière dans la menace.",
+"La trahison d'un ami ; « remets ton fardeau au Seigneur ».",
+"« Quand j'ai peur, je me confie en toi. »",
+"À l'abri de tes ailes.",
+"Contre les juges injustes.",
+"Délivrance face aux ennemis.",
+"Prière après une défaite.",
+"« Conduis-moi sur le rocher trop haut pour moi. »",
+"« Mon âme se repose en Dieu seul. »",
+"« Dès l'aurore je te cherche » : soif de Dieu au désert.",
+"Protection contre les complots.",
+"Louange pour la pluie et les moissons.",
+"Toute la terre, louez Dieu pour ses œuvres.",
+"Que les peuples te louent : bénédiction.",
+"La marche triomphale de Dieu.",
+"« Les eaux me montent jusqu'à l'âme » ; le vinaigre de la Passion est annoncé.",
+"Appel urgent : « Dieu, viens à mon aide ».",
+"Prière d'un vieil homme, fidèle depuis sa jeunesse.",
+"Le règne juste et universel du roi-Messie.",
+"Jaloux des méchants qui réussissent, le juste comprend dans le sanctuaire.",
+"Lamentation sur le sanctuaire détruit.",
+"Dieu juge au moment fixé.",
+"Dieu redoutable et victorieux.",
+"Dans la détresse, se souvenir des œuvres passées de Dieu.",
+"Leçons de l'histoire d'Israël : les infidélités du peuple et la fidélité de Dieu.",
+"Lamentation sur Jérusalem dévastée.",
+"« Dieu, fais-nous revenir » : la vigne de Dieu.",
+"Appel à écouter Dieu.",
+"Dieu juge les juges.",
+"Prière contre une coalition ennemie.",
+"« Que tes demeures sont aimables » : le désir de la maison de Dieu.",
+"L'amour et la vérité se rencontrent, la justice et la paix s'embrassent.",
+"Prière d'un pauvre : « enseigne-moi ta voie ».",
+"Sion, mère de tous les peuples (l'Égypte y est nommée).",
+"La prière la plus sombre du psautier.",
+"L'alliance avec David ; lamentation.",
+"Prière de Moïse : « apprends-nous à compter nos jours ».",
+"« Celui qui demeure à l'abri du Très-Haut » : la protection de Dieu.",
+"Il est bon de louer le Seigneur ; le juste pousse comme un palmier.",
+"Le Seigneur règne, vêtu de majesté.",
+"Le Dieu juste défend le faible.",
+"« Venez, crions de joie » ; n'endurcissez pas vos cœurs.",
+"Chantez un chant nouveau : Dieu vient juger la terre.",
+"Le Seigneur règne : que la terre exulte.",
+"Un chant nouveau pour les merveilles de Dieu.",
+"Saint est le Seigneur.",
+"« Acclamez le Seigneur, toute la terre. »",
+"L'engagement du roi à vivre avec intégrité.",
+"Prière d'un affligé ; Dieu demeure pour toujours.",
+"« Bénis le Seigneur, ô mon âme » : sa miséricorde.",
+"Hymne au Créateur.",
+"Les merveilles de Dieu, d'Abraham à la sortie d'Égypte.",
+"Confession des péchés d'Israël au fil de l'histoire.",
+"Rendez grâce : Dieu délivre ceux qui crient vers lui.",
+"Un cœur affermi ; la victoire (reprise des Ps 56 et 59).",
+"Contre l'accusateur injuste (cité pour Judas en Actes 1).",
+"« Assieds-toi à ma droite » : le Messie, roi et prêtre selon Melchisédek.",
+"Grandes sont les œuvres du Seigneur.",
+"Bonheur de celui qui craint Dieu.",
+"Louez le nom du Seigneur, qui relève le pauvre.",
+"La sortie d'Égypte : la mer voit et s'enfuit.",
+"« Non pas à nous, Seigneur, mais à ton nom la gloire » ; la vanité des idoles.",
+"Action de grâce d'un homme délivré de la mort.",
+"Le plus court psaume : toutes les nations, louez le Seigneur.",
+"« La pierre rejetée est devenue la pierre d'angle » ; « Voici le jour que fit le Seigneur ».",
+"Le plus long psaume (176 versets) : l'amour de la Parole de Dieu, en 22 strophes. Prends ton temps, tu peux le lire en deux fois.",
+"Premier « cantique des montées » (chants des pèlerins) : appel dans la détresse.",
+"« Mon secours vient du Seigneur. »",
+"La joie d'aller à la maison du Seigneur.",
+"Les yeux levés vers Dieu.",
+"« Si le Seigneur n'avait pas été pour nous… »",
+"Ceux qui se confient en Dieu sont comme la montagne de Sion.",
+"« Ceux qui sèment dans les larmes moissonnent dans la joie. »",
+"« Si le Seigneur ne bâtit la maison… »",
+"Le bonheur de la famille qui craint Dieu.",
+"Israël opprimé mais jamais vaincu.",
+"« Des profondeurs je crie vers toi, Seigneur » (psaume de repentance).",
+"L'humilité : comme un petit enfant contre sa mère.",
+"Dieu choisit Sion et David.",
+"« Qu'il est bon et agréable pour des frères de vivre ensemble ! »",
+"Bénédiction de nuit dans le temple.",
+"Louange au Dieu de l'histoire ; la vanité des idoles.",
+"« Car éternel est son amour » : chanté comme 2e Hoos de la Tasbeha copte.",
+"« Au bord des fleuves de Babylone » : la douleur de l'exil.",
+"Action de grâce de tout cœur.",
+"« Tu me sondes et tu me connais » : Dieu présent partout.",
+"Délivrance face aux violents.",
+"« Que ma prière monte comme l'encens devant toi. »",
+"Cri depuis la caverne.",
+"« Enseigne-moi à faire ta volonté » (psaume de repentance).",
+"Prière du roi pour la victoire et la paix.",
+"La grandeur et la bonté de Dieu pour tous.",
+"Ne vous confiez pas aux puissants ; Dieu soutient l'orphelin et la veuve.",
+"Dieu guérit les cœurs brisés et compte les étoiles.",
+"Que toute la création loue le Seigneur.",
+"Un chant nouveau pour Israël.",
+"« Que tout ce qui respire loue le Seigneur ! »",
+"Psaume 151 (Bible copte) : David, le plus petit de ses frères, choisi par Dieu et vainqueur de Goliath."]);
+B("Proverbes","Proverbs",
+"Recueil de conseils de sagesse, en grande partie attribués au roi Salomon. Thème central : « La crainte du Seigneur est le commencement de la sagesse » (1,7).",
+"Ch. 1-9 = de longs discours d'un père à son fils ; à partir du ch. 10 = des proverbes courts. Ne lis pas trop vite : choisis UN proverbe par chapitre et garde-le pour ta journée. 31 chapitres = un par jour du mois, si tu veux le relire plus tard.",
+"Les Proverbes font partie des lectures de prophéties du Grand Carême copte. Les Pères de l'Église ont vu dans la Sagesse du ch. 8 une image du Christ.",
+["But du livre ; « la crainte du Seigneur est le commencement de la connaissance » ; la Sagesse appelle.",
+"Chercher la sagesse comme un trésor caché.",
+"« Confie-toi au Seigneur de tout ton cœur » ; honorer Dieu avec ses biens.",
+"Acquérir la sagesse ; « garde ton cœur, car de lui viennent les sources de la vie ».",
+"Mise en garde contre la femme séductrice ; la fidélité dans le couple.",
+"La fourmi et le paresseux ; sept choses que Dieu déteste.",
+"Le jeune homme imprudent qui se laisse séduire.",
+"La Sagesse parle : elle était avec Dieu à la création (image du Christ selon les Pères).",
+"Le banquet de la Sagesse contre celui de la Folie.",
+"Début des proverbes de Salomon : le juste et le méchant ; le pouvoir des paroles.",
+"Honnêteté, humilité, générosité.",
+"Le travail, la vérité, les paroles qui guérissent.",
+"Prudence, discipline ; « qui fréquente les sages devient sage ».",
+"La sagesse bâtit, la folie détruit.",
+"« Une réponse douce calme la colère. »",
+"« L'homme fait des projets, mais c'est le Seigneur qui dirige ses pas » ; l'orgueil précède la chute.",
+"La paix, l'amitié ; « un cœur joyeux est un bon remède ».",
+"La langue a pouvoir de vie et de mort ; un ami plus proche qu'un frère.",
+"Pauvreté honnête, patience, discipline.",
+"Le vin trompeur ; l'intégrité.",
+"Le cœur du roi est dans la main de Dieu ; la justice vaut mieux que les sacrifices.",
+"Une bonne réputation ; éduquer l'enfant ; les paroles des sages.",
+"La mesure à table ; ne pas envier les pécheurs ; les dangers du vin.",
+"Ne pas envier les méchants ; secourir les autres ; le champ du paresseux.",
+"Proverbes copiés sous le roi Ézéchias ; nourrir son ennemi.",
+"L'insensé, le paresseux, les querelles.",
+"Ne pas se vanter du lendemain ; « le fer aiguise le fer ».",
+"Le juste est hardi comme un lion ; avouer ses fautes.",
+"Discipline, justice, crainte de Dieu.",
+"Paroles d'Agur : humilité ; « ne me donne ni pauvreté ni richesse ».",
+"Conseils au roi Lemuel ; portrait de la femme vertueuse."]);
+
+S(8,"Genèse et Exode","Comment le monde a été créé, la traversée du désert et les histoires de nos ancêtres",30,
+"Retour aux origines : la création, la chute, les patriarches (Abraham, Isaac, Jacob, Joseph), puis Moïse et la libération d'Égypte. Maintenant que tu connais Jésus, tu verras partout des « figures » qui l'annoncent.");
+B("Genèse","Genesis",
+"Le livre des commencements : création du monde et de l'homme, le péché, le déluge, puis l'histoire d'Abraham et de sa famille, jusqu'à Joseph en Égypte.",
+"Ch. 1-11 = les origines de l'humanité ; ch. 12-50 = les patriarches. Cherche les figures du Christ : Melchisédek (pain et vin), le sacrifice d'Isaac, Joseph trahi puis sauveur de ses frères.",
+"Une grande partie de la Genèse se passe en lien avec l'Égypte (Abraham, Agar, Joseph). La Genèse fait partie des lectures de prophéties du Grand Carême copte.",
+["La création en six jours ; l'homme créé à l'image de Dieu.",
+"Le septième jour ; Adam dans le jardin d'Éden ; création d'Ève.",
+"La chute : le serpent, le fruit défendu ; la promesse d'un Sauveur (3,15).",
+"Caïn tue son frère Abel.",
+"D'Adam à Noé ; Hénoch enlevé auprès de Dieu.",
+"La corruption du monde ; Noé construit l'arche.",
+"Le déluge.",
+"Fin du déluge ; la colombe ; le sacrifice de Noé.",
+"L'alliance avec Noé : l'arc-en-ciel.",
+"Les descendants de Noé et les peuples (Mitsraïm = l'Égypte).",
+"La tour de Babel ; les ancêtres d'Abram.",
+"Appel d'Abram : « en toi seront bénies toutes les familles de la terre » ; Abram en Égypte.",
+"Abram et Lot se séparent.",
+"Abram délivre Lot ; Melchisédek offre le pain et le vin.",
+"Alliance avec Abram : « compte les étoiles » ; sa foi lui est comptée comme justice.",
+"Agar l'Égyptienne et la naissance d'Ismaël.",
+"Abram devient Abraham ; la circoncision ; la promesse d'Isaac.",
+"Trois visiteurs chez Abraham ; il intercède pour Sodome.",
+"Destruction de Sodome ; la femme de Lot.",
+"Abraham et le roi Abimélek.",
+"Naissance d'Isaac ; Agar et Ismaël au désert, Dieu les protège.",
+"Le sacrifice d'Isaac : « Dieu pourvoira » (figure de la croix).",
+"Mort de Sara.",
+"Une épouse pour Isaac : Rébecca.",
+"Mort d'Abraham ; Ésaü et Jacob ; Ésaü vend son droit d'aînesse.",
+"Isaac et les puits.",
+"Jacob obtient la bénédiction par ruse.",
+"L'échelle de Jacob à Béthel.",
+"Jacob épouse Léa et Rachel.",
+"Les enfants de Jacob.",
+"Jacob quitte Laban.",
+"Jacob lutte avec Dieu : il devient Israël.",
+"Réconciliation avec Ésaü.",
+"Dina et la vengeance de ses frères.",
+"Retour à Béthel ; mort de Rachel.",
+"Les descendants d'Ésaü.",
+"Joseph et ses rêves ; vendu par ses frères, emmené en Égypte.",
+"Juda et Tamar.",
+"Joseph chez Potiphar ; fidèle à Dieu, il est jeté en prison.",
+"Joseph explique les rêves de deux prisonniers.",
+"Les rêves de Pharaon ; Joseph devient gouverneur de l'Égypte.",
+"Les frères viennent acheter du blé en Égypte.",
+"Second voyage avec Benjamin.",
+"La coupe dans le sac de Benjamin ; Juda s'offre à sa place.",
+"« Je suis Joseph ! » : pardon et réconciliation.",
+"Jacob descend en Égypte.",
+"Israël s'installe dans la terre de Goshen.",
+"Jacob bénit les fils de Joseph.",
+"Bénédictions des douze fils ; le sceptre ne s'éloignera pas de Juda.",
+"Mort de Jacob ; « vous aviez voulu le mal, Dieu l'a changé en bien »."]);
+B("Exode","Exodus",
+"Les descendants de Jacob sont devenus esclaves en Égypte. Dieu appelle Moïse, frappe l'Égypte de dix plaies, libère son peuple à travers la mer, lui donne la loi au Sinaï et vient habiter au milieu de lui.",
+"Ch. 1-18 = la libération (récit) ; ch. 19-24 = l'alliance et les dix commandements ; ch. 25-40 = le tabernacle (plus descriptif, lis tranquillement). La Pâque (ch. 12) annonce Jésus, l'Agneau de Dieu.",
+"Le cantique de Moïse après la mer Rouge (ch. 15) est la 1re Hoos de la Tasbeha copte. Le buisson ardent qui brûle sans se consumer (ch. 3) est chanté comme image de la Vierge Marie qui porte Dieu sans être consumée.",
+["Les Hébreux opprimés en Égypte.",
+"Naissance de Moïse, sauvé des eaux ; il fuit à Madian.",
+"Le buisson ardent : « Je suis celui qui suis ».",
+"Les signes donnés à Moïse ; son frère Aaron.",
+"Pharaon refuse ; le travail devient plus dur.",
+"Dieu renouvelle sa promesse.",
+"Le bâton changé en serpent ; 1re plaie : l'eau changée en sang.",
+"Grenouilles, moustiques, mouches.",
+"Peste du bétail, ulcères, grêle.",
+"Sauterelles, ténèbres.",
+"Annonce de la dixième plaie.",
+"La Pâque : l'agneau et son sang (figure du Christ) ; mort des premiers-nés ; départ d'Égypte.",
+"Consécration des premiers-nés ; la colonne de nuée et de feu.",
+"La traversée de la mer Rouge.",
+"Le cantique de Moïse (1re Hoos de la Tasbeha) ; les eaux amères de Mara.",
+"La manne et les cailles.",
+"L'eau sort du rocher ; victoire sur Amalek, les bras de Moïse levés.",
+"Jéthro conseille Moïse.",
+"Arrivée au mont Sinaï.",
+"Les dix commandements.",
+"Lois sur les esclaves et la violence.",
+"Lois sur la propriété et la protection des faibles.",
+"Justice, sabbat et fêtes.",
+"L'alliance scellée par le sang.",
+"Plans du tabernacle : l'arche, la table, le chandelier.",
+"Le tabernacle.",
+"L'autel et le parvis.",
+"Les vêtements des prêtres.",
+"La consécration des prêtres.",
+"L'autel de l'encens ; l'huile sainte.",
+"Les artisans ; le sabbat ; les tables de pierre.",
+"Le veau d'or ; Moïse intercède pour le peuple.",
+"Moïse demande à voir la gloire de Dieu.",
+"Nouvelles tables : « Dieu miséricordieux et compatissant, lent à la colère ».",
+"Le peuple offre généreusement.",
+"Construction du tabernacle.",
+"L'arche, la table, le chandelier, l'autel de l'encens.",
+"L'autel des sacrifices et le parvis.",
+"Les vêtements sacrés.",
+"Le tabernacle est dressé ; la gloire de Dieu le remplit."]);
+
+S(9,"De Lévitique à Ruth","Histoires de la Bible",48,
+"La fin des livres de Moïse (lois, désert, dernier discours), puis l'entrée en Terre promise avec Josué, l'époque troublée des Juges, et la belle histoire de Ruth. Certains chapitres de lois sont arides : lis-les sans te décourager, ils expliquent le sens des sacrifices accomplis par le Christ.");
+B("Lévitique","Leviticus",
+"Le manuel des prêtres (de la tribu de Lévi) : sacrifices, pureté, fêtes, sainteté. Thème : « Soyez saints, car je suis saint ».",
+"Ne cherche pas à tout comprendre. Chaque sacrifice annonce l'unique sacrifice du Christ (l'épître aux Hébreux l'explique). Ne rate pas le ch. 16 (Jour des Expiations) et le ch. 19 (« Tu aimeras ton prochain comme toi-même »).",
+"Les mots de la messe copte « sacrifice », « encens », « autel » viennent de ce monde du Lévitique, accompli dans l'Eucharistie.",
+["L'holocauste : l'offrande entièrement brûlée.",
+"L'offrande de farine.",
+"Le sacrifice de paix (de communion).",
+"Le sacrifice pour le péché.",
+"Le sacrifice de réparation.",
+"Instructions aux prêtres ; le feu qui ne doit jamais s'éteindre.",
+"Suite des lois sur les sacrifices.",
+"Consécration d'Aaron et de ses fils.",
+"Premiers sacrifices ; le feu descend de Dieu.",
+"Nadab et Abihou et le feu étranger.",
+"Animaux purs et impurs.",
+"Purification après une naissance.",
+"La lèpre : comment la reconnaître.",
+"Purification du lépreux.",
+"Impuretés du corps.",
+"Le Jour des Expiations : le bouc émissaire (figure du Christ qui porte nos péchés).",
+"Le sang, c'est la vie.",
+"Lois sur la famille et la sexualité.",
+"« Soyez saints » ; « tu aimeras ton prochain comme toi-même ».",
+"Sanctions.",
+"Sainteté des prêtres.",
+"Les offrandes saintes.",
+"Les fêtes : Pâque, Pentecôte, Expiations, Tentes.",
+"Le chandelier, les pains ; le blasphème.",
+"L'année sabbatique et le jubilé : libération tous les 50 ans.",
+"Bénédictions et malédictions.",
+"Vœux et dîmes."]);
+B("Nombres","Numbers",
+"Le voyage de 40 ans dans le désert, du Sinaï jusqu'aux portes de la Terre promise. Son nom vient des deux recensements. Le peuple se plaint et se révolte souvent, mais Dieu reste fidèle.",
+"Les récits (ch. 11-25) sont les plus vivants. Le serpent de bronze (ch. 21) est cité par Jésus pour annoncer sa croix (Jean 3,14).",
+"Le bâton d'Aaron qui fleurit sans racine (ch. 17) est chanté dans la Théotokie copte comme image de la Vierge Marie qui enfante sans semence d'homme.",
+["Recensement des tribus.",
+"Disposition du camp autour du tabernacle.",
+"Les Lévites.",
+"Les tâches des Lévites.",
+"Pureté du camp.",
+"Le naziréat ; la bénédiction d'Aaron : « Que le Seigneur te bénisse et te garde… ».",
+"Offrandes des chefs des tribus.",
+"Le chandelier ; consécration des Lévites.",
+"La Pâque ; la nuée guide le camp.",
+"Les trompettes ; départ du Sinaï.",
+"Le peuple se plaint ; les cailles ; soixante-dix anciens reçoivent l'Esprit.",
+"Myriam et Aaron critiquent Moïse.",
+"Douze espions explorent Canaan.",
+"Le peuple refuse d'entrer : 40 ans au désert.",
+"Lois diverses ; les franges des vêtements.",
+"La révolte de Coré.",
+"Le bâton d'Aaron fleurit.",
+"Les prêtres et les Lévites.",
+"La vache rousse et l'eau de purification.",
+"Mort de Myriam ; Moïse frappe le rocher ; mort d'Aaron.",
+"Le serpent de bronze (figure de la croix).",
+"Balaam et son ânesse.",
+"Balaam bénit Israël au lieu de le maudire.",
+"« Une étoile sort de Jacob. »",
+"Le péché de Baal-Peor ; le zèle de Phinées.",
+"Second recensement.",
+"Les filles de Tselophehad ; Josué choisi comme successeur.",
+"Offrandes quotidiennes et fêtes.",
+"Fêtes du septième mois.",
+"Les vœux.",
+"Guerre contre Madian.",
+"Ruben et Gad s'installent à l'est du Jourdain.",
+"Les étapes du désert.",
+"Les frontières de Canaan.",
+"Les villes de refuge.",
+"L'héritage des filles."]);
+B("Deutéronome","Deuteronomy",
+"Les derniers discours de Moïse avant sa mort, au bord du Jourdain. Il rappelle l'histoire, répète la loi et appelle le peuple à aimer Dieu de tout son cœur.",
+"Jésus a cité le Deutéronome pour répondre au diable dans le désert (ch. 6 et 8). Le ch. 6 (« Écoute, Israël ») et le ch. 30 (« choisis la vie ») sont essentiels.",
+"Le « prophète comme Moïse » annoncé au ch. 18 est compris par l'Église comme le Christ (Actes 3,22).",
+["Moïse rappelle le voyage depuis le Sinaï.",
+"Les années dans le désert.",
+"Victoires à l'est ; Moïse n'entrera pas dans le pays.",
+"Appel à obéir ; Dieu est unique.",
+"Les dix commandements répétés.",
+"« Écoute, Israël… Tu aimeras le Seigneur ton Dieu de tout ton cœur. »",
+"Un peuple choisi par amour.",
+"« L'homme ne vit pas de pain seulement. »",
+"Pas à cause de ta justice ; rappel du veau d'or.",
+"Ce que Dieu te demande : le craindre, l'aimer, le servir.",
+"Bénédiction et malédiction.",
+"Un seul lieu de culte.",
+"Les faux prophètes.",
+"Les aliments ; la dîme.",
+"L'année de remise des dettes ; ouvrir la main au pauvre.",
+"Les trois fêtes ; des juges justes.",
+"Le roi selon Dieu.",
+"Dieu suscitera un prophète comme Moïse (le Christ).",
+"Les villes de refuge.",
+"Les lois de la guerre.",
+"Lois diverses.",
+"Lois diverses.",
+"Pureté de l'assemblée.",
+"Justice pour le pauvre et l'étranger.",
+"Justice ; devoir envers la veuve du frère.",
+"Les premières récoltes : « mon père était un Araméen errant ».",
+"Les malédictions du mont Ébal.",
+"Bénédictions et malédictions.",
+"Renouvellement de l'alliance.",
+"« J'ai mis devant toi la vie et la mort : choisis la vie. »",
+"Josué établi ; la loi sera lue au peuple.",
+"Le cantique de Moïse.",
+"Moïse bénit les tribus.",
+"Mort de Moïse sur le mont Nébo."]);
+B("Josué","Joshua",
+"Josué, successeur de Moïse, conduit le peuple dans la Terre promise : traversée du Jourdain, chute de Jéricho, partage du pays entre les tribus.",
+"Ch. 1-12 = la conquête (récits) ; ch. 13-21 = le partage (listes, lis-les vite). Josué porte le même nom que Jésus (« Dieu sauve ») : il fait entrer le peuple dans la promesse.",
+"",
+["« Sois fort et courageux » : Josué succède à Moïse.",
+"Rahab cache les espions à Jéricho.",
+"La traversée du Jourdain à pied sec.",
+"Les douze pierres du souvenir.",
+"Circoncision ; la Pâque ; le chef de l'armée du Seigneur.",
+"La chute des murailles de Jéricho.",
+"Le péché d'Acan ; défaite à Aï.",
+"Prise d'Aï ; lecture de la loi.",
+"La ruse des Gabaonites.",
+"Le soleil s'arrête.",
+"Conquête du nord.",
+"Liste des rois vaincus.",
+"Territoires restant à conquérir.",
+"Caleb reçoit Hébron.",
+"Le territoire de Juda.",
+"Éphraïm.",
+"Manassé.",
+"Benjamin ; le tabernacle à Silo.",
+"Les autres tribus.",
+"Les villes de refuge.",
+"Les villes des Lévites.",
+"L'autel au bord du Jourdain.",
+"Les adieux de Josué.",
+"« Moi et ma maison, nous servirons le Seigneur. »"]);
+B("Juges","Judges",
+"Après Josué, le peuple oublie Dieu. Un cycle se répète : péché → oppression → cri vers Dieu → Dieu envoie un « juge » libérateur (Débora, Gédéon, Samson…) → paix → nouveau péché.",
+"Repère le cycle à chaque histoire. Les juges sont imparfaits : Dieu agit malgré leurs faiblesses. Les derniers chapitres (17-21) sont durs : ils montrent ce que devient un peuple sans Dieu.",
+"",
+["La conquête reste inachevée.",
+"Le cycle : péché, oppression, cri, délivrance.",
+"Othniel, Éhud, Shamgar.",
+"Débora et Barak.",
+"Le cantique de Débora.",
+"Appel de Gédéon ; la toison.",
+"Gédéon et ses 300 hommes.",
+"Fin de Gédéon.",
+"Abimélek, le mauvais roi.",
+"Nouvelle oppression ; le peuple crie vers Dieu.",
+"Jephté et son vœu imprudent.",
+"Jephté ; autres juges.",
+"Naissance de Samson annoncée par un ange.",
+"Samson et son énigme.",
+"Samson contre les Philistins.",
+"Samson et Dalila ; sa mort.",
+"L'idole de Mica.",
+"La tribu de Dan.",
+"Le crime de Guibea.",
+"Guerre contre Benjamin.",
+"« Chacun faisait ce qui lui semblait bon. »"]);
+B("Ruth","Ruth",
+"Ruth, une étrangère, reste fidèle à sa belle-mère Noémi et à son Dieu. Booz la rachète et l'épouse : elle devient l'arrière-grand-mère du roi David et une ancêtre de Jésus.",
+"Une histoire de fidélité et de bonté au milieu de l'époque sombre des Juges. Booz, le « rédempteur », est une figure du Christ.",
+"",
+["Noémi et Ruth : « ton peuple sera mon peuple, ton Dieu sera mon Dieu ».",
+"Ruth glane dans le champ de Booz.",
+"Ruth aux pieds de Booz.",
+"Booz rachète et épouse Ruth : ancêtres de David et de Jésus."]);
+
+S(10,"Samuel, Rois, Chroniques","L'histoire du roi David et les premiers prophètes",55,
+"De Samuel au roi Saül, puis David, Salomon et le Temple ; la division du royaume, les prophètes Élie et Élisée, et enfin l'exil. Les Chroniques racontent la même histoire du point de vue du Temple et de la prière.");
+B("1 Samuel","1 Samuel",
+"De la naissance du prophète Samuel au premier roi, Saül, puis à l'ascension du jeune David. Saül désobéit et se perd ; David, berger choisi par Dieu, attend son heure sans se venger.",
+"Compare Saül et David : Dieu « regarde au cœur » (16,7). L'amitié de David et Jonathan (ch. 18-20) est un modèle.",
+"",
+["Anne prie avec larmes ; naissance de Samuel.",
+"Le cantique d'Anne ; les fils corrompus du prêtre Éli.",
+"Dieu appelle Samuel : « Parle, Seigneur, ton serviteur écoute ».",
+"L'arche de Dieu prise par les Philistins.",
+"L'arche fait tomber l'idole Dagon.",
+"Retour de l'arche.",
+"Samuel juge Israël ; victoire à Mitspa.",
+"Le peuple réclame un roi.",
+"Saül rencontre Samuel.",
+"Saül oint comme roi.",
+"Première victoire de Saül.",
+"Les adieux de Samuel.",
+"Saül offre le sacrifice à la place de Samuel.",
+"L'exploit de Jonathan.",
+"Saül désobéit : « l'obéissance vaut mieux que le sacrifice ».",
+"David oint : « l'homme regarde l'apparence, Dieu regarde au cœur ».",
+"David et Goliath.",
+"Amitié de David et Jonathan ; jalousie de Saül.",
+"Saül veut tuer David.",
+"Jonathan protège David.",
+"David en fuite.",
+"La caverne d'Adoullam ; massacre des prêtres.",
+"David poursuivi par Saül.",
+"David épargne Saül dans la caverne.",
+"La sage Abigaïl.",
+"David épargne encore Saül.",
+"David chez les Philistins.",
+"Saül consulte une voyante à Endor.",
+"Les Philistins renvoient David.",
+"David reprend ce qu'on lui avait volé.",
+"Mort de Saül et de Jonathan."]);
+B("2 Samuel","2 Samuel",
+"Le règne de David : roi de tout Israël, il prend Jérusalem et y amène l'arche. Dieu lui promet un trône éternel. Puis vient son grand péché avec Bethsabée, sa repentance, et les drames de sa famille.",
+"Le ch. 7 (promesse à David) annonce le Christ, « fils de David ». Le ch. 12 montre la vraie repentance : lis ensuite le Psaume 50 (51 dans les Bibles hébraïques), écrit à ce moment.",
+"",
+["David pleure Saül et Jonathan.",
+"David roi de Juda.",
+"Abner rejoint David puis est assassiné.",
+"Assassinat d'Ish-Bosheth.",
+"David roi de tout Israël ; prise de Jérusalem.",
+"L'arche à Jérusalem ; David danse de joie.",
+"Dieu promet à David un trône éternel.",
+"Les victoires de David.",
+"Bonté de David pour Mephibosheth, fils de Jonathan.",
+"Guerre contre Ammon.",
+"David et Bethsabée ; David fait tuer Urie.",
+"Le prophète Nathan : « Tu es cet homme ! » ; repentance de David.",
+"Drame familial : Amnon et Tamar ; vengeance d'Absalom.",
+"Retour d'Absalom.",
+"Révolte d'Absalom ; David s'enfuit.",
+"Shimeï maudit David.",
+"Les conseils d'Ahitophel et de Houshaï.",
+"Mort d'Absalom : « Mon fils Absalom ! ».",
+"David revient à Jérusalem.",
+"Révolte de Shéba.",
+"Famine ; guerres contre les Philistins.",
+"Le cantique de David.",
+"Dernières paroles de David ; ses héros.",
+"Recensement et peste ; l'autel sur l'aire d'Arauna."]);
+B("1 Rois","1 Kings",
+"Salomon reçoit la sagesse et construit le Temple, mais finit par se détourner de Dieu. Le royaume se divise en deux : Israël au nord, Juda au sud. Puis le prophète Élie affronte le roi Achab et la reine Jézabel.",
+"À chaque roi, le livre pose la question : a-t-il fait ce qui est bien aux yeux du Seigneur ? Les ch. 17-19 (Élie) sont parmi les plus beaux récits de la Bible.",
+"",
+["Salomon devient roi.",
+"Mort de David.",
+"Salomon demande la sagesse ; le jugement des deux mères.",
+"La grandeur de Salomon.",
+"Préparatifs du Temple.",
+"Construction du Temple.",
+"Le palais et les objets du Temple.",
+"Dédicace du Temple : la gloire de Dieu le remplit ; prière de Salomon.",
+"Dieu répond à Salomon.",
+"La visite de la reine de Saba.",
+"Salomon se détourne de Dieu ; la division du royaume est annoncée.",
+"Le royaume se divise : Roboam et Jéroboam ; les veaux d'or.",
+"L'homme de Dieu venu de Juda.",
+"Fin de Jéroboam ; le pharaon Shishak pille Jérusalem.",
+"Rois de Juda et d'Israël.",
+"Le roi Achab et la reine Jézabel.",
+"Élie annonce la sécheresse ; la veuve de Sarepta.",
+"Élie contre les prophètes de Baal au mont Carmel.",
+"Élie découragé ; Dieu dans « le murmure d'une brise légère » ; appel d'Élisée.",
+"Guerres contre les Araméens.",
+"La vigne de Naboth.",
+"Mort d'Achab ; le prophète Michée."]);
+B("2 Rois","2 Kings",
+"Élie est enlevé au ciel et Élisée fait de nombreux miracles. Puis la décadence : le royaume du nord tombe sous l'Assyrie, et Juda sous Babylone malgré les réformes d'Ézéchias et de Josias.",
+"Les miracles d'Élisée (ch. 2-8) annoncent ceux de Jésus. La fin montre que s'éloigner de Dieu mène à la ruine, mais l'histoire n'est pas finie : les prophètes annoncent le retour.",
+"",
+["Élie et le roi Achazia.",
+"Élie enlevé au ciel ; Élisée reçoit son esprit.",
+"Victoire sur Moab.",
+"Miracles d'Élisée : l'huile de la veuve, le fils de la Sunamite ressuscité.",
+"Naaman le Syrien guéri de la lèpre dans le Jourdain.",
+"Le fer qui flotte ; l'armée céleste qui protège Élisée.",
+"Fin du siège de Samarie.",
+"La Sunamite ; nouveaux rois.",
+"Jéhu ; mort de Jézabel.",
+"Jéhu détruit le culte de Baal.",
+"La reine Athalie ; le petit Joas sauvé.",
+"Joas répare le Temple.",
+"Mort d'Élisée.",
+"Amatsia ; Jéroboam II.",
+"Rois successifs.",
+"Achaz, roi idolâtre.",
+"Chute de Samarie : exil du royaume du nord.",
+"Le roi Ézéchias ; menace assyrienne.",
+"Jérusalem délivrée.",
+"Maladie et guérison d'Ézéchias.",
+"Manassé, le pire roi.",
+"Josias retrouve le livre de la loi.",
+"La grande réforme de Josias.",
+"Premières déportations à Babylone.",
+"Chute de Jérusalem et destruction du Temple."]);
+B("1 Chroniques","1 Chronicles",
+"Reprend l'histoire depuis Adam (par des généalogies) jusqu'à la mort de David, avec un intérêt particulier pour l'arche, le culte et la préparation du Temple.",
+"Les ch. 1-9 sont des listes de noms : survole-les, elles montrent que Dieu connaît chacun par son nom. Le récit commence au ch. 10.",
+"",
+["Généalogies d'Adam à Ésaü.",
+"Les descendants de Juda.",
+"Les descendants de David.",
+"Juda et Siméon ; la prière de Jabets.",
+"Les tribus à l'est du Jourdain.",
+"La tribu de Lévi.",
+"Les tribus du nord.",
+"Benjamin.",
+"Les habitants de Jérusalem.",
+"Mort de Saül.",
+"David devient roi ; ses héros.",
+"Ceux qui rejoignent David.",
+"Première tentative pour transporter l'arche.",
+"Victoires de David.",
+"L'arche arrive à Jérusalem.",
+"Psaume d'action de grâce.",
+"La promesse à David.",
+"Victoires.",
+"Guerre contre Ammon.",
+"Guerres.",
+"Le recensement.",
+"David prépare la construction du Temple.",
+"Organisation des Lévites.",
+"Les classes des prêtres.",
+"Les chantres.",
+"Les portiers.",
+"Les officiers.",
+"David confie le Temple à Salomon.",
+"La prière de David ; sa mort."]);
+B("2 Chroniques","2 Chronicles",
+"De Salomon à l'exil, en suivant surtout les rois de Juda. Les rois qui cherchent Dieu sont bénis ; ceux qui l'abandonnent tombent. Le livre se termine sur l'édit de Cyrus : l'espérance du retour.",
+"Retiens 7,14 : « Si mon peuple s'humilie, prie, cherche ma face… je pardonnerai et je guérirai son pays ». C'est le fil de tout le livre.",
+"La conversion du roi Manassé (ch. 33) est prolongée dans la tradition orthodoxe par la « Prière de Manassé », une belle prière de repentance.",
+["La sagesse de Salomon.",
+"Préparatifs du Temple.",
+"Construction du Temple.",
+"Les objets du Temple.",
+"L'arche entre ; la gloire de Dieu remplit le Temple.",
+"La prière de dédicace de Salomon.",
+"« Si mon peuple s'humilie et prie… je guérirai son pays. »",
+"Les œuvres de Salomon.",
+"La reine de Saba ; mort de Salomon.",
+"Le royaume se divise.",
+"Roboam.",
+"Le pharaon Shishak attaque Jérusalem.",
+"Abija.",
+"Asa cherche Dieu.",
+"La réforme d'Asa.",
+"Fin d'Asa.",
+"Josaphat.",
+"Josaphat et Achab.",
+"Josaphat établit des juges.",
+"« Ce combat n'est pas le vôtre, mais celui de Dieu. »",
+"Joram.",
+"Athalie.",
+"Joas couronné.",
+"Joas ; le prophète Zacharie lapidé.",
+"Amatsia.",
+"Ozias et son orgueil.",
+"Jotham.",
+"Achaz.",
+"Ézéchias purifie le Temple.",
+"Une grande Pâque.",
+"Les offrandes du peuple.",
+"Le roi d'Assyrie menace ; Dieu délivre.",
+"Manassé se repent.",
+"Josias.",
+"La Pâque de Josias ; sa mort.",
+"Chute de Jérusalem ; l'édit de Cyrus annonce le retour."]);
+
+S(4,"Ecclésiaste, Cantique et Isaïe","Voir les prophéties et t'encourager dans les difficultés",28,
+"Tu connais maintenant l'histoire des rois : tu vas entendre les prophètes qui leur ont parlé. Tu passes de la réflexion sur le sens de la vie (Ecclésiaste) au chant de l'amour (Cantique), puis au grand prophète Isaïe, qui annonce le Messie plus clairement que tous les autres.");
+B("Ecclésiaste","Ecclesiastes",
+"Un sage (attribué à Salomon) cherche le sens de la vie « sous le soleil » : plaisirs, travail, richesses… tout est « vanité », comme une buée qui passe. Sa conclusion : craindre Dieu et garder ses commandements.",
+"Ne te décourage pas devant son ton pessimiste : il montre honnêtement que sans Dieu, rien ne comble. Lis la fin (12,13) en premier pour avoir la clé.",
+"",
+["« Vanité des vanités, tout est vanité » ; rien de nouveau sous le soleil.",
+"Plaisirs, grands travaux et richesses ne comblent pas le cœur.",
+"« Il y a un temps pour tout » : naître et mourir, pleurer et rire.",
+"Oppression, rivalité ; « deux valent mieux qu'un ».",
+"Prudence dans les promesses à Dieu ; l'argent ne rassasie jamais.",
+"Avoir des biens sans pouvoir en profiter.",
+"Sagesse dans l'épreuve ; la fin d'une chose vaut mieux que son début.",
+"Le mystère de la justice de Dieu.",
+"Le même sort pour tous : profite de la vie que Dieu te donne.",
+"Un peu de folie fait de gros dégâts ; sagesse pratique.",
+"« Jette ton pain sur la surface des eaux » ; profite de ta jeunesse devant Dieu.",
+"« Souviens-toi de ton Créateur aux jours de ta jeunesse » ; crains Dieu et garde ses commandements."]);
+B("Cantique des Cantiques","Song of Songs",
+"Un poème d'amour entre un bien-aimé et sa bien-aimée. L'amour humain est beau et voulu par Dieu.",
+"La tradition de l'Église lit ce livre à deux niveaux : l'amour du couple, et l'amour entre Dieu et son peuple, le Christ et l'Église, le Christ et chaque âme. Lis-le comme une prière d'amour envers Dieu.",
+"L'Église copte applique aussi beaucoup d'images du Cantique à la Vierge Marie dans ses chants (« jardin fermé, source scellée », 4,12).",
+["La bien-aimée désire son bien-aimé.",
+"« Je suis la rose de Saron » ; l'appel du printemps.",
+"Elle cherche son bien-aimé la nuit ; le cortège de Salomon.",
+"Le bien-aimé célèbre sa beauté ; « jardin fermé, source scellée ».",
+"Elle hésite, il s'éloigne ; elle le cherche et le décrit.",
+"Les retrouvailles.",
+"Nouvelle louange de la bien-aimée.",
+"« L'amour est fort comme la mort » ; les grandes eaux ne peuvent l'éteindre."]);
+B("Isaïe","Isaiah",
+"Isaïe a prophétisé à Jérusalem vers 740-700 avant Jésus-Christ. Il dénonce le péché du peuple mais annonce surtout le Messie : la vierge qui enfante (7), l'enfant Prince de la paix (9), le Serviteur souffrant (53). On l'appelle « le cinquième Évangile ».",
+"Trois parties : ch. 1-39 = avertissements et jugement ; ch. 40-55 = consolation (« Consolez mon peuple ») ; ch. 56-66 = espérance future. Note chaque annonce du Christ : tu les reconnaîtras grâce aux Évangiles déjà lus.",
+"Isaïe 19 annonce : « Béni soit l'Égypte, mon peuple » et un autel au milieu de l'Égypte. La tradition copte y voit la venue de la Sainte Famille et la naissance de l'Église d'Égypte (le monastère d'El-Muharraq est vu comme ce lieu « au milieu de l'Égypte »).",
+["Israël rebelle ; Dieu rejette le culte hypocrite : « vos péchés seraient-ils comme l'écarlate… ».",
+"Toutes les nations monteront à la montagne du Seigneur ; les épées changées en charrues.",
+"Jugement sur Jérusalem et ses dirigeants.",
+"Le Germe du Seigneur ; Sion purifiée.",
+"Le chant de la vigne ; six malheurs.",
+"Vision de Dieu : « Saint, Saint, Saint » (chanté à chaque messe) ; la braise sur les lèvres d'Isaïe.",
+"« La vierge enfantera un fils, Emmanuel » (Dieu avec nous).",
+"L'Assyrie va déferler ; Dieu, pierre d'achoppement.",
+"« Un enfant nous est né… Prince de la paix. »",
+"L'Assyrie, instrument de Dieu, sera jugée ; un reste reviendra.",
+"Le rejeton de Jessé, rempli de l'Esprit ; le loup habitera avec l'agneau.",
+"Chant de reconnaissance pour le salut.",
+"Oracle contre Babylone.",
+"La chute du roi de Babylone (« astre brillant, fils de l'aurore »).",
+"Oracle sur Moab.",
+"Moab (suite).",
+"Damas et Israël du nord.",
+"Oracle sur l'Éthiopie.",
+"Oracle sur l'Égypte : « Béni soit l'Égypte, mon peuple » ; le Seigneur entre en Égypte, un autel au milieu du pays.",
+"Isaïe marche dépouillé : signe contre l'Égypte et l'Éthiopie.",
+"Chute de Babylone ; Édom ; l'Arabie.",
+"Jérusalem ; Éliakim reçoit la clé de David.",
+"Oracle sur Tyr.",
+"Le jugement de toute la terre.",
+"Un festin pour tous les peuples ; Dieu essuiera les larmes, la mort sera engloutie.",
+"Chant de confiance : « tes morts revivront ».",
+"La vigne du Seigneur protégée.",
+"Avertissement ; la pierre angulaire posée en Sion.",
+"Malheur à Jérusalem ; « ce peuple m'honore des lèvres, mais son cœur est loin de moi ».",
+"Ne cherchez pas refuge en Égypte ; « dans le calme et la confiance sera votre force ».",
+"Malheur à ceux qui comptent sur les chevaux de l'Égypte plutôt que sur Dieu.",
+"Un roi juste ; l'Esprit répandu.",
+"Le Seigneur délivre Sion.",
+"Jugement sur les nations.",
+"Le désert fleurira ; les aveugles verront, les boiteux sauteront.",
+"Le roi d'Assyrie menace Jérusalem.",
+"Prière du roi Ézéchias ; Jérusalem délivrée miraculeusement.",
+"Ézéchias malade puis guéri ; l'ombre recule.",
+"Ézéchias montre ses trésors à Babylone ; l'exil est annoncé.",
+"« Consolez mon peuple » ; « une voix crie dans le désert » ; ceux qui espèrent reprennent des forces comme l'aigle.",
+"« Ne crains pas, car je suis avec toi. »",
+"Premier chant du Serviteur : « il ne brisera pas le roseau froissé ».",
+"« Je t'ai appelé par ton nom, tu es à moi. »",
+"Dieu est unique ; le ridicule des idoles.",
+"Cyrus, choisi par Dieu ; « tout genou fléchira devant moi ».",
+"Les idoles doivent être portées ; Dieu, lui, porte son peuple.",
+"Chute de Babylone.",
+"Dieu purifie Israël comme on affine l'argent.",
+"Deuxième chant du Serviteur : lumière des nations ; « une mère peut-elle oublier son enfant ? ».",
+"Troisième chant : le Serviteur ne se dérobe pas aux insultes.",
+"Écoutez-moi ; Dieu console Sion.",
+"« Qu'ils sont beaux les pieds du messager de bonnes nouvelles » ; début du 4e chant.",
+"Le Serviteur souffrant : « il a été blessé pour nos péchés… par ses blessures nous sommes guéris ». La Passion du Christ, 700 ans avant.",
+"Sion, la femme stérile, aura de nombreux enfants.",
+"« Vous tous qui avez soif, venez » ; « mes pensées ne sont pas vos pensées ».",
+"Les étrangers accueillis ; « ma maison sera une maison de prière pour tous les peuples ».",
+"Dieu habite avec le cœur humble.",
+"Le vrai jeûne : partager son pain, libérer les opprimés.",
+"Les péchés nous séparent de Dieu ; le Rédempteur viendra.",
+"« Lève-toi, resplendis ! » La gloire de Dieu sur Sion, les nations viennent à sa lumière.",
+"« L'Esprit du Seigneur est sur moi… » (lu par Jésus à Nazareth, Luc 4).",
+"« Ma joie est en elle » : Dieu se réjouit de son peuple.",
+"Le vainqueur ; prière du peuple.",
+"« Si tu déchirais les cieux… » ; nous sommes l'argile, tu es le potier.",
+"De nouveaux cieux et une nouvelle terre.",
+"« Le ciel est mon trône » ; toutes les nations verront ma gloire."]);
+
+S(5,"Jérémie, Lamentations, Baruch, Ézéchiel","Expérimenter la repentance et voir la miséricorde de Dieu et sa justice",37,
+"Deux prophètes de la grande catastrophe : la destruction de Jérusalem et l'exil à Babylone (587 av. J.-C.). Dieu avertit, punit, mais promet un cœur nouveau et une nouvelle alliance. C'est une école de repentance et d'espérance. Le livre de Baruch, présent dans la Bible copte, y trouve sa place après Jérémie.");
+B("Jérémie","Jeremiah",
+"Jérémie, jeune prêtre timide, est appelé à annoncer pendant 40 ans un message que personne ne veut entendre : Jérusalem va tomber. Il est rejeté, emprisonné, jeté dans une citerne. On l'appelle « le prophète qui pleure ».",
+"Le livre n'est pas dans l'ordre chronologique : ne t'inquiète pas si tu te perds. Repère les « confessions » de Jérémie, où il crie sa souffrance à Dieu (ch. 11-20), et le sommet : la nouvelle alliance (ch. 38). Dans la Septante, les chapitres 25 à 51 ne sont pas dans le même ordre que dans les Bibles traduites de l'hébreu (les oracles contre les nations viennent plus tôt) et le texte est un peu plus court : c'est normal.",
+"Jérémie a fini sa vie en Égypte (ch. 50-51) ; selon la tradition, il y est mort martyr. Dans la Bible copte, le livre de Baruch, son secrétaire, suit Jérémie et les Lamentations.",
+["Appel de Jérémie : « avant de te former, je te connaissais » ; l'amandier et la marmite.",
+"Israël a abandonné la source d'eau vive.",
+"Appel au retour de l'épouse infidèle.",
+"« Circoncisez votre cœur » ; l'invasion approche.",
+"Pas un seul juste dans Jérusalem ?",
+"« Paix, paix ! » disent-ils, et il n'y a pas de paix.",
+"Discours au Temple : le Temple ne protège pas si l'on ne change pas de vie.",
+"Le peuple ne revient pas ; « n'y a-t-il pas de baume en Galaad ? ».",
+"Les larmes de Jérémie ; se glorifier seulement de connaître Dieu.",
+"Les idoles vaines et le vrai Dieu.",
+"L'alliance rompue ; complot contre Jérémie.",
+"« Pourquoi les méchants réussissent-ils ? »",
+"La ceinture pourrie ; les cruches.",
+"Sécheresse ; prière du prophète.",
+"Plainte de Jérémie ; Dieu le rassure.",
+"Jérémie ne doit pas se marier : signe du malheur qui vient.",
+"« Béni l'homme qui se confie dans le Seigneur » : comme un arbre près de l'eau.",
+"Chez le potier : Dieu peut refaçonner son peuple.",
+"La cruche brisée : signe du jugement.",
+"Jérémie frappé et attaché ; « il y a dans mon cœur comme un feu dévorant ».",
+"Réponse au roi Sédécias : la ville sera prise.",
+"Avertissements aux rois de Juda.",
+"Les mauvais bergers ; le Germe juste de David ; les faux prophètes.",
+"Les deux paniers de figues.",
+"Soixante-dix ans d'exil annoncés.",
+"Jérémie menacé de mort, puis épargné.",
+"Le joug : se soumettre à Babylone.",
+"Le faux prophète Hanania brise le joug et meurt.",
+"Lettre aux exilés : « recherchez la paix de la ville » ; « des projets de paix pour vous donner un avenir ».",
+"Promesse de restauration.",
+"La nouvelle alliance écrite dans les cœurs ; Rachel pleure ses enfants.",
+"Jérémie achète un champ en pleine guerre : signe d'espérance.",
+"Promesses de guérison ; le Germe de David.",
+"Libération des esclaves, puis trahison.",
+"La fidélité des Récabites.",
+"Le roi brûle le rouleau ; Jérémie le fait réécrire.",
+"Jérémie emprisonné.",
+"Jeté dans une citerne, sauvé par Ébed-Mélek l'Éthiopien.",
+"Chute de Jérusalem.",
+"Jérémie libéré, reste au pays avec Guedalia.",
+"Assassinat de Guedalia.",
+"Le peuple demande conseil : Dieu dit de ne pas fuir en Égypte.",
+"Ils partent quand même en Égypte, emmenant Jérémie.",
+"Jérémie avertit les Juifs d'Égypte contre l'idolâtrie.",
+"Parole de réconfort à Baruch.",
+"Oracle sur l'Égypte.",
+"Oracle sur les Philistins.",
+"Oracle sur Moab.",
+"Ammon, Édom, Damas, Élam.",
+"Chute de Babylone.",
+"Babylone (suite).",
+"Récit de la chute de Jérusalem."]);
+B("Lamentations","Lamentations",
+"Cinq poèmes de deuil sur Jérusalem détruite, attribués à Jérémie. La douleur est immense, mais au milieu jaillit l'espérance : « Ses compassions se renouvellent chaque matin » (3,22-23).",
+"Lis-les lentement, comme une prière dans les moments de deuil ou de chute. Le ch. 3 est le cœur du livre.",
+"",
+["Jérusalem seule comme une veuve.",
+"La colère de Dieu sur Sion.",
+"Au fond de la douleur : « ses compassions se renouvellent chaque matin, grande est ta fidélité ».",
+"Les horreurs du siège.",
+"Prière : « fais-nous revenir à toi, et nous reviendrons »."]);
+B("Baruch","Baruch",
+"Baruch était le secrétaire du prophète Jérémie (tu l'as croisé dans Jérémie 43 et 51). Ce livre contient une prière de repentance des exilés, un éloge de la Sagesse et des paroles de consolation pour Jérusalem. Le ch. 6 est la « Lettre de Jérémie » contre les idoles.",
+"Lis-le comme la suite de Jérémie et des Lamentations : après la douleur, la repentance puis la consolation. Le verset 3,38 (la Sagesse « est apparue sur la terre et a vécu parmi les hommes ») a été lu par les Pères comme une annonce de l'Incarnation.",
+"Baruch fait partie de la Bible copte, juste après Jérémie, mais il est absent des Bibles protestantes.",
+["Le livre est lu aux exilés à Babylone ; début de la confession des péchés.",
+"Prière de repentance : « nous avons péché, nous n'avons pas écouté ta voix ».",
+"Éloge de la Sagesse : elle « est apparue sur la terre et a vécu parmi les hommes ».",
+"La Sagesse, c'est la loi de Dieu ; Jérusalem console ses enfants exilés.",
+"« Jérusalem, quitte ta robe de deuil, revêts la splendeur de la gloire de Dieu ! »",
+"La Lettre de Jérémie : les idoles ne sont que du bois et de l'or, ne les craignez pas."],"Ba");
+B("Ézéchiel","Ezekiel",
+"Ézéchiel, prêtre déporté à Babylone, reçoit des visions impressionnantes : la gloire de Dieu, son départ du Temple, puis son retour. Il annonce un cœur nouveau, la vie rendue aux ossements secs et un Temple nouveau.",
+"Les visions peuvent paraître étranges : ne bloque pas sur les détails. Ch. 1-24 = jugement sur Jérusalem ; 25-32 = les nations ; 33-48 = espérance. Les sommets : ch. 34 (le bon berger), 36 (cœur nouveau), 37 (les ossements).",
+"La « porte fermée » par où seul le Seigneur passe (44,1-2) est chantée dans la Théotokie copte comme image de la virginité perpétuelle de Marie.",
+["Vision de la gloire de Dieu : les quatre êtres vivants et le trône.",
+"Appel d'Ézéchiel.",
+"Il mange le rouleau ; Dieu l'établit sentinelle d'Israël.",
+"Actions symboliques du siège de Jérusalem.",
+"Les cheveux coupés : le sort de Jérusalem.",
+"Contre les montagnes des idoles.",
+"La fin arrive.",
+"Les abominations dans le Temple.",
+"Une marque sur ceux qui pleurent le péché.",
+"La gloire de Dieu quitte le Temple.",
+"Promesse d'un cœur nouveau ; la gloire quitte la ville.",
+"Le signe de l'exil.",
+"Contre les faux prophètes.",
+"Noé, Daniel et Job.",
+"Le bois de la vigne inutile.",
+"Jérusalem, épouse infidèle, et la fidélité de Dieu.",
+"Les aigles et le cèdre.",
+"Chacun est responsable : « je ne prends pas plaisir à la mort du méchant, mais à ce qu'il se convertisse et vive ».",
+"Lamentation sur les princes.",
+"L'histoire des révoltes d'Israël.",
+"L'épée du Seigneur.",
+"Les péchés de Jérusalem ; personne pour se tenir sur la brèche.",
+"Deux sœurs infidèles.",
+"La marmite ; mort de la femme d'Ézéchiel.",
+"Ammon, Moab, Édom, Philistins.",
+"Oracle sur Tyr.",
+"Lamentation sur Tyr, le grand navire.",
+"Le roi de Tyr ; Sidon.",
+"Oracle sur l'Égypte.",
+"L'Égypte (suite).",
+"Le pharaon comme un cèdre abattu.",
+"Lamentation sur le pharaon.",
+"La sentinelle ; la nouvelle de la chute de Jérusalem.",
+"Les mauvais bergers ; « Moi-même je ferai paître mes brebis ».",
+"Contre Édom.",
+"« Je vous donnerai un cœur nouveau et je mettrai en vous un esprit nouveau. »",
+"Les ossements desséchés reprennent vie.",
+"Gog et Magog.",
+"Défaite de Gog.",
+"Vision du nouveau Temple.",
+"Le Temple (suite).",
+"Les salles des prêtres.",
+"La gloire de Dieu revient au Temple.",
+"La porte fermée, par où seul le Seigneur passe ; les prêtres.",
+"Partage du territoire ; offrandes.",
+"Le culte du prince.",
+"Le fleuve qui sort du Temple et donne la vie partout où il coule.",
+"Partage entre les tribus ; la ville s'appelle « Le Seigneur est là »."]);
+
+S(6,"Daniel et les 12 petits prophètes","La loyauté de Dieu, son armure pour nous et la justice sociale",27,
+"Daniel montre la fidélité à Dieu en terre étrangère. Les 12 « petits » prophètes (petits par la taille, pas par l'importance) parlent de justice pour les pauvres, de repentance et de l'amour obstiné de Dieu. Dans la Bible copte, Daniel a 14 chapitres : il y a donc 81 chapitres ici (27 jours de 3 chapitres).");
+B("Daniel","Daniel",
+"Daniel et ses trois amis, déportés à Babylone, restent fidèles à Dieu malgré les menaces : la fournaise, la fosse aux lions. La seconde partie contient des visions sur l'avenir et le « Fils de l'homme » venant sur les nuées.",
+"Ch. 1-6 = récits faciles et encourageants ; ch. 7-12 = visions plus difficiles (ne cherche pas à tout décoder). Jésus s'est appelé lui-même « Fils de l'homme » en référence à Daniel 7.",
+"La Bible copte suit la version grecque de Daniel : le ch. 3 contient la prière d'Azarias et le cantique des trois jeunes gens (chanté comme 3e Hoos dans la Tasbeha), et le livre a deux chapitres de plus, Suzanne (13) et Bel et le dragon (14), absents des Bibles protestantes : tu les lis ici.",
+["Daniel et ses amis à Babylone refusent la nourriture du roi et restent fidèles.",
+"Le rêve de Nabuchodonosor : la statue et la pierre qui devient une montagne.",
+"La fournaise : les trois jeunes gens sauvés, un quatrième marche avec eux. Dans la Bible copte : leur prière et leur long cantique de louange.",
+"Le rêve de l'arbre ; Nabuchodonosor humilié puis reconnaissant Dieu.",
+"Le festin de Balthazar : l'écriture mystérieuse sur le mur.",
+"Daniel dans la fosse aux lions.",
+"Vision des quatre bêtes ; le Fils de l'homme vient sur les nuées.",
+"Le bélier et le bouc.",
+"La prière de repentance de Daniel ; les soixante-dix semaines.",
+"Vision au bord du Tigre.",
+"Les rois du nord et du sud.",
+"La fin des temps ; la résurrection des morts.",
+"Suzanne, faussement accusée, sauvée par la sagesse du jeune Daniel (Bible copte).",
+"Bel et le dragon : Daniel démasque les fausses idoles ; il est sauvé dans la fosse aux lions (Bible copte)."]);
+B("Osée","Hosea",
+"Dieu demande à Osée d'épouser une femme infidèle et de continuer à l'aimer : image vivante de l'amour de Dieu pour son peuple qui le trahit.",
+"Lis-le comme une histoire d'amour blessé. Le ch. 11 montre Dieu comme un père tendre.",
+"Osée 11,1 « D'Égypte j'ai appelé mon fils » est cité par Matthieu pour le retour de la Sainte Famille d'Égypte.",
+["Osée épouse Gomer ; les noms symboliques de ses enfants.",
+"Israël, épouse infidèle, sera reconquise par amour.",
+"Osée rachète sa femme.",
+"Il n'y a plus de connaissance de Dieu dans le pays.",
+"Jugement sur les prêtres et les rois.",
+"« Je veux la miséricorde et non les sacrifices. »",
+"Israël, comme un gâteau mal cuit.",
+"« Ils sèment le vent, ils récolteront la tempête. »",
+"L'exil est annoncé.",
+"« Semez la justice, récoltez la bonté. »",
+"« D'Égypte j'ai appelé mon fils » ; l'amour paternel de Dieu.",
+"Jacob ; appel au retour.",
+"« Ô mort, où sont tes fléaux ? »",
+"Appel au retour : Dieu guérit et aime gratuitement."]);
+B("Joël","Joel",
+"Une invasion de sauterelles devient l'image du « jour du Seigneur ». Joël appelle au jeûne et à la repentance, puis annonce le don de l'Esprit.",
+"Pierre cite Joël 3 (2,28 dans d'autres Bibles) le jour de la Pentecôte (Actes 2) : relis ce passage après.",
+"« Déchirez vos cœurs et non vos vêtements » (2,13) : un texte de jeûne et de repentance, dans l'esprit des jeûnes coptes.",
+["Invasion de sauterelles : appel au jeûne.",
+"Le jour du Seigneur ; « déchirez vos cœurs » ; « je répandrai mon Esprit » (la Pentecôte).",
+"Jugement des nations ; Dieu habite en Sion."]);
+B("Amos","Amos",
+"Un berger envoyé dénoncer les riches qui écrasent les pauvres. Le prophète de la justice sociale.",
+"Retiens 5,24 : « Que le droit coule comme l'eau, et la justice comme un torrent ». Dieu n'accepte pas une religion sans justice.",
+"",
+["Jugements sur les nations voisines.",
+"Juda et Israël aussi sont jugés.",
+"Quand Dieu parle, comme un lion rugit.",
+"« Vous n'êtes pas revenus à moi. »",
+"« Que le droit coule comme l'eau. »",
+"Malheur à ceux qui vivent dans le luxe sans souci des autres.",
+"Visions ; Amos face au prêtre Amatsia.",
+"La corbeille de fruits ; une famine de la Parole de Dieu.",
+"Restauration de la maison de David."]);
+B("Abdias","Obadiah",
+"Le plus court livre de l'Ancien Testament : jugement sur Édom, qui s'est réjoui du malheur de son frère Juda.",
+"Leçon simple : ne jamais se réjouir du malheur des autres.",
+"",
+["Jugement d'Édom pour sa trahison envers son frère ; le royaume sera au Seigneur."]);
+B("Jonas","Jonah",
+"Jonas fuit la mission de Dieu, est avalé par un grand poisson, puis prêche à Ninive, qui se repent. Mais Jonas est fâché que Dieu pardonne !",
+"Le vrai sujet n'est pas le poisson, mais la miséricorde de Dieu pour tous. Jésus a fait des trois jours de Jonas dans le poisson le signe de sa propre résurrection.",
+"Les Coptes jeûnent 3 jours en souvenir de la repentance de Ninive (le « jeûne de Ninive »), deux semaines avant le Grand Carême, et lisent le livre de Jonas pendant ces jours.",
+["Jonas fuit ; la tempête ; il est avalé par le poisson.",
+"Prière de Jonas dans le ventre du poisson.",
+"Ninive se repent et jeûne ; Dieu pardonne.",
+"Colère de Jonas ; la leçon du ricin : Dieu aime tous les peuples."]);
+B("Michée","Micah",
+"Contemporain d'Isaïe, Michée défend les petits contre les puissants et annonce que le Messie naîtra à Bethléem.",
+"Garde 6,8 comme résumé de la vie avec Dieu : « pratiquer la justice, aimer la miséricorde et marcher humblement avec ton Dieu ».",
+"",
+["Jugement sur Samarie et Jérusalem.",
+"Malheur à ceux qui oppriment.",
+"Des dirigeants corrompus.",
+"La paix messianique : les épées changées en charrues.",
+"« Bethléem… de toi sortira celui qui doit régner » (la naissance de Jésus).",
+"« Pratiquer la justice, aimer la miséricorde, marcher humblement avec ton Dieu. »",
+"Espérance : Dieu jettera nos péchés au fond de la mer."]);
+B("Nahum","Nahum",
+"Annonce de la chute de Ninive, capitale cruelle de l'Assyrie (qui s'était repentie au temps de Jonas, puis était retombée).",
+"Message : Dieu est patient, mais il ne laisse pas l'injustice impunie pour toujours. Il est un refuge pour ceux qui se confient en lui (1,7).",
+"",
+["Dieu est lent à la colère, mais juste ; un refuge au jour de la détresse.",
+"La chute de Ninive.",
+"Malheur à la ville sanguinaire."]);
+B("Habacuc","Habakkuk",
+"Habacuc ose demander à Dieu : « Pourquoi laisses-tu le mal ? » Dieu répond, et le prophète finit dans la confiance.",
+"Un modèle pour prier avec nos questions. Le verset clé « le juste vivra par sa foi » (2,4) est repris par Paul.",
+"",
+["Pourquoi Dieu laisse-t-il le mal ? Première réponse de Dieu.",
+"« Le juste vivra par sa foi. »",
+"Prière : même si tout manque, « je me réjouirai dans le Seigneur »."]);
+B("Sophonie","Zephaniah",
+"Annonce du jour du Seigneur, puis d'un petit reste humble et d'un Dieu qui se réjouit de son peuple.",
+"Lis lentement 3,17 : Dieu « exulte de joie à ton sujet ».",
+"",
+["Le jour du Seigneur approche.",
+"Cherchez le Seigneur, vous les humbles.",
+"Dieu se réjouira de toi avec des chants de joie."]);
+B("Aggée","Haggai",
+"Après le retour d'exil, le peuple a construit ses maisons mais laissé le Temple en ruine. Aggée l'appelle à remettre Dieu à la première place.",
+"Question pour toi : qu'est-ce qui passe avant Dieu dans ma vie ?",
+"",
+["« Est-ce le temps d'habiter vos maisons pendant que ma maison est en ruine ? »",
+"La gloire future du Temple sera plus grande."]);
+B("Zacharie","Zechariah",
+"Prophète du retour d'exil, avec de nombreuses visions et des annonces très précises de Jésus : le roi monté sur un âne, les trente pièces d'argent, celui qu'on a transpercé.",
+"Ch. 1-8 = visions pour encourager la reconstruction ; ch. 9-14 = annonces du Messie. Note chaque passage cité dans la Passion.",
+"",
+["« Revenez à moi et je reviendrai à vous. »",
+"Dieu sera une muraille de feu autour de Jérusalem.",
+"Le grand prêtre Josué purifié ; le Germe.",
+"Le chandelier : « ni par la puissance, ni par la force, mais par mon Esprit ».",
+"Le rouleau volant ; la femme dans le panier.",
+"Les chars ; la couronne du grand prêtre.",
+"Le vrai jeûne : justice et miséricorde.",
+"Jérusalem restaurée ; joie.",
+"« Voici ton roi qui vient, humble, monté sur un âne » (les Rameaux).",
+"Dieu rassemble son peuple.",
+"Le berger rejeté, payé trente pièces d'argent.",
+"« Ils regarderont vers celui qu'ils ont transpercé. »",
+"Une source de purification ; « frappe le berger et les brebis seront dispersées ».",
+"Le jour du Seigneur : il régnera sur toute la terre."]);
+B("Malachie","Malachi",
+"Le dernier prophète de l'Ancien Testament : il reproche un culte sans cœur et annonce le messager qui préparera la venue du Seigneur (Jean-Baptiste).",
+"L'Ancien Testament se termine sur l'attente d'Élie : la page suivante de ta Bible, c'est Matthieu et Jean-Baptiste.",
+"L'Église voit dans l'« offrande pure » offerte parmi toutes les nations (1,11) une annonce de l'Eucharistie.",
+["Dieu aime son peuple ; des sacrifices sans cœur ; une offrande pure parmi toutes les nations.",
+"Les prêtres infidèles ; la fidélité dans le mariage.",
+"« J'envoie mon messager pour préparer le chemin » ; la dîme.",
+"Le soleil de justice se lèvera ; Élie viendra."]);
+
+S(7,"Esdras, Néhémie, Esther, Job","Développer ton état d'esprit face à la souffrance, la persévérance et le courage",18,
+"Après l'exil, le peuple revient. Esdras et Néhémie rebâtissent malgré l'opposition. Esther risque sa vie pour son peuple. Job reste attaché à Dieu au cœur d'une souffrance qu'il ne comprend pas. Quatre leçons de courage.");
+B("Esdras","Ezra",
+"Après 70 ans d'exil, le roi perse Cyrus permet aux Juifs de rentrer. Ils rebâtissent le Temple malgré l'opposition. Plus tard, le prêtre Esdras vient enseigner la loi de Dieu.",
+"Ch. 1-6 = reconstruction du Temple ; ch. 7-10 = Esdras et le renouveau spirituel. Voir comment Dieu touche le cœur des rois païens pour aider son peuple.",
+"",
+["Le roi Cyrus permet le retour des exilés.",
+"Liste des familles qui reviennent.",
+"L'autel rebâti ; fondations du Temple : joie et larmes.",
+"Opposition ; les travaux s'arrêtent.",
+"Les prophètes Aggée et Zacharie relancent les travaux.",
+"Le Temple est achevé ; la Pâque célébrée.",
+"Esdras, scribe de la loi, arrive à Jérusalem.",
+"Le voyage d'Esdras ; jeûne pour demander la protection de Dieu.",
+"Prière de confession d'Esdras.",
+"Le peuple se repent."]);
+B("Néhémie","Nehemiah",
+"Néhémie, haut fonctionnaire du roi de Perse, obtient de rebâtir les murailles de Jérusalem. Il prie, organise et tient bon face aux moqueries et menaces : la muraille est finie en 52 jours.",
+"Un modèle de foi en action : remarque comme Néhémie prie avant chaque décision.",
+"",
+["Néhémie apprend l'état de Jérusalem, pleure et prie.",
+"Le roi l'envoie ; il inspecte les murailles la nuit.",
+"Chacun reconstruit sa partie.",
+"Opposition : travailler d'une main, tenir son arme de l'autre.",
+"Néhémie défend les pauvres exploités.",
+"Complots déjoués ; la muraille achevée en 52 jours.",
+"Liste des familles revenues.",
+"Esdras lit la loi au peuple : « la joie du Seigneur est votre force ».",
+"Grande prière de confession.",
+"Le peuple s'engage par écrit.",
+"Les habitants de Jérusalem.",
+"Dédicace joyeuse de la muraille.",
+"Les réformes de Néhémie."]);
+B("Esther","Esther",
+"Esther, jeune juive devenue reine de Perse, risque sa vie pour sauver son peuple d'un massacre organisé par Haman. Dieu agit en coulisse.",
+"Dans la version hébraïque, Dieu n'est jamais nommé ; dans la Septante, que tu lis ici, on entend aussi les prières de Mardochée et d'Esther. La question de Mardochée est pour toi aussi : « Qui sait si ce n'est pas pour un moment comme celui-ci que tu es là ? » (4,14).",
+"La Bible copte suit la version grecque d'Esther, plus longue : elle contient le songe de Mardochée, les prières de Mardochée et d'Esther, et les textes des décrets du roi.",
+["Le banquet du roi Assuérus ; la reine Vasthi destituée. (Septante : le livre s'ouvre sur un songe de Mardochée.)",
+"Esther devient reine ; Mardochée déjoue un complot.",
+"Haman obtient un décret pour exterminer les Juifs (Septante : texte de la lettre du roi).",
+"Mardochée : « qui sait si ce n'est pas pour un moment comme celui-ci ? » ; trois jours de jeûne. (Septante : les prières de Mardochée et d'Esther.)",
+"Esther se présente au roi au péril de sa vie, Dieu adoucit le cœur du roi ; Haman prépare une potence.",
+"Le roi ne dort pas et honore Mardochée.",
+"Esther dénonce Haman, qui est pendu.",
+"Un nouveau décret protège les Juifs (Septante : texte de la lettre du roi).",
+"Le peuple délivré ; la fête de Pourim.",
+"La grandeur de Mardochée. (Septante : explication de son songe et note finale sur la traduction du livre.)"]);
+B("Job","Job",
+"Job, homme juste, perd tout : ses biens, ses enfants, sa santé. Ses amis disent qu'il a dû pécher ; Job crie son innocence et réclame une réponse de Dieu. Dieu lui répond enfin, du milieu de la tempête.",
+"Ch. 1-2 et 42 = récit ; ch. 3-37 = longs dialogues en poésie (les amis ont souvent tort, même quand ils disent de belles phrases). Ne lis pas trop vite : le livre apprend que l'on peut crier à Dieu sans le quitter.",
+"Le livre de Job est lu dans l'Église copte pendant la Semaine Sainte : Job y est vu comme une image du Christ souffrant et innocent.",
+["Job, juste et riche, est éprouvé : il perd tout mais bénit Dieu.",
+"Job frappé d'ulcères ; ses trois amis viennent et se taisent sept jours.",
+"Job maudit le jour de sa naissance.",
+"Éliphaz : un innocent a-t-il jamais péri ?",
+"Éliphaz : heureux celui que Dieu corrige.",
+"Job : mes amis m'ont déçu.",
+"Job : la vie n'est qu'un souffle ; il se plaint à Dieu.",
+"Bildad : Dieu ne fausse pas la justice.",
+"Job : comment être juste devant Dieu ? Il voudrait un arbitre.",
+"Job : pourquoi m'as-tu fait naître ?",
+"Tsophar : repens-toi.",
+"Job : la sagesse et la puissance de Dieu.",
+"Job : « même s'il me tue, j'espérerai en lui ».",
+"Job : l'homme né de la femme ; l'espoir d'une vie après la mort.",
+"Éliphaz : tu détruis la piété.",
+"Job : « vous êtes tous des consolateurs pénibles » ; mon témoin est au ciel.",
+"Job : mon esprit se brise.",
+"Bildad : le sort du méchant.",
+"Job : « Je sais que mon Rédempteur est vivant ».",
+"Tsophar : la joie du méchant est brève.",
+"Job : pourtant les méchants réussissent.",
+"Éliphaz accuse Job de fautes cachées.",
+"Job : si seulement je savais où le trouver !",
+"Job : les injustices du monde.",
+"Bildad : comment l'homme serait-il pur devant Dieu ?",
+"Job : la grandeur de Dieu dépasse tout.",
+"Job maintient son innocence.",
+"Où trouver la sagesse ? « La crainte du Seigneur, voilà la sagesse. »",
+"Job se souvient de son bonheur passé.",
+"Sa misère présente.",
+"Le grand serment d'innocence de Job.",
+"Élihou, un jeune homme, prend la parole.",
+"Élihou : Dieu parle par les songes et par la souffrance.",
+"Élihou : Dieu ne fait pas le mal.",
+"Élihou : Dieu est au-dessus de nous.",
+"Élihou : Dieu instruit par l'épreuve.",
+"Élihou : la majesté de Dieu dans l'orage.",
+"Dieu répond du milieu de la tempête : « Où étais-tu quand je fondais la terre ? »",
+"Les animaux sauvages et la sagesse de Dieu.",
+"Job se tait ; Béhémoth.",
+"Léviathan.",
+"Job se repent ; Dieu lui rend le double de ce qu'il avait."]);
+
+S(0,"Tobie, Judith, Sagesse, Siracide, Maccabées","Les livres de la Bible copte : fidélité, sagesse et courage jusqu'au martyre",44,
+"Ces livres font partie de la Bible copte (et orthodoxe), mais pas des Bibles protestantes. Tobie et Judith racontent la fidélité à Dieu dans l'épreuve ; Sagesse et Siracide complètent les Proverbes ; les Maccabées racontent la résistance du peuple face à la persécution, juste avant la venue du Christ. C'est le pont entre l'Ancien et le Nouveau Testament.");
+B("Tobie","Tobit",
+"Tobit, juif fidèle exilé à Ninive, devient aveugle. Son fils Tobie part en voyage, accompagné sans le savoir par l'archange Raphaël. Il épouse Sara, la délivre d'un démon et revient guérir son père.",
+"Une histoire de famille pleine de tendresse : prière, aumône, respect des parents, mariage béni par Dieu. Note comment Dieu répond aux prières de Tobit et de Sara le même jour (ch. 3).",
+"L'archange Raphaël est très vénéré dans l'Église copte, qui lui consacre des fêtes et des églises. La prière de Tobie et Sara (ch. 8) inspire la bénédiction des mariés.",
+["Tobit, fidèle en exil à Ninive, enterre les morts malgré le danger.",
+"Tobit devient aveugle.",
+"Prières de Tobit et de Sara, désespérés ; Dieu envoie l'ange Raphaël.",
+"Conseils de Tobit à son fils : l'aumône ; « ce que tu n'aimes pas, ne le fais à personne ».",
+"Tobie part avec un compagnon : l'ange Raphaël, déguisé.",
+"Le poisson du Tigre ; Raphaël parle de Sara.",
+"Arrivée chez Ragouël ; mariage de Tobie et de Sara.",
+"La prière des jeunes époux ; le démon est chassé.",
+"Raphaël va chercher l'argent.",
+"Les noces ; l'inquiétude des parents.",
+"Le retour : Tobit retrouve la vue.",
+"Raphaël se fait connaître : « je suis l'un des sept anges qui se tiennent devant le Seigneur ».",
+"Le cantique de louange de Tobit.",
+"Derniers conseils et mort de Tobit."],"Tb");
+B("Judith","Judith",
+"Le général Holopherne assiège la ville de Béthulie et le peuple veut se rendre. Judith, une veuve pieuse, prie, jeûne, puis entre dans le camp ennemi et sauve son peuple.",
+"Un récit pour montrer que Dieu sauve par les faibles. Remarque que Judith commence par prier et jeûner avant d'agir (ch. 8-9).",
+"",
+["Le roi Nabuchodonosor fait la guerre.",
+"Holopherne est envoyé conquérir l'Occident.",
+"Les peuples se soumettent.",
+"Israël se prépare et prie.",
+"Akhior raconte l'histoire d'Israël à Holopherne.",
+"Akhior est livré aux habitants de Béthulie.",
+"Siège de Béthulie : le peuple veut se rendre.",
+"Judith, veuve pieuse, reproche aux chefs de mettre Dieu à l'épreuve.",
+"La prière de Judith.",
+"Judith va au camp d'Holopherne.",
+"Judith devant Holopherne.",
+"Judith prie et jeûne dans le camp ennemi.",
+"Judith tue Holopherne et revient à Béthulie.",
+"Panique des Assyriens.",
+"Victoire ; Judith est bénie par tout le peuple.",
+"Le cantique de Judith."],"Jdt");
+B("Sagesse","Wisdom",
+"Écrit en grec à Alexandrie, en Égypte, peu avant Jésus-Christ. Il parle de l'immortalité de l'âme, de la sagesse de Dieu et de l'histoire de la sortie d'Égypte.",
+"Le ch. 2 décrit le juste persécuté avec des mots qui annoncent la Passion de Jésus. Le ch. 3 est lu aux funérailles : « les âmes des justes sont dans la main de Dieu ».",
+"Ce livre est né en Égypte, à Alexandrie, la ville de saint Marc. Les Pères d'Alexandrie, comme saint Athanase et saint Cyrille, l'ont beaucoup cité.",
+["Aimez la justice ; Dieu n'a pas fait la mort.",
+"Les impies : « profitons de la vie et persécutons le juste » (une annonce de la Passion).",
+"« Les âmes des justes sont dans la main de Dieu. »",
+"Le juste mort jeune n'a pas perdu sa vie.",
+"Le jugement : les impies reconnaissent leur erreur.",
+"Les rois doivent chercher la sagesse.",
+"La sagesse, reflet de la lumière éternelle.",
+"Salomon désire la sagesse comme une épouse.",
+"Prière de Salomon pour recevoir la sagesse.",
+"La sagesse dans l'histoire, d'Adam à Moïse.",
+"La sagesse au désert ; « tu aimes tout ce qui existe ».",
+"La patience et la miséricorde de Dieu.",
+"La folie de ceux qui adorent la nature au lieu du Créateur.",
+"Origine et folie des idoles.",
+"Israël fidèle ; le potier qui fabrique des idoles.",
+"Les plaies d'Égypte et les dons faits à Israël ; la manne.",
+"Les ténèbres sur l'Égypte.",
+"La nuit de la Pâque : « ta Parole toute-puissante s'élança du ciel ».",
+"La mer Rouge ; la création renouvelée."],"Sg");
+B("Siracide","Sirach",
+"Aussi appelé « Ecclésiastique ». Jésus Ben Sira, sage de Jérusalem, rassemble des conseils sur la vie avec Dieu, la famille, l'amitié, la parole, l'argent. Son petit-fils l'a traduit en grec en Égypte.",
+"Comme les Proverbes : prends une phrase par chapitre pour ta journée. Les ch. 44-50 font l'éloge des grands personnages que tu as rencontrés, d'Hénoch à Néhémie : un beau résumé de ta lecture.",
+"Le prologue dit que le livre a été traduit en grec en Égypte. Le Siracide fait partie des lectures de prophéties de l'Église copte.",
+["Toute sagesse vient du Seigneur ; la crainte du Seigneur.",
+"« Mon fils, si tu viens servir le Seigneur, prépare-toi à l'épreuve. »",
+"Honorer son père et sa mère ; l'humilité.",
+"Aider le pauvre ; la sagesse éduque ses enfants.",
+"Ne pas compter sur ses richesses ; ne pas tarder à revenir à Dieu.",
+"L'amitié : « un ami fidèle est un puissant soutien, qui le trouve a trouvé un trésor ».",
+"Conseils : humilité, famille, prêtres, pauvres.",
+"Prudence dans les relations.",
+"Conseils sur les voisins et les puissants.",
+"Contre l'orgueil ; le vrai honneur.",
+"Ne pas juger sur l'apparence ; tout vient de Dieu.",
+"Faire le bien avec discernement.",
+"Riches et pauvres ; choisir ses fréquentations.",
+"Le bon usage des biens ; heureux qui médite la sagesse.",
+"La liberté de l'homme : Dieu a mis devant toi l'eau et le feu.",
+"Dieu voit tout et juge.",
+"Dieu crée l'homme et lui donne sa loi ; appel à revenir.",
+"Grandeur et miséricorde de Dieu ; la maîtrise de soi.",
+"Maîtriser sa langue ; vraie et fausse sagesse.",
+"Savoir se taire et parler au bon moment.",
+"Fuir le péché comme un serpent.",
+"Le paresseux ; l'amitié qu'on peut encore sauver.",
+"Prière pour garder sa bouche et son cœur ; les serments.",
+"Éloge de la Sagesse qui vient habiter en Israël.",
+"Ce qui réjouit et ce qui attriste ; la famille.",
+"La bonne épouse.",
+"Le péché dans le commerce ; garder les secrets.",
+"Pardonner pour être pardonné ; les dégâts de la langue.",
+"Prêter, faire l'aumône, se porter garant.",
+"Éduquer ses enfants ; la santé et la joie du cœur.",
+"Les richesses ; la mesure à table et dans le vin.",
+"Conduite au banquet ; craindre Dieu.",
+"Dieu a fait toutes choses deux par deux.",
+"La vanité des rêves ; Dieu refuse les sacrifices injustes.",
+"Le vrai sacrifice ; Dieu écoute la prière du pauvre.",
+"Prière pour Israël ; choisir son épouse.",
+"Les vrais et les faux conseillers.",
+"Honorer le médecin ; le deuil ; les métiers.",
+"Le sage qui étudie l'Écriture ; louange des œuvres de Dieu.",
+"Les misères de la vie ; ce qui vaut mieux que tout.",
+"La mort ; la honte et la bonne réputation.",
+"La gloire de Dieu dans la création.",
+"Le soleil, la lune et les étoiles chantent sa gloire.",
+"Éloge des ancêtres : Hénoch, Noé, Abraham, Isaac, Jacob.",
+"Moïse, Aaron, Phinées.",
+"Josué, Caleb, les juges, Samuel.",
+"Nathan, David, Salomon.",
+"Élie, Élisée, Ézéchias, Isaïe.",
+"Josias, Jérémie, Ézéchiel, les douze prophètes, Néhémie.",
+"Le grand prêtre Simon ; bénédiction.",
+"Prière d'action de grâce de Ben Sira ; « venez à mon école »."],"Si");
+B("1 Maccabées","1 Maccabees",
+"Vers 170 avant Jésus-Christ, le roi grec Antiochus profane le Temple et interdit la foi juive. Le prêtre Mattathias et ses fils, dont Judas surnommé « Maccabée » (le marteau), se lèvent et libèrent Jérusalem.",
+"Un livre d'histoire qui fait le lien entre Malachie et les Évangiles. Le ch. 4 raconte la purification du Temple : c'est la fête de la Dédicace où Jésus était présent (Jean 10,22).",
+"",
+["Antiochus Épiphane profane le Temple et persécute ceux qui restent fidèles.",
+"Mattathias refuse de sacrifier aux idoles et se révolte.",
+"Judas Maccabée prend la tête de la résistance.",
+"Victoire ; le Temple est purifié et dédié à nouveau.",
+"Campagnes contre les peuples voisins.",
+"Mort d'Antiochus ; le sacrifice d'Éléazar.",
+"Victoire sur Nicanor.",
+"Alliance avec Rome.",
+"Mort de Judas ; son frère Jonathan lui succède.",
+"Jonathan devient grand prêtre.",
+"Jonathan et les rois de Syrie.",
+"Jonathan capturé par ruse.",
+"Simon succède à Jonathan, qui est tué.",
+"La paix sous Simon.",
+"Le roi Antiochus VII.",
+"Mort de Simon ; son fils Jean lui succède."],"1M");
+B("2 Maccabées","2 Maccabees",
+"Raconte une partie de la même histoire que 1 Maccabées, mais avec un regard spirituel : les martyrs, la prière pour les morts, la foi en la résurrection.",
+"Le ch. 7 (la mère et ses sept fils martyrs) est un des textes les plus forts sur la foi en la résurrection avant Jésus.",
+"Le livre commence par des lettres adressées aux Juifs d'Égypte. Le ch. 12 (prière et sacrifice pour les défunts) est à la base de la prière de l'Église pour les morts, très présente dans la liturgie copte.",
+["Lettres aux Juifs d'Égypte sur la fête de la purification du Temple.",
+"Jérémie cache l'arche et l'autel de l'encens (tradition).",
+"Héliodore est frappé en voulant piller le Temple.",
+"Le grand prêtre Jason impose les mœurs grecques.",
+"Antiochus pille le Temple.",
+"La persécution ; le martyre du vieil Éléazar.",
+"Martyre d'une mère et de ses sept fils : « le Roi du monde nous ressuscitera ».",
+"Victoires de Judas.",
+"Mort d'Antiochus.",
+"Purification du Temple.",
+"Victoire sur Lysias.",
+"Judas fait prier et offrir un sacrifice pour les soldats morts.",
+"Campagne d'Antiochus Eupator.",
+"Nicanor ; le courage de Razis.",
+"Vision de Jérémie qui prie pour le peuple ; victoire sur Nicanor."],"2M");
+
+S(11,"Lettres à Thessalonique, Timothée, Tite, Philémon","La persévérance, l'amour fraternel et le retour de Jésus",7,
+"Des lettres plus courtes et très pratiques : attendre le retour du Christ en restant actif, et conseils de Paul à ses disciples Timothée et Tite pour guider l'Église.");
+B("1 Thessaloniciens","1 Thessalonians",
+"Une des premières lettres de Paul, à une jeune Église persécutée. Il les encourage et répond à leurs questions sur ceux qui sont morts avant le retour du Christ.",
+"Lettre chaleureuse et simple. Retiens 5,16-18 : « Soyez toujours joyeux, priez sans cesse, rendez grâce en toute chose ».",
+"",
+["La foi, l'amour et l'espérance des Thessaloniciens.",
+"Paul a pris soin d'eux comme une mère et un père.",
+"Timothée apporte de bonnes nouvelles.",
+"Vivre dans la sainteté ; la résurrection et le retour du Seigneur.",
+"Le jour du Seigneur viendra comme un voleur ; « priez sans cesse »."]);
+B("2 Thessaloniciens","2 Thessalonians",
+"Certains croyaient que le jour du Seigneur était déjà arrivé et arrêtaient de travailler. Paul corrige : il faut persévérer et travailler.",
+"Attendre le Christ ne veut pas dire rester les bras croisés.",
+"",
+["Persévérer dans les persécutions.",
+"L'homme impie doit venir avant le retour du Christ.",
+"« Si quelqu'un ne veut pas travailler, qu'il ne mange pas non plus. »"]);
+B("1 Timothée","1 Timothy",
+"Conseils de Paul à son disciple Timothée, responsable de l'Église d'Éphèse : la prière, les qualités des évêques et des diacres, les dangers de l'argent.",
+"Les ch. 3 et 5 montrent l'organisation de l'Église dès le début (évêques, prêtres, diacres), comme dans l'Église copte aujourd'hui.",
+"",
+["Les fausses doctrines ; « le Christ est venu sauver les pécheurs, dont je suis le premier ».",
+"Prier pour tous ; un seul médiateur entre Dieu et les hommes.",
+"Qualités des évêques et des diacres ; le grand mystère de la piété.",
+"Mises en garde ; « que personne ne méprise ta jeunesse ».",
+"Les veuves et les prêtres.",
+"L'amour de l'argent est la racine de tous les maux ; « combats le bon combat de la foi »."]);
+B("2 Timothée","2 Timothy",
+"La dernière lettre de Paul, en prison à Rome, juste avant son martyre. Son testament spirituel à Timothée.",
+"Lis-la comme les dernières paroles d'un père. Le ch. 3 dit que « toute l'Écriture est inspirée de Dieu » : c'est exactement ce que tu fais en lisant chaque jour.",
+"",
+["Ne pas avoir honte de l'Évangile ; Dieu nous donne un esprit de force et d'amour.",
+"Le bon soldat du Christ.",
+"Des temps difficiles ; « toute l'Écriture est inspirée de Dieu ».",
+"« J'ai combattu le bon combat, j'ai achevé la course, j'ai gardé la foi. »"]);
+B("Tite","Titus",
+"Conseils à Tite, chargé d'organiser l'Église en Crète : choisir de bons responsables et enseigner une vie droite à chacun.",
+"Court et concret : la grâce de Dieu nous apprend à vivre autrement (2,11-12).",
+"",
+["Les qualités des responsables de l'Église.",
+"Un enseignement pour chaque âge ; la grâce de Dieu s'est manifestée.",
+"Sauvés par le bain de la nouvelle naissance (le baptême)."]);
+B("Philémon","Philemon",
+"Petite lettre personnelle : Paul demande à Philémon d'accueillir Onésime, son esclave fugitif devenu chrétien, « comme un frère bien-aimé ».",
+"Une leçon de pardon et de fraternité : en Christ, les barrières sociales tombent.",
+"",
+["Paul intercède pour Onésime, esclave devenu frère bien-aimé."]);
+
+S(12,"Hébreux, lettres catholiques et Apocalypse","La foi, la nature divine de Jésus et la fin du monde",14,
+"Dernière étape ! Hébreux montre Jésus, vrai Dieu et grand prêtre. Les lettres de Jacques, Pierre, Jean et Jude donnent des conseils pour vivre la foi. L'Apocalypse termine la Bible par la victoire de l'Agneau et la Jérusalem céleste.");
+B("Hébreux","Hebrews",
+"Une lettre adressée à des chrétiens d'origine juive tentés de revenir en arrière. Elle montre que Jésus est supérieur à tout : aux anges, à Moïse, aux prêtres de l'Ancien Testament. Son sacrifice unique accomplit tous les sacrifices.",
+"Maintenant que tu as lu le Lévitique, tout prend sens ! Le ch. 11 (les héros de la foi) résume ce que tu as lu de la Genèse à Samuel.",
+"L'Église copte compte Hébreux parmi les 14 lettres de saint Paul et la lit dans le « Boulos » de la messe.",
+["Le Fils, image de la gloire de Dieu, supérieur aux anges.",
+"Jésus s'est fait semblable à nous pour nous sauver.",
+"Jésus supérieur à Moïse ; « aujourd'hui, si vous entendez sa voix ».",
+"Le repos de Dieu ; la Parole vivante ; un grand prêtre qui comprend nos faiblesses.",
+"Le Christ, prêtre selon l'ordre de Melchisédek.",
+"Persévérer ; l'espérance, ancre de l'âme.",
+"Melchisédek et le sacerdoce éternel du Christ.",
+"La nouvelle alliance.",
+"Le sang du Christ, sacrifice parfait.",
+"Un seul sacrifice pour toujours ; ne pas abandonner les réunions de l'Église.",
+"Les héros de la foi, d'Abel à David.",
+"« Courons avec persévérance, les yeux fixés sur Jésus. »",
+"« Jésus-Christ est le même hier, aujourd'hui et pour toujours. »"]);
+B("Jacques","James",
+"Lettre de Jacques, « frère du Seigneur », très pratique : la foi doit se voir dans les actes, maîtriser sa langue, ne pas faire de favoritisme.",
+"Lis-la comme les Proverbes du Nouveau Testament. Elle complète Paul : on est sauvé par la foi, mais « la foi sans les œuvres est morte ».",
+"Les lettres de Jacques, Pierre, Jean et Jude sont lues à la messe copte : c'est le « Katholikon ». Jacques 5,14 (l'onction des malades par les prêtres) fonde le sacrement de l'onction des malades (le Kandil).",
+["Joie dans l'épreuve ; demander la sagesse ; mettre la Parole en pratique.",
+"Pas de favoritisme ; la foi sans les œuvres est morte.",
+"Maîtriser sa langue.",
+"L'humilité : « soumettez-vous à Dieu, résistez au diable ».",
+"La patience ; prier pour les malades avec l'huile ; la prière du juste est puissante."]);
+B("1 Pierre","1 Peter",
+"L'apôtre Pierre encourage des chrétiens qui souffrent : nous avons une espérance vivante, et la souffrance unie au Christ porte du fruit.",
+"Un livre pour les moments difficiles. Retiens 5,7 : « Déchargez-vous sur lui de tous vos soucis, car il prend soin de vous ».",
+"",
+["Une espérance vivante ; « soyez saints ».",
+"Pierres vivantes ; un sacerdoce royal ; le Christ souffrant comme exemple.",
+"Mari et femme ; être prêt à rendre compte de son espérance.",
+"Souffrir comme chrétien.",
+"Aux responsables ; « déchargez-vous sur lui de vos soucis »."]);
+B("2 Pierre","2 Peter",
+"Testament de Pierre : grandir dans la foi, se méfier des faux docteurs et attendre le retour du Seigneur avec patience.",
+"Le verset 1,4 parle d'être « participants de la nature divine » : un thème cher aux Pères d'Alexandrie comme saint Athanase.",
+"",
+["Participants à la nature divine ; grandir dans les vertus ; l'Écriture inspirée.",
+"Les faux docteurs.",
+"Le retour du Seigneur : pour Dieu, un jour est comme mille ans."]);
+B("1 Jean","1 John",
+"L'apôtre Jean, âgé, écrit à ses « petits enfants » : Dieu est lumière, Dieu est amour. On reconnaît les enfants de Dieu à leur amour les uns pour les autres.",
+"Simple en apparence, très profond. Le ch. 4 (« Dieu est amour ») est à relire souvent.",
+"",
+["Dieu est lumière ; si nous confessons nos péchés, il nous pardonne.",
+"Jésus notre défenseur auprès du Père ; ne pas aimer le monde.",
+"Nous sommes enfants de Dieu ; aimer en actes et en vérité.",
+"« Dieu est amour » ; l'amour parfait chasse la peur.",
+"La foi qui triomphe du monde ; la vie éternelle."]);
+B("2 Jean","2 John",
+"Un billet de Jean à une Église (« la Dame élue ») : marcher dans la vérité et l'amour.",
+"Vérité et amour vont toujours ensemble.",
+"",
+["Marcher dans la vérité et l'amour ; se garder des faux enseignants."]);
+B("3 Jean","3 John",
+"Billet de Jean à son ami Gaïus, qu'il félicite pour son hospitalité envers les missionnaires.",
+"L'hospitalité est une façon concrète de servir Dieu.",
+"",
+["Accueillir les frères missionnaires ; Gaïus félicité, Diotréphès blâmé."]);
+B("Jude","Jude",
+"Courte lettre de Jude, frère de Jacques : combattre pour la foi transmise une fois pour toutes, face aux faux enseignants.",
+"Finis par la magnifique louange des versets 24-25.",
+"",
+["Combattre pour la foi transmise une fois pour toutes ; louange à celui qui peut nous garder de la chute."]);
+B("Apocalypse","Revelation",
+"La révélation reçue par l'apôtre Jean exilé à Patmos. Avec des images symboliques (chiffres, bêtes, couleurs), elle montre que malgré les persécutions, le Christ, l'Agneau immolé, a déjà vaincu. Elle se termine par la Jérusalem céleste où Dieu essuiera toute larme.",
+"Ne cherche pas à décoder chaque symbole ni à calculer des dates. Retiens le message : Dieu est sur son trône, l'Agneau est vainqueur, reste fidèle. Beaucoup d'images viennent d'Isaïe, d'Ézéchiel et de Daniel, que tu as déjà lus !",
+"L'Église copte lit l'Apocalypse en entier pendant la nuit du Samedi saint (la nuit de l'Apocalypse, « Abou Ghalamsis »), en attendant la Résurrection. Les 24 anciens et les quatre êtres vivants (ch. 4) sont fêtés dans le calendrier copte.",
+["Vision du Christ glorieux à Jean, à Patmos.",
+"Lettres aux Églises d'Éphèse, Smyrne, Pergame, Thyatire.",
+"Sardes, Philadelphie, Laodicée : « je me tiens à la porte et je frappe ».",
+"Le trône de Dieu ; les 24 anciens et les quatre êtres vivants : « Saint, Saint, Saint ».",
+"L'Agneau immolé est seul digne d'ouvrir le livre scellé.",
+"Les six premiers sceaux.",
+"Les serviteurs de Dieu marqués ; la foule immense en vêtements blancs.",
+"Le septième sceau ; les premières trompettes.",
+"Cinquième et sixième trompettes.",
+"L'ange et le petit livre.",
+"Les deux témoins ; la septième trompette.",
+"La Femme et le dragon ; l'archange Michel combat.",
+"Les deux bêtes ; le nombre 666.",
+"L'Agneau sur le mont Sion ; les moissons.",
+"Le cantique de Moïse et de l'Agneau.",
+"Les sept coupes.",
+"La grande Babylone.",
+"La chute de Babylone.",
+"Les noces de l'Agneau ; le cavalier « Fidèle et Véritable ».",
+"Les mille ans ; le jugement dernier.",
+"Un ciel nouveau et une terre nouvelle ; la Jérusalem céleste ; « il essuiera toute larme ».",
+"Le fleuve de vie ; « Viens, Seigneur Jésus ! »."]);
+
+// ---- Adaptation à la Septante (numérotation et ordre des chapitres) ----
+function BK(en){for(const s of SECTIONS)for(const b of s.books)if(b.en===en)return b;}
+(function(){
+  const ps=BK("Psalms"),H=[null,...ps.ch],n=[];
+  for(let k=1;k<=151;k++){
+    let t;
+    if(k<=8||k>=148) t=H[k];
+    else if(k===9) t="Action de grâce pour la justice de Dieu, puis : pourquoi Dieu semble-t-il loin quand le méchant triomphe ? (les Ps 9 et 10 des Bibles hébraïques forment ici un seul psaume)";
+    else if(k<=112) t=H[k+1];
+    else if(k===113) t="La sortie d'Égypte : la mer voit et s'enfuit ; puis « Non pas à nous, Seigneur, mais à ton nom la gloire » (Ps 114 et 115 hébreux réunis).";
+    else if(k===114) t="« J'aime le Seigneur, car il entend la voix de ma prière » : un homme délivré de la mort.";
+    else if(k===115) t="« J'ai cru, c'est pourquoi j'ai parlé » ; « que rendrai-je au Seigneur ? » ; la coupe du salut.";
+    else if(k<=145) t=H[k+1];
+    else if(k===146) t="Louez le Seigneur : il guérit les cœurs brisés et compte les étoiles.";
+    else t="Jérusalem, loue le Seigneur : il envoie sa parole sur la terre.";
+    n.push(t);
+  }
+  ps.ch=n;
+  const je=BK("Jeremiah"),J=[null,...je.ch],m=[];
+  const map={26:46,27:50,28:51,29:47,31:48};
+  for(let k=1;k<=52;k++){
+    if(k<=24||k===52) m.push(J[k]);
+    else if(k===25) m.push("Soixante-dix ans de captivité annoncés ; puis oracle contre Élam.");
+    else if(map[k]) m.push(J[map[k]]);
+    else if(k===30) m.push("Oracles sur Édom, Ammon, les tribus d'Arabie et Damas.");
+    else if(k===32) m.push("La coupe du vin de la colère de Dieu, que toutes les nations doivent boire.");
+    else if(k<=50) m.push(J[k-7]);
+    else m.push(J[44]+" Parole de réconfort à Baruch.");
+  }
+  je.ch=m;
+  BK("Joel").ch=["L'invasion de sauterelles : appel au jeûne.",
+    "Le jour du Seigneur ; « déchirez vos cœurs et non vos vêtements » ; Dieu rendra ce que les sauterelles ont mangé.",
+    "« Je répandrai mon Esprit sur toute chair » : annonce de la Pentecôte.",
+    "Jugement des nations dans la vallée de Josaphat ; Dieu habite en Sion."];
+  BK("Malachi").ch=["Dieu aime son peuple ; des sacrifices sans cœur ; une offrande pure parmi toutes les nations.",
+    "Les prêtres infidèles ; la fidélité dans le mariage.",
+    "« J'envoie mon messager pour préparer le chemin » ; la dîme ; le soleil de justice se lèvera ; Élie viendra."];
+  const ex=BK("Exodus");
+  ex.ch[35]="Les artisans se mettent au travail ; le peuple donne plus que nécessaire ; fabrication des vêtements des prêtres.";
+  ex.ch[36]="Les tentures, le voile et le parvis du tabernacle.";
+  ex.ch[37]="L'arche, la table, le chandelier, les autels et le bassin.";
+  ex.ch[38]="Le compte de l'or, de l'argent et du bronze ; tout l'ouvrage est présenté à Moïse.";
+  const alt={"1 Samuel":"1er livre des Règnes","2 Samuel":"2e livre des Règnes","1 Kings":"3e livre des Règnes","2 Kings":"4e livre des Règnes","1 Chronicles":"1er livre des Paralipomènes","2 Chronicles":"2e livre des Paralipomènes","Sirach":"Ecclésiastique","Song of Songs":"Cantique des Cantiques","Ezra":"2 Esdras (1re partie)","Nehemiah":"2 Esdras (2e partie)"};
+  for(const k in alt) BK(k).alt=alt[k];
+})();
+
+</script>
+<script>
+// ---------- Plan ----------
+const DAYS=[]; // {g, sec, items:[{book,c}]}
+SECTIONS.forEach((s,si)=>{
+  const all=[]; s.books.forEach(b=>b.ch.forEach((t,i)=>all.push({book:b,c:i+1,text:t})));
+  s.total=all.length; s.firstDay=DAYS.length+1;
+  const d=s.days;
+  for(let i=0;i<d;i++){
+    const items=all.slice(Math.floor(i*all.length/d),Math.floor((i+1)*all.length/d));
+    DAYS.push({g:DAYS.length+1,si,local:i+1,items});
+  }
+  s.lastDay=DAYS.length;
+});
+const TOTAL_CH=DAYS.reduce((a,d)=>a+d.items.length,0);
+
+// ---------- State ----------
+const KEY="parcours-biblique-copte-v1";
+let state={read:{}};
+try{const r=localStorage.getItem(KEY); if(r) state=Object.assign({read:{}},JSON.parse(r));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+const ck=it=>it.book.en+"|"+it.c;
+const isRead=it=>!!state.read[ck(it)];
+const dayCount=d=>d.items.filter(isRead).length;
+const dayDone=d=>dayCount(d)===d.items.length;
+const nextDay=()=>DAYS.find(d=>!dayDone(d))||DAYS[DAYS.length-1];
+
+// ---------- Helpers ----------
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+function rangeLabel(items){
+  const parts=[];let cur=null;
+  items.forEach(it=>{ if(cur&&cur.b===it.book){cur.e=it.c;} else {cur={b:it.book,s:it.c,e:it.c};parts.push(cur);} });
+  return parts.map(p=>p.b.ch.length===1?p.b.name:(p.s===p.e?`${p.b.name} ${p.s}`:`${p.b.name} ${p.s}-${p.e}`)).join(" · ");
+}
+function heb(k){
+  if(k<=8||(k>=148&&k<=150)) return String(k);
+  if(k===9) return "9-10"; if(k<=112) return String(k+1);
+  if(k===113) return "114-115"; if(k===114||k===115) return "116";
+  if(k<=145) return String(k+1); if(k<=147) return "147"; return "";
+}
+const NT=new Set(["Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]);
+const SRC_OT="Septante (traduction grecque de l'Ancien Testament), traduite en français par P. Giguet, 1872 (version révisée).";
+const SRC_NT="Nouveau Testament traduit du texte grec original, traduction A. Crampon, 1923.";
+const cache={};
+function getBook(en){
+  if(!cache[en]) cache[en]=fetch("data/"+en.toLowerCase().replace(/ /g,"-")+".json").then(r=>{if(!r.ok) throw new Error(r.status); return r.json();}).catch(e=>{delete cache[en]; throw e;});
+  return cache[en];
+}
+// ---------- Views ----------
+const app=document.getElementById("app");
+function setNav(n){document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.n===n));}
+
+function viewHome(){
+  setNav("accueil");
+  const readCh=Object.keys(state.read).length, done=DAYS.filter(dayDone).length, nd=nextDay();
+  const started=readCh>0;
+  app.innerHTML=`
+  <section class="hero">
+    <img class="cross" src="assets/logo.svg" alt="La Sainte Bible copte" style="width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px -10px rgba(80,20,20,.5)">
+    <h1>Lire toute la Bible</h1>
+    <p class="muted">${SECTIONS.length} étapes, ${DAYS.length} jours, ${TOTAL_CH} chapitres. Chaque livre et chaque chapitre est expliqué avant ta lecture, et tu lis le texte directement ici : la Septante pour l'Ancien Testament, une traduction du grec original pour le Nouveau.</p>
+  </section>
+  <div class="card">
+    <div class="stat"><span class="muted">Ta progression</span><b>${Math.round(readCh/TOTAL_CH*100)} %</b></div>
+    <div class="bar"><i style="width:${readCh/TOTAL_CH*100}%"></i></div>
+    <p class="small muted" style="margin:8px 0 0">${done} jour${done>1?"s":""} terminé${done>1?"s":""} sur ${DAYS.length} · ${readCh} chapitre${readCh>1?"s":""} lu${readCh>1?"s":""}</p>
+  </div>
+  <a href="#jour-${nd.g}" style="text-decoration:none;color:inherit"><div class="card continue">
+    <div class="k">${started?"Continuer":"Commencer"} · Jour ${nd.g}</div>
+    <h2 style="margin:4px 0 2px">${esc(rangeLabel(nd.items))}</h2>
+    <p class="muted small" style="margin:0 0 12px">Étape ${SECTIONS[nd.si].n} : ${esc(SECTIONS[nd.si].theme)}</p>
+    <span class="btn main">${started?"Lire la suite":"Commencer le jour 1"}</span>
+  </div></a>
+  <h2 style="margin:26px 0 4px">Les ${SECTIONS.length} étapes</h2>
+  <div class="steps">${SECTIONS.map(stepCard).join("")}</div>
+  <footer>Prends ton temps : mieux vaut un chapitre compris que quatre survolés.</footer>`;
+}
+function stepCard(s){
+  const days=DAYS.filter(d=>d.si===s.n-1), r=days.reduce((a,d)=>a+dayCount(d),0), full=r===s.total;
+  return `<a href="#etape-${s.n}"><div class="card step">
+    <div class="num ${full?"full":""}">${full?"✓":s.n}</div>
+    <div class="t"><h3>${esc(s.title)}</h3><p>${esc(s.theme)}</p>
+    <div class="bar"><i style="width:${r/s.total*100}%"></i></div>
+    <div class="small muted" style="margin-top:5px"><span class="pill">${s.days} jours</span>${s.total} chapitres · jours ${s.firstDay} à ${s.lastDay}</div></div>
+  </div></a>`;
+}
+function viewPlan(){
+  setNav("plan");
+  app.innerHTML=`<div class="dayhead"><h1>Le plan</h1><p class="muted">${SECTIONS.length} étapes : d'abord Jésus, puis la prière, l'histoire du peuple de Dieu, les prophètes, et enfin les dernières lettres et l'Apocalypse.</p></div><div class="steps">${SECTIONS.map(stepCard).join("")}</div>`;
+}
+function viewStep(n){
+  setNav("plan");
+  const s=SECTIONS[n-1]; if(!s) return viewHome();
+  const days=DAYS.filter(d=>d.si===n-1);
+  app.innerHTML=`<div class="dayhead"><div class="k">Étape ${s.n} sur ${SECTIONS.length}</div><h1>${esc(s.title)}</h1></div>
+  <div class="card sec-intro"><div class="k">Le but de cette étape</div><h3 style="margin:4px 0 6px">${esc(s.theme)}</h3><p style="margin:0">${esc(s.intro)}</p>
+  <p class="small muted" style="margin:10px 0 0">Livres : ${s.books.map(b=>esc(b.name)).join(", ")}</p></div>
+  <div class="card"><ul class="daylist">${days.map(d=>{const c=dayCount(d),cls=c===d.items.length?"ok":c?"half":"";
+    return `<li><a href="#jour-${d.g}"><span class="dot ${cls}">${cls==="ok"?CHECK:""}</span><span class="dn">Jour ${d.g}</span><span class="dr">${esc(rangeLabel(d.items))}</span></a></li>`}).join("")}</ul></div>
+  <div class="pager">${n>1?`<a class="btn ghost" href="#etape-${n-1}">← Étape ${n-1}</a>`:""}${n<SECTIONS.length?`<a class="btn ghost" href="#etape-${n+1}">Étape ${n+1} →</a>`:""}</div>`;
+}
+function viewDay(g){
+  setNav("plan");
+  const d=DAYS[g-1]; if(!d) return viewHome();
+  const s=SECTIONS[d.si];
+  let html=`<div class="dayhead"><div class="k">Jour ${d.g} / ${DAYS.length} · Étape ${s.n} · jour ${d.local} sur ${s.days}</div><h1>${esc(rangeLabel(d.items))}</h1></div>`;
+  if(d.local===1) html+=`<div class="card sec-intro"><div class="k">Nouvelle étape · ${s.n} sur ${SECTIONS.length}</div><h2 style="margin:4px 0 8px">${esc(s.title)}</h2><p style="margin:0 0 6px"><b>${esc(s.theme)}</b></p><p style="margin:0">${esc(s.intro)}</p></div>`;
+  html+=`<div class="card"><details><summary>🙏 Avant de lire</summary><p class="pray">« Seigneur Jésus-Christ, ouvre les yeux de mon cœur pour que je comprenne ta Parole, que je l'aime et que je la mette en pratique. Amen. »</p><p class="small muted" style="margin:0">Après ta lecture, demande-toi : qu'est-ce que ce passage m'apprend sur Dieu ? sur moi ? qu'est-ce que je vais faire aujourd'hui ?</p></details></div>`;
+  d.items.forEach((it,idx)=>{
+    const b=it.book;
+    if(it.c===1) html+=bookCard(b);
+    const r=isRead(it);
+    const h=b.en==="Psalms"?heb(it.c):"";
+    const ag=h&&h!==String(it.c)?`<span class="ag">Ps ${h} dans les Bibles hébraïques</span>`:"";
+    const title=b.ch.length===1?b.name:`${b.name} ${it.c}`;
+    html+=`<div class="card ch ${r?"read":""}" id="c${idx}">
+      <div class="body"><h3>${esc(title)}${ag}</h3>
+      <div class="lbl">Ce qui va se passer</div><p class="sum">${esc(it.text)}</p>
+      <a class="btn ghost readbtn" href="#lire-${d.g}-${idx}">📖 ${r?"Relire":"Lire"} le chapitre</a></div>
+      <button class="check ${r?"on":""}" data-i="${idx}" aria-label="Marquer comme lu">${CHECK}</button></div>`;
+  });
+  const done=dayDone(d);
+  html+=`<button class="btn ${done?"done":"main"}" id="dayBtn" style="margin-top:6px">${done?"✓ Jour terminé":"J'ai tout lu aujourd'hui"}</button>
+  <div class="pager">${g>1?`<a class="btn ghost" href="#jour-${g-1}">← Jour ${g-1}</a>`:""}<a class="btn ghost" href="#etape-${s.n}">Étape ${s.n}</a>${g<DAYS.length?`<a class="btn ghost" href="#jour-${g+1}">Jour ${g+1} →</a>`:""}</div>`;
+  app.innerHTML=html;
+  app.querySelectorAll(".check").forEach(btn=>btn.onclick=()=>{
+    const it=d.items[+btn.dataset.i],k=ck(it);
+    if(state.read[k]) delete state.read[k]; else state.read[k]=1;
+    save(); const card=btn.closest(".ch"); btn.classList.toggle("on"); card.classList.toggle("read");
+    updDayBtn(d);
+  });
+  document.getElementById("dayBtn").onclick=()=>{
+    const all=dayDone(d);
+    d.items.forEach(it=>{const k=ck(it); if(all) delete state.read[k]; else state.read[k]=1;});
+    save(); viewDay(g);
+    if(!all){ if(g===DAYS.length) toast("🎉 Tu as lu toute la Bible ! Gloire à Dieu !"); else if(d.local===s.days) toast(`Étape ${s.n} terminée ! Bravo 🙏`); else toast("Jour terminé, que Dieu te bénisse 🙏"); }
+  };
+}
+// ---------- Page de lecture ----------
+function viewRead(g,idx){
+  setNav("plan");
+  const d=DAYS[g-1]; if(!d||!d.items[idx]) return viewHome();
+  const it=d.items[idx], b=it.book, s=SECTIONS[d.si];
+  const title=b.ch.length===1?b.name:`${b.name} ${it.c}`;
+  const h=b.en==="Psalms"?heb(it.c):"";
+  const isLast=idx===d.items.length-1, nd=DAYS[g];
+  const nextIt=isLast?(nd?nd.items[0]:null):d.items[idx+1];
+  const nextHref=isLast?(nd?`#lire-${g+1}-0`:"#accueil"):`#lire-${g}-${idx+1}`;
+  const nextLbl=nextIt?(nextIt.book.ch.length===1?nextIt.book.name:`${nextIt.book.name} ${nextIt.c}`):"";
+  const prevHref=idx>0?`#lire-${g}-${idx-1}`:(g>1?`#lire-${g-1}-${DAYS[g-2].items.length-1}`:"");
+  let html=`<div class="dayhead"><div class="k">Jour ${g} · chapitre ${idx+1} sur ${d.items.length}</div><h1>${esc(title)}</h1>
+    ${h&&h!==String(it.c)?`<p class="alt" style="margin-top:4px">Ps ${h} dans les Bibles hébraïques</p>`:""}</div>`;
+  if(d.local===1&&idx===0) html+=`<div class="card sec-intro"><div class="k">Nouvelle étape · ${s.n} sur ${SECTIONS.length}</div><h2 style="margin:4px 0 8px">${esc(s.title)}</h2><p style="margin:0 0 6px"><b>${esc(s.theme)}</b></p><p style="margin:0">${esc(s.intro)}</p></div>`;
+  if(it.c===1) html+=bookCard(b);
+  html+=`<div class="card"><div class="lbl" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">Ce qui va se passer</div><p style="margin:4px 0 0">${esc(it.text)}</p></div>
+  <div class="modebar"><button class="pillbtn ${state.orig?"":"on"}" data-m="0">Mots d'aujourd'hui</button><button class="pillbtn ${state.orig?"on":""}" data-m="1">Texte d'origine</button></div>
+  <div class="text" id="rt"><p class="muted small" style="font-family:var(--sans)">Chargement…</p></div>
+  <button class="btn main" id="nextBtn" style="margin-top:14px">${nextIt?`✓ Lu · Chapitre suivant : ${esc(nextLbl)} →`:"✓ J'ai fini toute la Bible !"}</button>
+  ${isLast&&nd?`<p class="small muted" style="text-align:center;margin:6px 0 0">C'est le dernier chapitre du jour ${g}. Le suivant commence le jour ${g+1}.</p>`:""}
+  <div class="pager">${prevHref?`<a class="btn ghost" href="${prevHref}">← Précédent</a>`:""}<a class="btn ghost" href="#jour-${g}">Jour ${g}</a></div>`;
+  app.innerHTML=html;
+  const render=()=>getBook(b.en).then(ch=>{
+    const nt=NT.has(b.en), vs=ch[it.c-1]||[];
+    document.getElementById("rt").innerHTML=vs.map(([n,t,m])=>`<p><sup>${n}</sup>${esc(state.orig||!m?t:m)}</p>`).join("")+
+      `<div class="src">${nt?SRC_NT:SRC_OT}${state.orig?"":" Les mots anciens ou difficiles sont remplacés par des mots courants qui gardent le sens du message (« Texte d'origine » pour la traduction exacte)."}</div>`;
+  }).catch(()=>{document.getElementById("rt").innerHTML='<p class="err">Le texte n\'a pas pu se charger. Vérifie ta connexion et réessaie.</p>';});
+  render();
+  app.querySelectorAll(".pillbtn").forEach(p=>p.onclick=()=>{state.orig=p.dataset.m==="1";save();app.querySelectorAll(".pillbtn").forEach(q=>q.classList.toggle("on",q===p));render();});
+  document.getElementById("nextBtn").onclick=()=>{
+    const k=ck(it); state.read[k]=1; save();
+    if(isLast&&dayDone(d)) toast(d.local===s.days?`Étape ${s.n} terminée ! Bravo 🙏`:`Jour ${g} terminé, que Dieu te bénisse 🙏`);
+    if(!nextIt){toast("🎉 Tu as lu toute la Bible ! Gloire à Dieu !");}
+    location.hash=nextHref.slice(1);
+  };
+}
+function updDayBtn(d){
+  const b=document.getElementById("dayBtn"),done=dayDone(d);
+  b.className="btn "+(done?"done":"main"); b.textContent=done?"✓ Jour terminé":"J'ai tout lu aujourd'hui";
+  if(done) toast("Jour terminé, que Dieu te bénisse 🙏");
+}
+function bookCard(b){
+  return `<div class="card book"><div class="k">Nouveau livre${b.ch.length>1?` · ${b.ch.length} chapitres`:""}</div><h2>${esc(b.name)}</h2>${b.alt?`<p class="alt">Dans la Septante : ${esc(b.alt)}</p>`:""}
+  <div class="blk"><b>De quoi parle ce livre</b><p>${esc(b.resume)}</p></div>
+  <div class="blk"><b>Comment le lire</b><p>${esc(b.cle)}</p></div>
+  ${b.copte?`<div class="blk copte"><b>Dans la tradition copte</b><p>${esc(b.copte)}</p></div>`:""}</div>`;
+}
+function viewGuide(){
+  setNav("guide");
+  app.innerHTML=`<div class="dayhead"><h1>Guide</h1></div>
+  <div class="card guide"><h2>Comment fonctionne l'app</h2>
+  <ul><li>Chaque jour, ouvre le jour proposé sur l'accueil.</li>
+  <li>L'ordre suit une logique : Jésus d'abord, puis la prière (Psaumes), ensuite l'histoire du peuple de Dieu dans l'ordre (de la Genèse à l'exil), puis les prophètes qui ont parlé pendant cette histoire, le retour d'exil, les livres propres à la Bible copte qui mènent jusqu'à Jésus, et enfin les dernières lettres et l'Apocalypse.</li>
+  <li>Au début de chaque <b>étape</b>, tu as son but ; au début de chaque <b>livre</b>, une présentation (de quoi il parle, comment le lire, ce qu'il représente pour les Coptes) ; avant chaque <b>chapitre</b>, un résumé de ce qui va se passer.</li>
+  <li>« Lire le chapitre » ouvre une page de lecture avec le texte complet. En bas, « Chapitre suivant » valide automatiquement le chapitre lu et t'emmène au suivant, même d'un jour à l'autre. Ta progression reste enregistrée dans ce navigateur.</li>
+  <li>Par défaut, les mots anciens ou difficiles sont remplacés par des mots courants qui gardent le sens du message : « iniquité » → « faute », « glaive » → « épée », « nuée » → « nuage », « tabernacle » → « tente sacrée », « engendra » → « eut pour fils », « ne… point » → « ne… pas »… Le bouton « Texte d'origine » affiche la traduction exacte, sans aucun changement.</li>
+  <li>Si tu rates un jour, ce n'est pas grave : reprends simplement là où tu en es.</li></ul></div>
+  <div class="card guide"><h2>Le texte que tu lis</h2>
+  <p><b>Ancien Testament : la Septante.</b> C'est la traduction grecque de l'Ancien Testament faite à Alexandrie, en Égypte, avant Jésus-Christ. C'est la Bible citée par les apôtres et celle sur laquelle repose la tradition de l'Église copte. Tu la lis dans la traduction française de Pierre Giguet (1872), en version révisée.</p>
+  <p><b>Nouveau Testament : le texte grec original</b>, dans la traduction française d'Augustin Crampon (1923), faite directement sur le grec.</p>
+  <p>Ces deux traductions sont anciennes : certains mots peuvent sembler vieillis. Les explications avant chaque chapitre sont là pour t'aider.</p></div>
+  <div class="card guide"><h2>Ce que contient le parcours</h2>
+  <p>Tous les livres de la Bible copte : les livres que l'on trouve dans toutes les Bibles, plus <b>Tobie, Judith, Sagesse, Siracide, Baruch (avec la Lettre de Jérémie), 1 et 2 Maccabées</b>, les passages grecs d'<b>Esther</b>, <b>Daniel 13 et 14</b> (Suzanne, Bel et le dragon), le cantique des trois jeunes gens et le <b>Psaume 151</b>.</p>
+  <p>La Septante complète contient aussi quelques textes (1 Esdras, 3 et 4 Maccabées, les Odes…) qui ne font pas partie de la liste des livres lus par l'Église copte : ils ne sont pas dans le parcours.</p></div>
+  <div class="card guide"><h2>Pourquoi les numéros diffèrent parfois</h2>
+  <p><b>Psaumes</b> : la Septante (et l'Agpeya) ont souvent un numéro de moins que les Bibles traduites de l'hébreu. « Aie pitié de moi, ô Dieu » est le Psaume 50 ici, 51 ailleurs. L'app indique les deux.</p>
+  <p><b>Jérémie</b> : dans la Septante, les chapitres 25 à 51 sont dans un autre ordre et le texte est un peu plus court.</p>
+  <p><b>Rois</b> : la Septante appelle les livres de Samuel et des Rois les « quatre livres des Règnes », et les Chroniques les « Paralipomènes ».</p></div>
+  <div class="card guide"><h2>Les lectures de la messe copte</h2>
+  <p>À chaque messe on lit : le <b>Boulos</b> (une lettre de Paul), le <b>Katholikon</b> (Jacques, Pierre, Jean ou Jude), le <b>Praxis</b> (Actes), puis le <b>Psaume</b> et l'<b>Évangile</b>. Avec ce parcours, tu connaîtras tous ces livres.</p></div>
+  <div class="card guide"><h2>Recommencer</h2><p class="muted small">Efface toute ta progression.</p><button class="btn ghost" id="reset">Remettre à zéro</button></div>`;
+  document.getElementById("reset").onclick=()=>confirmBox("Remettre à zéro ?","Toute ta progression sera effacée.",()=>{state={read:{}};save();toast("Progression effacée");viewHome();location.hash="accueil";});
+}
+// ---------- UI utils ----------
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600);}
+function confirmBox(t,b,yes){const m=document.getElementById("modal");document.getElementById("mt").textContent=t;document.getElementById("mb").textContent=b;m.classList.add("on");
+  document.getElementById("mno").onclick=()=>m.classList.remove("on");document.getElementById("myes").onclick=()=>{m.classList.remove("on");yes();};}
+// ---------- Router ----------
+function route(){
+  const h=(location.hash||"").slice(1);
+  let m;
+  if((m=h.match(/^jour-(\d+)$/))) viewDay(+m[1]);
+  else if((m=h.match(/^lire-(\d+)-(\d+)$/))) viewRead(+m[1],+m[2]);
+  else if((m=h.match(/^etape-(\d+)$/))) viewStep(+m[1]);
+  else if(h==="plan") viewPlan();
+  else if(h==="guide") viewGuide();
+  else viewHome();
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+route();
+</script>
+</body>
+</html>

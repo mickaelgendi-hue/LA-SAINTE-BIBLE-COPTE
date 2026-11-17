@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dc9b"/><stop offset="1" stop-color="#c9973a"/></linearGradient>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c2333"/><stop offset="1" stop-color="#4f111b"/></linearGradient></defs>
+<rect width="1200" height="400" rx="48" fill="url(#bg)"/>
+<g transform="translate(40,44) scale(0.61)"><rect x="242.0" y="90" width="28" height="192" rx="9.333333333333334" fill="url(#g)"/>
+<rect x="160" y="172.0" width="192" height="28" rx="9.333333333333334" fill="url(#g)"/>
+<circle cx="365.5" cy="186.0" r="15" fill="url(#g)"/>
+<circle cx="352.0" cy="168.8" r="15" fill="url(#g)"/>
+<circle cx="352.0" cy="203.2" r="15" fill="url(#g)"/>
+<circle cx="256.0" cy="295.5" r="15" fill="url(#g)"/>
+<circle cx="273.2" cy="282.0" r="15" fill="url(#g)"/>
+<circle cx="238.8" cy="282.0" r="15" fill="url(#g)"/>
+<circle cx="146.5" cy="186.0" r="15" fill="url(#g)"/>
+<circle cx="160.0" cy="203.2" r="15" fill="url(#g)"/>
+<circle cx="160.0" cy="168.8" r="15" fill="url(#g)"/>
+<circle cx="256.0" cy="76.5" r="15" fill="url(#g)"/>
+<circle cx="238.7" cy="90.0" r="15" fill="url(#g)"/>
+<circle cx="273.2" cy="90.0" r="15" fill="url(#g)"/>
+<circle cx="256" cy="186" r="26.599999999999998" fill="url(#g)"/><circle cx="256" cy="186" r="12.6" fill="#7b1e2b"/><path d="M96 330 Q176 300 252 326 L252 430 Q176 404 96 432 Z" fill="#fbf3e2"/>
+<path d="M416 330 Q336 300 260 326 L260 430 Q336 404 416 432 Z" fill="#f1e4c8"/>
+<path d="M90 336 L90 440 Q176 410 256 438 Q336 410 422 440 L422 336" fill="none" stroke="url(#g)" stroke-width="8" stroke-linejoin="round"/>
+<g fill="none" stroke="#c9a96a" stroke-width="3" stroke-linecap="round" opacity=".75"><path d="M120 350 Q170 334 228 346"/><path d="M120 368 Q170 352 228 364"/><path d="M120 386 Q170 370 228 382"/><path d="M284 346 Q342 334 392 350"/><path d="M284 364 Q342 352 392 368"/><path d="M284 382 Q342 370 392 386"/></g></g>
+<text x="400" y="150" font-family="Cormorant Garamond, Georgia, serif" font-size="46" letter-spacing="10" fill="#f3dc9b">LA SAINTE BIBLE</text>
+<text x="396" y="262" font-family="Cormorant Garamond, Georgia, serif" font-weight="700" font-size="120" fill="#fffaf1">Copte</text>
+<text x="402" y="318" font-family="Source Sans 3, Arial, sans-serif" font-size="28" letter-spacing="2" fill="#e9d29c">Septante · Grec original · 406 jours</text>
+</svg>
