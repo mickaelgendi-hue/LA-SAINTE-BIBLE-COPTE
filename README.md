@@ -5,7 +5,7 @@
 Une application web pour lire **toute la Bible de l'Église copte orthodoxe** en 13 étapes et 406 jours.
 
 - **Ancien Testament** : la Septante, dans la traduction française de P. Giguet (1872, version révisée).
-- **Nouveau Testament** : traduit du texte grec original (A. Crampon, 1923).
+- **Nouveau Testament** : traduction Louis Segond (1910), faite sur le texte grec original.
 - Avant chaque étape, chaque livre et chaque chapitre : une explication pour comprendre ce qu'on va lire.
 - Les mots anciens ou difficiles sont remplacés par des mots courants (bouton « Texte d'origine » pour la traduction exacte).
 - Lecture chapitre par chapitre : « Chapitre suivant » valide automatiquement le chapitre lu.
@@ -26,4 +26,4 @@ La progression est enregistrée dans le navigateur.
 
 ## Sources des textes
 
-Textes du domaine public, issus du projet [scrollmapper/bible_databases](https://github.com/scrollmapper/bible_databases) (FreLXX, FreLXXGiguet, FreCrampon).
+Textes du domaine public : Septante de Giguet issue de [scrollmapper/bible_databases](https://github.com/scrollmapper/bible_databases) (FreLXX, FreLXXGiguet) ; Louis Segond 1910 issue de [BibleCorps/FRA-B-LSG1910-PD-UBS](https://github.com/BibleCorps/FRA-B-LSG1910-PD-UBS).

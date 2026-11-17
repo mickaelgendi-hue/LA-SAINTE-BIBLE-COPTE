@@ -215,10 +215,10 @@ B("Luc","Luke",
 "Devant Pilate et Hérode ; crucifixion ; le bon larron ; mort et mise au tombeau.",
 "La Résurrection ; les disciples d'Emmaüs ; apparition aux Onze ; Ascension."]);
 B("Jean","John",
-"Écrit par l'apôtre Jean, « le disciple que Jésus aimait ». Plus méditatif que les trois autres, il insiste sur la divinité de Jésus : « Le Verbe était Dieu ».",
+"Écrit par l'apôtre Jean, « le disciple que Jésus aimait ». Plus méditatif que les trois autres, il insiste sur la divinité de Jésus : « la Parole était Dieu » (on dit aussi « le Verbe »).",
 "Repère les 7 « Je suis » (le pain de vie, la lumière, la porte, le bon berger, la résurrection, le chemin, la vraie vigne) et les 7 signes (miracles). Jean écrit « pour que vous croyiez » (20,31).",
 "Le début de Jean (1,1-17) est l'Évangile de la prière du matin (1re heure) de l'Agpeya, le livre des heures copte.",
-["« Au commencement était le Verbe » ; témoignage de Jean-Baptiste ; premiers disciples.",
+["« Au commencement était la Parole » (le Verbe) ; témoignage de Jean-Baptiste ; premiers disciples.",
 "Les noces de Cana (premier signe) ; Jésus chasse les marchands du Temple.",
 "Nicodème : naître de nouveau ; « Dieu a tant aimé le monde… » (3,16).",
 "La Samaritaine au puits : l'eau vive ; guérison du fils d'un officier.",
@@ -1881,7 +1881,7 @@ function heb(k){
 }
 const NT=new Set(["Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]);
 const SRC_OT="Septante (traduction grecque de l'Ancien Testament), traduite en français par P. Giguet, 1872 (version révisée).";
-const SRC_NT="Nouveau Testament traduit du texte grec original, traduction A. Crampon, 1923.";
+const SRC_NT="Nouveau Testament : traduction Louis Segond (1910), faite sur le texte grec original.";
 const cache={};
 function getBook(en){
   const url=DATA_PREFIX+en.toLowerCase().replace(/ /g,"-")+".json";
@@ -1901,7 +1901,7 @@ function viewHome(){
   <section class="hero">
     <img class="cross" src="logo.svg" alt="La Sainte Bible copte" style="width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px -10px rgba(80,20,20,.5)">
     <h1>Lire toute la Bible</h1>
-    <p class="muted">${SECTIONS.length} étapes, ${DAYS.length} jours, ${TOTAL_CH} chapitres. Chaque livre et chaque chapitre est expliqué avant ta lecture, et tu lis le texte directement ici : la Septante pour l'Ancien Testament, une traduction du grec original pour le Nouveau.</p>
+    <p class="muted">${SECTIONS.length} étapes, ${DAYS.length} jours, ${TOTAL_CH} chapitres. Chaque livre et chaque chapitre est expliqué avant ta lecture, et tu lis le texte directement ici : la Septante pour l'Ancien Testament, la Louis Segond pour le Nouveau.</p>
   </section>
   <div class="card">
     <div class="stat"><span class="muted">Ta progression</span><b>${Math.round(readCh/TOTAL_CH*100)} %</b></div>
@@ -2041,7 +2041,7 @@ function viewGuide(){
   <li>Si tu rates un jour, ce n'est pas grave : reprends simplement là où tu en es.</li></ul></div>
   <div class="card guide"><h2>Le texte que tu lis</h2>
   <p><b>Ancien Testament : la Septante.</b> C'est la traduction grecque de l'Ancien Testament faite à Alexandrie, en Égypte, avant Jésus-Christ. C'est la Bible citée par les apôtres et celle sur laquelle repose la tradition de l'Église copte. Tu la lis dans la traduction française de Pierre Giguet (1872), en version révisée.</p>
-  <p><b>Nouveau Testament : le texte grec original</b>, dans la traduction française d'Augustin Crampon (1923), faite directement sur le grec.</p>
+  <p><b>Nouveau Testament : la Louis Segond (1910)</b>, la traduction française la plus répandue, faite sur le texte grec original.</p>
   <p>Ces deux traductions sont anciennes : certains mots peuvent sembler vieillis. Les explications avant chaque chapitre sont là pour t'aider.</p></div>
   <div class="card guide"><h2>Ce que contient le parcours</h2>
   <p>Tous les livres de la Bible copte : les livres que l'on trouve dans toutes les Bibles, plus <b>Tobie, Judith, Sagesse, Siracide, Baruch (avec la Lettre de Jérémie), 1 et 2 Maccabées</b>, les passages grecs d'<b>Esther</b>, <b>Daniel 13 et 14</b> (Suzanne, Bel et le dragon), le cantique des trois jeunes gens et le <b>Psaume 151</b>.</p>
@@ -2056,7 +2056,7 @@ function viewGuide(){
   document.getElementById("reset").onclick=()=>confirmBox("Remettre à zéro ?","Toute ta progression sera effacée.",()=>{state={read:{}};save();toast("Progression effacée");viewHome();location.hash="accueil";});
 }
 // ---------- Hors connexion ----------
-const OFF_CACHE="bible-copte-v1";
+const OFF_CACHE="bible-copte-v2";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
 let offlineOK=false;
