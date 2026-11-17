@@ -9,9 +9,18 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#7b1e2b">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url(cormorant-garamond-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:swap;src:url(cormorant-garamond-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-display:swap;src:url(source-sans-3-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:600;font-display:swap;src:url(source-sans-3-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'EB Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(eb-garamond-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Lora';font-style:normal;font-weight:400;font-display:swap;src:url(lora-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;font-display:swap;src:url(atkinson-hyperlegible-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url(nunito-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:400;font-display:swap;src:url(opendyslexic-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Merriweather';font-style:normal;font-weight:400;font-display:swap;src:url(merriweather-latin-400-normal.woff2) format('woff2')}
 :root{
   --bg:#f6efe2; --paper:#fffaf1; --ink:#2b1d14; --muted:#7a6656; --line:#e6d9c3;
   --wine:#7b1e2b; --wine2:#5c1520; --gold:#b8862f; --gold2:#e9d29c; --green:#3f6b3a;
@@ -30,6 +39,9 @@ header.top a{color:var(--wine);text-decoration:none}
 .nav a{font-size:14px;font-weight:600;padding:6px 10px;border-radius:999px}
 .nav a.on{background:var(--wine);color:#fff}
 .nav a.gear{display:grid;place-items:center;padding:6px 8px}
+.fontopt{display:block;width:100%;text-align:left;margin:0 0 8px}
+.fontopt small{display:block;font:500 12px var(--sans);opacity:.75;margin-bottom:2px}
+.fontopt span{font-size:19px;font-weight:400}
 .opts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
 .opt{border:1.5px solid var(--gold2);background:#fff;color:var(--wine2);font:600 15px var(--sans);padding:10px 14px;border-radius:12px;cursor:pointer;min-width:64px}
 .opt.on{background:var(--wine);border-color:var(--wine);color:#fff}
@@ -96,7 +108,7 @@ h3{font-size:22px}
 .check.on svg{opacity:1}
 .ch.read h3{color:var(--green)}
 .readbtn{margin-top:2px}
-.text{margin:14px 0 4px;padding:16px 16px 12px;border-radius:12px;background:#fdf6e9;border:1px solid var(--line);font-family:var(--serif);font-size:20px;line-height:1.6;color:#2b1d14}
+.text{margin:14px 0 4px;padding:16px 16px 12px;border-radius:12px;background:#fdf6e9;border:1px solid var(--line);font-family:var(--readfont,var(--serif));font-size:var(--readsize,20px);line-height:1.6;color:#2b1d14}
 .text p{margin:0 0 6px}
 .text sup{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--gold);margin-right:3px}
 .text .src{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
@@ -114,6 +126,19 @@ h3{font-size:22px}
 .glossbox b{font-family:var(--serif);font-size:22px;color:var(--wine2)}
 .glossbox p{margin:4px 0 0;font-size:16px}
 .glossbox .selx{position:absolute;right:8px;top:8px}
+.notebtn{border:1.5px solid var(--gold2);background:#fff;color:var(--wine);font:600 13px var(--sans);padding:6px 12px;border-radius:999px;cursor:pointer;margin-right:auto}
+.notebtn.has{background:#f7ecda;border-color:var(--gold)}
+.notecard{border-left:4px solid var(--gold)}
+.notecard .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.notecard p{white-space:pre-wrap;font-family:var(--serif);font-size:18px;margin:6px 0 10px}
+.notepanel{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--paper);border-left:2px solid var(--gold2);box-shadow:-12px 0 30px -12px rgba(60,20,10,.45);z-index:40;display:flex;flex-direction:column;padding:16px;transform:translateX(105%);transition:transform .25s ease}
+.notepanel.open{transform:none}
+.nphead{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.nphead .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.nphead b{font-family:var(--serif);font-size:24px;color:var(--wine2)}
+.notepanel textarea{flex:1;margin:12px 0;font:17px/1.5 var(--sans);padding:12px;border-radius:12px;border:1.5px solid var(--gold2);background:#fff;color:var(--ink);resize:none}
+.npfoot{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.npfoot span{margin-right:auto}
 .selbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(560px,calc(100% - 20px));background:var(--paper);border:1.5px solid var(--gold2);border-radius:16px;box-shadow:0 10px 30px -10px rgba(60,20,10,.45);padding:10px 12px;z-index:25}
 .selbar[hidden]{display:none}
 .selrow{display:flex;align-items:center;gap:8px;justify-content:space-between}
@@ -148,10 +173,10 @@ h3{font-size:22px}
 details summary{cursor:pointer;font-weight:600;color:var(--wine)}
 .guide p,.guide li{margin:6px 0}
 .guide h2{margin-top:6px}
-.modal{position:fixed;inset:0;background:rgba(40,20,10,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+.modal{position:fixed;inset:0;background:rgba(40,20,10,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
 .modal.on{display:flex}
 .modal .card{max-width:420px;width:100%}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:var(--wine2);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;opacity:0;transition:.3s;pointer-events:none;z-index:30}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:var(--wine2);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;opacity:0;transition:.3s;pointer-events:none;z-index:70}
 .toast.on{opacity:1;transform:translateX(-50%)}
 footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 @media (max-width:480px){h1{font-size:29px}.nav a{padding:6px 8px;font-size:13px}.brand span{display:none}}
@@ -165,6 +190,11 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 <main class="wrap" id="app"></main>
 <div class="modal" id="modal"><div class="card"><h3 id="mt">Confirmer</h3><p id="mb"></p><div class="pager"><button class="btn ghost" id="mno">Annuler</button><button class="btn main" id="myes">Oui</button></div></div></div>
 <div class="toast" id="toast"></div>
+<aside class="notepanel" id="notepanel" aria-label="Mes notes">
+  <div class="nphead"><div><div class="k">📝 Mes notes</div><b id="noteTitle"></b></div><button class="selx" id="noteClose" aria-label="Fermer">✕</button></div>
+  <textarea id="noteTa" placeholder="Écris ici ce que tu retiens de ce chapitre, une prière, une question à poser à ton abouna…"></textarea>
+  <div class="npfoot"><span class="small muted" id="noteSaved"></span><button class="btn ghost" id="noteDel">Effacer</button><button class="btn main" style="width:auto" onclick="closeNotes()">Terminé</button></div>
+</aside>
 <div class="glossbox" id="gloss" hidden><button class="selx" aria-label="Fermer" onclick="hideGloss()">✕</button><b></b><p></p></div>
 <div class="selbar" id="selbar" hidden>
   <div class="selrow"><b id="selcount"></b><button class="selx" id="selclose" aria-label="Annuler">✕</button></div>
@@ -2017,7 +2047,7 @@ function viewDay(g){
     const ag=h&&h!==String(it.c)?`<span class="ag">Ps ${h} dans les Bibles hébraïques</span>`:"";
     const title=b.ch.length===1?b.name:`${b.name} ${it.c}`;
     html+=`<div class="card ch ${r?"read":""}" id="c${idx}">
-      <div class="body"><h3>${esc(title)}${ag}</h3>
+      <div class="body"><h3>${esc(title)}${ag}${cnote(b.en,it.c)?' <span title="Tu as écrit une note">📝</span>':""}</h3>
       <div class="lbl">Ce qui va se passer</div><p class="sum">${esc(it.text)}</p>
       <a class="btn ghost readbtn" href="#lire-${d.g}-${idx}">📖 ${r?"Relire":"Lire"} le chapitre</a></div>
       <button class="check ${r?"on":""}" data-i="${idx}" aria-label="Marquer comme lu">${CHECK}</button></div>`;
@@ -2056,9 +2086,10 @@ function viewRead(g,idx){
   if(d.local===1&&idx===0) html+=`<div class="card sec-intro"><div class="k">Nouvelle étape · ${s.n} sur ${SECTIONS.length}</div><h2 style="margin:4px 0 8px">${esc(s.title)}</h2><p style="margin:0 0 6px"><b>${esc(s.theme)}</b></p><p style="margin:0">${esc(s.intro)}</p></div>`;
   if(it.c===1) html+=bookCard(b);
   html+=`<div class="card"><div class="lbl" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">Ce qui va se passer</div><p style="margin:4px 0 0">${esc(it.text)}</p></div>
-  <div class="modebar"><button class="pillbtn ${isOrig()?"on":""}" data-m="1">Texte d'origine</button><button class="pillbtn ${isOrig()?"":"on"}" data-m="0">Mots d'aujourd'hui</button></div>
+  <div class="modebar"><button class="notebtn${cnote(b.en,it.c)?" has":""}" id="noteOpen" aria-label="Mes notes">📝 Notes</button><button class="pillbtn ${isOrig()?"on":""}" data-m="1">Texte d'origine</button><button class="pillbtn ${isOrig()?"":"on"}" data-m="0">Mots d'aujourd'hui</button></div>
   <p class="small muted" style="margin:6px 0 0">Touche un mot <span class="gw">souligné</span> pour voir son explication.</p>
   <div class="text" id="rt"><p class="muted small" style="font-family:var(--sans)">Chargement…</p></div>
+  <div class="card notecard" id="notePrev" ${cnote(b.en,it.c)?"":"hidden"}><div class="k">📝 Ma note sur ${esc(title)}</div><p id="notePrevT">${esc(cnote(b.en,it.c))}</p><button class="btn ghost" id="noteEdit2">Modifier</button></div>
   <button class="btn main" id="nextBtn" style="margin-top:14px">${nextIt?`✓ Lu · Chapitre suivant : ${esc(nextLbl)} →`:"✓ J'ai fini toute la Bible !"}</button>
   ${isLast&&nd?`<p class="small muted" style="text-align:center;margin:6px 0 0">C'est le dernier chapitre du jour ${g}. Le suivant commence le jour ${g+1}.</p>`:""}
   <div class="pager">${prevHref?`<a class="btn ghost" href="${prevHref}">← Précédent</a>`:""}<a class="btn ghost" href="#jour-${g}">Jour ${g}</a></div>`;
@@ -2074,6 +2105,9 @@ function viewRead(g,idx){
   }).catch(()=>{document.getElementById("rt").innerHTML='<p class="err">Le texte n\'a pas pu se charger. Vérifie ta connexion, ou télécharge toute la Bible depuis l\'accueil pour lire sans internet.</p>';});
   render();
   clearSel();
+  curNote={en:b.en,c:it.c,title};
+  document.getElementById("noteOpen").onclick=openNotes;
+  document.getElementById("noteEdit2").onclick=openNotes;
   app.querySelectorAll(".pillbtn").forEach(p=>p.onclick=()=>{state.orig=p.dataset.m==="1";save();app.querySelectorAll(".pillbtn").forEach(q=>q.classList.toggle("on",q===p));render();});
   document.getElementById("nextBtn").onclick=()=>{
     const k=ck(it); state.read[k]=1; save();
@@ -2101,6 +2135,8 @@ function viewGuide(){
   <li>L'ordre suit une logique : Jésus d'abord, puis la prière (Psaumes), ensuite l'histoire du peuple de Dieu dans l'ordre (de la Genèse à l'exil), puis les prophètes qui ont parlé pendant cette histoire, le retour d'exil, les livres propres à la Bible copte qui mènent jusqu'à Jésus, et enfin les dernières lettres et l'Apocalypse.</li>
   <li><b>Les mots difficiles sont soulignés en pointillé</b> : touche-les pour voir leur explication ou un mot plus simple. Ce petit dictionnaire est dans l'app : il marche aussi sans connexion.</li>
   <li>Le texte s'affiche d'abord dans sa <b>version d'origine</b>. Le bouton « Mots d'aujourd'hui » remplace les mots anciens par des mots courants.</li>
+  <li><b>Police et taille du texte</b> : dans les paramètres (⚙︎), choisis parmi 8 polices (classique, livre ancien, moderne, très lisible, spéciale dyslexie…) et 4 tailles.</li>
+  <li><b>📝 Notes</b> : pendant la lecture, ce bouton ouvre un panneau sur le côté pour écrire ce que tu veux sur le chapitre (ce que tu retiens, une prière, une question). Ta note s'enregistre toute seule, s'affiche sous le chapitre, et toutes tes notes sont dans « Mes versets ».</li>
   <li><b>Pendant la lecture, touche un verset</b> (ou plusieurs) : tu peux l'enregistrer dans « Mes versets » ❤️, le surligner en couleur ou le copier. La loupe 🔍 en haut permet de chercher un chapitre ou une phrase.</li>
   <li>Au début de chaque <b>étape</b>, tu as son but ; au début de chaque <b>livre</b>, une présentation (de quoi il parle, comment le lire, ce qu'il représente pour les Coptes) ; avant chaque <b>chapitre</b>, un résumé de ce qui va se passer.</li>
   <li>« Lire le chapitre » ouvre une page de lecture avec le texte complet. En bas, « Chapitre suivant » valide automatiquement le chapitre lu et t'emmène au suivant, même d'un jour à l'autre. Ta progression reste enregistrée dans ce navigateur.</li>
@@ -2488,17 +2524,42 @@ function viewFavs(){
   setNav("favoris");
   const favs=state.favs||[], hls=Object.entries(state.hl||{});
   const byBook={};SECTIONS.forEach(s=>s.books.forEach(b=>byBook[b.en]=b));
-  app.innerHTML=`<div class="dayhead"><h1>Mes versets</h1><p class="muted">Pendant ta lecture, touche un ou plusieurs versets pour les enregistrer ici ❤️ ou les surligner.</p></div>
+  app.innerHTML=`<div class="dayhead"><h1>Mes versets</h1><p class="muted">Pendant ta lecture, touche un ou plusieurs versets pour les enregistrer ici ❤️ ou les surligner. Le bouton 📝 Notes permet d'écrire à côté de chaque chapitre.</p></div>
   ${favs.length?favs.map(f=>{const b=byBook[f.en];if(!b) return "";return `<div class="card favitem"><div class="ref">${esc(refLabel(b,f.c,f.v))}</div><div class="vt">« ${esc(f.text)} »</div><div class="small muted">Enregistré le ${f.at.split("-").reverse().join("/")}</div>
     <div class="favact" style="margin-top:8px"><a class="btn ghost" href="#" data-go="${f.id}">📖 Lire le chapitre</a><button class="btn ghost" data-cp="${f.id}">Copier</button><button class="btn ghost" data-del="${f.id}">Supprimer</button></div></div>`}).join(""):`<div class="card"><p style="margin:0">Tu n'as pas encore enregistré de verset.</p></div>`}
+  ${Object.keys(state.cnotes||{}).length?`<h2 style="margin:22px 0 4px">📝 Mes notes de chapitres</h2>`+Object.entries(state.cnotes).map(([k,nv])=>{const [en,c]=k.split("|");const b=byBook[en];if(!b) return "";const lab=b.ch.length===1?b.name:b.name+" "+c;
+    return `<div class="card notecard"><div class="k">${esc(lab)} · ${nv.at.split("-").reverse().join("/")}</div><p>${esc(nv.t)}</p><div class="favact"><a class="btn ghost" href="#" data-gn="${esc(k)}">📖 Ouvrir le chapitre</a><button class="btn ghost" data-dn="${esc(k)}">Supprimer</button></div></div>`}).join(""):""}
   ${hls.length?`<h2 style="margin:22px 0 4px">Passages surlignés</h2><div class="card">${(()=>{const g={};hls.forEach(([k,col])=>{const [en,c,v]=k.split("|");const key=en+"|"+c;(g[key]=g[key]||{en,c:+c,v:[],col}).v.push(+v);});
       return Object.values(g).map(x=>{const b=byBook[x.en];return b?`<a class="res" href="#" data-gv="${x.en}|${x.c}|${Math.min(...x.v)}"><span class="hl-${x.col}" style="padding:0 6px;border-radius:4px">&nbsp;</span> <b>${esc(refLabel(b,x.c,x.v))}</b></a>`:""}).join("")})()}</div>`:""}`;
   app.querySelectorAll("[data-go]").forEach(a=>a.onclick=e=>{e.preventDefault();const f=favs.find(x=>x.id==a.dataset.go);gotoVerse(f.en,f.c,f.v[0]);});
   app.querySelectorAll("[data-gv]").forEach(a=>a.onclick=e=>{e.preventDefault();const [en,c,v]=a.dataset.gv.split("|");gotoVerse(en,+c,+v);});
   app.querySelectorAll("[data-cp]").forEach(bn=>bn.onclick=()=>{const f=favs.find(x=>x.id==bn.dataset.cp);const b=byBook[f.en];
     try{navigator.clipboard.writeText(`« ${f.text} » (${refLabel(b,f.c,f.v)})`).then(()=>toast("Copié"),()=>toast("Copie impossible ici"));}catch(e){toast("Copie impossible ici");}});
+  app.querySelectorAll("[data-gn]").forEach(x=>x.onclick=e=>{e.preventDefault();const [en,c]=x.dataset.gn.split("|");gotoVerse(en,+c,null);setTimeout(openNotes,600);});
+  app.querySelectorAll("[data-dn]").forEach(x=>x.onclick=()=>confirmBox("Supprimer cette note ?","Le texte de ta note sera supprimé.",()=>{delete state.cnotes[x.dataset.dn];save();viewFavs();}));
   app.querySelectorAll("[data-del]").forEach(bn=>bn.onclick=()=>confirmBox("Supprimer ce passage ?","Il sera retiré de « Mes versets ».",()=>{state.favs=favs.filter(x=>x.id!=bn.dataset.del);save();viewFavs();}));
 }
+// ---------- Notes de chapitre (écrire sur le côté) ----------
+let curNote=null, noteTimer=null;
+function cnote(en,c){return ((state.cnotes||{})[en+"|"+c]||{}).t||"";}
+function setNote(en,c,t){state.cnotes=state.cnotes||{};const k=en+"|"+c;if(t.trim()) state.cnotes[k]={t,at:new Date().toISOString().slice(0,10)}; else delete state.cnotes[k];save();}
+function openNotes(){
+  if(!curNote) return;
+  const p=document.getElementById("notepanel"), ta=document.getElementById("noteTa");
+  document.getElementById("noteTitle").textContent=curNote.title;
+  ta.value=cnote(curNote.en,curNote.c); p.classList.add("open"); document.getElementById("noteSaved").textContent="";
+  setTimeout(()=>ta.focus(),250);
+}
+function closeNotes(){
+  const p=document.getElementById("notepanel"); if(!p.classList.contains("open")) return;
+  saveNoteNow(); p.classList.remove("open");
+  const prev=document.getElementById("notePrev");
+  if(prev&&curNote){const t=cnote(curNote.en,curNote.c); prev.hidden=!t; document.getElementById("notePrevT").textContent=t; document.getElementById("noteOpen").classList.toggle("has",!!t);}
+}
+function saveNoteNow(){ if(!curNote) return; clearTimeout(noteTimer); setNote(curNote.en,curNote.c,document.getElementById("noteTa").value); }
+document.getElementById("noteTa").addEventListener("input",()=>{clearTimeout(noteTimer);noteTimer=setTimeout(()=>{saveNoteNow();document.getElementById("noteSaved").textContent="✓ Enregistré";},500);});
+document.getElementById("noteClose").onclick=closeNotes;
+document.getElementById("noteDel").onclick=()=>confirmBox("Effacer cette note ?","Le texte de ta note sera supprimé.",()=>{document.getElementById("noteTa").value="";saveNoteNow();closeNotes();toast("Note effacée");});
 // ---------- Recherche ----------
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’']/g,"'").replace(/\s+/g," ").trim();
 const ABBR={Genesis:"gn gen",Exodus:"ex exo",Leviticus:"lv lev",Numbers:"nb nomb",Deuteronomy:"dt deut",Joshua:"jos",Judges:"jg",Ruth:"rt",
@@ -2569,6 +2630,13 @@ async function runSearch(q){
 function bindRef(ref){const a=document.getElementById("refgo");if(a&&ref) a.onclick=e=>{e.preventDefault();gotoVerse(ref.b.en,ref.c,ref.v);};
   const a2=document.getElementById("refgo2");if(a2&&ref) a2.onclick=e=>{e.preventDefault();gotoVerse(ref.b.en,ref.c-1,ref.v);};}
 // ---------- Paramètres ----------
+const FONTS={classique:{label:"Classique (Cormorant Garamond)",css:"'Cormorant Garamond',Georgia,serif"},livre:{label:"Livre ancien (EB Garamond)",css:"'EB Garamond',Georgia,serif"},
+  lora:{label:"Élégante (Lora)",css:"'Lora',Georgia,serif"},merri:{label:"Journal (Merriweather)",css:"'Merriweather',Georgia,serif"},moderne:{label:"Moderne (Source Sans)",css:"'Source Sans 3',system-ui,sans-serif"},
+  arrondie:{label:"Arrondie (Nunito)",css:"'Nunito',system-ui,sans-serif"},lisible:{label:"Très lisible (Atkinson Hyperlegible)",css:"'Atkinson Hyperlegible',system-ui,sans-serif"},dys:{label:"Spéciale dyslexie (OpenDyslexic)",css:"'OpenDyslexic',system-ui,sans-serif"}};
+const SIZES=[["s","Petit",17],["m","Normal",20],["l","Grand",23],["xl","Très grand",27]];
+const curFont=()=>FONTS[state.font]?state.font:"classique", curSize=()=>SIZES.some(s=>s[0]===state.size)?state.size:"m";
+function applyFont(){const r=document.documentElement.style;r.setProperty("--readfont",FONTS[curFont()].css);r.setProperty("--readsize",SIZES.find(s=>s[0]===curSize())[2]+"px");}
+applyFont();
 function dur(days){
   const tm=Math.round(days/30.44), y=Math.floor(tm/12), m=tm%12;
   const parts=[]; if(y) parts.push(y+" an"+(y>1?"s":"")); if(m) parts.push(m+" mois");
@@ -2595,8 +2663,16 @@ function viewSettings(){
     <div class="opts">${DUR.map(([l,d])=>`<button class="opt ${p.mode==="dur"&&p.days===d?"on":""}" data-mode="dur" data-d="${d}" data-l="${l}">${l}</button>`).join("")}</div>
     <div class="planinfo"><b>Ton plan actuel : ${esc(planLabel(p))}</b><br>${DAYS.length} jours (environ ${dur(DAYS.length)}), soit ${perDay.toFixed(1).replace(".",",").replace(",0","")} chapitre${Math.round(perDay*10)/10>=2?"s":""} par jour en moyenne.</div>
   </div>
+  <div class="card"><h2 style="font-size:24px">Police d'écriture</h2>
+    <p class="muted small" style="margin:4px 0 0">Pour le texte de la Bible. Toutes ces polices marchent aussi sans connexion.</p>
+    <div style="margin-top:12px">${Object.entries(FONTS).map(([k,f])=>`<button class="opt fontopt ${curFont()===k?"on":""}" data-font="${k}"><small>${esc(f.label)}</small><span style="font-family:${f.css}">Au commencement Dieu créa le ciel et la terre.</span></button>`).join("")}</div>
+    <h3 style="font-size:19px;margin-top:14px">Taille du texte</h3>
+    <div class="opts">${SIZES.map(([k,l,px])=>`<button class="opt ${curSize()===k?"on":""}" data-size="${k}" style="font-size:${Math.round(px*0.8)}px">${l}</button>`).join("")}</div>
+  </div>
   <div class="card"><h2 style="font-size:24px">Recommencer</h2><p class="muted small">Efface toute ta progression (les chapitres cochés).</p><button class="btn ghost" id="reset">Remettre à zéro</button></div>`;
-  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+  app.querySelectorAll("[data-font]").forEach(b=>b.onclick=()=>{state.font=b.dataset.font;save();applyFont();app.querySelectorAll("[data-font]").forEach(x=>x.classList.toggle("on",x===b));toast("Police : "+FONTS[state.font].label);});
+  app.querySelectorAll("[data-size]").forEach(b=>b.onclick=()=>{state.size=b.dataset.size;save();applyFont();app.querySelectorAll("[data-size]").forEach(x=>x.classList.toggle("on",x===b));});
+  app.querySelectorAll(".opt[data-mode]").forEach(b=>b.onclick=()=>{
     const m=b.dataset.mode; let np;
     if(m==="orig") np={mode:"orig"};
     else if(m==="cpd") np={mode:"cpd",n:+b.dataset.n};
@@ -2607,6 +2683,7 @@ function viewSettings(){
   document.getElementById("reset").onclick=()=>confirmBox("Remettre à zéro ?","Toute ta progression sera effacée.",()=>{state.read={};save();toast("Progression effacée");location.hash="accueil";});
 }
 // ---------- Hors connexion ----------
+const FONT_FILES=["cormorant-garamond-latin-500-normal", "cormorant-garamond-latin-600-normal", "cormorant-garamond-latin-700-normal", "source-sans-3-latin-400-normal", "source-sans-3-latin-600-normal", "eb-garamond-latin-400-normal", "lora-latin-400-normal", "atkinson-hyperlegible-latin-400-normal", "nunito-latin-400-normal", "opendyslexic-latin-400-normal", "merriweather-latin-400-normal"];
 const OFF_CACHE="bible-copte-v5";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
@@ -2630,7 +2707,7 @@ async function offlineCard(){
 async function downloadAll(){
   const btn=document.getElementById("dlBtn"),bar=document.getElementById("dlBar"),txt=document.getElementById("dlTxt");
   btn.disabled=true;btn.textContent="Téléchargement en cours…";bar.style.display="block";
-  const files=["./","index.html","manifest.json","logo.svg","favicon-32.png","apple-touch-icon.png","logo-192.png","logo-512.png"].concat(bookFiles());
+  const files=["./","index.html","manifest.json","logo.svg","favicon-32.png","apple-touch-icon.png","logo-192.png","logo-512.png"].concat(FONT_FILES.map(f=>""+f+".woff2")).concat(bookFiles());
   let ok=0,fail=0;
   try{
     const c=await caches.open(OFF_CACHE);
@@ -2648,7 +2725,7 @@ function confirmBox(t,b,yes){const m=document.getElementById("modal");document.g
   document.getElementById("mno").onclick=()=>m.classList.remove("on");document.getElementById("myes").onclick=()=>{m.classList.remove("on");yes();};}
 // ---------- Router ----------
 function route(){
-  hideGloss();
+  hideGloss(); if(document.getElementById('notepanel').classList.contains('open')) closeNotes();
   if(typeof clearSel==='function'&&!/^#lire-/.test(location.hash)){curRead=null;clearSel();}
   const h=(location.hash||"").slice(1);
   let m;

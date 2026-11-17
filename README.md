@@ -12,6 +12,9 @@ Une application web pour lire **toute la Bible de l'Église copte orthodoxe** en
 - « Mes versets » : enregistrer ses passages préférés, surligner en couleur, copier.
 - Paramètres : 1 à 4 chapitres par jour, ou toute la Bible en 6 mois à 4 ans.
 - Lecture sans connexion après téléchargement.
+- Notes personnelles à côté de chaque chapitre.
+- Dictionnaire des mots difficiles (appuyer sur un mot souligné).
+- 8 polices d'écriture et 4 tailles de texte.
 - Lecture chapitre par chapitre : « Chapitre suivant » valide automatiquement le chapitre lu.
 - Livres propres à la Bible copte inclus : Tobie, Judith, Sagesse, Siracide, Baruch, 1-2 Maccabées, Daniel 13-14, Esther grec, Psaume 151.
 - Numérotation des Psaumes de la Septante (la même que l'Agpeya).
@@ -31,3 +34,5 @@ La progression est enregistrée dans le navigateur.
 ## Sources des textes
 
 Textes du domaine public : Septante de Giguet issue de [scrollmapper/bible_databases](https://github.com/scrollmapper/bible_databases) (FreLXX, FreLXXGiguet) ; Louis Segond 1910 issue de [BibleCorps/FRA-B-LSG1910-PD-UBS](https://github.com/BibleCorps/FRA-B-LSG1910-PD-UBS).
+
+Polices (licence SIL Open Font License) : Cormorant Garamond, Source Sans 3, EB Garamond, Lora, Merriweather, Nunito, Atkinson Hyperlegible, OpenDyslexic — via [Fontsource](https://fontsource.org).
