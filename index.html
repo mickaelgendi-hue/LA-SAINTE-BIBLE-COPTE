@@ -210,15 +210,6 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 @media (max-width:480px){h1{font-size:29px}.nav a{padding:6px 8px;font-size:13px}.brand span{display:none}}
 .fgrp{font-weight:600;color:var(--gold,#b08d57);margin:16px 0 6px;font-size:.95rem;letter-spacing:.02em}
 
-.ttsbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(560px,calc(100% - 20px));background:var(--wine2,#5a1a1a);color:#fff;border-radius:16px;box-shadow:0 10px 30px -10px rgba(60,20,10,.55);padding:10px 12px;z-index:26;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.ttsbar[hidden]{display:none}
-.ttsbar button{border:0;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font:600 14px var(--sans);padding:8px 12px;cursor:pointer}
-.ttsbar button.big{background:#fff;color:var(--wine2,#5a1a1a);min-width:44px}
-.ttsbar select{border-radius:10px;border:0;padding:6px;font:13px var(--sans);max-width:150px}
-.ttsbar .tl{flex:1 1 100%;font:13px var(--sans);opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#rt p.speaking{background:rgba(176,141,87,.22);border-radius:8px;box-shadow:0 0 0 4px rgba(176,141,87,.22)}
-body.tts-on .wrap{padding-bottom:200px}
-body.notes-on .ttsbar{left:calc((100vw - var(--npw))/2);width:min(560px,calc(100vw - var(--npw) - 16px))}
 
 .peres{border-left:4px solid var(--wine,#7a1f1f)}
 .peres .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine,#7a1f1f)}
@@ -283,15 +274,6 @@ body.notes-on .ttsbar{left:calc((100vw - var(--npw))/2);width:min(560px,calc(100
 </aside>
 <div class="onb" id="onb" hidden><div class="onb-card" role="dialog" aria-modal="true" aria-label="Bienvenue"><div class="onb-dots" id="onbDots"></div><div class="onb-body" id="onbBody"></div><div class="onb-foot"><button class="btn ghost" id="onbBack" style="width:auto">← Retour</button><button class="onb-skip" id="onbSkip">Passer</button><button class="btn main" id="onbNext" style="width:auto">Suivant →</button></div></div></div>
 <div class="glossbox" id="gloss" hidden><button class="selx" aria-label="Fermer" onclick="hideGloss()">✕</button><b></b><p></p></div>
-<div class="ttsbar" id="ttsbar" hidden>
-  <div class="tl" id="ttsLbl">🔊 Lecture à voix haute</div>
-  <button class="big" id="ttsPlay" aria-label="Lecture / pause">⏸</button>
-  <button id="ttsPrev" aria-label="Verset précédent">⏮</button>
-  <button id="ttsNext" aria-label="Verset suivant">⏭</button>
-  <select id="ttsRate" aria-label="Vitesse"><option value="0.75">Lent</option><option value="0.9">Posé</option><option value="1" selected>Normal</option><option value="1.2">Rapide</option><option value="1.5">Très rapide</option></select>
-  <select id="ttsVoice" aria-label="Voix"></select>
-  <button id="ttsStop" aria-label="Arrêter">✕</button>
-</div>
 <div class="selbar" id="selbar" hidden>
   <div class="selrow"><b id="selcount"></b><button class="selx" id="selclose" aria-label="Annuler">✕</button></div>
   <div class="selrow">
@@ -2210,7 +2192,7 @@ function viewRead(g,idx){
   curNote={en:b.en,c:it.c,title};
   document.getElementById("noteOpen").onclick=openNotes;
   document.getElementById("noteEdit2").onclick=openNotes;
-  document.getElementById("ttsOpen").onclick=()=>ttsStart(null);
+  document.getElementById("ttsOpen").onclick=()=>{if(typeof ttsStart==="function")ttsStart(null);else toast("La voix se charge, réessaie dans un instant.");};
   renderPeres(b,it.c);
   renderCompris(b,it);
   app.querySelectorAll(".pillbtn").forEach(p=>p.onclick=()=>{state.orig=p.dataset.m==="1";save();app.querySelectorAll(".pillbtn").forEach(q=>q.classList.toggle("on",q===p));render();});
@@ -2718,56 +2700,7 @@ function renderCompris(b,it){
   const del=document.getElementById("compDel");
   if(del) del.onclick=()=>confirmBox("Effacer ce que tu as écrit ?","Ton texte pour ce chapitre sera supprimé.",()=>{delete state.compris[k];save();renderCompris(b,it);toast("Effacé");});
 }
-// ---------- Lecture à voix haute ----------
-const TTS={on:false,playing:false,i:0,chunks:[],ci:0,list:[],gen:0};
-const ttsOK=()=>"speechSynthesis" in window&&typeof SpeechSynthesisUtterance!=="undefined";
-function frVoices(){if(!ttsOK())return[];const v=speechSynthesis.getVoices();const fr=v.filter(x=>/^fr/i.test(x.lang));return fr.length?fr:v;}
-function fillVoices(){const s=document.getElementById("ttsVoice");if(!s)return;const vs=frVoices();
-  s.innerHTML=vs.length?vs.map(v=>`<option value="${esc(v.voiceURI)}">${esc(v.name.replace(/Microsoft |Google |\(.*?\)/g,"").trim()||v.name)}${v.localService?"":" (internet)"}</option>`).join(""):'<option value="">Voix par défaut</option>';
-  const pref=state.ttsVoice&&vs.find(v=>v.voiceURI===state.ttsVoice)||vs.find(v=>v.localService&&/fr-FR/i.test(v.lang))||vs.find(v=>/fr-FR/i.test(v.lang))||vs[0];
-  if(pref) s.value=pref.voiceURI;}
-if(ttsOK()){fillVoices();speechSynthesis.onvoiceschanged=fillVoices;}
-document.getElementById("ttsRate").value=String(state.ttsRate||1);
-function ttsSplit(t){t=t.replace(/\s+/g," ").trim();const out=[];let cur="";
-  for(const s of t.split(/(?<=[.;:!?])\s+/)){if((cur+" "+s).length>220&&cur){out.push(cur);cur=s;}else cur=cur?cur+" "+s:s;}
-  if(cur)out.push(cur);
-  return out.flatMap(c=>c.length<=260?[c]:c.match(/.{1,240}(\s|$)/g));}
-function ttsMark(){document.querySelectorAll("#rt p.speaking").forEach(p=>p.classList.remove("speaking"));
-  const v=TTS.list[TTS.i];if(v==null)return;const p=document.querySelector(`#rt p[data-v="${v}"]`);
-  if(p){p.classList.add("speaking");const r=p.getBoundingClientRect();if(r.top<80||r.bottom>innerHeight-140)p.scrollIntoView({block:"center",behavior:"smooth"});}
-  const b=curRead&&curRead.b;document.getElementById("ttsLbl").textContent="🔊 "+(b?(b.ch.length===1?b.name:b.name+" "+curRead.c):"")+" · verset "+v+" / "+TTS.list[TTS.list.length-1];}
-function ttsSpeakCur(){
-  if(!TTS.on||!TTS.playing)return;
-  const gen=++TTS.gen;
-  if(TTS.i>=TTS.list.length){ttsEnd();return;}
-  if(TTS.ci===0){TTS.chunks=ttsSplit(verseText(TTS.list[TTS.i]));ttsMark();}
-  const u=new SpeechSynthesisUtterance(TTS.chunks[TTS.ci]||" ");
-  const vs=frVoices(),vv=vs.find(v=>v.voiceURI===document.getElementById("ttsVoice").value);
-  if(vv){u.voice=vv;u.lang=vv.lang;}else u.lang="fr-FR";
-  u.rate=+document.getElementById("ttsRate").value||1;
-  u.onend=()=>{if(gen!==TTS.gen)return;TTS.ci++;if(TTS.ci>=TTS.chunks.length){TTS.ci=0;TTS.i++;}ttsSpeakCur();};
-  u.onerror=e=>{if(gen!==TTS.gen)return;if(e.error==="interrupted"||e.error==="canceled")return;TTS.ci=0;TTS.i++;ttsSpeakCur();};
-  speechSynthesis.speak(u);
-}
-function ttsStart(fromVerse){
-  if(!ttsOK()){toast("La lecture à voix haute n'est pas disponible sur ce navigateur.");return;}
-  if(!curRead){toast("Attends que le texte soit chargé.");return;}
-  TTS.list=curRead.vs.map(v=>v[0]);TTS.i=Math.max(0,fromVerse!=null?TTS.list.indexOf(fromVerse):0);TTS.ci=0;
-  TTS.on=true;TTS.playing=true;document.getElementById("ttsbar").hidden=false;document.body.classList.add("tts-on");
-  document.getElementById("ttsPlay").textContent="⏸";speechSynthesis.cancel();setTimeout(ttsSpeakCur,60);
-}
-function ttsPause(){TTS.playing=false;TTS.gen++;speechSynthesis.cancel();TTS.ci=0;document.getElementById("ttsPlay").textContent="▶";}
-function ttsResume(){TTS.playing=true;document.getElementById("ttsPlay").textContent="⏸";ttsSpeakCur();}
-function ttsStop(){TTS.on=false;TTS.playing=false;TTS.gen++;if(ttsOK())speechSynthesis.cancel();document.getElementById("ttsbar").hidden=true;document.body.classList.remove("tts-on");document.querySelectorAll("#rt p.speaking").forEach(p=>p.classList.remove("speaking"));}
-function ttsEnd(){TTS.playing=false;document.getElementById("ttsPlay").textContent="▶";document.querySelectorAll("#rt p.speaking").forEach(p=>p.classList.remove("speaking"));document.getElementById("ttsLbl").textContent="✓ Chapitre lu en entier";TTS.i=0;}
-function ttsJump(d){if(!TTS.on)return;TTS.gen++;speechSynthesis.cancel();TTS.i=Math.min(Math.max(0,TTS.i+d),TTS.list.length-1);TTS.ci=0;if(TTS.playing)setTimeout(ttsSpeakCur,60);else ttsMark();}
-document.getElementById("ttsPlay").onclick=()=>TTS.playing?ttsPause():ttsResume();
-document.getElementById("ttsPrev").onclick=()=>ttsJump(-1);
-document.getElementById("ttsNext").onclick=()=>ttsJump(1);
-document.getElementById("ttsStop").onclick=ttsStop;
-document.getElementById("ttsRate").onchange=e=>{state.ttsRate=+e.target.value;save();if(TTS.playing){TTS.gen++;speechSynthesis.cancel();TTS.ci=0;setTimeout(ttsSpeakCur,60);}};
-document.getElementById("ttsVoice").onchange=e=>{state.ttsVoice=e.target.value;save();if(TTS.playing){TTS.gen++;speechSynthesis.cancel();TTS.ci=0;setTimeout(ttsSpeakCur,60);}};
-document.getElementById("selspeak").onclick=()=>{const vv=[...sel].sort((x,y)=>x-y);clearSel();ttsStart(vv[0]);};
+// ---------- Lecture à voix haute : voir le fichier voix.js ----------
 // ---------- Notes de chapitre (écrire sur le côté) ----------
 let curNote=null, noteTimer=null;
 function cnote(en,c){return ((state.cnotes||{})[en+"|"+c]||{}).t||"";}
@@ -3110,7 +3043,7 @@ async function offlineCard(){
 async function downloadAll(){
   const btn=document.getElementById("dlBtn"),bar=document.getElementById("dlBar"),txt=document.getElementById("dlTxt");
   btn.disabled=true;btn.textContent="Téléchargement en cours…";bar.style.display="block";
-  const files=["./","index.html","manifest.json","logo.svg","favicon-32.png","apple-touch-icon.png","logo-192.png","logo-512.png"].concat(FONT_FILES.map(f=>""+f+".woff2")).concat([DATA_PREFIX+"peres.json"]).concat(bookFiles());
+  const files=["./","index.html","manifest.json","logo.svg","favicon-32.png","apple-touch-icon.png","logo-192.png","logo-512.png"].concat(FONT_FILES.map(f=>""+f+".woff2")).concat(["voix.js",DATA_PREFIX+"peres.json"]).concat(bookFiles());
   let ok=0,fail=0;
   try{
     const c=await caches.open(OFF_CACHE);
@@ -3147,5 +3080,6 @@ window.addEventListener("hashchange",route);
 route();
 if(!state.onboarded) showOnb();
 </script>
+<script src="voix.js"></script>
 </body>
 </html>
