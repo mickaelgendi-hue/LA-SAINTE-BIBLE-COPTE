@@ -20,6 +20,28 @@
 @font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;font-display:swap;src:url(atkinson-hyperlegible-latin-400-normal.woff2) format('woff2')}
 @font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url(nunito-latin-400-normal.woff2) format('woff2')}
 @font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:400;font-display:swap;src:url(opendyslexic-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:normal;font-weight:400;font-display:swap;src:url(crimson-pro-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Libre Baskerville';font-style:normal;font-weight:400;font-display:swap;src:url(libre-baskerville-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Spectral';font-style:normal;font-weight:400;font-display:swap;src:url(spectral-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Alegreya';font-style:normal;font-weight:400;font-display:swap;src:url(alegreya-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400;font-display:swap;src:url(playfair-display-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:400;font-display:swap;src:url(cinzel-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'IM Fell English';font-style:normal;font-weight:400;font-display:swap;src:url(im-fell-english-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'UnifrakturMaguntia';font-style:normal;font-weight:400;font-display:swap;src:url(unifrakturmaguntia-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-display:swap;src:url(open-sans-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;font-display:swap;src:url(montserrat-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Raleway';font-style:normal;font-weight:400;font-display:swap;src:url(raleway-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Quicksand';font-style:normal;font-weight:400;font-display:swap;src:url(quicksand-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Lexend';font-style:normal;font-weight:400;font-display:swap;src:url(lexend-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Comic Neue';font-style:normal;font-weight:400;font-display:swap;src:url(comic-neue-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Dancing Script';font-style:normal;font-weight:400;font-display:swap;src:url(dancing-script-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Satisfy';font-style:normal;font-weight:400;font-display:swap;src:url(satisfy-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Caveat';font-style:normal;font-weight:400;font-display:swap;src:url(caveat-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Kalam';font-style:normal;font-weight:400;font-display:swap;src:url(kalam-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Patrick Hand';font-style:normal;font-weight:400;font-display:swap;src:url(patrick-hand-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Indie Flower';font-style:normal;font-weight:400;font-display:swap;src:url(indie-flower-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:400;font-display:swap;src:url(courier-prime-latin-400-normal.woff2) format('woff2')}
 @font-face{font-family:'Merriweather';font-style:normal;font-weight:400;font-display:swap;src:url(merriweather-latin-400-normal.woff2) format('woff2')}
 :root{
   --bg:#f6efe2; --paper:#fffaf1; --ink:#2b1d14; --muted:#7a6656; --line:#e6d9c3;
@@ -126,12 +148,18 @@ h3{font-size:22px}
 .glossbox b{font-family:var(--serif);font-size:22px;color:var(--wine2)}
 .glossbox p{margin:4px 0 0;font-size:16px}
 .glossbox .selx{position:absolute;right:8px;top:8px}
-.notebtn{border:1.5px solid var(--gold2);background:#fff;color:var(--wine);font:600 13px var(--sans);padding:6px 12px;border-radius:999px;cursor:pointer;margin-right:auto}
+.notebtn{border:1.5px solid var(--gold2);background:#fff;color:var(--wine);font:600 13px var(--sans);padding:6px 12px;border-radius:999px;cursor:pointer}
+#noteOpen{margin-right:0}
 .notebtn.has{background:#f7ecda;border-color:var(--gold)}
 .notecard{border-left:4px solid var(--gold)}
 .notecard .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 .notecard p{white-space:pre-wrap;font-family:var(--serif);font-size:18px;margin:6px 0 10px}
-.notepanel{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--paper);border-left:2px solid var(--gold2);box-shadow:-12px 0 30px -12px rgba(60,20,10,.45);z-index:40;display:flex;flex-direction:column;padding:16px;transform:translateX(105%);transition:transform .25s ease}
+:root{--npw:clamp(172px,40vw,400px)}
+.notepanel{position:fixed;top:0;right:0;height:100%;height:100dvh;width:var(--npw);background:#fbf6ec;border-left:2px solid var(--gold2);box-shadow:-6px 0 18px -14px rgba(60,20,10,.5);z-index:40;display:flex;flex-direction:column;padding:12px;transform:translateX(105%);transition:transform .25s ease}
+#app{transition:margin .25s ease}
+body.notes-on #app{margin-right:var(--npw);margin-left:max(0px,calc((100vw - var(--npw) - 720px)/2))}
+body.notes-on .selbar{left:calc((100vw - var(--npw))/2);width:min(560px,calc(100vw - var(--npw) - 16px))}
+@media (max-width:640px){body.notes-on #app{padding:0 10px 90px}body.notes-on .nphead b{font-size:17px}body.notes-on .notepanel textarea{font-size:15px;padding:8px}.npfoot{flex-wrap:wrap}.npfoot .btn{padding:8px 10px;font-size:13px}}
 .notepanel.open{transform:none}
 .nphead{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .nphead .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
@@ -141,7 +169,7 @@ h3{font-size:22px}
 .npfoot span{margin-right:auto}
 .selbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(560px,calc(100% - 20px));background:var(--paper);border:1.5px solid var(--gold2);border-radius:16px;box-shadow:0 10px 30px -10px rgba(60,20,10,.45);padding:10px 12px;z-index:25}
 .selbar[hidden]{display:none}
-.selrow{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.selrow{display:flex;align-items:center;gap:8px;justify-content:space-between;flex-wrap:wrap}
 .selrow+.selrow{margin-top:8px}
 .selx{border:0;background:none;font-size:18px;color:var(--muted);cursor:pointer}
 .selbtn{border:1.5px solid var(--gold2);background:#fff;color:var(--wine2);font:600 14px var(--sans);padding:8px 10px;border-radius:10px;cursor:pointer}
@@ -180,6 +208,64 @@ details summary{cursor:pointer;font-weight:600;color:var(--wine)}
 .toast.on{opacity:1;transform:translateX(-50%)}
 footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 @media (max-width:480px){h1{font-size:29px}.nav a{padding:6px 8px;font-size:13px}.brand span{display:none}}
+.fgrp{font-weight:600;color:var(--gold,#b08d57);margin:16px 0 6px;font-size:.95rem;letter-spacing:.02em}
+
+.ttsbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(560px,calc(100% - 20px));background:var(--wine2,#5a1a1a);color:#fff;border-radius:16px;box-shadow:0 10px 30px -10px rgba(60,20,10,.55);padding:10px 12px;z-index:26;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ttsbar[hidden]{display:none}
+.ttsbar button{border:0;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font:600 14px var(--sans);padding:8px 12px;cursor:pointer}
+.ttsbar button.big{background:#fff;color:var(--wine2,#5a1a1a);min-width:44px}
+.ttsbar select{border-radius:10px;border:0;padding:6px;font:13px var(--sans);max-width:150px}
+.ttsbar .tl{flex:1 1 100%;font:13px var(--sans);opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#rt p.speaking{background:rgba(176,141,87,.22);border-radius:8px;box-shadow:0 0 0 4px rgba(176,141,87,.22)}
+body.tts-on .wrap{padding-bottom:200px}
+body.notes-on .ttsbar{left:calc((100vw - var(--npw))/2);width:min(560px,calc(100vw - var(--npw) - 16px))}
+
+.peres{border-left:4px solid var(--wine,#7a1f1f)}
+.peres .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine,#7a1f1f)}
+.peres .pq{margin:12px 0 4px;padding:0 0 0 12px;border-left:2px solid var(--gold2);font-family:var(--readfont,var(--serif));font-size:calc(var(--readsize,20px) * .9);line-height:1.5;font-style:italic}
+.peres .pa{margin:0;font-size:14px;font-family:var(--sans)}
+.peres .pa span{color:var(--muted)}
+.peres .pa small{color:var(--muted)}
+.peres a{color:var(--wine,#7a1f1f)}
+.copte-badge{display:inline-block;margin:6px 0 2px;padding:5px 12px;border-radius:999px;background:#f7ecda;border:1.5px solid var(--gold2);color:var(--wine,#7a1f1f);font:700 13px var(--sans);letter-spacing:.02em}
+
+.compris{border-left:4px solid var(--gold)}
+.compris .k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.compris textarea{width:100%;box-sizing:border-box;font:16px/1.5 var(--sans);padding:10px;border-radius:12px;border:1.5px solid var(--gold2);background:#fff;color:var(--ink);resize:vertical}
+.cf{margin-top:12px;padding:12px;border-radius:12px;background:#fbf6ec;font-family:var(--sans);font-size:15px;line-height:1.5}
+.cf ul{margin:4px 0 8px;padding-left:20px}
+.cf .cf-open{font-weight:700;color:var(--wine,#7a1f1f);margin:0 0 6px}
+.cf .cf-k{font-weight:700;margin:10px 0 2px}
+.cf .cf-end{color:var(--muted);font-size:14px;margin:10px 0 0}
+
+.onb{position:fixed;inset:0;z-index:80;background:rgba(40,20,10,.55);display:flex;align-items:center;justify-content:center;padding:12px}
+.onb[hidden]{display:none}
+.onb-card{background:var(--paper);border-radius:22px;width:min(520px,100%);max-height:calc(100dvh - 24px);display:flex;flex-direction:column;box-shadow:0 20px 50px -20px rgba(40,10,5,.7);border:1.5px solid var(--gold2)}
+.onb-body{overflow:auto;padding:6px 20px 10px;font-family:var(--sans)}
+.onb-body h2{font-family:var(--serif);color:var(--wine2,#5a1a1a);margin:6px 0 8px;font-size:26px}
+.onb-body p{margin:6px 0}
+.onb-dots{display:flex;gap:6px;justify-content:center;padding:14px 0 4px}
+.onb-dots i{width:8px;height:8px;border-radius:50%;background:var(--gold2);opacity:.45}
+.onb-dots i.on{opacity:1;background:var(--wine,#7a1f1f);width:22px;border-radius:5px}
+.onb-foot{display:flex;align-items:center;gap:8px;padding:10px 16px 16px;border-top:1px solid rgba(176,141,87,.3)}
+.onb-skip{margin-right:auto;background:none;border:0;color:var(--muted);font:600 14px var(--sans);cursor:pointer;padding:8px}
+.onb-opts{display:grid;gap:8px;margin:10px 0}
+.onb-opt{text-align:left;border:1.5px solid var(--gold2);background:#fff;border-radius:14px;padding:10px 12px;font:15px var(--sans);color:var(--ink);cursor:pointer}
+.onb-opt b{display:block;font-size:16px}
+.onb-opt small{color:var(--muted)}
+.onb-opt.on{border-color:var(--wine,#7a1f1f);background:#f7ecda;box-shadow:0 0 0 2px var(--wine,#7a1f1f) inset}
+.onb-feat{list-style:none;padding:0;margin:8px 0}
+.onb-feat li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed rgba(176,141,87,.35)}
+.onb-feat li span{font-size:22px;line-height:1.2;min-width:28px;text-align:center}
+.onb-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.onb-row .onb-opt{flex:1 1 auto;text-align:center}
+.onb-prev{border:1.5px dashed var(--gold2);border-radius:12px;padding:10px 12px;margin:8px 0;background:#fffdf8}
+.onb-fonts{max-height:min(46vh,340px);overflow:auto;border:1.5px solid rgba(176,141,87,.35);border-radius:14px;padding:4px 8px 8px;margin:8px 0;background:#fffdf8;-webkit-overflow-scrolling:touch}
+.onb-fonts .fgrp{margin:12px 2px 6px}
+.onb-font{display:block;width:100%;margin:0 0 8px}
+.onb-font small{display:block;margin-bottom:3px}
+.onb-font span{display:block;font-size:19px;line-height:1.35;color:var(--ink)}
+.onb-row .onb-opt[data-os]{flex:1 1 0;min-width:0;padding:9px 4px;font-size:14px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -193,15 +279,27 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 <aside class="notepanel" id="notepanel" aria-label="Mes notes">
   <div class="nphead"><div><div class="k">📝 Mes notes</div><b id="noteTitle"></b></div><button class="selx" id="noteClose" aria-label="Fermer">✕</button></div>
   <textarea id="noteTa" placeholder="Écris ici ce que tu retiens de ce chapitre, une prière, une question à poser à ton abouna…"></textarea>
-  <div class="npfoot"><span class="small muted" id="noteSaved"></span><button class="btn ghost" id="noteDel">Effacer</button><button class="btn main" style="width:auto" onclick="closeNotes()">Terminé</button></div>
+  <div class="npfoot"><span class="small muted" id="noteSaved"></span><button class="btn ghost" id="noteDel">Effacer</button><button class="btn main" style="width:auto" onclick="closeNotes()">Fermer</button></div>
 </aside>
+<div class="onb" id="onb" hidden><div class="onb-card" role="dialog" aria-modal="true" aria-label="Bienvenue"><div class="onb-dots" id="onbDots"></div><div class="onb-body" id="onbBody"></div><div class="onb-foot"><button class="btn ghost" id="onbBack" style="width:auto">← Retour</button><button class="onb-skip" id="onbSkip">Passer</button><button class="btn main" id="onbNext" style="width:auto">Suivant →</button></div></div></div>
 <div class="glossbox" id="gloss" hidden><button class="selx" aria-label="Fermer" onclick="hideGloss()">✕</button><b></b><p></p></div>
+<div class="ttsbar" id="ttsbar" hidden>
+  <div class="tl" id="ttsLbl">🔊 Lecture à voix haute</div>
+  <button class="big" id="ttsPlay" aria-label="Lecture / pause">⏸</button>
+  <button id="ttsPrev" aria-label="Verset précédent">⏮</button>
+  <button id="ttsNext" aria-label="Verset suivant">⏭</button>
+  <select id="ttsRate" aria-label="Vitesse"><option value="0.75">Lent</option><option value="0.9">Posé</option><option value="1" selected>Normal</option><option value="1.2">Rapide</option><option value="1.5">Très rapide</option></select>
+  <select id="ttsVoice" aria-label="Voix"></select>
+  <button id="ttsStop" aria-label="Arrêter">✕</button>
+</div>
 <div class="selbar" id="selbar" hidden>
   <div class="selrow"><b id="selcount"></b><button class="selx" id="selclose" aria-label="Annuler">✕</button></div>
   <div class="selrow">
     <button class="selbtn" id="selfav">❤️ Enregistrer</button>
     <span class="dots"><button class="dot-c hl-yellow" data-c="yellow" aria-label="Jaune"></button><button class="dot-c hl-green" data-c="green" aria-label="Vert"></button><button class="dot-c hl-blue" data-c="blue" aria-label="Bleu"></button><button class="dot-c hl-pink" data-c="pink" aria-label="Rose"></button><button class="dot-c dot-none" data-c="" aria-label="Enlever le surlignage">⌫</button></span>
     <button class="selbtn" id="selcopy">Copier</button>
+    <button class="selbtn" id="selnote">📝 Noter</button>
+    <button class="selbtn" id="selspeak">🔊 Écouter</button>
   </div>
 </div>
 <script>
@@ -1988,7 +2086,8 @@ function viewHome(){
   <section class="hero">
     <img class="cross" src="logo.svg" alt="La Sainte Bible copte" style="width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px -10px rgba(80,20,20,.5)">
     <h1>Lire toute la Bible</h1>
-    <p class="muted">${SECTIONS.length} étapes, ${DAYS.length} jours, ${TOTAL_CH} chapitres. Chaque livre et chaque chapitre est expliqué avant ta lecture, et tu lis le texte directement ici : la Septante pour l'Ancien Testament, la Louis Segond pour le Nouveau.</p>
+    <p class="copte-badge">✠ La Bible de l'Église copte orthodoxe</p>
+    <p class="muted">La Bible complète des coptes, la plus adaptée pour nous : tous ses livres (Tobie, Judith, Sagesse, Siracide, Baruch, les Maccabées, Psaume 151…) et les Psaumes numérotés comme dans l'Agpeya. ${SECTIONS.length} étapes, ${TOTAL_CH} chapitres. Chaque livre et chaque chapitre est expliqué avant ta lecture, et tu lis le texte directement ici : la Septante pour l'Ancien Testament, la Louis Segond pour le Nouveau.</p>
   </section>
   <div class="card">
     <div class="stat"><span class="muted">Ta progression</span><b>${Math.round(readCh/TOTAL_CH*100)} %</b></div>
@@ -2002,11 +2101,12 @@ function viewHome(){
     <span class="btn main">${started?"Lire la suite":"Commencer le jour 1"}</span>
   </div></a>
   <div class="pager" style="margin-top:4px"><a class="btn ghost" href="#recherche">🔍 Rechercher</a><a class="btn ghost" href="#favoris">❤️ Mes versets${(state.favs||[]).length?" ("+state.favs.length+")":""}</a></div>
+  <div class="card remhome" id="remHome">${remHomeHTML()}</div>
   <div class="card"><h3 style="margin:0 0 8px">📴 Lire sans connexion</h3><div id="offbox"></div></div>
   <h2 style="margin:26px 0 4px">Les ${SECTIONS.length} étapes</h2>
   <div class="steps">${SECTIONS.map(stepCard).join("")}</div>
   <footer>Prends ton temps : mieux vaut un chapitre compris que quatre survolés.</footer>`;
-  offlineCard();
+  offlineCard(); bindRemHome();
 }
 function stepCard(s){
   const days=DAYS.filter(d=>d.si===s.n-1), r=days.reduce((a,d)=>a+dayCount(d),0), full=r===s.total;
@@ -2086,9 +2186,11 @@ function viewRead(g,idx){
   if(d.local===1&&idx===0) html+=`<div class="card sec-intro"><div class="k">Nouvelle étape · ${s.n} sur ${SECTIONS.length}</div><h2 style="margin:4px 0 8px">${esc(s.title)}</h2><p style="margin:0 0 6px"><b>${esc(s.theme)}</b></p><p style="margin:0">${esc(s.intro)}</p></div>`;
   if(it.c===1) html+=bookCard(b);
   html+=`<div class="card"><div class="lbl" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">Ce qui va se passer</div><p style="margin:4px 0 0">${esc(it.text)}</p></div>
-  <div class="modebar"><button class="notebtn${cnote(b.en,it.c)?" has":""}" id="noteOpen" aria-label="Mes notes">📝 Notes</button><button class="pillbtn ${isOrig()?"on":""}" data-m="1">Texte d'origine</button><button class="pillbtn ${isOrig()?"":"on"}" data-m="0">Mots d'aujourd'hui</button></div>
+  <div class="modebar"><button class="notebtn${cnote(b.en,it.c)?" has":""}" id="noteOpen" aria-label="Mes notes">📝 Notes</button><button class="notebtn" id="ttsOpen" aria-label="Écouter le chapitre" style="margin-right:auto;margin-left:6px">🔊 Écouter</button><button class="pillbtn ${isOrig()?"on":""}" data-m="1">Texte d'origine</button><button class="pillbtn ${isOrig()?"":"on"}" data-m="0">Mots d'aujourd'hui</button></div>
   <p class="small muted" style="margin:6px 0 0">Touche un mot <span class="gw">souligné</span> pour voir son explication.</p>
   <div class="text" id="rt"><p class="muted small" style="font-family:var(--sans)">Chargement…</p></div>
+  <div class="card peres" id="peres"><div class="k">✠ Ce qu'en disent les Pères de l'Église</div><p class="small muted" style="margin:6px 0 0">Chargement…</p></div>
+  <div class="card compris" id="compris"></div>
   <div class="card notecard" id="notePrev" ${cnote(b.en,it.c)?"":"hidden"}><div class="k">📝 Ma note sur ${esc(title)}</div><p id="notePrevT">${esc(cnote(b.en,it.c))}</p><button class="btn ghost" id="noteEdit2">Modifier</button></div>
   <button class="btn main" id="nextBtn" style="margin-top:14px">${nextIt?`✓ Lu · Chapitre suivant : ${esc(nextLbl)} →`:"✓ J'ai fini toute la Bible !"}</button>
   ${isLast&&nd?`<p class="small muted" style="text-align:center;margin:6px 0 0">C'est le dernier chapitre du jour ${g}. Le suivant commence le jour ${g+1}.</p>`:""}
@@ -2108,9 +2210,12 @@ function viewRead(g,idx){
   curNote={en:b.en,c:it.c,title};
   document.getElementById("noteOpen").onclick=openNotes;
   document.getElementById("noteEdit2").onclick=openNotes;
+  document.getElementById("ttsOpen").onclick=()=>ttsStart(null);
+  renderPeres(b,it.c);
+  renderCompris(b,it);
   app.querySelectorAll(".pillbtn").forEach(p=>p.onclick=()=>{state.orig=p.dataset.m==="1";save();app.querySelectorAll(".pillbtn").forEach(q=>q.classList.toggle("on",q===p));render();});
   document.getElementById("nextBtn").onclick=()=>{
-    const k=ck(it); state.read[k]=1; save();
+    const k=ck(it); state.read[k]=1; state.lastRead=localDay(); save();
     if(isLast&&dayDone(d)) toast(d.local===s.days?`Étape ${s.n} terminée ! Bravo 🙏`:`Jour ${g} terminé, que Dieu te bénisse 🙏`);
     if(!nextIt){toast("🎉 Tu as lu toute la Bible ! Gloire à Dieu !");}
     location.hash=nextHref.slice(1);
@@ -2130,6 +2235,15 @@ function bookCard(b){
 function viewGuide(){
   setNav("guide");
   app.innerHTML=`<div class="dayhead"><h1>Guide</h1></div>
+  <div class="card guide" style="text-align:center"><button class="btn main" onclick="showOnb()">👋 Revoir la présentation de départ</button></div>
+  <div class="card guide"><h2>Nouveautés</h2>
+  <ul><li><b>✠ Ce qu'en disent les Pères</b> : sous chaque chapitre, une courte explication d'un Père de l'Église (saint Cyrille d'Alexandrie, saint Athanase, saint Éphrem, saint Jean Chrysostome, les Pères du désert…), avec son nom et la source. Il y en a pour environ 1 130 chapitres sur 1 329. Touche « sur le verset… » pour aller au verset.</li>
+  <li>Ces textes viennent de traductions anciennes libres de droits. Les livres du <b>pape Chenouda III</b> sont encore protégés par le droit d'auteur et on ne peut pas vérifier une citation de lui pour chaque chapitre : l'app n'invente donc aucune citation. Pour lire le pape Chenouda, demande ses livres à ton église.</li>
+  <li><b>🔊 Écouter</b> : une voix lit le chapitre à voix haute, verset par verset (le verset lu est surligné). Tu peux choisir la vitesse et la voix. Pour écouter un seul passage, touche un verset puis « 🔊 Écouter ».</li>
+  <li><b>📝 Notes</b> : la feuille de notes s'ouvre maintenant sur le côté droit, le long du texte, sans le cacher. Touche un verset puis « 📝 Noter » pour écrire sur ce verset.</li>
+  <li><b>⏰ Rappel</b> : directement sur l'accueil (ou dans Paramètres), choisis une heure. Le rappel du calendrier sonne même quand l'app est fermée ; la notification de l'app marche quand elle est ouverte ou en arrière-plan.</li>
+  <li><b>💭 Ce que j'ai compris</b> : à la fin de chaque chapitre, si tu veux, écris avec tes mots ce que tu as compris. L'app te montre ce que tu as bien retenu et ce qui peut compléter, sans jamais juger. Ça marche sans internet.</li>
+  <li><b>Polices</b> : 30 polices, rangées par genre (livres, anciennes, modernes, faciles à lire, manuscrites).</li></ul></div>
   <div class="card guide"><h2>Comment fonctionne l'app</h2>
   <ul><li>Chaque jour, ouvre le jour proposé sur l'accueil.</li>
   <li>L'ordre suit une logique : Jésus d'abord, puis la prière (Psaumes), ensuite l'histoire du peuple de Dieu dans l'ordre (de la Genèse à l'exil), puis les prophètes qui ont parlé pendant cette histoire, le retour d'exil, les livres propres à la Bible copte qui mènent jusqu'à Jésus, et enfin les dernières lettres et l'Apocalypse.</li>
@@ -2494,11 +2608,19 @@ function updSel(){
   const bar=document.getElementById("selbar");
   if(!sel.size||!curRead){bar.hidden=true;return;}
   bar.hidden=false;
+  const tb=document.getElementById("ttsbar"); bar.style.bottom=tb&&!tb.hidden?(tb.offsetHeight+22)+"px":"";
   document.getElementById("selcount").textContent=refLabel(curRead.b,curRead.c,sel);
   const allFav=[...sel].every(v=>isFav(curRead.b.en,curRead.c,v));
   document.getElementById("selfav").textContent=allFav?"💔 Retirer":"❤️ Enregistrer";
 }
 document.getElementById("selclose").onclick=clearSel;
+document.getElementById("selnote").onclick=()=>{
+  const vv=[...sel].sort((x,y)=>x-y); if(!vv.length) return;
+  const lab="v. "+refLabel(curRead.b,curRead.c,sel).split(", ").slice(1).join(", ");
+  clearSel(); openNotes();
+  const ta=document.getElementById("noteTa"); ta.value=(ta.value.trim()?ta.value.replace(/\s+$/,"")+"\n\n":"")+lab+" : ";
+  saveNoteNow(); setTimeout(()=>{ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);},260);
+};
 document.getElementById("selfav").onclick=()=>{
   const {b,c}=curRead, vv=[...sel].sort((x,y)=>x-y); state.favs=state.favs||[];
   const allFav=vv.every(v=>isFav(b.en,c,v));
@@ -2539,6 +2661,113 @@ function viewFavs(){
   app.querySelectorAll("[data-dn]").forEach(x=>x.onclick=()=>confirmBox("Supprimer cette note ?","Le texte de ta note sera supprimé.",()=>{delete state.cnotes[x.dataset.dn];save();viewFavs();}));
   app.querySelectorAll("[data-del]").forEach(bn=>bn.onclick=()=>confirmBox("Supprimer ce passage ?","Il sera retiré de « Mes versets ».",()=>{state.favs=favs.filter(x=>x.id!=bn.dataset.del);save();viewFavs();}));
 }
+
+
+// ---------- Commentaires des Pères ----------
+let peresP=null;
+function getPeres(){const url=DATA_PREFIX+"peres.json";
+  if(!peresP) peresP=fetch(url).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
+    .catch(async e=>{try{const c=await caches.open(OFF_CACHE);const r=await c.match(url);if(r)return r.json();}catch(_){} peresP=null; throw e;});
+  return peresP;}
+function renderPeres(b,c){
+  const box=document.getElementById("peres");if(!box)return;
+  getPeres().then(P=>{
+    const k=b.en.toLowerCase().replace(/ /g,"-")+"|"+c, L=P.c[k]||[];
+    if(!L.length){box.innerHTML=`<div class="k">✠ Ce qu'en disent les Pères de l'Église</div><p class="small muted" style="margin:6px 0 0">Pour ce chapitre, nous n'avons pas trouvé de courte explication d'un Père de l'Église dans les textes anciens libres de droits. Relis le résumé en haut de la page, et n'hésite pas à poser tes questions à ton abouna.</p>`;return;}
+    box.innerHTML=`<div class="k">✠ Ce qu'en disent les Pères de l'Église</div>`+L.map(e=>{const au=P.auteurs[e.a]||[e.a,""];
+      const ref=e.v?`<a href="#" class="pv" data-v="${e.v}">sur le verset ${e.v}</a>`:(e.h?`<span>sur ${esc(e.h)}</span>`:"");
+      return `<blockquote class="pq">« ${esc(e.t.replace(/^«\s*|\s*»$/g,""))} »</blockquote><p class="pa"><b>${esc(au[0])}</b>${au[1]?`, <span>${esc(au[1])}</span>`:""}<br><small>${ref}${e.s?` · ${esc(e.s)}`:""}${e.u?` · <a href="${esc(e.u)}" target="_blank" rel="noopener">texte d'origine (anglais)</a>`:""}</small></p>`;}).join("")+
+      `<p class="small muted" style="margin:10px 0 0">Traduit en français à partir de traductions anglaises libres de droits. Les mots entre parenthèses sont de petites précisions ajoutées pour aider à comprendre.</p>`;
+    box.querySelectorAll(".pv").forEach(x=>x.onclick=ev=>{ev.preventDefault();const p=document.querySelector(`#rt p[data-v="${x.dataset.v}"]`);if(p){p.scrollIntoView({block:"center",behavior:"smooth"});p.classList.remove("flash");void p.offsetWidth;p.classList.add("flash");}});
+  }).catch(()=>{box.innerHTML=`<div class="k">✠ Ce qu'en disent les Pères de l'Église</div><p class="small muted" style="margin:6px 0 0">Les explications des Pères n'ont pas pu se charger. Vérifie ta connexion, ou télécharge toute la Bible depuis l'accueil pour les avoir sans internet.</p>`;});
+}
+
+// ---------- Ce que j'ai compris (aide bienveillante, sans connexion) ----------
+const C_STOP=new Set("avec dans pour sans sous vers chez entre contre depuis pendant avant apres alors aussi ainsi donc mais comme quand tout tous toute toutes cette celui celle ceux elles leur leurs nous vous ils elle sont etait etre avoir fait faire dont plus tres bien encore meme autre autres quelle quel quels quoi parce chaque leurs notre votre mes tes ses une des les aux du de la le et ou en un se sa son ce qui que ne pas par sur est ont a il y on je tu lui eux cela ceci peu deux trois puis fois jour jours chapitre livre dieu seigneur".split(" "));
+const cNorm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’']/g," ");
+const cStem=w=>w.length>6?w.slice(0,6):w.replace(/(es|s|x|e)$/,"");
+const C_WEAK=new Set(["jesus","christ","israel","peuple","homme","hommes","fils","roi","grand","grande"]);
+function cKeys(s){const all=[...new Set(cNorm(s).split(/[^a-z0-9]+/).filter(w=>w.length>=4&&!C_STOP.has(w)))];const strong=all.filter(w=>!C_WEAK.has(w));return [...new Set((strong.length?strong:all).map(cStem))];}
+function cPoints(text){return text.replace(/\s*\([^)]*\)/g,"").split(/\s*[;:.!?]\s+|\s*;\s*|,\s+(?:puis|et|mais)\s+/).map(s=>s.trim().replace(/[.;:,]+$/,"")).filter(s=>s.length>8);}
+const C_OPEN=["Merci d'avoir pris ce temps pour écrire 🙏","C'est beau de mettre la Parole de Dieu dans tes propres mots 🙏","Merci pour ce que tu as écrit, chaque mot compte 🙏","Quelle bonne habitude d'écrire après ta lecture 🙏"];
+function comprisFeedback(user,it){
+  const pts=cPoints(it.text), uk=new Set(cKeys(user)), seen=[],more=[];
+  pts.forEach(p=>{const k=cKeys(p); const hit=k.filter(x=>uk.has(x)).length; (hit>0&&(hit>=Math.min(2,k.length)||hit/k.length>=.34)?seen:more).push(p);});
+  const words=user.trim().split(/\s+/).filter(Boolean).length, open=C_OPEN[(user.length+pts.length)%C_OPEN.length];
+  let h=`<p class="cf-open">${open}</p>`;
+  if(words<4) h+=`<p>Même une seule phrase, c'est déjà un vrai pas. Tu pourras en ajouter quand tu voudras.</p>`;
+  if(seen.length) h+=`<p class="cf-k">✓ Ce que tu as bien retenu</p><ul>${seen.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`;
+  if(more.length) h+=`<p class="cf-k">${seen.length?"➕ Pour compléter ce que tu as compris":"📖 Les points importants de ce chapitre, pour t'aider"}</p><ul>${more.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`;
+  if(!more.length&&seen.length) h+=`<p>Tu as retrouvé tous les points principaux du chapitre. Que Dieu bénisse ta lecture !</p>`;
+  h+=`<p class="cf-end">Tout ce que tu as compris personnellement compte aussi, même si ce n'est pas dans ce résumé : l'Esprit Saint parle à chacun. Chacun avance à son rythme. Si une question reste, garde-la pour ton abouna ou pour la prochaine lecture.</p>`;
+  return h;
+}
+function renderCompris(b,it){
+  const box=document.getElementById("compris");if(!box)return;
+  const k=b.en+"|"+it.c, saved=((state.compris||{})[k]||{}).t||"";
+  box.innerHTML=`<div class="k">💭 Ce que j'ai compris <span class="small muted" style="text-transform:none;letter-spacing:0;font-weight:400">(si tu veux)</span></div>
+  <p class="small muted" style="margin:6px 0 8px">Écris avec tes mots ce que tu as compris de ce chapitre. Il n'y a pas de bonne ou de mauvaise réponse : l'app t'aide simplement à compléter.</p>
+  <textarea id="compTa" rows="4" placeholder="Par exemple : Dieu crée le monde en six jours, et il voit que c'est bon…">${esc(saved)}</textarea>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn main" id="compGo" style="width:auto;flex:1">✨ M'aider à compléter</button>${saved?'<button class="btn ghost" id="compDel" style="width:auto">Effacer</button>':""}</div>
+  <div id="compFb" class="cf" ${saved?"":"hidden"}>${saved?comprisFeedback(saved,it):""}</div>`;
+  document.getElementById("compGo").onclick=()=>{
+    const t=document.getElementById("compTa").value.trim();
+    if(!t){toast("Écris quelques mots, même une phrase suffit 🙂");document.getElementById("compTa").focus();return;}
+    state.compris=state.compris||{};state.compris[k]={t,at:localDay()};save();
+    const fb=document.getElementById("compFb");fb.innerHTML=comprisFeedback(t,it);fb.hidden=false;fb.scrollIntoView({block:"nearest",behavior:"smooth"});};
+  const del=document.getElementById("compDel");
+  if(del) del.onclick=()=>confirmBox("Effacer ce que tu as écrit ?","Ton texte pour ce chapitre sera supprimé.",()=>{delete state.compris[k];save();renderCompris(b,it);toast("Effacé");});
+}
+// ---------- Lecture à voix haute ----------
+const TTS={on:false,playing:false,i:0,chunks:[],ci:0,list:[],gen:0};
+const ttsOK=()=>"speechSynthesis" in window&&typeof SpeechSynthesisUtterance!=="undefined";
+function frVoices(){if(!ttsOK())return[];const v=speechSynthesis.getVoices();const fr=v.filter(x=>/^fr/i.test(x.lang));return fr.length?fr:v;}
+function fillVoices(){const s=document.getElementById("ttsVoice");if(!s)return;const vs=frVoices();
+  s.innerHTML=vs.length?vs.map(v=>`<option value="${esc(v.voiceURI)}">${esc(v.name.replace(/Microsoft |Google |\(.*?\)/g,"").trim()||v.name)}${v.localService?"":" (internet)"}</option>`).join(""):'<option value="">Voix par défaut</option>';
+  const pref=state.ttsVoice&&vs.find(v=>v.voiceURI===state.ttsVoice)||vs.find(v=>v.localService&&/fr-FR/i.test(v.lang))||vs.find(v=>/fr-FR/i.test(v.lang))||vs[0];
+  if(pref) s.value=pref.voiceURI;}
+if(ttsOK()){fillVoices();speechSynthesis.onvoiceschanged=fillVoices;}
+document.getElementById("ttsRate").value=String(state.ttsRate||1);
+function ttsSplit(t){t=t.replace(/\s+/g," ").trim();const out=[];let cur="";
+  for(const s of t.split(/(?<=[.;:!?])\s+/)){if((cur+" "+s).length>220&&cur){out.push(cur);cur=s;}else cur=cur?cur+" "+s:s;}
+  if(cur)out.push(cur);
+  return out.flatMap(c=>c.length<=260?[c]:c.match(/.{1,240}(\s|$)/g));}
+function ttsMark(){document.querySelectorAll("#rt p.speaking").forEach(p=>p.classList.remove("speaking"));
+  const v=TTS.list[TTS.i];if(v==null)return;const p=document.querySelector(`#rt p[data-v="${v}"]`);
+  if(p){p.classList.add("speaking");const r=p.getBoundingClientRect();if(r.top<80||r.bottom>innerHeight-140)p.scrollIntoView({block:"center",behavior:"smooth"});}
+  const b=curRead&&curRead.b;document.getElementById("ttsLbl").textContent="🔊 "+(b?(b.ch.length===1?b.name:b.name+" "+curRead.c):"")+" · verset "+v+" / "+TTS.list[TTS.list.length-1];}
+function ttsSpeakCur(){
+  if(!TTS.on||!TTS.playing)return;
+  const gen=++TTS.gen;
+  if(TTS.i>=TTS.list.length){ttsEnd();return;}
+  if(TTS.ci===0){TTS.chunks=ttsSplit(verseText(TTS.list[TTS.i]));ttsMark();}
+  const u=new SpeechSynthesisUtterance(TTS.chunks[TTS.ci]||" ");
+  const vs=frVoices(),vv=vs.find(v=>v.voiceURI===document.getElementById("ttsVoice").value);
+  if(vv){u.voice=vv;u.lang=vv.lang;}else u.lang="fr-FR";
+  u.rate=+document.getElementById("ttsRate").value||1;
+  u.onend=()=>{if(gen!==TTS.gen)return;TTS.ci++;if(TTS.ci>=TTS.chunks.length){TTS.ci=0;TTS.i++;}ttsSpeakCur();};
+  u.onerror=e=>{if(gen!==TTS.gen)return;if(e.error==="interrupted"||e.error==="canceled")return;TTS.ci=0;TTS.i++;ttsSpeakCur();};
+  speechSynthesis.speak(u);
+}
+function ttsStart(fromVerse){
+  if(!ttsOK()){toast("La lecture à voix haute n'est pas disponible sur ce navigateur.");return;}
+  if(!curRead){toast("Attends que le texte soit chargé.");return;}
+  TTS.list=curRead.vs.map(v=>v[0]);TTS.i=Math.max(0,fromVerse!=null?TTS.list.indexOf(fromVerse):0);TTS.ci=0;
+  TTS.on=true;TTS.playing=true;document.getElementById("ttsbar").hidden=false;document.body.classList.add("tts-on");
+  document.getElementById("ttsPlay").textContent="⏸";speechSynthesis.cancel();setTimeout(ttsSpeakCur,60);
+}
+function ttsPause(){TTS.playing=false;TTS.gen++;speechSynthesis.cancel();TTS.ci=0;document.getElementById("ttsPlay").textContent="▶";}
+function ttsResume(){TTS.playing=true;document.getElementById("ttsPlay").textContent="⏸";ttsSpeakCur();}
+function ttsStop(){TTS.on=false;TTS.playing=false;TTS.gen++;if(ttsOK())speechSynthesis.cancel();document.getElementById("ttsbar").hidden=true;document.body.classList.remove("tts-on");document.querySelectorAll("#rt p.speaking").forEach(p=>p.classList.remove("speaking"));}
+function ttsEnd(){TTS.playing=false;document.getElementById("ttsPlay").textContent="▶";document.querySelectorAll("#rt p.speaking").forEach(p=>p.classList.remove("speaking"));document.getElementById("ttsLbl").textContent="✓ Chapitre lu en entier";TTS.i=0;}
+function ttsJump(d){if(!TTS.on)return;TTS.gen++;speechSynthesis.cancel();TTS.i=Math.min(Math.max(0,TTS.i+d),TTS.list.length-1);TTS.ci=0;if(TTS.playing)setTimeout(ttsSpeakCur,60);else ttsMark();}
+document.getElementById("ttsPlay").onclick=()=>TTS.playing?ttsPause():ttsResume();
+document.getElementById("ttsPrev").onclick=()=>ttsJump(-1);
+document.getElementById("ttsNext").onclick=()=>ttsJump(1);
+document.getElementById("ttsStop").onclick=ttsStop;
+document.getElementById("ttsRate").onchange=e=>{state.ttsRate=+e.target.value;save();if(TTS.playing){TTS.gen++;speechSynthesis.cancel();TTS.ci=0;setTimeout(ttsSpeakCur,60);}};
+document.getElementById("ttsVoice").onchange=e=>{state.ttsVoice=e.target.value;save();if(TTS.playing){TTS.gen++;speechSynthesis.cancel();TTS.ci=0;setTimeout(ttsSpeakCur,60);}};
+document.getElementById("selspeak").onclick=()=>{const vv=[...sel].sort((x,y)=>x-y);clearSel();ttsStart(vv[0]);};
 // ---------- Notes de chapitre (écrire sur le côté) ----------
 let curNote=null, noteTimer=null;
 function cnote(en,c){return ((state.cnotes||{})[en+"|"+c]||{}).t||"";}
@@ -2547,12 +2776,12 @@ function openNotes(){
   if(!curNote) return;
   const p=document.getElementById("notepanel"), ta=document.getElementById("noteTa");
   document.getElementById("noteTitle").textContent=curNote.title;
-  ta.value=cnote(curNote.en,curNote.c); p.classList.add("open"); document.getElementById("noteSaved").textContent="";
+  ta.value=cnote(curNote.en,curNote.c); p.classList.add("open"); document.body.classList.add("notes-on"); document.getElementById("noteSaved").textContent="";
   setTimeout(()=>ta.focus(),250);
 }
 function closeNotes(){
   const p=document.getElementById("notepanel"); if(!p.classList.contains("open")) return;
-  saveNoteNow(); p.classList.remove("open");
+  saveNoteNow(); p.classList.remove("open"); document.body.classList.remove("notes-on");
   const prev=document.getElementById("notePrev");
   if(prev&&curNote){const t=cnote(curNote.en,curNote.c); prev.hidden=!t; document.getElementById("notePrevT").textContent=t; document.getElementById("noteOpen").classList.toggle("has",!!t);}
 }
@@ -2630,9 +2859,10 @@ async function runSearch(q){
 function bindRef(ref){const a=document.getElementById("refgo");if(a&&ref) a.onclick=e=>{e.preventDefault();gotoVerse(ref.b.en,ref.c,ref.v);};
   const a2=document.getElementById("refgo2");if(a2&&ref) a2.onclick=e=>{e.preventDefault();gotoVerse(ref.b.en,ref.c-1,ref.v);};}
 // ---------- Paramètres ----------
-const FONTS={classique:{label:"Classique (Cormorant Garamond)",css:"'Cormorant Garamond',Georgia,serif"},livre:{label:"Livre ancien (EB Garamond)",css:"'EB Garamond',Georgia,serif"},
-  lora:{label:"Élégante (Lora)",css:"'Lora',Georgia,serif"},merri:{label:"Journal (Merriweather)",css:"'Merriweather',Georgia,serif"},moderne:{label:"Moderne (Source Sans)",css:"'Source Sans 3',system-ui,sans-serif"},
-  arrondie:{label:"Arrondie (Nunito)",css:"'Nunito',system-ui,sans-serif"},lisible:{label:"Très lisible (Atkinson Hyperlegible)",css:"'Atkinson Hyperlegible',system-ui,sans-serif"},dys:{label:"Spéciale dyslexie (OpenDyslexic)",css:"'OpenDyslexic',system-ui,sans-serif"}};
+const FONTS={classique:{label:"Classique (Cormorant Garamond)",css:"'Cormorant Garamond',Georgia,serif",g:"Livres & classiques"},livre:{label:"Livre ancien (EB Garamond)",css:"'EB Garamond',Georgia,serif",g:"Livres & classiques"},
+  lora:{label:"Élégante (Lora)",css:"'Lora',Georgia,serif",g:"Livres & classiques"},merri:{label:"Journal (Merriweather)",css:"'Merriweather',Georgia,serif",g:"Livres & classiques"},moderne:{label:"Moderne (Source Sans)",css:"'Source Sans 3',system-ui,sans-serif",g:"Modernes"},
+  arrondie:{label:"Arrondie (Nunito)",css:"'Nunito',system-ui,sans-serif",g:"Modernes"},lisible:{label:"Très lisible (Atkinson Hyperlegible)",css:"'Atkinson Hyperlegible',system-ui,sans-serif",g:"Lecture facile"},dys:{label:"Spéciale dyslexie (OpenDyslexic)",css:"'OpenDyslexic',system-ui,sans-serif",g:"Lecture facile"},crimson:{label:"Crimson Pro",css:"'Crimson Pro',Georgia,serif",g:"Livres & classiques"},basker:{label:"Baskerville",css:"'Libre Baskerville',Georgia,serif",g:"Livres & classiques"},spectral:{label:"Spectral",css:"'Spectral',Georgia,serif",g:"Livres & classiques"},alegreya:{label:"Alegreya",css:"'Alegreya',Georgia,serif",g:"Livres & classiques"},playfair:{label:"Prestige (Playfair)",css:"'Playfair Display',Georgia,serif",g:"Livres & classiques"},cinzel:{label:"Inscription romaine (Cinzel, majuscules)",css:"'Cinzel',Georgia,serif",g:"Anciennes & décoratives"},fell:{label:"Vieux livre imprimé (IM Fell)",css:"'IM Fell English',Georgia,serif",g:"Anciennes & décoratives"},gothique:{label:"Gothique (UnifrakturMaguntia)",css:"'UnifrakturMaguntia',Georgia,serif",g:"Anciennes & décoratives"},inter:{label:"Inter",css:"'Inter',system-ui,sans-serif",g:"Modernes"},opensans:{label:"Open Sans",css:"'Open Sans',system-ui,sans-serif",g:"Modernes"},montserrat:{label:"Montserrat",css:"'Montserrat',system-ui,sans-serif",g:"Modernes"},raleway:{label:"Raleway",css:"'Raleway',system-ui,sans-serif",g:"Modernes"},quicksand:{label:"Quicksand (douce)",css:"'Quicksand',system-ui,sans-serif",g:"Modernes"},lexend:{label:"Lexend (lecture facilitée)",css:"'Lexend',system-ui,sans-serif",g:"Lecture facile"},comic:{label:"Comic Neue (décontractée)",css:"'Comic Neue',system-ui,sans-serif",g:"Lecture facile"},dancing:{label:"Calligraphie (Dancing Script)",css:"'Dancing Script',cursive",g:"Manuscrites & cursives"},satisfy:{label:"Plume (Satisfy)",css:"'Satisfy',cursive",g:"Manuscrites & cursives"},caveat:{label:"Écriture à la main (Caveat)",css:"'Caveat',cursive",g:"Manuscrites & cursives"},kalam:{label:"Cahier d'écolier (Kalam)",css:"'Kalam',cursive",g:"Manuscrites & cursives"},patrick:{label:"Feutre (Patrick Hand)",css:"'Patrick Hand',cursive",g:"Manuscrites & cursives"},indie:{label:"Fleurie (Indie Flower)",css:"'Indie Flower',cursive",g:"Manuscrites & cursives"},courier:{label:"Machine à écrire (Courier Prime)",css:"'Courier Prime',monospace",g:"Anciennes & décoratives"}};
+const FONT_GROUPS=["Livres & classiques","Anciennes & décoratives","Modernes","Lecture facile","Manuscrites & cursives"];
 const SIZES=[["s","Petit",17],["m","Normal",20],["l","Grand",23],["xl","Très grand",27]];
 const curFont=()=>FONTS[state.font]?state.font:"classique", curSize=()=>SIZES.some(s=>s[0]===state.size)?state.size:"m";
 function applyFont(){const r=document.documentElement.style;r.setProperty("--readfont",FONTS[curFont()].css);r.setProperty("--readsize",SIZES.find(s=>s[0]===curSize())[2]+"px");}
@@ -2665,10 +2895,13 @@ function viewSettings(){
   </div>
   <div class="card"><h2 style="font-size:24px">Police d'écriture</h2>
     <p class="muted small" style="margin:4px 0 0">Pour le texte de la Bible. Toutes ces polices marchent aussi sans connexion.</p>
-    <div style="margin-top:12px">${Object.entries(FONTS).map(([k,f])=>`<button class="opt fontopt ${curFont()===k?"on":""}" data-font="${k}"><small>${esc(f.label)}</small><span style="font-family:${f.css}">Au commencement Dieu créa le ciel et la terre.</span></button>`).join("")}</div>
+    <div style="margin-top:12px">${FONT_GROUPS.map(g=>`<div class="fgrp">${esc(g)}</div>`+Object.entries(FONTS).filter(([k,f])=>f.g===g).map(([k,f])=>`<button class="opt fontopt ${curFont()===k?"on":""}" data-font="${k}"><small>${esc(f.label)}</small><span style="font-family:${f.css}">Au commencement Dieu créa le ciel et la terre.</span></button>`).join("")).join("")}</div>
     <h3 style="font-size:19px;margin-top:14px">Taille du texte</h3>
     <div class="opts">${SIZES.map(([k,l,px])=>`<button class="opt ${curSize()===k?"on":""}" data-size="${k}" style="font-size:${Math.round(px*0.8)}px">${l}</button>`).join("")}</div>
   </div>
+
+${remCardHTML()}
+  <div class="card"><h2 style="font-size:24px">Présentation de l'app</h2><p class="muted small">Revoir l'écran de départ : le but de l'app, le rythme, l'écriture, les fonctions et le rappel.</p><button class="btn ghost" onclick="showOnb()">👋 Revoir la présentation</button></div>
   <div class="card"><h2 style="font-size:24px">Recommencer</h2><p class="muted small">Efface toute ta progression (les chapitres cochés).</p><button class="btn ghost" id="reset">Remettre à zéro</button></div>`;
   app.querySelectorAll("[data-font]").forEach(b=>b.onclick=()=>{state.font=b.dataset.font;save();applyFont();app.querySelectorAll("[data-font]").forEach(x=>x.classList.toggle("on",x===b));toast("Police : "+FONTS[state.font].label);});
   app.querySelectorAll("[data-size]").forEach(b=>b.onclick=()=>{state.size=b.dataset.size;save();applyFont();app.querySelectorAll("[data-size]").forEach(x=>x.classList.toggle("on",x===b));});
@@ -2680,11 +2913,181 @@ function viewSettings(){
     state.plan=np; save(); buildPlan(np); viewSettings();
     toast(`Plan mis à jour : ${DAYS.length} jours`);
   });
+  bindReminder();
   document.getElementById("reset").onclick=()=>confirmBox("Remettre à zéro ?","Toute ta progression sera effacée.",()=>{state.read={};save();toast("Progression effacée");location.hash="accueil";});
 }
+
+// ---------- Rappel de lecture ----------
+function remCardHTML(){return `  <div class="card" id="remCard"><h2 style="font-size:24px">⏰ Rappel de lecture</h2>
+    <p class="muted small" style="margin:4px 0 0">Choisis l'heure à laquelle tu veux qu'on te rappelle de lire.</p>
+    <div style="display:flex;gap:10px;align-items:center;margin:12px 0;flex-wrap:wrap"><label for="remTime"><b>Heure :</b></label><input type="time" id="remTime" value="${esc(remTime())}" style="font:600 20px var(--sans);padding:8px 10px;border-radius:12px;border:1.5px solid var(--gold2);background:#fff;color:var(--ink)"></div>
+    <h3 style="font-size:19px;margin-top:8px">1. Rappel dans le calendrier du téléphone <span class="small" style="color:var(--gold)">(le plus fiable)</span></h3>
+    <p class="small muted" style="margin:4px 0 8px">Ajoute un rendez-vous « Lecture de la Bible » qui revient chaque jour à cette heure. Ton téléphone sonnera même si l'application est fermée.</p>
+    <button class="btn main" id="remIcs">📅 Ajouter le rappel au calendrier</button>
+    <h3 style="font-size:19px;margin-top:18px">2. Notification de l'application</h3>
+    <p class="small muted" style="margin:4px 0 8px" id="remInfo"></p>
+    <div class="opts"><button class="opt ${state.remind&&state.remind.on?"on":""}" id="remOn">🔔 Activée</button><button class="opt ${state.remind&&state.remind.on?"":"on"}" id="remOff">🔕 Désactivée</button><button class="opt" id="remTest">Essayer maintenant</button></div>
+  </div>`;}
+
+const localDay=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
+const remTime=()=>(state.remind&&state.remind.time)||"20:00";
+function remText(){const d=nextDay(),g=DAYS.indexOf(d)+1;if(!d)return"C'est l'heure de ta lecture.";
+  const f=d.items[0],l=d.items[d.items.length-1],n=x=>x.book.ch.length===1?x.book.name:x.book.name+" "+x.c;
+  return `Jour ${g} : ${n(f)}${d.items.length>1?" → "+n(l):""}. Que Dieu te bénisse 🙏`;}
+function notifSupport(){return "Notification" in window;}
+async function showReminder(test){
+  const title="📖 La Sainte Bible copte",body=test?"Voici à quoi ressemblera ton rappel. "+remText():remText();
+  const opt={body,icon:"logo-192.png",badge:"favicon-32.png",tag:"rappel-lecture",renotify:true,data:{url:"./#accueil"}};
+  try{const r=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(r){await r.showNotification(title,opt);return true;}}catch(e){}
+  try{new Notification(title,opt);return true;}catch(e){}
+  return false;
+}
+async function remSync(){
+  // partage l'heure du rappel avec le service worker (pour les rappels en arrière-plan quand c'est possible)
+  try{const c=await caches.open("bible-copte-rappel");await c.put("rappel.json",new Response(JSON.stringify({on:!!(state.remind&&state.remind.on),time:remTime(),text:remText(),last:state.remind&&state.remind.last||""}),{headers:{"Content-Type":"application/json"}}));}catch(e){}
+  try{const r=navigator.serviceWorker&&await navigator.serviceWorker.ready;
+    if(r&&r.periodicSync){if(state.remind&&state.remind.on){const st=await navigator.permissions.query({name:"periodic-background-sync"});if(st.state==="granted")await r.periodicSync.register("rappel-lecture",{minInterval:60*60*1000});}else await r.periodicSync.unregister("rappel-lecture");}}catch(e){}
+}
+function remDue(){
+  const R=state.remind;if(!R||!R.on)return false;
+  const now=new Date(),today=localDay(),[h,m]=remTime().split(":").map(Number);
+  if(R.last===today||state.lastRead===today)return false;
+  if(now.getHours()*60+now.getMinutes()<h*60+m)return false;
+  return true;
+}
+async function remTick(){
+  if(!remDue())return;
+  const R=state.remind,today=localDay();
+  const d=nextDay();
+  R.last=today;save();remSync();
+  if(notifSupport()&&Notification.permission==="granted"&&document.visibilityState!=="visible") await showReminder(false);
+  else if(location.hash!=="#lire"&&!/^#lire-/.test(location.hash)) toast("⏰ "+remText());
+}
+(async()=>{try{if(!(state.remind&&state.remind.on))return;const c=await caches.open("bible-copte-rappel"),r=await c.match("rappel.json");if(r){const R=await r.json();if(R.last&&R.last>(state.remind.last||"")){state.remind.last=R.last;save();}}remSync();}catch(e){}})();
+setInterval(remTick,30000);document.addEventListener("visibilitychange",remTick);setTimeout(remTick,4000);
+function icsFile(){
+  const [h,m]=remTime().split(":"),d=new Date(),p=n=>String(n).padStart(2,"0");
+  const day=`${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}`,stamp=new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";
+  const url=/^https?:/.test(location.href)&&!/claude|anthropic|claudeusercontent/.test(location.hostname)?location.href.split("#")[0]:"";
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//La Sainte Bible copte//FR","CALSCALE:GREGORIAN","BEGIN:VEVENT",
+    "UID:rappel-lecture-"+Date.now()+"@bible-copte","DTSTAMP:"+stamp,`DTSTART:${day}T${h}${m}00`,"DURATION:PT15M",
+    "RRULE:FREQ=DAILY","SUMMARY:📖 Lecture de la Bible","DESCRIPTION:C'est l'heure de lire ta Bible."+(url?" Ouvre l'application : "+url:""),
+    ...(url?["URL:"+url]:[]),"BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:Lecture de la Bible","TRIGGER:PT0M","END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n");
+}
+
+function remHomeHTML(){
+  const on=state.remind&&state.remind.on;
+  return `<h3 style="margin:0 0 6px">⏰ Rappel de lecture</h3>
+  <p class="small muted" style="margin:0 0 10px">${on?`Rappel activé chaque jour à <b>${esc(remTime())}</b>.`:"Choisis une heure pour qu'on te rappelle de lire chaque jour."}</p>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <input type="time" id="remTimeH" value="${esc(remTime())}" aria-label="Heure du rappel" style="font:600 18px var(--sans);padding:7px 9px;border-radius:12px;border:1.5px solid var(--gold2);background:#fff;color:var(--ink)">
+    <button class="btn main" id="remIcsH" style="width:auto;flex:1 1 150px">📅 Ajouter au calendrier</button>
+    <button class="btn ghost" id="remOnH" style="width:auto;flex:1 1 150px">${on?"🔕 Arrêter la notification":"🔔 Activer la notification"}</button>
+  </div>
+  <p class="small muted" style="margin:8px 0 0">Le calendrier sonne même si l'app est fermée. <a href="#parametres" style="color:var(--wine,#7a1f1f)">Plus de réglages</a></p>`;
+}
+function bindRemHome(){
+  const t=document.getElementById("remTimeH");if(!t)return;
+  t.onchange=e=>{state.remind=Object.assign({},state.remind,{time:e.target.value||"20:00",last:""});save();remSync();toast("Heure du rappel : "+remTime());document.getElementById("remHome").innerHTML=remHomeHTML();bindRemHome();};
+  document.getElementById("remIcsH").onclick=downloadIcs;
+  document.getElementById("remOnH").onclick=async()=>{await setRemind(!(state.remind&&state.remind.on));document.getElementById("remHome").innerHTML=remHomeHTML();bindRemHome();};
+}
+function downloadIcs(){
+  const blob=new Blob([icsFile()],{type:"text/calendar;charset=utf-8"}),u=URL.createObjectURL(blob),x=document.createElement("a");
+  x.href=u;x.download="rappel-lecture-bible.ics";document.body.appendChild(x);x.click();setTimeout(()=>{URL.revokeObjectURL(u);x.remove();},1500);
+  toast("📅 Ouvre le fichier téléchargé pour l'ajouter à ton calendrier");
+}
+async function setRemind(on){
+  if(on&&notifSupport()&&Notification.permission!=="granted"){let r;try{r=await Notification.requestPermission();}catch(e){r="denied";}
+    if(r!=="granted"){toast("Notifications refusées : utilise le rappel du calendrier");return false;}}
+  if(on&&!notifSupport()){toast("Ce navigateur ne permet pas les notifications : utilise le calendrier");return false;}
+  state.remind=Object.assign({},state.remind,{on,time:remTime()});save();remSync();
+  toast(on?"🔔 Rappel activé à "+remTime():"🔕 Rappel désactivé");return true;
+}
+function bindReminder(){
+  const info=document.getElementById("remInfo");if(!info)return;
+  const perm=notifSupport()?Notification.permission:"none";
+  info.innerHTML=!notifSupport()?"Ce navigateur ne permet pas les notifications. Utilise plutôt le rappel du calendrier ci-dessus."
+    :perm==="denied"?"Les notifications sont bloquées pour ce site. Autorise-les dans les réglages du navigateur, ou utilise le rappel du calendrier."
+    :"L'application t'envoie une notification à l'heure choisie (si ta lecture du jour n'est pas faite). Elle marche quand l'application est ouverte ou en arrière-plan ; si elle est complètement fermée, seul le rappel du calendrier est sûr de sonner. Sur iPhone, il faut d'abord ajouter l'application à l'écran d'accueil.";
+  document.getElementById("remTime").onchange=e=>{state.remind=Object.assign({},state.remind,{time:e.target.value||"20:00",last:""});save();remSync();toast("Heure du rappel : "+remTime());};
+  document.getElementById("remIcs").onclick=downloadIcs;
+  const setOn=async on=>{await setRemind(on);
+    document.getElementById("remOn").classList.toggle("on",!!(state.remind&&state.remind.on));document.getElementById("remOff").classList.toggle("on",!(state.remind&&state.remind.on));bindReminder();};
+  document.getElementById("remOn").onclick=()=>setOn(true);
+  document.getElementById("remOff").onclick=()=>setOn(false);
+  document.getElementById("remTest").onclick=async()=>{
+    if(!notifSupport()){toast("Pas de notifications sur ce navigateur");return;}
+    if(Notification.permission!=="granted"){try{await Notification.requestPermission();}catch(e){}}
+    if(Notification.permission!=="granted"){toast("Notifications refusées");bindReminder();return;}
+    if(!(await showReminder(true)))toast("La notification n'a pas pu s'afficher");};
+}
+
+// ---------- Accueil de départ (premier lancement) ----------
+let onbStep=0, onbDl=true;
+const ONB_PLANS=[["orig",null,"Plan conseillé","3 ou 4 chapitres par jour selon l'étape (environ 1 an et 1 mois)"],["dur",182,"6 mois","Environ 7 chapitres par jour"],["dur",365,"1 an","Environ 4 chapitres par jour"],["dur",730,"2 ans","Environ 2 chapitres par jour"],["dur",1095,"3 ans","Moins de 2 chapitres par jour : tout doucement"],["cpd",1,"1 chapitre par jour","Environ 3 ans et 8 mois"],["cpd",2,"2 chapitres par jour","Environ 1 an et 10 mois"]];
+function onbPlanOn(p){const c=state.plan||{mode:"orig"};return p[0]===c.mode&&(p[0]==="orig"||(p[0]==="dur"?c.days===p[1]:c.n===p[1]));}
+const ONB=[
+ ()=>`<div style="text-align:center"><img src="logo.svg" alt="" style="width:84px;height:84px;border-radius:20px;margin-top:4px"></div>
+  <h2 style="text-align:center">Bienvenue dans La Sainte Bible copte</h2>
+  <p><b>Le but de l'app</b> : t'aider à lire <b>toute la Bible de l'Église copte orthodoxe</b>, pas à pas, et à la comprendre.</p>
+  <p>C'est la Bible complète des coptes, la plus adaptée pour nous : la Septante pour l'Ancien Testament (avec Tobie, Judith, Sagesse, Siracide, Baruch, les Maccabées, le Psaume 151…), les Psaumes numérotés comme dans l'Agpeya, et le Nouveau Testament.</p>
+  <p>Avant chaque étape, chaque livre et chaque chapitre, une explication simple te dit ce que tu vas lire. Après, tu peux lire ce qu'en disent les Pères de l'Église et écrire ce que tu as compris.</p>
+  <p class="small muted">Tout marche aussi sans internet. En quelques écrans, on règle l'app pour toi.</p>`,
+ ()=>`<h2>📅 Ton rythme de lecture</h2><p>En combien de temps veux-tu lire toute la Bible ? Tu pourras changer plus tard dans Paramètres, sans perdre ta progression.</p>
+  <div class="onb-opts">${ONB_PLANS.map((p,i)=>`<button class="onb-opt ${onbPlanOn(p)?"on":""}" data-op="${i}"><b>${p[2]}</b><small>${p[3]}</small></button>`).join("")}</div>`,
+ ()=>`<h2>🔤 L'écriture</h2><p>Choisis la police et la taille du texte.</p>
+  <div class="onb-fonts" id="onbFonts">${FONT_GROUPS.map(g=>`<div class="fgrp">${esc(g)}</div>`+Object.entries(FONTS).filter(([k,f])=>f.g===g).map(([k,f])=>`<button class="onb-opt onb-font ${curFont()===k?"on":""}" data-of="${k}"><small>${esc(f.label)}</small><span style="font-family:${f.css}">Au commencement Dieu créa le ciel et la terre.</span></button>`).join("")).join("")}</div>
+  <div class="onb-row">${SIZES.map(([k,l])=>`<button class="onb-opt ${curSize()===k?"on":""}" data-os="${k}">${l}</button>`).join("")}</div>
+  <p class="small muted" style="margin:10px 0 4px">Aperçu avec ta police et ta taille :</p>
+  <div class="onb-prev" style="font-family:var(--readfont);font-size:var(--readsize);line-height:1.5">Au commencement Dieu créa le ciel et la terre.</div>
+  <p style="margin-top:12px"><b>Les mots</b></p>
+  <div class="onb-row"><button class="onb-opt ${isOrig()?"on":""}" data-om="1"><b>Texte d'origine</b><small>la traduction exacte</small></button><button class="onb-opt ${isOrig()?"":"on"}" data-om="0"><b>Mots d'aujourd'hui</b><small>les mots anciens remplacés</small></button></div>`,
+ ()=>`<h2>✨ Ce que tu peux faire</h2><ul class="onb-feat">
+  <li><span>🔍</span><div><b>Rechercher</b> : un chapitre (« Jean 3 », « Ps 50 ») ou une phrase dans toute la Bible.</div></li>
+  <li><span>❤️</span><div><b>Mes versets</b> : touche un verset pour l'enregistrer, le surligner en couleur ou le copier.</div></li>
+  <li><span>📝</span><div><b>Notes</b> : écris sur le côté du texte, pour un chapitre ou un verset.</div></li>
+  <li><span>💭</span><div><b>Ce que j'ai compris</b> : à la fin de chaque chapitre, écris avec tes mots ; l'app t'aide à compléter, sans jamais te juger.</div></li>
+  <li><span>✠</span><div><b>Les Pères de l'Église</b> : une courte explication de saint Cyrille, saint Athanase, saint Éphrem… sous les chapitres.</div></li>
+  <li><span>🔊</span><div><b>Écouter</b> : une voix lit le chapitre à voix haute.</div></li>
+  <li><span>📖</span><div><b>Mots soulignés</b> : touche-les pour voir leur explication.</div></li>
+  <li><span>📴</span><div><b>Sans internet</b> : une fois téléchargée, toute l'app marche hors connexion.</div></li></ul>`,
+ ()=>`<h2>⏰ Rappel de lecture</h2><p>À quelle heure veux-tu qu'on te rappelle de lire ?</p>
+  <input type="time" id="onbTime" value="${esc(remTime())}" style="font:600 22px var(--sans);padding:8px 10px;border-radius:12px;border:1.5px solid var(--gold2);background:#fff;color:var(--ink)">
+  <div class="onb-opts"><button class="onb-opt" id="onbIcs"><b>📅 Ajouter au calendrier du téléphone</b><small>Le plus sûr : il sonne même quand l'app est fermée.</small></button>
+  <button class="onb-opt ${state.remind&&state.remind.on?"on":""}" id="onbNotif"><b>🔔 ${state.remind&&state.remind.on?"Notification activée":"Activer la notification de l'app"}</b><small>Quand l'app est ouverte ou en arrière-plan.</small></button></div>
+  ${offlineOK?`<label style="display:flex;gap:10px;align-items:flex-start;margin-top:8px;font-size:15px"><input type="checkbox" id="onbDl" ${onbDl?"checked":""} style="width:22px;height:22px;margin-top:2px"> <span><b>Télécharger toute la Bible maintenant</b> pour lire sans internet (environ 9 Mo).</span></label>`:""}
+  <p class="small muted">Tu retrouveras le rappel sur l'accueil, et tous les réglages dans ⚙️ Paramètres.</p>`
+];
+function showOnb(){onbStep=0;document.getElementById("onb").hidden=false;renderOnb();}
+function closeOnb(){document.getElementById("onb").hidden=true;state.onboarded=true;save();
+  const want=onbDl&&offlineOK;
+  if(location.hash&&location.hash!=="#accueil") location.hash="accueil"; else route();
+  if(want) setTimeout(async()=>{const b=document.getElementById("dlBtn");let n=-1;try{n=await offlineCount();}catch(e){}
+    if(b&&!b.disabled&&n<bookFiles().length) downloadAll();},500);}
+function renderOnb(){
+  document.getElementById("onbDots").innerHTML=ONB.map((_,i)=>`<i class="${i===onbStep?"on":""}"></i>`).join("");
+  const body=document.getElementById("onbBody");body.innerHTML=ONB[onbStep]();body.scrollTop=0;
+  document.getElementById("onbBack").style.visibility=onbStep?"visible":"hidden";
+  document.getElementById("onbNext").textContent=onbStep===ONB.length-1?"✓ Commencer":"Suivant →";
+  body.querySelectorAll("[data-op]").forEach(b=>b.onclick=()=>{const p=ONB_PLANS[+b.dataset.op];
+    const np=p[0]==="orig"?{mode:"orig"}:p[0]==="dur"?{mode:"dur",days:p[1],label:p[2]}:{mode:"cpd",n:p[1]};
+    state.plan=np;save();buildPlan(np);renderOnb();toast(`Plan choisi : ${DAYS.length} jours`);});
+  body.querySelectorAll("[data-of]").forEach(x=>x.onclick=()=>{state.font=x.dataset.of;save();applyFont();body.querySelectorAll("[data-of]").forEach(y=>y.classList.toggle("on",y===x));});
+  const fl=document.getElementById("onbFonts");if(fl){const on=fl.querySelector(".on");if(on)fl.scrollTop=Math.max(0,on.offsetTop-fl.offsetTop-40);}
+  body.querySelectorAll("[data-os]").forEach(b=>b.onclick=()=>{state.size=b.dataset.os;save();applyFont();renderOnb();});
+  body.querySelectorAll("[data-om]").forEach(b=>b.onclick=()=>{state.orig=b.dataset.om==="1";save();renderOnb();});
+  const t=document.getElementById("onbTime");if(t)t.onchange=()=>{state.remind=Object.assign({},state.remind,{time:t.value||"20:00",last:""});save();remSync();};
+  const ics=document.getElementById("onbIcs");if(ics)ics.onclick=()=>{if(t)t.onchange();downloadIcs();};
+  const nt=document.getElementById("onbNotif");if(nt)nt.onclick=async()=>{if(t)t.onchange();await setRemind(!(state.remind&&state.remind.on));renderOnb();};
+  const dl=document.getElementById("onbDl");if(dl)dl.onchange=()=>{onbDl=dl.checked;};
+}
+document.getElementById("onbNext").onclick=()=>{if(onbStep<ONB.length-1){onbStep++;renderOnb();}else closeOnb();};
+document.getElementById("onbBack").onclick=()=>{if(onbStep>0){onbStep--;renderOnb();}};
+document.getElementById("onbSkip").onclick=()=>{onbDl=false;closeOnb();};
 // ---------- Hors connexion ----------
-const FONT_FILES=["cormorant-garamond-latin-500-normal", "cormorant-garamond-latin-600-normal", "cormorant-garamond-latin-700-normal", "source-sans-3-latin-400-normal", "source-sans-3-latin-600-normal", "eb-garamond-latin-400-normal", "lora-latin-400-normal", "atkinson-hyperlegible-latin-400-normal", "nunito-latin-400-normal", "opendyslexic-latin-400-normal", "merriweather-latin-400-normal"];
-const OFF_CACHE="bible-copte-v5";
+const FONT_FILES=["cormorant-garamond-latin-500-normal", "cormorant-garamond-latin-600-normal", "cormorant-garamond-latin-700-normal", "source-sans-3-latin-400-normal", "source-sans-3-latin-600-normal", "eb-garamond-latin-400-normal", "lora-latin-400-normal", "atkinson-hyperlegible-latin-400-normal", "nunito-latin-400-normal", "opendyslexic-latin-400-normal", "merriweather-latin-400-normal","crimson-pro-latin-400-normal","libre-baskerville-latin-400-normal","spectral-latin-400-normal","alegreya-latin-400-normal","playfair-display-latin-400-normal","cinzel-latin-400-normal","im-fell-english-latin-400-normal","unifrakturmaguntia-latin-400-normal","inter-latin-400-normal","open-sans-latin-400-normal","montserrat-latin-400-normal","raleway-latin-400-normal","quicksand-latin-400-normal","lexend-latin-400-normal","comic-neue-latin-400-normal","dancing-script-latin-400-normal","satisfy-latin-400-normal","caveat-latin-400-normal","kalam-latin-400-normal","patrick-hand-latin-400-normal","indie-flower-latin-400-normal","courier-prime-latin-400-normal"];
+const OFF_CACHE="bible-copte-v8";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
 let offlineOK=false;
@@ -2707,7 +3110,7 @@ async function offlineCard(){
 async function downloadAll(){
   const btn=document.getElementById("dlBtn"),bar=document.getElementById("dlBar"),txt=document.getElementById("dlTxt");
   btn.disabled=true;btn.textContent="Téléchargement en cours…";bar.style.display="block";
-  const files=["./","index.html","manifest.json","logo.svg","favicon-32.png","apple-touch-icon.png","logo-192.png","logo-512.png"].concat(FONT_FILES.map(f=>""+f+".woff2")).concat(bookFiles());
+  const files=["./","index.html","manifest.json","logo.svg","favicon-32.png","apple-touch-icon.png","logo-192.png","logo-512.png"].concat(FONT_FILES.map(f=>""+f+".woff2")).concat([DATA_PREFIX+"peres.json"]).concat(bookFiles());
   let ok=0,fail=0;
   try{
     const c=await caches.open(OFF_CACHE);
@@ -2725,7 +3128,7 @@ function confirmBox(t,b,yes){const m=document.getElementById("modal");document.g
   document.getElementById("mno").onclick=()=>m.classList.remove("on");document.getElementById("myes").onclick=()=>{m.classList.remove("on");yes();};}
 // ---------- Router ----------
 function route(){
-  hideGloss(); if(document.getElementById('notepanel').classList.contains('open')) closeNotes();
+  hideGloss(); if(typeof ttsStop==='function'&&TTS.on) ttsStop(); if(document.getElementById('notepanel').classList.contains('open')) closeNotes();
   if(typeof clearSel==='function'&&!/^#lire-/.test(location.hash)){curRead=null;clearSel();}
   const h=(location.hash||"").slice(1);
   let m;
@@ -2742,6 +3145,7 @@ function route(){
 }
 window.addEventListener("hashchange",route);
 route();
+if(!state.onboarded) showOnb();
 </script>
 </body>
 </html>
