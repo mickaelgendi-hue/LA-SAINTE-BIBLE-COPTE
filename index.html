@@ -108,7 +108,7 @@ h3{font-size:22px}
 .lit-p canvas{position:absolute;inset:0;width:100%;height:100%}.lit-n{position:absolute;left:50%;top:40%;transform:translateX(-50%);color:#c9b99a;font:600 14px var(--sans)}.lit-e{position:absolute;left:10%;right:10%;top:50%;text-align:center;font:600 14px var(--sans);color:#8a5a2b}
 .lit-cp{text-align:center;margin:8px 0 20px}
 .bc-w{display:grid;place-items:center;flex:none;border-bottom:1px solid var(--line,#eee)}.bc-dl{display:grid;place-items:center;width:36px;height:32px;border-radius:9px;border:1px solid var(--line,#e2d6c0);background:#fff;font-size:15px;cursor:pointer;text-decoration:none;color:inherit}.bc-dl.ok{background:#e7f4e8;color:#1f6b2c;border-color:#bfe0c4;font-weight:700}.bc-page{background:none;border:0;border-bottom:1px solid var(--line,#eee);cursor:pointer}
-.litmsg{position:fixed;inset:0;z-index:100;background:rgba(20,12,4,.45);display:grid;place-items:center;padding:18px}.litmsg[hidden]{display:none}.litmsg-b{background:#fffdf8;border-radius:18px;max-width:440px;width:100%;padding:18px 18px 14px;box-shadow:0 20px 50px rgba(0,0,0,.3)}.litmsg-b h3{margin:0 0 8px}.litmsg-b p{margin:0 0 14px;font-size:15.5px;line-height:1.45}.litmsg-a{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.bc-imp{display:inline-block;cursor:pointer}.litmsg{position:fixed;inset:0;z-index:100;background:rgba(20,12,4,.45);display:grid;place-items:center;padding:18px}.litmsg[hidden]{display:none}.litmsg-b{background:#fffdf8;border-radius:18px;max-width:440px;width:100%;padding:18px 18px 14px;box-shadow:0 20px 50px rgba(0,0,0,.3)}.litmsg-b h3{margin:0 0 8px}.litmsg-b p{margin:0 0 14px;font-size:15.5px;line-height:1.45}.litmsg-a{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .lit-h2{font-size:21px;margin:22px 2px 8px}.bc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
 .bc-cat{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line,#e2d6c0);border-radius:14px;background:#fffdf8;text-decoration:none;color:inherit;font-size:14px}.bc-cat span{font-size:20px}.bc-cat b{flex:1;font-weight:600;line-height:1.2}.bc-cat em{font-style:normal;color:var(--muted,#888);font-size:12px}
 .bc-chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;margin:0 -4px}.bc-chip{flex:none;border:1px solid var(--line,#e2d6c0);background:#fff;border-radius:999px;padding:6px 11px;font:600 13px var(--sans);cursor:pointer;color:inherit}.bc-chip b{color:var(--muted,#888);font-weight:600}
@@ -2246,14 +2246,37 @@ async function bcDownload(slug){const r=bcFind(slug);if(!r||bcBusy[slug])return;
 async function bcRemove(slug){const m=(state.bcDl||{})[slug];if(!m)return;try{const c=await caches.open(LIT_CACHE);await c.delete(m.u);}catch(e){}delete state.bcDl[slug];delete litState()["bc-"+slug];save();toast("Document retiré de l'appli");bcPaint(slug);bcMine();}
 function bcBtn(slug){const d=(state.bcDl||{})[slug];return bcBusy[slug]?`<button class="bc-dl busy" disabled aria-label="Téléchargement en cours">⏳</button>`:d?`<a class="bc-dl ok" href="#lit-bc-${slug}-${litState()["bc-"+slug]||1}" aria-label="Lire dans l'appli">✓</a>`:`<button class="bc-dl" data-bcdl="${slug}" aria-label="Télécharger dans l'appli">⬇️</button>`;}
 function bcPaint(slug){document.querySelectorAll(`[data-bcw="${slug}"]`).forEach(w=>{w.innerHTML=bcBtn(slug);const b=w.querySelector("[data-bcdl]");if(b)b.onclick=()=>bcDownload(slug);});}
+// ---- Import depuis le téléphone (les documents restent sur l'appareil, jamais sur le site) ----
+const bcNorm=t=>t.normalize("NFC").replace(/\u00a0/g," ").replace(/\.pdf$/i,"").replace(/[_\s]+/g," ").replace(/\s*\(\d+\)$/,"").trim().toLowerCase();
+function bcMatch(name){const n=bcNorm(name);for(const c of BIBLIO)for(const r of c.d){const f=bcNorm(decodeURIComponent(r[1].split("/").pop()));if(f===n)return r;}
+  for(const c of BIBLIO)for(const r of c.d){const f=bcNorm(decodeURIComponent(r[1].split("/").pop()));if(f.length>6&&(n.startsWith(f)||f.startsWith(n)))return r;}
+  const nt=n.replace(/[^a-z0-9]+/g," ").trim();for(const c of BIBLIO)for(const r of c.d){if(bcNorm(r[0]).replace(/[^a-z0-9]+/g," ").trim()===nt)return r;}return null;}
+async function bcImport(files){const L=[...files].filter(f=>/pdf$/i.test(f.type)||/\.pdf$/i.test(f.name));
+  if(!L.length){litMsg("📥 Importer","Choisis un ou plusieurs fichiers PDF.");return;}
+  try{if(navigator.storage&&navigator.storage.persist)await navigator.storage.persist();}catch(e){}
+  const c=await caches.open(LIT_CACHE),lib=await pdfjs();let okN=0,bad=[],rec=0;state.bcDl=state.bcDl||{};
+  for(const f of L){const t0=document.getElementById("bcImpTxt");if(t0)t0.textContent=`Import… ${okN+bad.length+1} / ${L.length}`;
+    try{const buf=await f.arrayBuffer(),doc=await lib.getDocument({data:new Uint8Array(buf.slice(0)),isEvalSupported:false}).promise,pg=await doc.getPage(1),vp=pg.getViewport({scale:1});
+      const m=bcMatch(f.name);let slug,title;
+      if(m){slug=m[2];title=m[0];rec++;}else{title=f.name.replace(/\.pdf$/i,"").replace(/[_]+/g," ").trim();slug="perso-"+(title.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40)||"doc")+"-"+(buf.byteLength%9973);}
+      const key=new URL("__mes-documents/"+slug+".pdf",location.href).href;
+      await c.put(key,new Response(buf,{headers:{"Content-Type":"application/pdf"}}));
+      state.bcDl[slug]={t:title,u:key,n:doc.numPages,r:+(vp.height/vp.width).toFixed(4),sz:buf.byteLength,d:Date.now(),imp:1,perso:m?0:1};okN++;
+    }catch(e){bad.push(f.name+(e&&e.name==="QuotaExceededError"?" (plus de place)":""));}}
+  save();const t=document.getElementById("bcImpTxt");if(t)t.textContent="";
+  litMsg("📥 Import terminé",`${okN} document${okN>1?"s":""} rangé${okN>1?"s":""} dans l'appli, lisible${okN>1?"s":""} sans connexion.${rec?`<br>${rec} reconnu${rec>1?"s":""} dans la bibliothèque (✓ à côté du titre).`:""}${okN-rec>0?`<br>${okN-rec} ajouté${okN-rec>1?"s":""} comme document personnel.`:""}${bad.length?`<br><br>Pas importé : ${bad.map(esc).join(", ")}`:""}`);
+  if(location.hash.startsWith("#bibliocopte"))viewBiblio();}
 function bcMine(){const box=document.getElementById("bcMine");if(!box)return;const L=Object.entries(state.bcDl||{});
-  box.hidden=!L.length;box.innerHTML=L.length?`<h3 style="margin:0 0 6px">📥 Mes documents dans l'appli · ${L.length}</h3><p class="small muted" style="margin:0 0 6px">Lisibles sans connexion.</p><ol class="lit-toc">${L.map(([s,m])=>`<li class="bc-it"><a href="#lit-bc-${s}-${litState()["bc-"+s]||1}" class="bc-open"><span>${esc(m.t)}<small class="bc-note" style="color:var(--muted,#888)">${m.n} pages · ${Math.max(1,Math.round(m.sz/1048576))} Mo</small></span><em>📖 Lire</em></a><button class="bc-page" data-bcrm="${s}" aria-label="Retirer de l'appli">🗑️</button></li>`).join("")}</ol>`:"";
+  box.hidden=false;box.innerHTML=`<h3 style="margin:0 0 6px">📥 Mes documents dans l'appli${L.length?" · "+L.length:""}</h3>
+  <p class="small muted" style="margin:0 0 10px">Pour tout avoir sans connexion : ouvre un document (📖), enregistre-le sur ton téléphone (<b>Partager → Enregistrer dans Fichiers</b>), puis touche <b>Importer</b>. Tu peux en choisir plusieurs d'un coup. Ils restent seulement sur ton appareil.</p>
+  <label class="btn main bc-imp">📥 Importer des PDF<input type="file" id="bcFile" accept="application/pdf,.pdf" multiple hidden></label><span class="small muted" id="bcImpTxt" style="margin-left:8px"></span>`+(L.length?`<ol class="lit-toc sp-list" style="margin-top:10px">${L.map(([s,m])=>`<li class="bc-it"><a href="#lit-bc-${s}-${litState()["bc-"+s]||1}" class="bc-open"><span>${esc(m.t)}<small class="bc-note" style="color:var(--muted,#888)">${m.perso?"Mon document · ":""}${m.n} pages · ${Math.max(1,Math.round(m.sz/1048576))} Mo</small></span><em>📖 Lire</em></a><button class="bc-page" data-bcrm="${s}" aria-label="Retirer de l'appli">🗑️</button></li>`).join("")}</ol>`:"");
+  const fi=box.querySelector("#bcFile");if(fi)fi.onchange=e=>{bcImport(e.target.files);e.target.value="";};
   box.querySelectorAll("[data-bcrm]").forEach(b=>b.onclick=()=>{if(confirm("Retirer ce document de l'appli ?"))bcRemove(b.dataset.bcrm);});}
 function viewBiblio(cat){setNav("liturgie");
   app.innerHTML=`<a class="back" href="#liturgie">‹ Liturgie</a>
   <div class="dayhead"><div class="k">📚 BiblioCopte</div><h1>Toute la bibliothèque</h1><p class="muted">${BIBLIO_N} documents de BiblioCopte, la bibliothèque du diocèse copte orthodoxe de Paris : liturgie, lectures du dimanche, psalmodie, sacrements, Semaine Sainte, livres spirituels, chants, vies des saints et fêtes.</p></div>
   <div class="card sp-note" id="spNote">🌐 « 📖 Ouvrir » lit le document sur le site du diocèse (connexion nécessaire). « ⬇️ » le range dans l'appli pour le lire sans connexion.${navigator.onLine?"":` <b>Tu es hors connexion en ce moment.</b>`}</div>
-  <div class="card" id="bcMine" hidden></div>
+  <div class="card" id="bcMine"></div>
   <div class="bc-chips">${BIBLIO.map(c=>`<button class="bc-chip" data-bcj="${c.id}">${c.ic} ${esc(c.t)} <b>${c.d.length}</b></button>`).join("")}</div>
   <div class="card lit-tocw"><input type="search" id="spQ" placeholder="🔎 Chercher dans toute la bibliothèque…" aria-label="Chercher un document">
   <ol class="lit-toc sp-list" id="spList">${BIBLIO.map(c=>`<li class="h" id="bc-${c.id}"><span>${c.ic} ${esc(c.t)} · ${c.d.length}</span></li>`+c.d.map(r=>`<li class="bc-it"><a class="bc-open" href="${esc(r[1])}" target="_blank" rel="noopener"><span>${esc(r[0])}${r[3]?`<small class="bc-note">${esc(r[3])}</small>`:""}</span><em>📖 Ouvrir</em></a><span class="bc-w" data-bcw="${r[2]}">${bcBtn(r[2])}</span><a class="bc-page" href="${BIBLIO_PAGE}${r[2]}" target="_blank" rel="noopener" title="Page du document sur BiblioCopte" aria-label="Page du document sur BiblioCopte">ⓘ</a></li>`).join("")).join("")}</ol>
@@ -3328,7 +3351,7 @@ document.getElementById("onbBack").onclick=()=>{if(onbStep>0){onbStep--;renderOn
 document.getElementById("onbSkip").onclick=()=>{onbDl=false;closeOnb();};
 // ---------- Hors connexion ----------
 const FONT_FILES=["cormorant-garamond-latin-500-normal", "cormorant-garamond-latin-600-normal", "cormorant-garamond-latin-700-normal", "source-sans-3-latin-400-normal", "source-sans-3-latin-600-normal", "eb-garamond-latin-400-normal", "lora-latin-400-normal", "atkinson-hyperlegible-latin-400-normal", "nunito-latin-400-normal", "opendyslexic-latin-400-normal", "merriweather-latin-400-normal","crimson-pro-latin-400-normal","libre-baskerville-latin-400-normal","spectral-latin-400-normal","alegreya-latin-400-normal","playfair-display-latin-400-normal","cinzel-latin-400-normal","im-fell-english-latin-400-normal","unifrakturmaguntia-latin-400-normal","inter-latin-400-normal","open-sans-latin-400-normal","montserrat-latin-400-normal","raleway-latin-400-normal","quicksand-latin-400-normal","lexend-latin-400-normal","comic-neue-latin-400-normal","dancing-script-latin-400-normal","satisfy-latin-400-normal","caveat-latin-400-normal","kalam-latin-400-normal","patrick-hand-latin-400-normal","indie-flower-latin-400-normal","courier-prime-latin-400-normal"];
-const OFF_CACHE="bible-copte-v14";
+const OFF_CACHE="bible-copte-v15";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
 let offlineOK=false;
