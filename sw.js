@@ -1,5 +1,5 @@
 // Lecture hors connexion : La Sainte Bible copte
-const CACHE = "bible-copte-v16";
+const CACHE = "bible-copte-v17";
 const CORE = ["./", "index.html", "manifest.json", "logo.svg", "favicon-32.png", "apple-touch-icon.png", "logo-192.png", "logo-512.png"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).catch(() => {}));
@@ -19,6 +19,8 @@ self.addEventListener("fetch", e => {
     e.respondWith(caches.open("bible-copte-liturgie").then(c => c.match(req, { ignoreSearch: true })).then(h => h || fetch(req)));
     return;
   }
+  // Documents BiblioCopte : l'appli les range elle-même dans sa bibliothèque, on ne les copie pas en double
+  if (/\/bc\/[a-z0-9-]+\.pdf$/.test(u.pathname)) { e.respondWith(fetch(req)); return; }
   e.respondWith(caches.open(CACHE).then(async c => {
     const hit = await c.match(req, { ignoreSearch: true });
     const net = fetch(req).then(r => { if (r.ok || r.type === "opaque") c.put(req, r.clone()); return r; }).catch(() => hit || Response.error());

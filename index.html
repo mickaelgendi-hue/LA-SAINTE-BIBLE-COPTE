@@ -2230,18 +2230,26 @@ const BIBLIO_PAGE="https://biblio.copte.fr/document/";
 const BIBLIO_N=BIBLIO.reduce((s,c)=>s+c.d.length,0);
 function bcFind(slug){for(const c of BIBLIO)for(const r of c.d)if(r[2]===slug)return r;return null;}
 let bcBusy={};
-async function bcDownload(slug){const r=bcFind(slug);if(!r||bcBusy[slug])return;
+const BC_HOST={"divine-liturgie": 21.4, "divine-liturgie-cathedrale": 21.4, "hymnes-glorifications-de-la-communion-des-saints": 16.5, "lectures-dimanche-50-jours-pascal": 1.5, "lectures-dimanche-abib": 1.2, "lectures-dimanche-amshir": 0.9, "lectures-dimanche-babah": 1.0, "lectures-dimanche-bashans": 0.7, "lectures-dimanche-baounah": 1.0, "lectures-dimanche-grand-careme": 2.1, "lectures-dimanche-hatour": 1.0, "lectures-dimanche-kiahk": 1.2, "lectures-dimanche-misra": 1.1, "lectures-dimanche-nasi": 0.5, "lectures-dimanche-thout": 1.0, "lectures-dimanche-toubah": 1.1, "psalmodie-kiahk": 8.8, "rite-des-fiancailles-et-du-mariage": 5.0, "livre-du-rite-de-l-ordination-du-pretre": 3.7, "livre-de-la-priere-de-la-benediction-des-maisons": 1.1, "livre-du-rite-du-bapteme-et-de-la-confirmation": 30.8, "livre-du-sacrement-de-l-onction-des-malades-kandil": 1.4, "livre-du-rite-des-funerailles-pour-les-hommes": 0.5, "livre-du-rite-des-funerailles-pour-les-femmes": 1.0, "rite-de-l-onction-des-malades-kandil": 3.4, "rite-des-funerailles-pour-les-hommes": 0.9, "rite-du-sacrement-du-mariage": 1.4, "livre-du-rite-de-la-consecration-des-autels-et-du-baptistere": 6.7, "rite-des-funerailles-pour-les-femmes": 0.7, "funerailles-generales": 1.2, "dimanche-et-veille-du-lundi-saint": 1.5, "lundi-saint": 1.4, "veille-du-mardi-saint": 1.2, "mardi-saint": 1.7, "veille-du-mercredi-saint": 1.2, "mercredi-saint": 1.5, "veille-du-jeudi-saint": 1.2, "jeudi-saint": 4.2, "veille-du-vendredi-saint": 1.8, "vendredi-saint": 3.0, "nuit-de-lapocalypse": 3.6, "livre-du-rite-de-la-nuit-de-l-apocalypse": 18.7, "chants-vendredi-saint": 1.8, "priere-du-lakkan-de-la-fete-des-apotres": 2.3, "rite-du-lakkan-de-la-theophanie": 2.1, "priere-de-la-prosternation": 3.7, "livre-de-la-procession-pour-les-rameaux-et-la-fete-de-la-croix": 1.1, "livre-des-prieres-de-la-prosternation": 3.0, "livre-du-lakkan-de-la-theophanie": 1.3, "livre-du-lakkan-des-apotres": 2.8, "livre-du-rite-de-samedi-de-lazare-et-dimanche-des-rameaux": 5.2, "livre-glorification-de-la-vierge": 1.5};
+const BC_HOST_MB=Math.round(Object.values(BC_HOST).reduce((a,b)=>a+b,0));
+async function bcDownloadAll(){if(!navigator.onLine){litMsg("📴 Hors connexion","Reconnecte-toi à internet pour télécharger.");return;}
+  const L=[];for(const c of BIBLIO)for(const r of c.d)if(BC_HOST[r[2]]&&!(state.bcDl||{})[r[2]])L.push(r[2]);
+  const b=document.getElementById("bcAll");let i=0;for(const sl of L){i++;if(b){b.disabled=true;b.textContent=`⏳ Téléchargement ${i} / ${L.length}…`;}await bcDownload(sl,true);}
+  if(b){b.disabled=false;b.textContent="✓ Tous les documents liturgiques sont dans l'appli";}
+  toast(L.length?"✓ Documents liturgiques rangés dans l'appli : lisibles sans connexion":"✓ Déjà tout dans l'appli");}
+async function bcDownload(slug,quiet){const r=bcFind(slug);if(!r||bcBusy[slug])return;
   if(!navigator.onLine){litMsg("📴 Hors connexion","Reconnecte-toi à internet pour télécharger ce document.");return;}
   bcBusy[slug]=1;bcPaint(slug);
   try{if(navigator.storage&&navigator.storage.persist)await navigator.storage.persist();}catch(e){}
   let res=null;
-  try{res=await fetch(r[1],{mode:"cors",cache:"reload"});}catch(e){res=null;}
+  const src=BC_HOST[slug]?new URL("bc/"+slug+".pdf",location.href).href:r[1];
+  try{res=await fetch(src,BC_HOST[slug]?{cache:"reload"}:{mode:"cors",cache:"reload"});}catch(e){res=null;}
   if(!res||!res.ok){delete bcBusy[slug];bcPaint(slug);
     litMsg("📥 "+r[0],"Le site du diocèse (BiblioCopte) ne permet pas encore aux applications de copier ses documents : je ne peux donc pas le ranger dans l'appli pour l'instant.<br><br>Tu peux quand même le garder sur ton téléphone : ouvre-le, puis touche <b>Partager</b> ou <b>⬇️ Télécharger</b> et choisis <b>Enregistrer dans Fichiers</b>.",`<a class="btn main" href="${esc(r[1])}" target="_blank" rel="noopener">📖 Ouvrir le document</a>`);return;}
   try{const buf=await res.arrayBuffer(),lib=await pdfjs(),doc=await lib.getDocument({data:new Uint8Array(buf.slice(0)),isEvalSupported:false}).promise,pg=await doc.getPage(1),vp=pg.getViewport({scale:1});
     const c=await caches.open(LIT_CACHE);await c.put(r[1],new Response(buf,{headers:{"Content-Type":"application/pdf"}}));
     state.bcDl=state.bcDl||{};state.bcDl[slug]={t:r[0],u:r[1],n:doc.numPages,r:+(vp.height/vp.width).toFixed(4),sz:buf.byteLength,d:Date.now()};save();
-    toast("✓ "+r[0]+" : rangé dans l'appli, lisible sans connexion");
+    if(!quiet)toast("✓ "+r[0]+" : rangé dans l'appli, lisible sans connexion");
   }catch(e){litMsg("⚠️ "+r[0],e&&e.name==="QuotaExceededError"?"Il n'y a plus assez de place sur ton appareil pour garder ce document.":"Ce document n'a pas pu être rangé dans l'appli. Réessaie plus tard.");}
   delete bcBusy[slug];bcPaint(slug);bcMine();}
 async function bcRemove(slug){const m=(state.bcDl||{})[slug];if(!m)return;try{const c=await caches.open(LIT_CACHE);await c.delete(m.u);}catch(e){}delete state.bcDl[slug];delete litState()["bc-"+slug];save();toast("Document retiré de l'appli");bcPaint(slug);bcMine();}
@@ -2278,17 +2286,19 @@ function viewBiblio(cat){setNav("liturgie");
   <div class="dayhead"><div class="k">📚 BiblioCopte</div><h1>Toute la bibliothèque</h1><p class="muted">${BIBLIO_N} documents de BiblioCopte, la bibliothèque du diocèse copte orthodoxe de Paris : liturgie, lectures du dimanche, psalmodie, sacrements, Semaine Sainte, livres spirituels, chants, vies des saints et fêtes.</p></div>
   <div class="card sp-note" id="spNote">🌐 « 📖 Ouvrir » lit le document sur le site du diocèse (connexion nécessaire). « ⬇️ » le range dans l'appli pour le lire sans connexion.${navigator.onLine?"":` <b>Tu es hors connexion en ce moment.</b>`}</div>
   <div class="card" id="bcMine"></div>
+  <div class="card"><h2 style="font-size:20px;margin:0 0 6px">✠ Documents liturgiques sans connexion</h2><p class="small muted" style="margin:0 0 10px">Divine liturgie, lectures du dimanche, psalmodie, sacrements, Semaine Sainte, chants et fêtes : ${Object.keys(BC_HOST).length} documents (environ ${BC_HOST_MB} Mo). Ils restent dans l'appli, même en mode avion.</p><button class="btn main" id="bcAll">⬇️ Tout télécharger</button></div>
   <div class="bc-chips">${BIBLIO.map(c=>`<button class="bc-chip" data-bcj="${c.id}">${c.ic} ${esc(c.t)} <b>${c.d.length}</b></button>`).join("")}</div>
   <div class="card lit-tocw"><input type="search" id="spQ" placeholder="🔎 Chercher dans toute la bibliothèque…" aria-label="Chercher un document">
   <ol class="lit-toc sp-list" id="spList">${BIBLIO.map(c=>`<li class="h" id="bc-${c.id}"><span>${c.ic} ${esc(c.t)} · ${c.d.length}</span></li>`+c.d.map(r=>`<li class="bc-it"><a class="bc-open" href="${esc(r[1])}" target="_blank" rel="noopener"><span>${esc(r[0])}${r[3]?`<small class="bc-note">${esc(r[3])}</small>`:""}</span><em>📖 Ouvrir</em></a><span class="bc-w" data-bcw="${r[2]}">${bcBtn(r[2])}</span><a class="bc-page" href="${BIBLIO_PAGE}${r[2]}" target="_blank" rel="noopener" title="Page du document sur BiblioCopte" aria-label="Page du document sur BiblioCopte">ⓘ</a></li>`).join("")).join("")}</ol>
   <p class="small muted" id="spNone" hidden>Aucun document trouvé.</p></div>
-  <p class="small muted" style="margin:14px 4px">Les documents restent sur le site du diocèse (biblio.copte.fr) et appartiennent à leurs auteurs. Si un document a été mis à jour sur le site et ne s'ouvre plus, touche ⓘ pour ouvrir sa page sur BiblioCopte.</p>`;
+  <p class="small muted" style="margin:14px 4px">Les documents appartiennent au Diocèse copte orthodoxe (biblio.copte.fr) et à leurs auteurs. « 📖 Ouvrir » lit toujours la dernière version sur le site du diocèse. Si un document ne s'ouvre plus, touche ⓘ pour ouvrir sa page sur BiblioCopte.</p>`;
   const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
   document.getElementById("spQ").oninput=e=>{const q=norm(e.target.value.trim());let n=0,head=null,cnt=0;
     document.querySelectorAll("#spList li").forEach(li=>{if(li.classList.contains("h")){if(head)head.hidden=!!q&&!cnt;head=li;cnt=0;return;}
       const ok=!q||norm(li.textContent).includes(q)||norm(head.textContent).includes(q);li.hidden=!ok;if(ok){n++;cnt++;}});
     if(head)head.hidden=!!q&&!cnt;document.getElementById("spNone").hidden=n>0;};
   app.querySelectorAll("[data-bcdl]").forEach(b=>b.onclick=()=>bcDownload(b.dataset.bcdl));bcMine();
+  {const L=[];for(const c of BIBLIO)for(const r of c.d)if(BC_HOST[r[2]]&&!(state.bcDl||{})[r[2]])L.push(1);const ba=document.getElementById("bcAll");if(!L.length){ba.textContent="✓ Tous les documents liturgiques sont dans l'appli";ba.disabled=true;}else ba.onclick=bcDownloadAll;}
   app.querySelectorAll("[data-bcj]").forEach(b=>b.onclick=()=>{const q=document.getElementById("spQ");if(q.value){q.value="";q.oninput({target:q});}const h=document.getElementById("bc-"+b.dataset.bcj),hd=document.querySelector("header.top");window.scrollTo(0,h.getBoundingClientRect().top+scrollY-(hd?hd.offsetHeight:0)-8);});
   if(cat){const h=document.getElementById("bc-"+cat);if(h)requestAnimationFrame(()=>{const hd=document.querySelector("header.top");window.scrollTo(0,h.getBoundingClientRect().top+scrollY-(hd?hd.offsetHeight:0)-8);});}
 }
@@ -2557,7 +2567,8 @@ function viewGuide(){
   app.innerHTML=`<div class="dayhead"><h1>Guide</h1></div>
   <div class="card guide" style="text-align:center"><button class="btn main" onclick="showOnb()">👋 Revoir la présentation de départ</button></div>
   <div class="card guide"><h2>Nouveautés</h2>
-  <ul><li><b>📱 Widget qui change tout seul (iPhone)</b> : dans « 🔒 Mettre le verset sur l'écran verrouillé ou en widget », touche « Copier le script » et suis les étapes avec l'app gratuite Scriptable : le widget de l'écran d'accueil ou de l'écran verrouillé affiche chaque jour le nouveau verset, sans rien faire.</li>
+  <ul><li><b>✠ Documents liturgiques de BiblioCopte sans connexion</b> : dans Liturgie → Toute la bibliothèque, touche « ⬇️ Tout télécharger » (ou ⬇️ sur un document) : divine liturgie, lectures du dimanche, sacrements, Semaine Sainte, chants et fêtes restent dans l'appli, même en mode avion.</li>
+  <li><b>📱 Widget qui change tout seul (iPhone)</b> : dans « 🔒 Mettre le verset sur l'écran verrouillé ou en widget », touche « Copier le script » et suis les étapes avec l'app gratuite Scriptable : le widget de l'écran d'accueil ou de l'écran verrouillé affiche chaque jour le nouveau verset, sans rien faire.</li>
   <li><b>✨ Verset du jour</b> : en haut de l'accueil, un nouveau verset chaque jour à minuit (heure française). Touche « 🔒 Mettre le verset sur l'écran verrouillé ou en widget » pour en faire une image (iPhone, Android, widget carré ou large, ordinateur) ou recevoir le verset chaque matin en notification.</li>
   <li><b>✠ Liturgie</b> : l'onglet en haut contient les livres de l'Église (Service du diacre, Psalmodie annuelle, Psalmodie de Kiahk, Semaine Sainte, Psalmodie en diapositives, Chants et cantiques), avec leur sommaire. Touche « Télécharger » pour les lire sans connexion : ils restent sur ton appareil même après une mise à jour. Tu y trouves aussi <b>toute la bibliothèque BiblioCopte</b> (150 documents : liturgie, lectures du dimanche, psalmodie, sacrements, Semaine Sainte, livres spirituels, chants, vies des saints, fêtes), qui s'ouvrent directement depuis le site du diocèse avec une connexion.</li><li><b>✠ Ce qu'en disent les Pères</b> : sous chaque chapitre, une courte explication d'un Père de l'Église (saint Cyrille d'Alexandrie, saint Athanase, saint Éphrem, saint Jean Chrysostome, les Pères du désert…), avec son nom et la source. Il y en a pour environ 1 130 chapitres sur 1 329. Touche « sur le verset… » pour aller au verset.</li>
   <li>Ces textes viennent de traductions anciennes libres de droits. Les livres du <b>pape Chenouda III</b> sont encore protégés par le droit d'auteur et on ne peut pas vérifier une citation de lui pour chaque chapitre : l'app n'invente donc aucune citation. Pour lire le pape Chenouda, demande ses livres à ton église.</li>
@@ -3370,7 +3381,7 @@ document.getElementById("onbBack").onclick=()=>{if(onbStep>0){onbStep--;renderOn
 document.getElementById("onbSkip").onclick=()=>{onbDl=false;closeOnb();};
 // ---------- Hors connexion ----------
 const FONT_FILES=["cormorant-garamond-latin-500-normal", "cormorant-garamond-latin-600-normal", "cormorant-garamond-latin-700-normal", "source-sans-3-latin-400-normal", "source-sans-3-latin-600-normal", "eb-garamond-latin-400-normal", "lora-latin-400-normal", "atkinson-hyperlegible-latin-400-normal", "nunito-latin-400-normal", "opendyslexic-latin-400-normal", "merriweather-latin-400-normal","crimson-pro-latin-400-normal","libre-baskerville-latin-400-normal","spectral-latin-400-normal","alegreya-latin-400-normal","playfair-display-latin-400-normal","cinzel-latin-400-normal","im-fell-english-latin-400-normal","unifrakturmaguntia-latin-400-normal","inter-latin-400-normal","open-sans-latin-400-normal","montserrat-latin-400-normal","raleway-latin-400-normal","quicksand-latin-400-normal","lexend-latin-400-normal","comic-neue-latin-400-normal","dancing-script-latin-400-normal","satisfy-latin-400-normal","caveat-latin-400-normal","kalam-latin-400-normal","patrick-hand-latin-400-normal","indie-flower-latin-400-normal","courier-prime-latin-400-normal"];
-const OFF_CACHE="bible-copte-v16";
+const OFF_CACHE="bible-copte-v17";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
 let offlineOK=false;
