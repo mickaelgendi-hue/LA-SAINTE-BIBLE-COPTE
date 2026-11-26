@@ -6,7 +6,7 @@ function S(r){return [r.title??null,r.periodInfo??null,r.copticDate??null,(r.sec
  let keys=Object.keys(E);const f=P.get("f");if(f)keys=keys.filter(k=>k.includes(f));const step=+(P.get("step")||1);keys=keys.filter((k,i)=>i%step===0);
  const bad=[],err=[];let done=0;const live={};
  async function one(k){const [l,d]=k.split("|");for(let t=0;t<3;t++){try{const r=await fetch(`https://api.katameros.app/readings/gregorian/${d}?languageId=${l}&bibleId=${B[l]}`);
-   let h=null;if(r.status!==204){const j=await r.json();h=await sha1(JSON.stringify(S(j)));if(P.get("dump")===k)live.j=JSON.stringify(S(j));}
+   let h=null;if(r.status!==204){const j=await r.json();h=await sha1(JSON.stringify(S(j)));if(P.get("dump")===k)live.j=JSON.stringify(S(j),(kk,v)=>typeof v==="string"&&v.length>70?v.slice(0,40)+"…"+v.length:v);}
    if(h!==E[k])bad.push(k);return}catch(e){if(t==2)err.push(k)}}}
  let i=0;async function w(){while(i<keys.length){const k=keys[i++];await one(k);done++;if(done%25==0)o.textContent=`${done}/${keys.length} différences:${bad.length} erreurs:${err.length}`}}
  await Promise.all(Array.from({length:6},w));
