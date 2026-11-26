@@ -1,12 +1,12 @@
 // Lecture hors connexion : La Sainte Bible copte
-const CACHE = "bible-copte-v21";
+const CACHE = "bible-copte-v22";
 const CORE = ["./", "index.html", "manifest.json", "logo.svg", "favicon-32.png", "apple-touch-icon.png", "logo-192.png", "logo-512.png"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).catch(() => {}));
   self.skipWaiting();
 });
 self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE && k !== "bible-copte-rappel" && k !== "bible-copte-liturgie").map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE && k !== "bible-copte-rappel" && k !== "bible-copte-liturgie" && k !== "bible-copte-messe").map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener("fetch", e => {
   const req = e.request;
@@ -17,6 +17,11 @@ self.addEventListener("fetch", e => {
   // Livres de la Liturgie : gardés à part (ils restent après les mises à jour), jamais copiés en double
   if (/\/lit-[a-z-]+-\d+\.pdf$/.test(u.pathname)) {
     e.respondWith(caches.open("bible-copte-liturgie").then(c => c.match(req, { ignoreSearch: true })).then(h => h || fetch(req)));
+    return;
+  }
+  // Lectures de la Messe : gardées à part (elles restent après les mises à jour)
+  if (/\/messe\/[a-z-]+\.(json|woff2)$/.test(u.pathname)) {
+    e.respondWith(caches.open("bible-copte-messe").then(c => c.match(req, { ignoreSearch: true })).then(h => h || fetch(req)));
     return;
   }
   // Documents BiblioCopte : l'appli les range elle-même dans sa bibliothèque, on ne les copie pas en double

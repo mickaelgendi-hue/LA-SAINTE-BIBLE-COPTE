@@ -309,12 +309,80 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 .peres .pq-v{font-style:italic;margin:0 0 4px}
 .peres .pq-all{margin:2px 0 4px}
 .peres .pq-w{margin:0 0 4px;font-size:14.5px}
+/* Messe : mise en page reprise de l'application Katameros */
+@font-face{font-family:"Suez One";font-display:swap;src:url(messe/suez.woff2) format("woff2")}
+@font-face{font-family:"ScheherazadeNew";font-display:swap;src:url(messe/sch.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible Next";font-display:swap;src:url(messe/atk.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Atkinson Hyperlegible Next";font-display:swap;src:url(messe/atk-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+.ms-wrap{--msz:1;font-family:"Atkinson Hyperlegible Next","ScheherazadeNew",sans-serif;color:#1c1b1f}
+.ms-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin:2px 0 0}
+.ms-langs,.ms-zm{display:flex;gap:6px}
+.ms-lg,.ms-zm button{border:1px solid rgba(0,0,0,.12);background:#fff;color:#1c1b1f;border-radius:999px;padding:7px 13px;font:600 14px/1 "Atkinson Hyperlegible Next",sans-serif;cursor:pointer}
+.ms-lg[lang=ar]{font-family:"ScheherazadeNew",sans-serif;font-size:16px;padding:5px 13px}
+.ms-lg.on{background:#ffc107;border-color:#ffc107;color:#000}
+.ms-zm button{padding:7px 11px}
+.ms-cross{width:120px;height:120px;display:block;margin:0 auto}
+.ms-wait{padding:40px 0;opacity:.35}
+.ms-date{text-align:center;font-family:"Suez One",serif;font-size:2em;margin:.5em 0 .4em;line-height:1.3;color:#000}
+.ms-g{width:100%}
+.ms-gt{display:block}
+.ms-ctl{display:flex;align-items:center;width:fit-content;margin:4px auto;gap:2px;padding:3px;border-radius:999px;background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.05)}
+.ms-ctl button,.ms-cal{width:40px;height:40px;border-radius:50%;border:0;background:transparent;display:grid;place-items:center;color:#1c1b1f;cursor:pointer;position:relative}
+.ms-cal{background:rgba(0,0,0,.04)}
+.ms-cal input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0;margin:0;font-size:16px}
+.ms-cal input::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;cursor:pointer}
+.ms-cd,.ms-pi,.ms-ti{font-size:1em}
+.ms-today{margin-top:8px;font:600 14px "Atkinson Hyperlegible Next",sans-serif;border:1px solid #ffc107;background:#fff8e1;color:#000;border-radius:999px;padding:6px 14px;cursor:pointer}
+@media (min-width:960px){.ms-g{display:grid;grid-template-columns:1fr auto 1fr;column-gap:20px;align-items:center}.ms-gt{grid-column:2}.ms-ctl{grid-column:3;justify-self:start;margin:0}}
+.ms-secs{margin:14px 0 10px}
+.ms-sec{background:#fff;border-radius:0;box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px rgba(0,0,0,.14),0 1px 3px rgba(0,0,0,.12);transition:margin .2s;scroll-margin-top:64px}
+.ms-sec:first-child{border-radius:4px 4px 0 0}.ms-sec:last-child{border-radius:0 0 4px 4px}
+.ms-sec+.ms-sec{border-top:1px solid rgba(0,0,0,.12)}
+.ms-sec.open{margin:16px 0;border-radius:4px}.ms-sec.open:first-child{margin-top:0}
+.ms-st{width:100%;display:flex;align-items:center;gap:8px;background:#ffc107;border:0;padding:16px 20px;min-height:64px;cursor:pointer;color:#000;border-radius:inherit}
+.ms-sec.open .ms-st{border-radius:4px 4px 0 0}
+.ms-st:hover{background:#ffcd38}
+.ms-st h2{flex:1;margin:0;font-family:"Suez One",serif;text-transform:uppercase;font-weight:300;font-size:min(2em,9vw);color:#000;text-align:center;line-height:1.25;overflow-wrap:anywhere}
+.ms-st svg{flex:none;transition:transform .2s}
+.ms-sec.open .ms-st svg{transform:rotate(180deg)}
+.ms-sb{padding:8px 16px 16px}
+.ms-menu{display:flex;flex-direction:column;margin:16px 16px}
+.ms-sl{border:0;background:rgba(0,0,0,.06);color:#1c1b1f;min-height:52px;padding:0 16px;font:500 calc(1rem*1) "Atkinson Hyperlegible Next","ScheherazadeNew",sans-serif;text-transform:uppercase;letter-spacing:.0892em;cursor:pointer;border-radius:0;border-top:1px solid rgba(0,0,0,.08)}
+.ms-sl:first-child{border-radius:4px 4px 0 0;border-top:0}.ms-sl:last-child{border-radius:0 0 4px 4px}
+.ms-sl:hover{background:rgba(0,0,0,.1)}
+.ms-sub{margin-bottom:40px;scroll-margin-top:64px}
+.ms-wrap h2,.ms-wrap h3{color:#000}
+.ms-subt{font-family:"Suez One",serif;text-align:center;font-weight:400;font-size:calc(1.6rem*var(--msz));margin:16px 0 8px;line-height:1.3}
+.ms-subi{color:#d04444;margin:10px 0;font-size:calc(1rem*var(--msz));line-height:1.5}
+.ms-r{margin:10px 0 40px}
+.ms-rt{font-size:calc(1.2rem*var(--msz));margin:0 0 8px}
+.ms-ri{color:#d04444;margin-bottom:20px}
+.ms-in{font-size:calc(1rem*var(--msz));line-height:1.5}.ms-in~.ms-in{margin-top:8px}
+.ms-ref{font-weight:500;font-size:calc(1.2rem*var(--msz));text-transform:uppercase;margin:0 0 8px}
+.ms-v{font-size:calc(1rem*var(--msz));line-height:1.5;margin-bottom:10px}
+.ms-n{font-size:calc(.72rem*var(--msz));font-weight:700;opacity:.5;position:relative;top:-.4em;margin-inline-end:1px}
+.ms-rc{text-align:right;color:#d04444;font-size:calc(1rem*var(--msz));line-height:1.5}
+.ms-html{font-size:calc(1em*var(--msz));line-height:1.5}.ms-html p{margin:0 0 10px}
+.ms-rtl .ms-subi,.ms-rtl .ms-ref,.ms-rtl .ms-v,.ms-rtl .ms-st h2,.ms-rtl .ms-in,.ms-rtl .ms-subt,.ms-rtl .ms-sl,.ms-rtl .ms-rc,.ms-rtl .ms-rt,.ms-rtl .ms-html{font-family:"ScheherazadeNew","Raleway",serif}
+.ms-rtl .ms-v,.ms-rtl .ms-in,.ms-rtl .ms-subi,.ms-rtl .ms-rc,.ms-rtl .ms-html{line-height:1.8}
+.ms-rtl .ms-st h2{font-weight:400}
+.ms-dl{text-align:center}.ms-dl h2{font-family:"Suez One",serif;font-weight:400;font-size:30px;margin:6px 0 10px}
+.ms-dlb{display:flex;flex-direction:column;gap:8px;margin:14px 0 6px}
+.ms-dlb [lang=ar]{font-family:"ScheherazadeNew",sans-serif}
+.ms-prog{height:8px;border-radius:99px;background:rgba(0,0,0,.08);overflow:hidden;margin:10px 0 4px}.ms-prog div{height:100%;width:0;background:#ffc107;transition:width .3s}
+.ms-src{text-align:center;margin:18px 6px}
+.linkbtn{border:0;background:none;color:var(--muted);text-decoration:underline;font:inherit;cursor:pointer;padding:4px}
+.ms-cta{display:flex;align-items:center;gap:14px;margin:0 0 14px;text-decoration:none;color:inherit;border-left:5px solid #ffc107}
+.ms-cta img{width:54px;height:54px;flex:none}.ms-cta b{font-size:18px}
+/* Menu du haut : 5 onglets + 3 icônes doivent tenir sur un petit téléphone */
+@media (max-width:480px){header.top .in{padding:10px 10px;gap:6px}.nav{gap:0}.nav a{padding:6px 5px}.nav a.gear{padding:6px 4px}}
+@media (max-width:370px){header.top .in{padding:8px 6px;gap:4px}.nav a{padding:5px 3.5px;font-size:12px}.nav a.gear{padding:5px 2px}.nav a.gear svg{width:16px;height:16px}.brand img{width:26px;height:26px}}
 </style>
 </head>
 <body>
 <header class="top"><div class="in">
   <a class="brand" href="#accueil"><img src="logo.svg" alt="" width="30" height="30" style="border-radius:8px"><span>La Sainte Bible copte</span></a>
-  <nav class="nav"><a href="#accueil" data-n="accueil">Accueil</a><a href="#plan" data-n="plan">Plan</a><a href="#guide" data-n="guide">Guide</a><a href="#liturgie" data-n="liturgie">Liturgie</a><a href="#recherche" data-n="recherche" class="gear" aria-label="Rechercher" title="Rechercher"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a><a href="#favoris" data-n="favoris" class="gear" aria-label="Mes versets" title="Mes versets"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg></a><a href="#parametres" data-n="parametres" class="gear" aria-label="Paramètres" title="Paramètres"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a></nav>
+  <nav class="nav"><a href="#accueil" data-n="accueil">Accueil</a><a href="#plan" data-n="plan">Plan</a><a href="#guide" data-n="guide">Guide</a><a href="#liturgie" data-n="liturgie">Liturgie</a><a href="#messe" data-n="messe">Messe</a><a href="#recherche" data-n="recherche" class="gear" aria-label="Rechercher" title="Rechercher"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a><a href="#favoris" data-n="favoris" class="gear" aria-label="Mes versets" title="Mes versets"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.9 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.4 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg></a><a href="#parametres" data-n="parametres" class="gear" aria-label="Paramètres" title="Paramètres"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a></nav>
 </div></header>
 <main class="wrap" id="app"></main>
 <div class="modal" id="modal"><div class="card"><h3 id="mt">Confirmer</h3><p id="mb"></p><div class="pager"><button class="btn ghost" id="mno">Annuler</button><button class="btn main" id="myes">Oui</button></div></div></div>
@@ -2140,6 +2208,7 @@ function viewLiturgie(){
   setNav("liturgie");
   const tot=LIT.reduce((s,b)=>s+litMo(b),0);
   app.innerHTML=`<div class="dayhead"><div class="k">✠ Église copte orthodoxe</div><h1>Liturgie</h1><p class="muted">Les livres de l'Église pour prier la Liturgie, la Psalmodie et la Semaine Sainte, avec le copte, le français et l'arabe.</p></div>
+  <a class="card ms-cta" href="#messe"><img src="${MS_CROSS}" alt=""><div><b>✠ Messe du jour</b><br><span class="small muted">Les lectures de chaque jour de l'année (Katameros), en français, anglais et arabe, sans connexion.</span></div><span class="lit-go">›</span></a>
   <div class="lit-all card"><div><b>📴 Tous les livres sans connexion</b><br><span class="small muted">${LIT.length} livres, ${tot} Mo. Une fois téléchargés, ils restent sur ton appareil, même après une mise à jour de l'appli.</span></div><button class="btn main" id="litAll">⬇️ Tout télécharger</button><p class="small muted" id="litAllTxt" style="margin:6px 0 0"></p></div>
   <h2 class="lit-h2">📴 Livres à lire sans connexion</h2>
   <div class="lit-list">${LIT.map(b=>`<a class="lit-card card" href="#lit-${b.id}"><div class="lit-ic">${b.ic}</div><div class="lit-tx"><h3>${esc(b.t)}</h3><p>${esc(b.s)}</p><p class="small muted">${b.ed?esc(b.ed)+" · ":""}${b.n} pages</p><div class="lit-stw" data-litst="${b.id}"></div></div><span class="lit-go">›</span></a>`).join("")}</div>
@@ -2632,7 +2701,8 @@ function viewGuide(){
   app.innerHTML=`<div class="dayhead"><h1>Guide</h1></div>
   <div class="card guide" style="text-align:center"><button class="btn main" onclick="showOnb()">👋 Revoir la présentation de départ</button></div>
   <div class="card guide"><h2>Nouveautés</h2>
-  <ul><li><b>🎶 Chants un par un</b> : dans Liturgie → Chants et cantiques, chaque chant est dans la liste ; touche-le et il s'ouvre tout seul, sans les autres (‹ › pour passer au chant d'avant ou d'après).</li>
+  <ul><li><b>✠ Messe</b> : nouvel onglet en haut à droite. Les lectures de chaque jour de l'année comme dans l'application Katameros (Office de la Veille, Office du Matin, Messe avec Épître, Catholicon, Praxis, Synaxaire, Psaume et Évangile, et les heures de la Semaine Sainte), en français, en anglais et en arabe. Touche ‹ › ou 📅 pour changer de jour. Télécharge-les une fois avec internet : ensuite tout marche sans connexion.</li>
+  <li><b>🎶 Chants un par un</b> : dans Liturgie → Chants et cantiques, chaque chant est dans la liste ; touche-le et il s'ouvre tout seul, sans les autres (‹ › pour passer au chant d'avant ou d'après).</li>
   <li><b>📚 Toute la bibliothèque BiblioCopte sans connexion</b> : dans Liturgie → Toute la bibliothèque, touche « ⬇️ Tout télécharger » (documents liturgiques, puis livres spirituels et vies des saints) ou ⬇️ sur un document : tout reste dans l'appli, même en mode avion.</li>
   <li><b>📱 Widget qui change tout seul (iPhone)</b> : dans « 🔒 Mettre le verset sur l'écran verrouillé ou en widget », touche « Copier le script » et suis les étapes avec l'app gratuite Scriptable : le widget de l'écran d'accueil ou de l'écran verrouillé affiche chaque jour le nouveau verset, sans rien faire.</li>
   <li><b>✨ Verset du jour</b> : en haut de l'accueil, un nouveau verset chaque jour à minuit (heure française). Touche « 🔒 Mettre le verset sur l'écran verrouillé ou en widget » pour en faire une image (iPhone, Android, widget carré ou large, ordinateur) ou recevoir le verset chaque matin en notification.</li>
@@ -3447,7 +3517,7 @@ document.getElementById("onbBack").onclick=()=>{if(onbStep>0){onbStep--;renderOn
 document.getElementById("onbSkip").onclick=()=>{onbDl=false;closeOnb();};
 // ---------- Hors connexion ----------
 const FONT_FILES=["cormorant-garamond-latin-500-normal", "cormorant-garamond-latin-600-normal", "cormorant-garamond-latin-700-normal", "source-sans-3-latin-400-normal", "source-sans-3-latin-600-normal", "eb-garamond-latin-400-normal", "lora-latin-400-normal", "atkinson-hyperlegible-latin-400-normal", "nunito-latin-400-normal", "opendyslexic-latin-400-normal", "merriweather-latin-400-normal","crimson-pro-latin-400-normal","libre-baskerville-latin-400-normal","spectral-latin-400-normal","alegreya-latin-400-normal","playfair-display-latin-400-normal","cinzel-latin-400-normal","im-fell-english-latin-400-normal","unifrakturmaguntia-latin-400-normal","inter-latin-400-normal","open-sans-latin-400-normal","montserrat-latin-400-normal","raleway-latin-400-normal","quicksand-latin-400-normal","lexend-latin-400-normal","comic-neue-latin-400-normal","dancing-script-latin-400-normal","satisfy-latin-400-normal","caveat-latin-400-normal","kalam-latin-400-normal","patrick-hand-latin-400-normal","indie-flower-latin-400-normal","courier-prime-latin-400-normal"];
-const OFF_CACHE="bible-copte-v21";
+const OFF_CACHE="bible-copte-v22";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
 let offlineOK=false;
@@ -3504,6 +3574,98 @@ async function downloadAll(){
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600);}
 function confirmBox(t,b,yes){const m=document.getElementById("modal");document.getElementById("mt").textContent=t;document.getElementById("mb").textContent=b;m.classList.add("on");
   document.getElementById("mno").onclick=()=>m.classList.remove("on");document.getElementById("myes").onclick=()=>{m.classList.remove("on");yes();};}
+// ---------- Messe : lectures de chaque jour (d'après l'application Katameros, logiciel libre sous licence MIT) ----------
+const MS_CACHE="bible-copte-messe",MS_V=1,MS_FROM=Date.UTC(2025,0,1);
+const MS_L={fr:{n:"Français",sz:9999747},en:{n:"English",sz:9598603},ar:{n:"عربي",sz:12753336,rtl:1}};
+const MS_FONTS=["messe/suez.woff2","messe/sch.woff2","messe/atk.woff2","messe/atk-ext.woff2"];
+const MS_MONTHS=["Thout","Babah","Hatour","Kiahk","Toubah","Amshir","Baramhat","Baramoudah","Bashans","Baounah","Abib","Misra","Nasie"];
+const MS_CROSS="data:image/png;base64,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";
+const MS_CHEV=d=>`<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+const MS_CAL=`<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>`;
+let msData={},msTok=0,msBusy=false;const msOpen=new Set();
+const msP2=n=>String(n).padStart(2,"0");
+function msLang(){const l=localStorage.getItem("messe-lang");return MS_L[l]?l:"fr";}
+function msZoom(){const z=+localStorage.getItem("messe-zoom");return z>=0.7&&z<=2.2?z:1;}
+function msMo(b){return (b/1048576).toFixed(1).replace(".",",");}
+function msFile(l){return "messe/"+l+".json";}
+function msToday(){const d=new Date();return d.getFullYear()+"-"+msP2(d.getMonth()+1)+"-"+msP2(d.getDate());}
+function msJdn(y,m,d){const a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3;return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;}
+function msCopt(y,m,d){const j=msJdn(y,m,d),E=1825030,cy=Math.floor((4*(j-E)+1463)/1461),doy=j-(E-1+365*(cy-1)+Math.floor(cy/4));return (doy-1)%30+1+" "+MS_MONTHS[Math.floor((doy-1)/30)];}
+async function msHas(l){try{return !!(await (await caches.open(MS_CACHE)).match(msFile(l)));}catch(e){return false;}}
+async function msLoad(l){if(msData[l])return msData[l];let r;try{r=await (await caches.open(MS_CACHE)).match(msFile(l));}catch(e){return null;}if(!r)return null;const d=await r.json();msData[l]=d;return d;}
+async function msDownload(l,onp){
+  const r=await fetch(msFile(l)+"?v="+MS_V,{cache:"no-store"});if(!r.ok)throw new Error("http "+r.status);
+  const rd=r.body.getReader(),parts=[];let got=0;
+  for(;;){const {done,value}=await rd.read();if(done)break;parts.push(value);got+=value.length;onp&&onp(Math.min(99,Math.floor(got*100/MS_L[l].sz)));}
+  const blob=new Blob(parts,{type:"application/json"}),d=JSON.parse(await blob.text());
+  if(!d||!d.D||!d.I)throw new Error("fichier incomplet");
+  const c=await caches.open(MS_CACHE);await c.put(msFile(l),new Response(blob,{headers:{"Content-Type":"application/json"}}));msData[l]=d;
+  for(const f of MS_FONTS){try{if(!(await c.match(f))){const x=await fetch(f,{cache:"no-store"});if(x.ok)await c.put(f,x);}}catch(e){}}
+  try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist();}catch(e){}
+}
+function msBar(l){return `<div class="ms-bar"><div class="ms-langs">${Object.entries(MS_L).map(([k,v])=>`<button class="ms-lg${k===l?" on":""}" data-msl="${k}"${v.rtl?' lang="ar"':""}>${v.n}</button>`).join("")}</div><div class="ms-zm"><button data-msz="-1" aria-label="Texte plus petit">A−</button><button data-msz="1" aria-label="Texte plus grand">A+</button></div></div>`;}
+function msBindBar(ds){app.querySelectorAll("[data-msl]").forEach(b=>b.onclick=()=>{localStorage.setItem("messe-lang",b.dataset.msl);viewMesse(ds);});
+  app.querySelectorAll("[data-msz]").forEach(b=>b.onclick=()=>{const z=Math.round(Math.min(2.2,Math.max(0.7,msZoom()+0.1*b.dataset.msz))*10)/10;localStorage.setItem("messe-zoom",z);const w=app.querySelector(".ms-wrap");if(w)w.style.setProperty("--msz",z);});}
+async function viewMesse(ds){
+  setNav("messe");const tok=++msTok,l=msLang();
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(ds||""))ds=msToday();
+  app.innerHTML=`<div class="ms-wrap" style="--msz:${msZoom()}">${msBar(l)}<div id="msBody"><div class="ms-wait"><img src="${MS_CROSS}" alt="" class="ms-cross"></div></div></div>`;
+  msBindBar(ds);
+  const data=await msLoad(l).catch(()=>null);if(tok!==msTok)return;
+  if(!data){msNeedDl(l,ds);return;}
+  msRender(data,l,ds);
+}
+async function msNeedDl(l,ds){
+  const have={};for(const k in MS_L)have[k]=await msHas(k);
+  const todo=Object.keys(MS_L).filter(k=>!have[k]),tot=todo.reduce((s,k)=>s+MS_L[k].sz,0);
+  const b=document.getElementById("msBody");if(!b)return;
+  b.innerHTML=`<div class="card ms-dl"><img src="${MS_CROSS}" alt="" class="ms-cross"><h2>Messe</h2>
+  <p>Les lectures de chaque jour de l'année : Office de la Veille, Office du Matin, Messe (Épître, Catholicon, Praxis, Synaxaire, Psaume et Évangile) et les heures de la Semaine Sainte, en <b>français</b>, en <b>anglais</b> et en <b>arabe</b>, du 1er janvier 2025 au 31 décembre 2040.</p>
+  <p class="muted">Pour les lire, télécharge-les d'abord dans l'appli (une seule fois, avec internet, de préférence en wifi). Ensuite elles s'ouvrent toujours, même sans connexion et après une mise à jour de l'appli.</p>
+  <div class="ms-dlb">${todo.map(k=>`<button class="btn ${k===l?"main":"ghost"}" data-msdl="${k}"${MS_L[k].rtl?' lang="ar"':""}>⬇️ ${MS_L[k].n} (${msMo(MS_L[k].sz)} Mo)</button>`).join("")}${todo.length>1?`<button class="btn ghost" data-msdl="all">⬇️ Les ${todo.length} langues (${msMo(tot)} Mo)</button>`:""}</div>
+  ${Object.keys(MS_L).filter(k=>have[k]).length?`<p class="small muted">Déjà sur ton appareil : ${Object.keys(MS_L).filter(k=>have[k]).map(k=>MS_L[k].n).join(", ")} ✓</p>`:""}
+  <div class="ms-prog" id="msProg" hidden><div id="msProgIn"></div></div><p class="small muted" id="msDlTxt"></p></div>`;
+  b.querySelectorAll("[data-msdl]").forEach(x=>x.onclick=()=>msStartDl(x.dataset.msdl==="all"?todo:[x.dataset.msdl],ds));
+}
+async function msStartDl(list,ds){
+  if(msBusy)return;
+  if(!navigator.onLine){litMsg("📴 Hors connexion","Reconnecte-toi à internet (de préférence en wifi) pour télécharger les lectures de la Messe.");return;}
+  msBusy=true;document.querySelectorAll("[data-msdl]").forEach(x=>x.disabled=true);
+  const pr=document.getElementById("msProg"),pi=document.getElementById("msProgIn"),tx=document.getElementById("msDlTxt");if(pr)pr.hidden=false;
+  const tot=list.reduce((s,k)=>s+MS_L[k].sz,0);let done=0,err=null;
+  for(const k of list){try{await msDownload(k,p=>{const v=Math.floor((done+MS_L[k].sz*p/100)*100/tot);if(pi)pi.style.width=v+"%";if(tx)tx.textContent=`⏳ ${MS_L[k].n} : ${p} %`;});done+=MS_L[k].sz;}catch(e){err=e;break;}}
+  msBusy=false;
+  if(err){const q=err&&(err.name==="QuotaExceededError"||/quota/i.test(err.message||""));litMsg(q?"💾 Plus de place":"⚠️ Téléchargement interrompu",q?"Il n'y a plus assez de place sur ton appareil. Libère un peu d'espace puis réessaie.":"La connexion a été coupée. Reconnecte-toi puis touche à nouveau « Télécharger » : ce qui est déjà fini est gardé.");if(location.hash.startsWith("#messe"))viewMesse(ds);return;}
+  toast("✓ Lectures de la Messe téléchargées");if(location.hash.startsWith("#messe")||!location.hash)viewMesse(ds);
+}
+function msRef(ps,B){return ps.map((p,i)=>`${i===0||ps[i-1][0]!==p[0]?(B[p[0]]||""):""} ${p[1]||""}`.trim()).join(" & ");}
+function msRead(r,data){
+  const [,t,intro,concl,ps]=r;let mid="";
+  if(typeof ps==="string"){const [k,ix]=ps.split("#"),x=(data.X[k]||[])[+ix];if(x&&x[1])mid=`<div class="ms-html">${x[1]}</div>`;}
+  else if(ps&&ps.length)mid=`<h3 class="ms-ref">${esc(msRef(ps,data.B))}</h3>`+ps.map(p=>`<div>${(data.P[p[2]]||[]).map(v=>`<div class="ms-v"><span class="ms-n">${v[0]}</span> ${esc(v[1])}</div>`).join("")}</div>`).join("");
+  return `<div class="ms-r">${t?`<h3 class="ms-rt">${esc(t)}</h3>`:""}${intro?`<div class="ms-ri">${String(intro).split("\n").map(x=>`<div class="ms-in">${esc(x)}</div>`).join("")}</div>`:""}${mid}${concl?`<div class="ms-rc">${esc(concl)}</div>`:""}</div>`;}
+function msSubLabel(u,data){if(u[1])return u[1];const r=u[3]&&u[3][0],ps=r&&r[4];return Array.isArray(ps)&&ps[0]?(data.B[ps[0][0]]||""):"";}
+function msRender(data,l,ds){
+  const [y,m,d]=ds.split("-").map(Number),idx=Math.round((Date.UTC(y,m-1,d)-MS_FROM)/864e5),b=document.getElementById("msBody");if(!b)return;
+  const rtl=!!MS_L[l].rtl,dt=new Date(y,m-1,d,12),today=msToday();
+  let g;try{g=new Intl.DateTimeFormat(l,{day:"numeric",month:"long",weekday:"long"}).format(dt).split(" ").map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(" ");}catch(e){g=ds;}
+  const last=new Date(MS_FROM+(data.I.length-1)*864e5),max=last.getUTCFullYear()+"-"+msP2(last.getUTCMonth()+1)+"-"+msP2(last.getUTCDate());
+  const di=idx>=0&&idx<data.I.length?data.I[idx]:-1,D=di>=0?data.D[di]:null;
+  b.innerHTML=`<div class="ms-date"><img class="ms-cross" src="${MS_CROSS}" alt="Croix copte"><div class="ms-g"><span class="ms-gt" lang="${l}">${esc(g)}</span>
+  <span class="ms-ctl" dir="ltr"><button data-msd="-1" aria-label="Jour précédent">${MS_CHEV("M15 6l-6 6 6 6")}</button><label class="ms-cal" aria-label="Choisir une date">${MS_CAL}<input type="date" id="msPick" min="2025-01-01" max="${max}" value="${ds}"></label><button data-msd="1" aria-label="Jour suivant">${MS_CHEV("M9 6l6 6-6 6")}</button></span></div>
+  <div class="ms-cd">${msCopt(y,m,d)}</div>${D&&D.p?`<div class="ms-pi">${esc(D.p)}</div>`:""}${D&&D.t?`<div class="ms-ti">${esc(D.t)}</div>`:""}${ds!==today?`<button class="ms-today" data-mstoday>Aujourd'hui</button>`:""}</div>
+  ${D?`<div class="ms-secs${rtl?" ms-rtl":""}" dir="${rtl?"rtl":"ltr"}" lang="${l}">${D.s.map((S,i)=>`<section class="ms-sec${msOpen.has(i)?" open":""}" id="ms-s-${i}"><button class="ms-st" data-mss="${i}" aria-expanded="${msOpen.has(i)}"><h2>${esc(S[1])}</h2>${MS_CHEV("M6 9l6 6 6-6")}</button><div class="ms-sb"${msOpen.has(i)?"":" hidden"}>${S[2].length>1?`<div class="ms-menu">${S[2].map((u,k)=>`<button class="ms-sl" data-msj="${i}-${k}">${esc(msSubLabel(u,data))}</button>`).join("")}</div>`:`<div style="height:16px"></div>`}${S[2].map((u,k)=>`<div class="ms-sub" id="ms-u-${i}-${k}">${u[1]?`<h2 class="ms-subt">${esc(u[1])}</h2>`:""}${u[2]?`<div class="ms-subi">${esc(u[2]).replace(/\n/g,"<br>")}</div>`:""}${(u[3]||[]).map(r=>msRead(r,data)).join("")}</div>`).join("")}</div></section>`).join("")}</div>`
+  :`<div class="card" style="text-align:center"><p>Les lectures de la Messe sont dans l'appli du <b>1er janvier 2025</b> au <b>31 décembre 2040</b>.</p><button class="btn main" data-mstoday>Revenir à aujourd'hui</button></div>`}
+  <p class="small muted ms-src">Lectures, introductions et Synaxaire repris de l'application <b>Katameros</b> (katameros.app, logiciel libre sous licence MIT). Bibles : Louis Segond 1910 (français), World English Bible (anglais, domaine public), Van Dyck (arabe). Tout est enregistré sur ton appareil : aucune connexion n'est nécessaire.</p>
+  <p class="small ms-src"><button class="linkbtn" id="msDel">🗑️ Retirer les lectures de la Messe de cet appareil</button></p>`;
+  const go=s=>{location.hash="#messe-"+s;};
+  b.querySelectorAll("[data-msd]").forEach(x=>x.onclick=()=>{const t=new Date(Date.UTC(y,m-1,d)+(+x.dataset.msd)*864e5),s=t.getUTCFullYear()+"-"+msP2(t.getUTCMonth()+1)+"-"+msP2(t.getUTCDate());if(s<"2025-01-01"||s>max){toast("Les lectures vont du 1er janvier 2025 au 31 décembre 2040");return;}go(s);});
+  b.querySelectorAll("[data-mstoday]").forEach(x=>x.onclick=()=>{location.hash="#messe";});
+  const pk=document.getElementById("msPick");pk.onchange=()=>{if(/^\d{4}-\d{2}-\d{2}$/.test(pk.value)&&pk.value>="2025-01-01"&&pk.value<=max)go(pk.value);};
+  b.querySelectorAll("[data-mss]").forEach(x=>x.onclick=()=>{const i=+x.dataset.mss,s=x.parentNode,o=!s.classList.contains("open");s.classList.toggle("open",o);s.querySelector(".ms-sb").hidden=!o;x.setAttribute("aria-expanded",o);o?msOpen.add(i):msOpen.delete(i);if(o)setTimeout(()=>s.scrollIntoView({behavior:"smooth",block:"start"}),30);});
+  b.querySelectorAll("[data-msj]").forEach(x=>x.onclick=()=>{const e=document.getElementById("ms-u-"+x.dataset.msj);e&&e.scrollIntoView({behavior:"smooth",block:"start"});});
+  document.getElementById("msDel").onclick=()=>confirmBox("Retirer les lectures ?","Les lectures de la Messe (toutes les langues) seront retirées de cet appareil. Tu pourras les télécharger à nouveau plus tard.",async()=>{try{await caches.delete(MS_CACHE);}catch(e){}msData={};toast("Lectures de la Messe retirées");viewMesse(ds);});
+}
 // ---------- Router ----------
 function route(){
   hideGloss(); if(typeof ttsStop==='function'&&TTS.on) ttsStop(); if(document.getElementById('notepanel').classList.contains('open')) closeNotes();
@@ -3516,6 +3678,8 @@ function route(){
   else if(h==="plan") viewPlan();
   else if(h==="guide") viewGuide();
   else if(h==="liturgie") viewLiturgie();
+  else if(h==="messe") viewMesse();
+  else if(/^messe-\d{4}-\d{2}-\d{2}$/.test(h)) viewMesse(h.slice(6));
   else if(h==="lit-spirituels") viewBiblio("livresSpirituels");
   else if(h==="bibliocopte") viewBiblio();
   else if(h.startsWith("bibliocopte-")) viewBiblio(h.slice(12));
