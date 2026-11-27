@@ -389,14 +389,24 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:30px}
 .lit-all{margin-top:18px}
 /* 📺 Diapo (projection sur la TV) */
 body.dp-lock{overflow:hidden}
-.dp{position:fixed;inset:0;z-index:300;background:#000;color:#fff;user-select:none;-webkit-user-select:none;touch-action:none}
-.dp-view,.tv-view{position:absolute;inset:0;overflow:hidden;background:#000}
-.dp-stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:center;transform:translate(-50%,-50%)}
-.dp-img{width:100%;height:100%;object-fit:contain;display:block;background:#000}
-.dp-tap{position:absolute;top:0;bottom:0;background:transparent;border:0;padding:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.dp-l{left:0;width:32%}.dp-m{left:32%;width:36%;cursor:default}.dp-r{right:0;width:32%}
+.dp{position:fixed;inset:0;height:100vh;height:100dvh;z-index:300;background:#000;color:#fff;user-select:none;-webkit-user-select:none;touch-action:none}
+.dp-track{position:absolute;inset:0;overflow:hidden;background:#000;touch-action:none;cursor:grab}
+.dp-pane{position:absolute;inset:0;overflow:hidden;background:#000;will-change:transform;backface-visibility:hidden}
+.dp-fit{position:absolute;left:50%;top:50%;transform-origin:center}
+.dp-pane *{pointer-events:none;-webkit-user-drag:none;user-select:none}
+.dp-flash{position:absolute;background:rgba(255,193,7,.45);border-radius:4px;animation:dpfl .35s ease-out forwards}
+@keyframes dpfl{from{opacity:1}to{opacity:0}}
+.lit-lk{position:absolute;z-index:2;border-radius:3px;-webkit-tap-highlight-color:rgba(255,193,7,.4)}
+.lit-lk:hover,.lit-lk:focus-visible{background:rgba(255,193,7,.22);outline:none}
+.dp-img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;-webkit-user-drag:none}
+.dp-load{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px;border-radius:50%;border:3px solid rgba(255,255,255,.2);border-top-color:#ffc107;animation:dpspin .8s linear infinite}
+@keyframes dpspin{to{transform:rotate(360deg)}}
+.dp-err{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;font:18px var(--sans);color:#ddd}
+.dp-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.75);color:#fff;border-radius:999px;padding:12px 20px;font:600 16px var(--sans);opacity:0;transition:opacity .4s;pointer-events:none;white-space:nowrap}
+.dp-hint.on{opacity:1}
+.tv-view{position:fixed;inset:0;background:#000}.tv-pane{transform:none!important}
 .dp-ui{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s}
-.dp-ui.on{opacity:1}.dp-ui.on .dp-top,.dp-ui.on .dp-bot{pointer-events:auto}
+.dp-ui.on{opacity:1}.dp-ui.on .dp-top>*,.dp-ui.on .dp-bot>*{pointer-events:auto}.dp-ui.on .dp-tt,.dp-ui.on .dp-n{pointer-events:none}
 .dp-top,.dp-bot{position:absolute;left:0;right:0;display:flex;align-items:center;gap:6px;padding:10px max(12px,env(safe-area-inset-right)) 10px max(12px,env(safe-area-inset-left))}
 .dp-top{top:0;padding-top:max(10px,env(safe-area-inset-top));background:linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,0))}
 .dp-bot{bottom:0;padding-bottom:max(12px,env(safe-area-inset-bottom));background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.85))}
@@ -417,12 +427,12 @@ body.dp-lock{overflow:hidden}
 .dp-tvo{padding:10px 14px}.dp-opt{border:1px solid #2a2d33;border-radius:12px;padding:12px;margin:0 0 10px}.dp-opt h4{margin:0 0 6px;font-size:16px}.dp-opt ol{list-style:decimal;padding:0 0 0 20px;margin:0 0 6px;font-size:14px;line-height:1.5}.dp-opt .muted,.dp-tvo .muted{color:#aaa}
 .dp-l2{display:flex;flex-direction:column;gap:8px}
 /* diapos de texte (lectures) : scène 1280 × 720 */
-.dps{width:1280px;height:720px;box-sizing:border-box;padding:44px 64px 40px;display:flex;flex-direction:column;background:#000;color:#fff;font-family:"Atkinson Hyperlegible Next","ScheherazadeNew",sans-serif;font-size:40px;line-height:1.35}
+.dps{width:1280px;height:720px;box-sizing:border-box;padding:44px 64px 40px;overflow:hidden;display:flex;flex-direction:column;background:#000;color:#fff;font-family:"Atkinson Hyperlegible Next","ScheherazadeNew",sans-serif;font-size:40px;line-height:1.35}
 .dps-top{font:400 30px "Suez One",serif;color:#ffc107;text-transform:uppercase;margin:0 0 18px;line-height:1.2}.dps-top span{text-transform:none;color:#ffe082;font-family:"Atkinson Hyperlegible Next",sans-serif;font-weight:600}
 .dps-body{flex:1;min-height:0;overflow:hidden}
 .dps-v,.dps-p{margin:0 0 .45em}.dps-v sup{font-size:.5em;color:#ffc107;font-weight:700;vertical-align:.7em}
 .dps-red{color:#ff8a80;margin:0 0 .5em}.dps-end{text-align:right}
-.dps-two{display:grid;grid-template-columns:1fr 1fr;gap:48px}.dps-two>div{min-width:0}.dps-tight{font-size:.8em}
+.dps-two{display:grid;grid-template-columns:1fr 1fr;gap:48px}.dps-port{padding:52px 40px 44px}.dps-port .dps-two{grid-template-columns:1fr;gap:4px}.dps-port .dps-two>div+div{opacity:.92;margin-top:2px}.dps-tighter{font-size:.66em}.dps-port .dps-big{font-size:84px}.dps-port .dps-d1{font-size:64px}.dps-two>div{min-width:0}.dps-tight{font-size:.8em}
 .dps [lang=ar],.dps-rtl{font-family:"ScheherazadeNew",serif;font-size:1.12em;line-height:1.45}.dps-rtl .dps-body{direction:rtl}
 .dps-amber{background:#ffc107;color:#000;align-items:center;justify-content:center;text-align:center}
 .dps-big{font:400 96px "Suez One",serif;text-transform:uppercase;line-height:1.15}.dps-big2{font:400 64px "ScheherazadeNew",serif;margin-top:16px}
@@ -430,7 +440,7 @@ body.dp-lock{overflow:hidden}
 .dps-day,.dps-wait{align-items:center;justify-content:center;text-align:center;font-family:"Suez One",serif}.dps-day img,.dps-wait img{width:200px;height:200px;filter:invert(1)}
 .dps-d1{font-size:72px;margin-top:20px}.dps-d2{font-size:52px;color:#ffc107}.dps-d3{font-size:40px;margin-top:6px}
 .dps-wait div{font-size:48px;margin-top:20px}.dps-wait small{font:28px "Atkinson Hyperlegible Next",sans-serif;opacity:.6;margin-top:10px}
-.dp-meas{position:fixed;left:-20000px;top:0;width:1280px;height:720px;visibility:hidden;pointer-events:none}
+.dp-meas{position:fixed;left:-20000px;top:0;visibility:hidden;pointer-events:none}
 /* fenêtre / écran TV */
 body.tvmode header.top,body.tvmode #notepanel,body.tvmode .toast{display:none!important}
 body.tvmode{background:#000;overflow:hidden}
@@ -2317,6 +2327,7 @@ function viewChant(key){const i=CHANTS.findIndex(c=>c[0]===key),b=litBook("chant
       const w=div.clientWidth||box.clientWidth,dpr=Math.min(window.devicePixelRatio||1,2.5),vp0=pg.getViewport({scale:1}),vp=pg.getViewport({scale:Math.min(w*dpr/vp0.width,4)});
       const cv=document.createElement("canvas");cv.width=Math.floor(vp.width);cv.height=Math.floor(vp.height);await pg.render({canvasContext:cv.getContext("2d"),viewport:vp}).promise;
       if(!div.isConnected)return;div.appendChild(cv);div.classList.add("ok");
+      litLinks(b,p).then(ls=>{if(div.isConnected)litLinkEls(div,ls,t=>{const cc=chantAt(t);return cc?"#chant-"+cc[0]:null;});});
     }catch(e){div.classList.add("err");div.innerHTML=`<span class="lit-e">${navigator.onLine?"Ce chant n'a pas pu s'ouvrir. Réessaie.":"📴 Pour lire les chants sans connexion, télécharge d'abord « Chants et cantiques » (bouton ⬇️ dans Liturgie)."}</span>`;}}};
   draw();
   const zoom=z=>{litZoom=Math.max(1,Math.min(3,z));box.style.setProperty("--z",litZoom);draw();};
@@ -2372,6 +2383,7 @@ function viewLitRead(id,page){const b=litBook(id);if(!b){location.hash="liturgie
       const cv=document.createElement("canvas");cv.width=Math.floor(vp.width);cv.height=Math.floor(vp.height);
       await pg.render({canvasContext:cv.getContext("2d"),viewport:vp}).promise;
       if(!div.isConnected||!rendered.has(p))return;div.querySelector("canvas")?.remove();div.appendChild(cv);div.classList.add("ok");
+      litLinks(b,p).then(ls=>{if(div.isConnected&&rendered.has(p))litLinkEls(div,ls,t=>"#lit-"+id+"-"+t);});
     }catch(e){rendered.delete(p);div.classList.add("err");const w=litWeb(id);div.innerHTML=`<span class="lit-n">${p}</span><span class="lit-e">${navigator.onLine?`Ce livre n'est pas encore sur le site de l'appli.`:"📴 Pas de connexion : télécharge ce livre pour le lire hors ligne."}</span>`;}}
   function unrender(div){const p=+div.dataset.p;if(!rendered.has(p))return;rendered.delete(p);div.querySelector("canvas")?.remove();div.classList.remove("ok");}
   litObs=new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting)render(e.target);else if(Math.abs(+e.target.dataset.p-cur)>8)unrender(e.target);}},{rootMargin:"1200px 0px"});
@@ -3582,7 +3594,7 @@ document.getElementById("onbBack").onclick=()=>{if(onbStep>0){onbStep--;renderOn
 document.getElementById("onbSkip").onclick=()=>{onbDl=false;closeOnb();};
 // ---------- Hors connexion ----------
 const FONT_FILES=["cormorant-garamond-latin-500-normal", "cormorant-garamond-latin-600-normal", "cormorant-garamond-latin-700-normal", "source-sans-3-latin-400-normal", "source-sans-3-latin-600-normal", "eb-garamond-latin-400-normal", "lora-latin-400-normal", "atkinson-hyperlegible-latin-400-normal", "nunito-latin-400-normal", "opendyslexic-latin-400-normal", "merriweather-latin-400-normal","crimson-pro-latin-400-normal","libre-baskerville-latin-400-normal","spectral-latin-400-normal","alegreya-latin-400-normal","playfair-display-latin-400-normal","cinzel-latin-400-normal","im-fell-english-latin-400-normal","unifrakturmaguntia-latin-400-normal","inter-latin-400-normal","open-sans-latin-400-normal","montserrat-latin-400-normal","raleway-latin-400-normal","quicksand-latin-400-normal","lexend-latin-400-normal","comic-neue-latin-400-normal","dancing-script-latin-400-normal","satisfy-latin-400-normal","caveat-latin-400-normal","kalam-latin-400-normal","patrick-hand-latin-400-normal","indie-flower-latin-400-normal","courier-prime-latin-400-normal"];
-const OFF_CACHE="bible-copte-v24";
+const OFF_CACHE="bible-copte-v25";
 const DATA_PREFIX="";
 function bookFiles(){const s=new Set();SECTIONS.forEach(x=>x.books.forEach(b=>s.add(DATA_PREFIX+b.en.toLowerCase().replace(/ /g,"-")+".json")));return [...s];}
 let offlineOK=false;
@@ -3753,32 +3765,59 @@ function viewLitCat(id){const c=BIBLIO.find(x=>x.id===id);if(!c){location.hash="
   app.querySelectorAll(".bc-open").forEach(x=>x.onclick=e=>{e.preventDefault();bcGet(x.dataset.bco);});
   const ba=document.getElementById("bcAllC");if(ba&&todo.length)ba.onclick=()=>bcDownloadAll(g);
 }
+// ---------- Liens dans les livres : toucher une ligne du sommaire ou du menu → on va directement à la bonne page ----------
+const LIT_LINKS={"service-diacre":{"7":[[0.1335,0.2334,0.8407,0.2604,12],[0.1712,0.2859,0.8127,0.3142,25],[0.1978,0.315,0.8006,0.3434,47],[0.1456,0.344,0.8036,0.3723,47],[0.163,0.373,0.8219,0.4,85],[0.1325,0.4255,0.8091,0.4538,91],[0.2182,0.4711,0.7891,0.4994,101],[0.1734,0.5001,0.8518,0.5284,105],[0.192,0.529,0.7992,0.5573,107],[0.2295,0.5579,0.7841,0.5863,113],[0.1234,0.587,0.8518,0.6153,129],[0.2244,0.6159,0.7841,0.6443,142],[0.1186,0.6449,0.8579,0.6732,145],[0.1577,0.674,0.8288,0.7023,157],[0.2222,0.7029,0.819,0.7312,161],[0.1251,0.7319,0.8839,0.7602,166],[0.2476,0.7609,0.7944,0.7893,170],[0.1902,0.7899,0.7875,0.8182,188],[0.2139,0.8188,0.7875,0.8471,192],[0.1154,0.8479,0.7924,0.8762,198]],"8":[[0.2278,0.0838,0.7914,0.1121,215],[0.2476,0.1127,0.7905,0.1411,222],[0.2272,0.1417,0.8036,0.17,231],[0.2369,0.1708,0.7863,0.1991,256],[0.2234,0.1997,0.8133,0.228,281],[0.2405,0.2286,0.7905,0.2569,290],[0.1591,0.2577,0.8692,0.286,301],[0.2383,0.2866,0.794,0.315,308],[0.1801,0.3156,0.8192,0.3439,321],[0.1398,0.3454,0.8512,0.3737,94],[0.2093,0.3753,0.7847,0.4036,341],[0.1464,0.4045,0.8692,0.4315,344],[0.15,0.4553,0.8449,0.4822,369],[0.1762,0.5061,0.8544,0.5344,370],[0.2103,0.535,0.8615,0.5633,373],[0.1736,0.5641,0.8555,0.5924,374],[0.1698,0.593,0.8516,0.6213,375],[0.1752,0.6219,0.8516,0.6502,376],[0.1722,0.651,0.8014,0.6793,376],[0.1547,0.6799,0.7996,0.7083,377],[0.1716,0.7089,0.8646,0.7372,382],[0.1998,0.7378,0.8321,0.7662,383],[0.147,0.7669,0.8734,0.7952,384],[0.1333,0.7959,0.8381,0.8242,385],[0.1702,0.8413,0.8204,0.8696,386],[0.1382,0.8704,0.8865,0.8987,387]]},"psalmodie-annuelle":{"6":[[0.1139,0.1659,0.9384,0.1882,8],[0.1139,0.1923,0.9383,0.2145,11],[0.1139,0.2191,0.9384,0.2434,16],[0.1139,0.2485,0.9382,0.2727,20],[0.1139,0.2771,0.9383,0.2995,24],[0.1139,0.3034,0.9383,0.3259,28],[0.1139,0.3297,0.9383,0.3521,30],[0.1139,0.356,0.9383,0.3785,33],[0.1139,0.3824,0.9383,0.4048,35],[0.1139,0.4086,0.9383,0.4311,40],[0.1139,0.4357,0.9383,0.46,45],[0.1139,0.4651,0.9383,0.4894,47],[0.1139,0.4939,0.9383,0.5161,48],[0.1139,0.5208,0.9383,0.5451,57],[0.1139,0.5494,0.9383,0.5719,58],[0.1139,0.5758,0.9383,0.5981,62],[0.1139,0.6022,0.9382,0.6245,66],[0.1139,0.6284,0.9384,0.6507,72],[0.1139,0.6548,0.9383,0.6771,73],[0.1139,0.6817,0.9383,0.706,88],[0.1139,0.7111,0.9383,0.7354,95],[0.1139,0.7399,0.9384,0.7622,97],[0.1139,0.7661,0.9384,0.7884,101],[0.1139,0.7925,0.9382,0.8147,103],[0.1139,0.8189,0.9383,0.8411,116],[0.1139,0.8451,0.9384,0.8673,128],[0.1139,0.8715,0.9382,0.8937,139]],"7":[[0.1139,0.115,0.9383,0.1373,153],[0.1139,0.1413,0.9384,0.1635,162],[0.1139,0.1676,0.9384,0.1899,176],[0.1139,0.1939,0.9382,0.2161,179],[0.1139,0.2202,0.9384,0.2425,188],[0.1139,0.2466,0.9383,0.2689,204],[0.1139,0.2728,0.9384,0.2951,286],[0.1139,0.2992,0.9379,0.3214,345]],"287":[[0.1325,0.0936,0.8902,0.1161,318],[0.1325,0.114,0.8901,0.1364,321],[0.1325,0.1344,0.8901,0.1568,322],[0.1325,0.1548,0.8901,0.1772,325],[0.1325,0.1751,0.8901,0.1976,327],[0.1139,0.2094,0.8901,0.2319,333],[0.1139,0.2434,0.8901,0.2659,334],[0.1139,0.2774,0.8901,0.2999,335],[0.1325,0.2976,0.8902,0.32,335],[0.1325,0.318,0.8901,0.3404,337],[0.1325,0.3382,0.8901,0.3606,338],[0.1139,0.3725,0.8901,0.395,340],[0.1139,0.4066,0.8901,0.4291,341],[0.1325,0.4267,0.8902,0.4492,341],[0.1325,0.4471,0.8901,0.4695,342],[0.1139,0.4812,0.8901,0.5037,344],[0.1139,0.5153,0.8901,0.5378,345],[0.1139,0.5494,0.8901,0.5719,341],[0.1139,0.5833,0.8901,0.6058,342],[0.1139,0.6174,0.8901,0.6399,343]],"351":[[0.1139,0.2807,0.8901,0.3032,346],[0.1325,0.301,0.8902,0.3233,346],[0.1325,0.3214,0.8901,0.3437,358],[0.1139,0.3627,0.8901,0.3852,362],[0.1325,0.383,0.8902,0.4053,362],[0.1325,0.4032,0.8901,0.4255,366],[0.1139,0.4445,0.8901,0.467,370],[0.1325,0.4648,0.8902,0.4871,370],[0.1325,0.4852,0.8901,0.5074,373],[0.1139,0.5264,0.8901,0.5489,376],[0.1325,0.5466,0.8902,0.5689,376],[0.1325,0.567,0.8901,0.5893,379],[0.1139,0.6082,0.8901,0.6307,383],[0.1325,0.6286,0.8902,0.6508,383],[0.1325,0.649,0.8901,0.6712,386],[0.1139,0.6902,0.8901,0.7127,389],[0.1325,0.7104,0.8902,0.7326,389],[0.1325,0.7308,0.8901,0.753,392],[0.1139,0.772,0.8901,0.7945,395],[0.1325,0.7924,0.8902,0.8146,395],[0.1325,0.8127,0.8901,0.835,398],[0.1139,0.854,0.8901,0.8765,402],[0.1325,0.8742,0.8902,0.8964,402],[0.1325,0.8945,0.8901,0.9168,406]],"352":[[0.1139,0.0933,0.8901,0.1158,409],[0.1325,0.1136,0.8902,0.1359,409],[0.1325,0.134,0.8901,0.1563,412],[0.1139,0.1752,0.8901,0.1977,416],[0.1325,0.1954,0.8902,0.2177,416],[0.1325,0.2158,0.8901,0.2381,419],[0.1139,0.257,0.8901,0.2795,422],[0.1325,0.2774,0.8902,0.2996,422],[0.1325,0.2978,0.8901,0.32,425]]},"psalmodie-kiahk":{"7":[[0.114,0.1717,0.8862,0.197,12],[0.114,0.1923,0.8861,0.2177,19],[0.114,0.294,0.8862,0.3209,25],[0.114,0.3178,0.8863,0.3431,26],[0.114,0.3385,0.8862,0.3654,31],[0.114,0.3621,0.886,0.3875,40],[0.4995,0.3939,0.5389,0.4185,44],[0.114,0.4241,0.8863,0.4495,80],[0.114,0.4448,0.8862,0.4701,84],[0.114,0.4654,0.8862,0.4908,102],[0.114,0.5671,0.8862,0.593,105],[0.114,0.5909,0.8863,0.6163,109],[0.114,0.6116,0.8861,0.6375,116],[0.114,0.7131,0.8862,0.739,122],[0.114,0.7369,0.8863,0.7622,126],[0.114,0.7576,0.8862,0.7835,131],[0.114,0.7814,0.886,0.8067,132],[0.114,0.8227,0.8862,0.848,137]],"8":[[0.114,0.1487,0.8862,0.1746,139],[0.114,0.1724,0.8861,0.1977,143],[0.114,0.193,0.8862,0.2184,148],[0.114,0.2137,0.8862,0.2396,154],[0.114,0.3379,0.8862,0.3638,156],[0.114,0.3617,0.8861,0.387,160],[0.114,0.3824,0.8862,0.4077,165],[0.114,0.403,0.8862,0.4289,171],[0.114,0.5272,0.8862,0.5531,173],[0.114,0.551,0.8863,0.5763,175],[0.114,0.5717,0.8862,0.5976,178],[0.114,0.5955,0.886,0.6208,180],[0.114,0.6368,0.8862,0.6621,183],[0.114,0.7578,0.8862,0.7838,185],[0.114,0.7816,0.8861,0.807,189],[0.114,0.8023,0.8862,0.8277,193],[0.114,0.8228,0.8862,0.8482,199]],"9":[[0.4936,0.1829,0.5448,0.2076,201],[0.114,0.2163,0.8862,0.2416,205],[0.114,0.2369,0.8862,0.2623,209],[0.114,0.2576,0.8862,0.283,220],[0.114,0.3792,0.8862,0.4061,222],[0.114,0.403,0.8863,0.4284,225],[0.4936,0.4359,0.5448,0.4606,230],[0.114,0.4676,0.8859,0.4929,235],[0.114,0.4883,0.8862,0.5152,239],[0.114,0.5121,0.8861,0.5389,241],[0.114,0.5357,0.8862,0.5611,242],[0.114,0.6516,0.8862,0.677,244],[0.114,0.6723,0.8862,0.6976,251],[0.114,0.693,0.8862,0.7183,256],[0.114,0.7137,0.886,0.739,267],[0.4936,0.7453,0.5448,0.7699,276],[0.114,0.7757,0.886,0.801,282],[0.114,0.7963,0.8862,0.8217,285]],"10":[[0.114,0.1487,0.8862,0.1746,288],[0.114,0.1724,0.8861,0.1977,291],[0.114,0.2137,0.8862,0.2391,294],[0.114,0.2344,0.8862,0.2603,299],[0.114,0.3561,0.8862,0.3821,302],[0.114,0.3798,0.886,0.4051,306],[0.114,0.4005,0.8862,0.4258,310],[0.114,0.4211,0.8863,0.4465,316],[0.114,0.4418,0.8862,0.4671,320],[0.114,0.5635,0.8862,0.5895,323],[0.114,0.611,0.8863,0.6364,326],[0.114,0.6317,0.8862,0.657,331],[0.114,0.7533,0.8862,0.7792,333],[0.114,0.7771,0.886,0.8024,337],[0.114,0.7977,0.8862,0.8237,343],[0.114,0.8215,0.8862,0.8469,343],[0.114,0.8617,0.8862,0.8871,348],[0.114,0.8824,0.8862,0.9078,352]],"11":[[0.114,0.0884,0.8862,0.1138,356],[0.114,0.1091,0.8862,0.1344,359],[0.114,0.1297,0.8862,0.1551,363],[0.114,0.1504,0.8862,0.1763,367],[0.114,0.1742,0.8862,0.1996,367],[0.114,0.1949,0.8862,0.2202,371],[0.114,0.2156,0.8861,0.2409,375],[0.114,0.2362,0.8861,0.2616,379],[0.114,0.2569,0.8862,0.2822,383],[0.114,0.2776,0.8861,0.3029,384],[0.114,0.2983,0.8862,0.3236,387],[0.114,0.3189,0.8861,0.3443,387],[0.114,0.3396,0.8862,0.3649,388],[0.114,0.3603,0.8862,0.3856,389],[0.114,0.3809,0.8862,0.4063,389],[0.114,0.4016,0.8862,0.4269,392],[0.114,0.4223,0.8862,0.4476,394],[0.114,0.4429,0.8861,0.4683,397],[0.114,0.4636,0.8862,0.489,400],[0.114,0.4843,0.8861,0.5096,403],[0.114,0.505,0.8862,0.5303,403],[0.114,0.5256,0.8862,0.5515,405]]},"chants-cantiques":{"6":[[0.1142,0.2272,0.8997,0.2538,20],[0.1142,0.249,0.8997,0.2755,21],[0.1142,0.2708,0.8997,0.2973,22],[0.1142,0.2925,0.8997,0.319,23],[0.1142,0.3143,0.8997,0.3408,24],[0.1142,0.3733,0.8997,0.3998,26],[0.1142,0.3951,0.8997,0.4216,27],[0.1142,0.4168,0.8997,0.4433,28],[0.1142,0.4386,0.8997,0.4651,29],[0.1142,0.4975,0.8997,0.5241,30],[0.1142,0.5193,0.8997,0.5458,31],[0.1142,0.5411,0.8997,0.5676,32],[0.1142,0.5628,0.8997,0.5893,33],[0.1142,0.5846,0.8997,0.6111,34],[0.1142,0.6063,0.8997,0.6329,35],[0.1142,0.6282,0.8997,0.6547,36],[0.1142,0.6499,0.8997,0.6764,37],[0.1142,0.6717,0.8997,0.6982,38],[0.1142,0.6934,0.8997,0.7199,39],[0.1142,0.7524,0.8997,0.7789,40],[0.1142,0.7742,0.8997,0.8007,41],[0.1142,0.7959,0.8997,0.8224,42],[0.1142,0.8177,0.8997,0.8442,43],[0.1142,0.8394,0.8997,0.866,44],[0.1142,0.8612,0.8997,0.8878,45]],"7":[[0.1142,0.0985,0.8997,0.125,46],[0.1142,0.1202,0.8997,0.1467,47],[0.1142,0.142,0.8997,0.1685,48],[0.1142,0.1638,0.8997,0.1903,49],[0.1142,0.1856,0.8997,0.2121,50],[0.1142,0.2073,0.8997,0.2338,51],[0.1142,0.2291,0.8997,0.2556,52],[0.1142,0.288,0.8997,0.3146,54],[0.1142,0.3098,0.8979,0.3363,55],[0.1142,0.3316,0.8997,0.3581,56],[0.1142,0.3533,0.8997,0.3798,57],[0.1142,0.3751,0.8997,0.4016,58],[0.1142,0.3968,0.8997,0.4234,59],[0.1142,0.4187,0.8997,0.4452,60],[0.1142,0.4404,0.8997,0.4669,61],[0.1142,0.4622,0.8997,0.4887,62],[0.1142,0.4839,0.8997,0.5104,63],[0.1142,0.5057,0.8997,0.5322,64],[0.1142,0.5275,0.8997,0.554,66],[0.1142,0.5493,0.8997,0.5758,67],[0.1142,0.571,0.8997,0.5975,68],[0.1142,0.5928,0.8997,0.6193,69],[0.1142,0.6145,0.8997,0.6411,70],[0.1142,0.6363,0.8997,0.6629,71],[0.1142,0.6581,0.8997,0.6846,72],[0.1142,0.7171,0.8997,0.7436,74],[0.1142,0.7388,0.8997,0.7653,75],[0.1142,0.7606,0.8997,0.7871,77],[0.1142,0.8196,0.8997,0.8461,78],[0.1142,0.8413,0.8997,0.8678,79],[0.1142,0.8631,0.8997,0.8896,80],[0.1142,0.8848,0.8997,0.9113,81],[0.1142,0.9066,0.8997,0.9332,82]],"8":[[0.1142,0.0586,0.8997,0.0851,83],[0.1142,0.0803,0.8997,0.1068,84],[0.1142,0.1021,0.8997,0.1286,85],[0.1142,0.1239,0.8997,0.1504,86],[0.1142,0.1457,0.8997,0.1722,87],[0.1142,0.1674,0.8997,0.1939,88],[0.1142,0.1892,0.8997,0.2157,89],[0.1142,0.2109,0.8997,0.2375,90],[0.1142,0.2327,0.8997,0.2593,91],[0.1142,0.2545,0.8997,0.2794,92],[0.1142,0.3131,0.8997,0.3396,93],[0.1142,0.3349,0.8997,0.3614,94],[0.1142,0.3567,0.8997,0.3832,95],[0.1142,0.3785,0.8997,0.405,96],[0.1142,0.4002,0.8997,0.4267,97],[0.1142,0.422,0.8997,0.4485,98],[0.1142,0.4437,0.8997,0.4703,99],[0.1142,0.4655,0.8997,0.4921,100],[0.1142,0.5245,0.8997,0.551,101],[0.1142,0.5462,0.8997,0.5727,102],[0.1142,0.568,0.8997,0.5945,103],[0.1142,0.5897,0.8997,0.6163,104],[0.1142,0.6487,0.8997,0.6752,105],[0.1142,0.6705,0.8997,0.697,106],[0.1142,0.6922,0.8997,0.7187,107],[0.1142,0.714,0.8997,0.7405,108],[0.1142,0.7729,0.8997,0.7995,109],[0.1142,0.7948,0.8997,0.8213,110],[0.1142,0.8165,0.8997,0.843,111],[0.1142,0.8383,0.8997,0.8648,112],[0.1142,0.86,0.8997,0.8865,113],[0.1142,0.8818,0.8997,0.9084,114],[0.1142,0.9036,0.8997,0.9301,115]],"9":[[0.1142,0.0586,0.8997,0.0851,116],[0.1142,0.0803,0.8997,0.1068,117],[0.1142,0.1021,0.8997,0.1286,118],[0.1142,0.1239,0.8997,0.1504,119],[0.1142,0.1457,0.8997,0.1722,120],[0.1142,0.1674,0.8997,0.1939,121],[0.1142,0.1892,0.8997,0.2157,122],[0.1142,0.2109,0.8997,0.2375,123],[0.1142,0.2327,0.8997,0.2593,124],[0.1142,0.2545,0.8997,0.281,125],[0.1142,0.2763,0.8997,0.3028,126],[0.1142,0.298,0.8997,0.3245,127],[0.1142,0.3198,0.8997,0.3463,128],[0.1142,0.3415,0.8997,0.3681,129],[0.1142,0.3634,0.8997,0.3899,130],[0.1142,0.4223,0.8997,0.4488,131],[0.1142,0.444,0.8997,0.4705,132],[0.1142,0.4658,0.8997,0.4923,133],[0.1142,0.5248,0.8997,0.5513,134],[0.1142,0.5466,0.8997,0.5731,135],[0.1142,0.5683,0.8997,0.5948,136],[0.1142,0.5901,0.8997,0.6166,137],[0.1142,0.6118,0.8997,0.6384,138],[0.1142,0.6336,0.8997,0.6602,139],[0.1142,0.6554,0.8997,0.6819,140],[0.1142,0.6772,0.8997,0.7037,141],[0.1142,0.6989,0.8997,0.7254,142],[0.1142,0.7207,0.8997,0.7472,143],[0.1142,0.7796,0.8997,0.8062,144],[0.1142,0.8014,0.8997,0.8279,145],[0.1142,0.8232,0.8997,0.8497,146],[0.1142,0.8449,0.8997,0.8714,147],[0.1142,0.8667,0.8997,0.8932,148],[0.1142,0.8885,0.8997,0.915,149]],"10":[[0.1142,0.0586,0.8997,0.0851,150],[0.1142,0.0803,0.8997,0.1068,151],[0.1142,0.1021,0.8997,0.1286,152],[0.1142,0.1239,0.8997,0.1504,153],[0.1142,0.1457,0.8997,0.1722,154],[0.1142,0.1674,0.8997,0.1939,155],[0.1142,0.1892,0.8997,0.2157,156],[0.1142,0.2109,0.8997,0.2375,157],[0.1142,0.2327,0.8997,0.2593,158],[0.1142,0.2545,0.8997,0.281,159],[0.1142,0.2763,0.8997,0.3028,160],[0.1142,0.3352,0.8997,0.3617,24],[0.1142,0.3569,0.8997,0.3835,52],[0.1142,0.3787,0.8997,0.4053,89],[0.1142,0.4005,0.8997,0.427,90],[0.1142,0.4223,0.8997,0.4488,136],[0.1142,0.444,0.8997,0.4705,137],[0.1142,0.4658,0.8997,0.4923,143],[0.1142,0.4876,0.8997,0.5141,158]],"11":[[0.0724,0.1614,0.9165,0.1881,162],[0.0724,0.208,0.9165,0.2346,164],[0.0724,0.2566,0.9165,0.2832,168],[0.0724,0.2783,0.9165,0.3049,171],[0.0724,0.3233,0.9165,0.35,173],[0.0724,0.3683,0.9165,0.3949,175],[0.0724,0.4133,0.9165,0.4399,176],[0.0724,0.4582,0.9165,0.4849,178],[0.0724,0.5033,0.9165,0.5299,180],[0.0724,0.5482,0.9165,0.5749,182],[0.0724,0.5968,0.9165,0.6234,185],[0.0724,0.6186,0.9165,0.6452,187],[0.0724,0.6403,0.9165,0.6669,187],[0.0724,0.6621,0.9165,0.6887,189],[0.0724,0.6838,0.9165,0.7105,191],[0.0724,0.7056,0.9165,0.7323,193],[0.0724,0.7274,0.9165,0.754,195],[0.0724,0.7492,0.9165,0.7758,197],[0.0724,0.7709,0.9165,0.7975,199],[0.0724,0.8159,0.9165,0.8426,200],[0.0724,0.8609,0.9165,0.8875,202]],"12":[[0.0724,0.0885,0.9165,0.1151,204],[0.0724,0.1335,0.9165,0.1601,205],[0.0724,0.1785,0.9165,0.2051,207],[0.0724,0.2234,0.9165,0.2501,210],[0.0724,0.2685,0.9165,0.2951,212],[0.0724,0.317,0.9165,0.3436,214],[0.0724,0.3388,0.9165,0.3654,215],[0.0724,0.3873,0.9165,0.414,217],[0.0724,0.4091,0.9165,0.4357,218],[0.0724,0.4309,0.9165,0.4575,219],[0.0724,0.4526,0.9165,0.4792,221],[0.0724,0.4744,0.9165,0.501,223],[0.0724,0.4961,0.9165,0.5228,225],[0.0724,0.5179,0.9165,0.5446,227],[0.0724,0.5397,0.9165,0.5663,229],[0.0724,0.5615,0.9165,0.5881,231],[0.0724,0.5832,0.9165,0.6099,233],[0.0724,0.605,0.9165,0.6317,235],[0.0724,0.6268,0.9165,0.6534,237],[0.0724,0.6486,0.9165,0.6752,239],[0.0724,0.6703,0.9165,0.6969,242],[0.0724,0.6921,0.9165,0.7187,244],[0.0724,0.7138,0.9165,0.7405,245],[0.0724,0.7356,0.9165,0.7623,247],[0.0724,0.7574,0.9165,0.784,248],[0.0724,0.7792,0.9165,0.8058,250],[0.0724,0.8009,0.9165,0.8275,251],[0.0724,0.8227,0.9165,0.8494,254]],"13":[[0.1142,0.1447,0.9131,0.1712,50],[0.1142,0.1664,0.9131,0.1929,48],[0.1142,0.1882,0.9131,0.2147,56],[0.1142,0.2099,0.9131,0.2365,30],[0.1142,0.2317,0.9131,0.2583,26],[0.1142,0.2535,0.9131,0.28,29],[0.1142,0.2753,0.9131,0.3018,64],[0.1142,0.297,0.9131,0.3235,43],[0.1142,0.3188,0.9131,0.3453,112],[0.1142,0.3406,0.9131,0.3671,95],[0.1142,0.3992,0.9131,0.4257,39],[0.1142,0.421,0.9131,0.4475,135],[0.1142,0.4427,0.9131,0.4677,92],[0.1142,0.4997,0.9131,0.5262,97],[0.1142,0.5215,0.9131,0.548,99],[0.1142,0.5432,0.9131,0.5697,47],[0.1142,0.565,0.9131,0.5915,23],[0.1142,0.5868,0.9131,0.6133,80],[0.1142,0.6086,0.9131,0.6351,148],[0.1142,0.6671,0.9131,0.6937,125],[0.1142,0.6889,0.9131,0.7155,38],[0.1142,0.7107,0.9131,0.7372,84],[0.1142,0.7325,0.9131,0.759,150],[0.1142,0.7542,0.9131,0.7807,131],[0.1142,0.776,0.9131,0.8025,105],[0.1142,0.7977,0.9131,0.8243,126],[0.1142,0.8196,0.9131,0.8461,132],[0.1142,0.8413,0.9131,0.8678,110],[0.1142,0.8631,0.9131,0.8896,98],[0.1142,0.8848,0.9131,0.9113,106],[0.1142,0.9066,0.9131,0.9332,123]],"14":[[0.1142,0.0586,0.9131,0.0851,153],[0.1142,0.0803,0.9131,0.1068,33],[0.1142,0.139,0.9131,0.1655,34],[0.1142,0.1607,0.9131,0.1872,32],[0.1142,0.1825,0.9131,0.209,116],[0.1142,0.2042,0.9131,0.2308,137],[0.1142,0.2629,0.9131,0.2894,37],[0.1142,0.2846,0.9131,0.3111,54],[0.1142,0.3064,0.9131,0.3329,108],[0.1142,0.3651,0.9131,0.3916,60],[0.1142,0.3868,0.9131,0.4133,152],[0.1142,0.4086,0.9131,0.4351,45],[0.1142,0.4303,0.9131,0.4569,77],[0.1142,0.489,0.9131,0.5155,122],[0.1142,0.5107,0.9131,0.5372,86],[0.1142,0.5325,0.9131,0.559,27],[0.1142,0.5543,0.9131,0.5808,91],[0.1142,0.5761,0.9131,0.6026,157],[0.1142,0.5978,0.9131,0.6243,144],[0.1142,0.6196,0.9131,0.6461,121],[0.1142,0.6413,0.9131,0.6679,133],[0.1142,0.6631,0.9131,0.6897,28],[0.1142,0.6849,0.9131,0.7114,74],[0.1142,0.7067,0.9131,0.7332,113],[0.1142,0.7284,0.9131,0.7549,151],[0.1142,0.7502,0.9131,0.7767,90],[0.1142,0.772,0.9131,0.7985,51],[0.1142,0.8306,0.9131,0.8571,118],[0.1142,0.8523,0.9131,0.8789,42],[0.1142,0.8741,0.9131,0.9007,36],[0.1142,0.8959,0.9131,0.9224,52]],"15":[[0.1142,0.0586,0.9131,0.0851,88],[0.1142,0.0803,0.9131,0.1068,75],[0.1142,0.1021,0.9131,0.1286,127],[0.1142,0.1621,0.9131,0.1886,115],[0.1142,0.1839,0.9131,0.2104,119],[0.1142,0.2057,0.9131,0.2322,117],[0.1142,0.2274,0.9131,0.2539,58],[0.1142,0.2492,0.9131,0.2757,62],[0.1142,0.2709,0.9131,0.2975,156],[0.1142,0.2927,0.9131,0.3193,129],[0.1142,0.3145,0.9131,0.341,155],[0.1142,0.3363,0.9131,0.3628,89],[0.1142,0.358,0.9131,0.3845,130],[0.1142,0.3798,0.9131,0.4063,109],[0.1142,0.4015,0.9131,0.4281,141],[0.1142,0.4234,0.9131,0.4499,22],[0.1142,0.4451,0.9131,0.4716,94],[0.1142,0.4669,0.9131,0.4934,93],[0.1142,0.4886,0.9131,0.5151,136],[0.1142,0.5104,0.9131,0.537,21],[0.1142,0.5322,0.9131,0.5587,20],[0.1142,0.554,0.9131,0.5805,159],[0.1142,0.6125,0.9131,0.6391,120],[0.1142,0.6344,0.9131,0.6609,70],[0.1142,0.6561,0.9131,0.6826,128],[0.1142,0.6779,0.9131,0.7044,35],[0.1142,0.7365,0.9131,0.763,104],[0.1142,0.7583,0.9131,0.7848,40],[0.1142,0.78,0.9131,0.8065,67],[0.1142,0.8018,0.9131,0.8283,146],[0.1142,0.8235,0.9131,0.8501,68],[0.1142,0.8453,0.9131,0.8719,158],[0.1142,0.8671,0.9131,0.8936,61],[0.1142,0.8889,0.9131,0.9154,72]],"16":[[0.1142,0.0954,0.9131,0.1219,81],[0.1142,0.1172,0.9131,0.1437,79],[0.1142,0.139,0.9131,0.1655,124],[0.1142,0.1607,0.9131,0.1872,111],[0.1142,0.1825,0.9131,0.209,63],[0.1142,0.2411,0.9131,0.2676,107],[0.1142,0.2997,0.9131,0.3262,59],[0.1142,0.3215,0.9131,0.348,83],[0.1142,0.3433,0.9131,0.3698,49],[0.1142,0.3651,0.9131,0.3916,140],[0.1142,0.3868,0.9131,0.4133,69],[0.1142,0.4454,0.9131,0.472,55],[0.1142,0.4672,0.9131,0.4937,82],[0.1142,0.489,0.9131,0.5155,102],[0.1142,0.5107,0.9131,0.5372,103],[0.1142,0.5325,0.9131,0.559,134],[0.1142,0.5543,0.9131,0.5808,138],[0.1142,0.5761,0.9131,0.6026,147],[0.1142,0.5978,0.9131,0.6243,24],[0.1142,0.6196,0.9131,0.6461,71],[0.1142,0.6413,0.9131,0.6679,101],[0.1142,0.6631,0.9131,0.6897,145],[0.1142,0.6849,0.9131,0.7114,143],[0.1142,0.7435,0.9131,0.77,96],[0.1142,0.7653,0.9131,0.7918,66],[0.1142,0.7871,0.9131,0.8136,41],[0.1142,0.8088,0.9131,0.8353,85],[0.1142,0.8306,0.9131,0.8571,57],[0.1142,0.8523,0.9131,0.8789,78],[0.1142,0.8741,0.9131,0.9007,160],[0.1142,0.8959,0.9131,0.9224,100]],"17":[[0.1142,0.0586,0.9131,0.0851,114],[0.1142,0.0803,0.9131,0.1068,154],[0.1142,0.139,0.9131,0.1655,31],[0.1142,0.1607,0.9131,0.1872,142],[0.1142,0.2193,0.9131,0.2459,44],[0.1142,0.2411,0.9131,0.2676,87],[0.1142,0.2629,0.9131,0.2894,139],[0.1142,0.2846,0.9131,0.3111,149],[0.1142,0.3064,0.9131,0.3329,46]]}};
+const litLkCache=new Map();
+function litLinks(b,p){const k=b.id+"#"+p;if(litLkCache.has(k))return litLkCache.get(k);
+  const pr=(async()=>{const out=[];const st=(LIT_LINKS[b.id]||{})[p];if(st)st.forEach(x=>out.push(x));
+    try{const ci=litChunkOf(b,p),doc=await litDoc(b,ci),pg=await doc.getPage(p-b.c[ci][1]+1),an=await pg.getAnnotations(),vp=pg.getViewport({scale:1});
+      for(const x of an){if(x.subtype!=="Link"||!x.dest||x.url)continue;
+        try{let ex=x.dest;if(typeof ex==="string")ex=await doc.getDestination(ex);if(!Array.isArray(ex))continue;
+          let idx=ex[0];if(idx&&typeof idx==="object")idx=await doc.getPageIndex(idx);if(typeof idx!=="number")continue;
+          const r=vp.convertToViewportRectangle(x.rect),t=b.c[ci][1]+idx;
+          if(t>=1&&t<=b.n&&t!==p)out.push([Math.min(r[0],r[2])/vp.width,Math.min(r[1],r[3])/vp.height,Math.max(r[0],r[2])/vp.width,Math.max(r[1],r[3])/vp.height,t]);}catch(e){}}}catch(e){}
+    // les liens d'une même ligne (mot par mot) deviennent une seule grande zone à toucher
+    const m=[];for(const l of out.sort((x,y)=>x[1]-y[1]||x[0]-y[0])){const c=(l[1]+l[3])/2,h=l[3]-l[1];
+      const g=m.find(q=>q[4]===l[4]&&Math.abs((q[1]+q[3])/2-c)<Math.max(h,q[3]-q[1])*.7&&l[0]-q[2]<.12);
+      if(g){g[0]=Math.min(g[0],l[0]);g[1]=Math.min(g[1],l[1]);g[2]=Math.max(g[2],l[2]);g[3]=Math.max(g[3],l[3]);}else m.push(l.slice());}
+    return m;})();
+  litLkCache.set(k,pr);if(litLkCache.size>600)litLkCache.delete(litLkCache.keys().next().value);return pr;}
+function litLinkHit(ls,u,v){let best=null,ba=9;const m=.006;for(const l of ls){if(u>=l[0]-m&&u<=l[2]+m&&v>=l[1]-m&&v<=l[3]+m){const ar=(l[2]-l[0])*(l[3]-l[1]);if(ar<ba){ba=ar;best=l;}}}return best;}
+function litLinkEls(div,ls,href){div.querySelectorAll(".lit-lk").forEach(x=>x.remove());
+  for(const l of ls){const h=href(l[4]);if(!h)continue;const x=document.createElement("a");x.className="lit-lk";x.href=h;x.setAttribute("aria-label","Aller à la page "+l[4]);
+    x.style.cssText=`left:${l[0]*100}%;top:${l[1]*100}%;width:${(l[2]-l[0])*100}%;height:${(l[3]-l[1])*100}%`;div.appendChild(x);}}
+function chantAt(p){let cc=null;for(const x of CHANTS)if(x[3]<=p)cc=x;return cc;}
 // ---------- 📺 Diapo : projeter toutes les liturgies (sur l'écran ou sur la TV) ----------
-const DP={on:false,src:null,i:0,cache:new Map(),ui:null,hideT:null,wake:null,out:null,half:null,fs:40};
-const DP_W=1280,DP_H=720,DP_CH="bible-copte-tv";
+const DP={on:false,src:null,i:0,cache:new Map(),hideT:null,wake:null,out:null,fs:40,anim:false,panes:null,pbox:null,boxKey:""};
+const DP_CH="bible-copte-tv";
 function dpIsIOS(){return /iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);}
 function dpPref(){try{return JSON.parse(localStorage.getItem("diapo")||"{}");}catch(e){return {};}}
 function dpSetPref(k,v){const p=dpPref();p[k]=v;localStorage.setItem("diapo",JSON.stringify(p));}
-// --- sources : livre PDF (pages) ---
+// taille de l'écran de la diapo (tout l'écran du téléphone, ou 16:9 quand on projette sur une TV)
+function dpScreen(){const el=document.getElementById("dpTrack");return {w:(el&&el.clientWidth)||innerWidth,h:(el&&el.clientHeight)||innerHeight};}
+function dpStage(){if(DP.out)return {w:1280,h:720};const s=dpScreen(),k=720/Math.max(1,Math.min(s.w,s.h));return {w:Math.round(s.w*k),h:Math.round(s.h*k)};}
+function dpCalcBox(){const s=dpScreen(),d=Math.min(window.devicePixelRatio||1,2.5);let w=s.w*d,h=s.h*d;const m=Math.max(w,h);if(m>2800){w*=2800/m;h*=2800/m;}
+  DP.pbox={w:Math.round(w),h:Math.round(h)};DP.boxKey=DP.pbox.w+"x"+DP.pbox.h;}
+// --- sources : livre PDF (une page = une diapo, en entier) ---
 function dpBookSrc(b,page,opts){opts=opts||{};
-  const portrait=(b.r||1.41)>1.15,pref=dpPref().half,half=portrait&&(pref===undefined?true:!!pref);
-  const per=half?2:1,n=b.n*per;
+  const portrait=(b.r||1.41)>1.15,half=portrait&&!!dpPref().half,per=half?2:1,n=b.n*per;
   const marks=opts.marks||(b.toc||[]).filter(e=>!e[2]).map(e=>({t:e[0],i:(e[1]-1)*per}));
   return {kind:"pdf",b,per,n,half,portrait,title:b.t,marks,start:(Math.max(1,page|0||1)-1)*per,reopen:p=>dpBookSrc(b,p,opts),
     label:i=>`page ${Math.floor(i/per)+1}${per>1?(i%2?" (bas)":" (haut)"):""}`,
-    async render(i){const p=Math.floor(i/per)+1,ci=litChunkOf(b,p),doc=await litDoc(b,ci),pg=await doc.getPage(p-b.c[ci][1]+1);
-      const vp0=pg.getViewport({scale:1}),cw=vp0.width,ch=half?vp0.height*.54:vp0.height,s=Math.min(1920/cw,1080/ch,4),vp=pg.getViewport({scale:s});
-      const full=document.createElement("canvas");full.width=Math.floor(vp.width);full.height=Math.floor(vp.height);
+    async render(i,box){const p=Math.floor(i/per)+1,ci=litChunkOf(b,p),doc=await litDoc(b,ci),pg=await doc.getPage(p-b.c[ci][1]+1);
+      const vp0=pg.getViewport({scale:1}),cw=vp0.width,ch=half?vp0.height*.54:vp0.height,s=Math.min(box.w/cw,box.h/ch,5),vp=pg.getViewport({scale:s});
+      const full=document.createElement("canvas");full.width=Math.max(1,Math.floor(vp.width));full.height=Math.max(1,Math.floor(vp.height));
       const ctx=full.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,full.width,full.height);
       await pg.render({canvasContext:ctx,viewport:vp}).promise;
-      if(!half)return {k:"img",cv:full};
+      let bg="#fff";try{const d=ctx.getImageData(2,2,1,1).data,d2=ctx.getImageData(full.width-3,full.height-3,1,1).data;if(Math.abs(d[0]-d2[0])+Math.abs(d[1]-d2[1])+Math.abs(d[2]-d2[2])<40)bg=`rgb(${d[0]},${d[1]},${d[2]})`;}catch(e){}
+      if(!half)return {k:"img",cv:full,bg};
       const h=Math.floor(full.height*.54),y=i%2?full.height-h:0,cv=document.createElement("canvas");cv.width=full.width;cv.height=h;
-      cv.getContext("2d").drawImage(full,0,y,full.width,h,0,0,full.width,h);return {k:"img",cv};}};}
-// --- sources : lectures de la Messe (texte mis en diapos 16:9) ---
+      cv.getContext("2d").drawImage(full,0,y,full.width,h,0,0,full.width,h);return {k:"img",cv,bg};}};}
+// --- sources : lectures de la Messe (texte mis en diapos à la taille de l'écran) ---
 let dpMeas=null;
 function dpMeasure(){if(!dpMeas){dpMeas=document.createElement("div");dpMeas.className="dp-meas";dpMeas.setAttribute("aria-hidden","true");document.body.appendChild(dpMeas);}return dpMeas;}
-function dpPaginate(head,blocks,cls,fs){const out=[],m=dpMeasure();
-  const wrap=b=>`<div class="dps ${cls||""}" style="font-size:${fs}px">${head?`<div class="dps-top">${head}</div>`:""}<div class="dps-body">${b}</div></div>`;
+function dpPaginate(head,blocks,cls,fs,S){const out=[],m=dpMeasure();m.style.width=S.w+"px";m.style.height=S.h+"px";
+  const wrap=b=>`<div class="dps ${S.h>S.w?"dps-port ":""}${cls||""}" style="font-size:${fs}px;width:${S.w}px;height:${S.h}px">${head?`<div class="dps-top">${head}</div>`:""}<div class="dps-body">${b}</div></div>`;
   const fits=b=>{m.innerHTML=wrap(b);const bd=m.querySelector(".dps-body");return bd.scrollHeight<=bd.clientHeight+1;};
   let cur=[];
   const push=()=>{if(cur.length)out.push(wrap(cur.join("")));cur=[];};
@@ -3786,24 +3825,24 @@ function dpPaginate(head,blocks,cls,fs){const out=[],m=dpMeasure();
     if(fits(cur.concat(blk).join(""))){cur.push(blk);continue;}
     push();
     if(fits(blk)){cur.push(blk);continue;}
-    // bloc trop long tout seul : on le coupe en phrases
+    if(/dps-two/.test(blk)){let t=blk.replace("dps-two","dps-two dps-tight");if(!fits(t))t=blk.replace("dps-two","dps-two dps-tighter");out.push(wrap(t));continue;}
+    // bloc trop long tout seul : on le coupe entre deux phrases (jamais au milieu)
     const mm=/^(<div[^>]*>)([\s\S]*)(<\/div>)$/.exec(blk);
     if(!mm){out.push(wrap(blk));continue;}
-    if(/dps-two/.test(blk)){out.push(wrap(blk.replace("dps-two","dps-two dps-tight")));continue;}
     const parts=mm[2].replace(/([.;:!?،؛])\s+/g,"$1\u0001").split("\u0001");let acc="";
     for(const p of parts){const t=acc?acc+" "+p:p;if(fits(mm[1]+t+mm[3]))acc=t;else{if(acc)out.push(wrap(mm[1]+acc+mm[3]));acc=p;}}
     if(acc)cur.push(mm[1]+acc+mm[3]);}
   push();return out;}
-function dpMesseSrc(data,l,ds,data2,l2){const fs=DP.fs;
+function dpMesseSrc(data,l,ds,data2,l2,S){const fs=DP.fs,sz=`style="width:${S.w}px;height:${S.h}px"`,port=S.h>S.w?" dps-port":"";
   const [y,m,d]=ds.split("-").map(Number),idx=Math.round((Date.UTC(y,m-1,d)-MS_FROM)/864e5),D=data.D[data.I[idx]],D2=data2?data2.D[data2.I[idx]]:null;
   const rtl=x=>MS_L[x].rtl?' dir="rtl" lang="ar"':` lang="${x}"`;
   let g;try{g=new Intl.DateTimeFormat(l,{day:"numeric",month:"long",weekday:"long"}).format(new Date(y,m-1,d,12)).split(" ").map(x=>x.charAt(0).toUpperCase()+x.slice(1)).join(" ");}catch(e){g=ds;}
   const slides=[],marks=[];
-  slides.push(`<div class="dps dps-day"><img src="${MS_CROSS}" alt=""><div class="dps-d1">${esc(g)}</div><div class="dps-d2">${msCopt(y,m,d)}</div>${D.p?`<div class="dps-d3">${esc(D.p)}</div>`:""}${D.t?`<div class="dps-d3">${esc(D.t)}</div>`:""}</div>`);
+  slides.push(`<div class="dps dps-day${port}" ${sz}><img src="${MS_CROSS}" alt=""><div class="dps-d1">${esc(g)}</div><div class="dps-d2">${msCopt(y,m,d)}</div>${D.p?`<div class="dps-d3">${esc(D.p)}</div>`:""}${D.t?`<div class="dps-d3">${esc(D.t)}</div>`:""}</div>`);
   const two=(a,b,cls)=>b&&D2?`<div class="dps-two ${cls||""}"><div${rtl(l)}>${a}</div><div${rtl(l2)}>${b}</div></div>`:`<div class="${cls||""}"${rtl(l)}>${a}</div>`;
-  D.s.forEach((S,si)=>{const S2=D2&&D2.s[si];marks.push({t:S[1],i:slides.length,h:1});
-    slides.push(`<div class="dps dps-amber"><div class="dps-big"${rtl(l)}>${esc(S[1])}</div>${S2?`<div class="dps-big2"${rtl(l2)}>${esc(S2[1])}</div>`:""}</div>`);
-    S[2].forEach((u,ui)=>{const u2=S2&&S2[2][ui],lab=msSubLabel(u,data);marks.push({t:lab,i:slides.length});
+  D.s.forEach((S2x,si)=>{const Sx=S2x,S2=D2&&D2.s[si];marks.push({t:Sx[1],i:slides.length,h:1});
+    slides.push(`<div class="dps dps-amber${port}" ${sz}><div class="dps-big"${rtl(l)}>${esc(Sx[1])}</div>${S2?`<div class="dps-big2"${rtl(l2)}>${esc(S2[1])}</div>`:""}</div>`);
+    Sx[2].forEach((u,ui)=>{const u2=S2&&S2[2][ui],lab=msSubLabel(u,data);marks.push({t:lab,i:slides.length});
       (u[3]||[]).forEach((r,ri)=>{const r2=u2&&u2[3]&&u2[3][ri],ps=r[4],ps2=r2&&r2[4];
         let head=esc(u[1]||lab);
         if(Array.isArray(ps)&&ps.length)head+=` <span>· ${esc(msRef(ps,data.B))}</span>`;else if(r[1])head+=` <span>· ${esc(r[1])}</span>`;
@@ -3815,74 +3854,118 @@ function dpMesseSrc(data,l,ds,data2,l2){const fs=DP.fs;
         else if(Array.isArray(ps))ps.forEach((p,pi)=>{const vs=data.P[p[2]]||[],p2=Array.isArray(ps2)&&ps2[pi],vs2=p2?(data2.P[p2[2]]||[]):[],mp=new Map(vs2.map(v=>[String(v[0]),v[1]]));
           vs.forEach(v=>{const t2=mp.get(String(v[0]));blocks.push(t2&&D2?`<div class="dps-two dps-v"><div${rtl(l)}><sup>${v[0]}</sup> ${esc(v[1].trim())}</div><div${rtl(l2)}><sup>${v[0]}</sup> ${esc(t2.trim())}</div></div>`:`<div class="dps-v"${rtl(l)}><sup>${v[0]}</sup> ${esc(v[1].trim())}</div>`);});});
         if(r[3])blocks.push(two(esc(r[3]),r2&&r2[3]?esc(r2[3]):"","dps-red dps-end"));
-        dpPaginate(head,blocks,MS_L[l].rtl&&!D2?"dps-rtl":"",fs).forEach(h=>slides.push(h));});});});
-  return {kind:"html",n:slides.length,title:"Messe · "+g,marks,start:0,label:i=>"",slides,async render(i){return {k:"html",h:slides[i]};}};}
-// --- affichage ---
-function dpOpen(src){if(!src||!src.n)return;DP.src=src;DP.i=Math.min(src.n-1,Math.max(0,src.start||0));DP.cache.clear();DP.on=true;
+        dpPaginate(head,blocks,MS_L[l].rtl&&!D2?"dps-rtl":"",fs,S).forEach(h=>slides.push(h));});});});
+  return {kind:"html",n:slides.length,title:"Messe · "+g,marks,start:0,label:i=>"",slides,S,async render(i){return {k:"html",h:slides[i],w:S.w,h2:S.h};}};}
+// --- affichage : 3 panneaux qui glissent avec le doigt ---
+function dpOpen(src){if(!src||!src.n)return;DP.src=src;DP.i=Math.min(src.n-1,Math.max(0,src.start||0));DP.cache.clear();DP.on=true;DP.anim=false;
   let el=document.getElementById("dp");if(el)el.remove();
-  el=document.createElement("div");el.id="dp";el.className="dp";el.setAttribute("role","dialog");el.setAttribute("aria-label","Diapo");
-  el.innerHTML=`<div class="dp-view" id="dpView"><div class="dp-stage" id="dpStage"></div></div>
-  <button class="dp-tap dp-l" id="dpPrev" aria-label="Diapo précédente"></button><button class="dp-tap dp-m" id="dpMid" aria-label="Afficher les boutons"></button><button class="dp-tap dp-r" id="dpNext" aria-label="Diapo suivante"></button>
-  <div class="dp-ui" id="dpUi"><div class="dp-top"><button class="dp-b" id="dpX" aria-label="Fermer">✕</button><div class="dp-tt"><b>${esc(src.title)}</b><span id="dpLab"></span></div><span class="dp-n" id="dpN"></span>${src.marks&&src.marks.length?`<button class="dp-b" id="dpMenu" aria-label="Aller à">☰</button>`:""}${src.kind==="pdf"&&src.portrait?`<button class="dp-b" id="dpHalf" aria-label="Moitié de page">${src.half?"⬍":"▭"}</button>`:""}${src.kind==="html"?`<button class="dp-b" id="dpL2" aria-label="Deux langues">🌐</button><button class="dp-b" id="dpFm" aria-label="Texte plus petit">A−</button><button class="dp-b" id="dpFp" aria-label="Texte plus grand">A+</button>`:""}<button class="dp-b dp-tv" id="dpTv">📺 TV</button></div>
+  el=document.createElement("div");el.id="dp";el.className="dp"+(DP.out?" remote":"");el.setAttribute("role","dialog");el.setAttribute("aria-label","Diapo");
+  el.innerHTML=`<div class="dp-track" id="dpTrack"><div class="dp-pane"></div><div class="dp-pane"></div><div class="dp-pane"></div></div>
+  <div class="dp-ui" id="dpUi"><div class="dp-top"><button class="dp-b" id="dpX" aria-label="Fermer">✕</button><div class="dp-tt"><b>${esc(src.title)}</b><span id="dpLab"></span></div><span class="dp-n" id="dpN"></span>${src.marks&&src.marks.length?`<button class="dp-b" id="dpMenu" aria-label="Aller à">☰</button>`:""}${src.kind==="pdf"&&src.portrait?`<button class="dp-b" id="dpHalf" aria-label="${src.half?"Page entière":"Moitié de page"}" title="${src.half?"Page entière":"Moitié de page (plus gros)"}">${src.half?"▭":"⬍"}</button>`:""}${src.kind==="html"?`<button class="dp-b" id="dpL2" aria-label="Deux langues">🌐</button><button class="dp-b" id="dpFm" aria-label="Texte plus petit">A−</button><button class="dp-b" id="dpFp" aria-label="Texte plus grand">A+</button>`:""}<button class="dp-b dp-tv" id="dpTv">📺 TV</button></div>
   <div class="dp-bot"><button class="dp-b" id="dpP2" aria-label="Précédente">‹</button><input type="range" id="dpRange" min="1" max="${src.n}" value="${DP.i+1}" aria-label="Aller à la diapo"><button class="dp-b" id="dpN2" aria-label="Suivante">›</button></div></div>
-  <div class="dp-remote" id="dpRemote" hidden><div>📺 <b>Sur la TV</b></div><button class="btn ghost" id="dpStop">Arrêter la TV</button></div>
+  <div class="dp-remote" id="dpRemote"${DP.out?"":" hidden"}><div>📺 <b>Sur la TV</b></div><button class="btn ghost" id="dpStop">Arrêter la TV</button></div>
+  <div class="dp-hint" id="dpHint">‹ Glisse pour changer de page ›</div>
   <div class="dp-sheet" id="dpSheet" hidden></div>`;
   document.body.appendChild(el);document.body.classList.add("dp-lock");
+  DP.panes=[...el.querySelectorAll(".dp-pane")];
   const q=id=>document.getElementById(id);
-  q("dpX").onclick=dpClose;q("dpPrev").onclick=()=>dpGo(DP.i-1);q("dpNext").onclick=()=>dpGo(DP.i+1);q("dpP2").onclick=()=>dpGo(DP.i-1);q("dpN2").onclick=()=>dpGo(DP.i+1);
-  q("dpRange").oninput=e=>dpGo(+e.target.value-1);q("dpTv").onclick=dpTvMenu;q("dpStop").onclick=dpTvStop;
+  q("dpX").onclick=dpClose;q("dpP2").onclick=()=>dpGo(DP.i-1);q("dpN2").onclick=()=>dpGo(DP.i+1);
+  q("dpRange").oninput=e=>dpGo(+e.target.value-1,false);q("dpTv").onclick=dpTvMenu;q("dpStop").onclick=dpTvStop;
   if(q("dpMenu"))q("dpMenu").onclick=dpMarks;
   if(q("dpHalf"))q("dpHalf").onclick=()=>{const p=Math.floor(DP.i/src.per)+1;dpSetPref("half",!src.half);dpOpen(src.reopen(p));};
-  if(q("dpFm"))q("dpFm").onclick=()=>dpFont(-4);if(q("dpFp"))q("dpFp").onclick=()=>dpFont(4);if(q("dpL2"))q("dpL2").onclick=dpL2Menu;q("dpMid").onclick=()=>{const u=q("dpUi");u.classList.contains("on")?u.classList.remove("on"):dpShowUi();};
-  // toucher, glisser, clavier, souris
-  let tx=null,ty=null;el.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
-  el.addEventListener("touchend",e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3&&!e.target.closest(".dp-ui,.dp-sheet")){e.preventDefault();dpGo(DP.i+(dx<0?1:-1));}});
-  el.addEventListener("pointermove",e=>{if(e.pointerType==="mouse")dpShowUi();},{passive:true});
-  window.addEventListener("resize",dpFit);window.addEventListener("keydown",dpKey);
-  if(!dpIsIOS()){try{el.requestFullscreen&&el.requestFullscreen().catch(()=>{});}catch(e){}}
-  dpWake();dpFit();dpShow();dpShowUi();
-  if(DP.out)document.getElementById("dpRemote").hidden=false;}
-function dpClose(){DP.on=false;const el=document.getElementById("dp");if(el)el.remove();document.body.classList.remove("dp-lock");
-  window.removeEventListener("resize",dpFit);window.removeEventListener("keydown",dpKey);
+  if(q("dpFm"))q("dpFm").onclick=()=>dpFont(-4);if(q("dpFp"))q("dpFp").onclick=()=>dpFont(4);if(q("dpL2"))q("dpL2").onclick=dpL2Menu;
+  dpDrag(q("dpTrack"));
+  el.addEventListener("pointermove",e=>{if(e.pointerType==="mouse"&&!DP.drag){const t=document.getElementById("dpTrack");if(t)t.style.cursor=dpLinkAt(e.clientX,e.clientY)?"pointer":"";}if(e.pointerType==="mouse"&&!DP.drag&&(Math.abs(e.movementX)+Math.abs(e.movementY))>3){DP.hoverT=Date.now();dpShowUi();}},{passive:true});el.addEventListener("dragstart",e=>e.preventDefault());
+  window.addEventListener("resize",dpResize);window.addEventListener("keydown",dpKey);
+  dpFS();
+  dpWake();dpCalcBox();dpFillAll();dpLayout(0,false);dpAfter();
+  if(!localStorage.getItem("dp-hint")){localStorage.setItem("dp-hint","1");q("dpHint").classList.add("on");setTimeout(()=>{const h=q("dpHint");h&&h.classList.remove("on");},2600);}
+  dpShowUi(2200);}
+function dpFS(){if(dpIsIOS()||document.fullscreenElement||!document.documentElement.requestFullscreen)return;try{const r=document.documentElement.requestFullscreen({navigationUI:"hide"});r&&r.catch&&r.catch(()=>{});}catch(e){}}
+function dpClose(){if(!DP.on)return;DP.on=false;const el=document.getElementById("dp");if(el)el.remove();document.body.classList.remove("dp-lock");
+  window.removeEventListener("resize",dpResize);window.removeEventListener("keydown",dpKey);
   try{if(document.fullscreenElement)document.exitFullscreen();}catch(e){}
   try{DP.wake&&DP.wake.release();}catch(e){}DP.wake=null;dpTvSend({t:"wait"});
   const src=DP.src;if(src&&src.kind==="pdf"){const p=Math.floor(DP.i/src.per)+1,id=src.b.id,h=location.hash;
     if(id==="chants-cantiques"&&h.startsWith("#chant-")){let cc=null;for(const x of CHANTS)if(x[3]<=p)cc=x;if(cc&&h!=="#chant-"+cc[0])location.hash="#chant-"+cc[0];}
     else if(h.startsWith("#lit-"+id+"-")&&h!=="#lit-"+id+"-"+p)location.hash="#lit-"+id+"-"+p;}}
-function dpKey(e){if(!DP.on)return;const k=e.key;
+function dpKey(e){if(!DP.on)return;const k=e.key;if(e.target&&e.target.tagName==="INPUT"&&k!=="Escape")return;
   if(["ArrowRight","PageDown"," ","Enter","ArrowDown"].includes(k)){e.preventDefault();dpGo(DP.i+1);}
   else if(["ArrowLeft","PageUp","ArrowUp","Backspace"].includes(k)){e.preventDefault();dpGo(DP.i-1);}
-  else if(k==="Home")dpGo(0);else if(k==="End")dpGo(DP.src.n-1);else if(k==="Escape"&&!document.fullscreenElement)dpClose();}
+  else if(k==="Home")dpGo(0,false);else if(k==="End")dpGo(DP.src.n-1,false);else if(k==="Escape"&&!document.fullscreenElement)dpClose();}
 async function dpWake(){try{if(navigator.wakeLock&&!DP.wake){DP.wake=await navigator.wakeLock.request("screen");DP.wake.addEventListener("release",()=>{DP.wake=null;});}}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(DP.on&&document.visibilityState==="visible")dpWake();});
-function dpFit(){const v=document.getElementById("dpView"),s=document.getElementById("dpStage");if(!v||!s)return;const k=Math.min(v.clientWidth/DP_W,v.clientHeight/DP_H);s.style.transform=`translate(-50%,-50%) scale(${k})`;}
-function dpShowUi(){const u=document.getElementById("dpUi");if(!u)return;u.classList.add("on");clearTimeout(DP.hideT);DP.hideT=setTimeout(()=>{const s=document.getElementById("dpSheet");if(u&&(!s||s.hidden))u.classList.remove("on");},3500);}
-function dpGo(i){if(!DP.src)return;i=Math.max(0,Math.min(DP.src.n-1,i));if(i===DP.i)return;DP.i=i;dpShow();}
-async function dpGet(i){if(DP.cache.has(i))return DP.cache.get(i);const p=DP.src.render(i);DP.cache.set(i,p);p.catch(()=>DP.cache.delete(i));
-  if(DP.cache.size>8)for(const k of [...DP.cache.keys()])if(Math.abs(k-DP.i)>3){DP.cache.delete(k);if(DP.cache.size<=8)break;}return p;}
-async function dpShow(){const src=DP.src,i=DP.i,st=document.getElementById("dpStage");if(!st)return;
+function dpShowUi(ms){const u=document.getElementById("dpUi");if(!u)return;u.classList.add("on");clearTimeout(DP.hideT);DP.hideT=setTimeout(()=>{const s=document.getElementById("dpSheet");if(u&&(!s||s.hidden))u.classList.remove("on");},ms||3500);}
+function dpToggleUi(){const u=document.getElementById("dpUi");if(!u)return;if(u.classList.contains("on")&&Date.now()-(DP.hoverT||0)>700){u.classList.remove("on");clearTimeout(DP.hideT);}else dpShowUi();}
+function dpLayout(dx,anim){if(!DP.panes)return;const [p,c,n]=DP.panes;
+  [[p,-1],[c,0],[n,1]].forEach(([el,o])=>{el.style.transition=anim?"transform .3s cubic-bezier(.22,.8,.25,1)":"none";el.style.transform=`translate3d(calc(${o*100}% + ${dx||0}px),0,0)`;el.setAttribute("aria-hidden",o?"true":"false");});}
+let dpTimer=null;
+function dpGo(i,anim){if(!DP.src||!DP.panes)return;i=Math.max(0,Math.min(DP.src.n-1,i));
+  if(DP.anim){clearTimeout(dpTimer);dpFinish();}
+  if(i===DP.i){dpLayout(0,true);return;}
+  const dir=i>DP.i?1:-1;
+  if(anim!==false&&Math.abs(i-DP.i)===1){DP.anim={dir,i};dpLayout(-dir*document.getElementById("dpTrack").clientWidth,true);dpTimer=setTimeout(dpFinish,300);return;}
+  DP.i=i;dpFillAll();dpLayout(0,false);dpAfter();}
+function dpFinish(){const a=DP.anim;if(!a)return;DP.anim=false;const [p,c,n]=DP.panes;
+  if(a.dir>0){DP.panes=[c,n,p];DP.i=a.i;dpLayout(0,false);dpFill(p,DP.i+1);}
+  else{DP.panes=[n,p,c];DP.i=a.i;dpLayout(0,false);dpFill(n,DP.i-1);}
+  dpAfter();}
+function dpFillAll(){const [p,c,n]=DP.panes;dpFill(c,DP.i);dpFill(p,DP.i-1);dpFill(n,DP.i+1);}
+function dpFill(pane,i){pane.dataset.i=i;pane.innerHTML="";pane.style.background="#000";if(!DP.src||i<0||i>=DP.src.n)return;
+  pane.innerHTML=`<div class="dp-load"></div>`;
+  dpGet(i).then(s=>{if(+pane.dataset.i!==i||!pane.isConnected)return;pane.innerHTML="";pane.style.background=s.bg||"#000";
+    if(s.k==="img"){s.cv.className="dp-img";pane.appendChild(s.cv);}
+    else{pane.innerHTML=`<div class="dp-fit">${s.h}</div>`;dpFitPane(pane);}})
+  .catch(()=>{if(+pane.dataset.i!==i)return;pane.innerHTML=`<div class="dp-err">${navigator.onLine?"Cette page n'a pas pu s'ouvrir.":"📴 Télécharge d'abord ce livre pour le projeter sans connexion."}</div>`;});}
+function dpFitPane(pane){const f=pane.querySelector(".dp-fit"),d=f&&f.firstElementChild;if(!d)return;const w=d.offsetWidth||1280,h=d.offsetHeight||720,k=Math.min(pane.clientWidth/w,pane.clientHeight/h);f.style.width=w+"px";f.style.height=h+"px";f.style.transform=`translate(-50%,-50%) scale(${k})`;}
+async function dpGet(i,tv){const key=i+"|"+(tv?"tv":DP.boxKey);if(DP.cache.has(key))return DP.cache.get(key);
+  const p=DP.src.render(i,tv?{w:1920,h:1080}:DP.pbox);DP.cache.set(key,p);p.catch(()=>DP.cache.delete(key));
+  if(DP.cache.size>12)for(const k of [...DP.cache.keys()]){if(Math.abs(+k.split("|")[0]-DP.i)>3)DP.cache.delete(k);if(DP.cache.size<=10)break;}return p;}
+// lien touché sur la diapo (sommaire, menu, « Levons-nous fils de lumière »…)
+function dpLinkAt(cx,cy){const src=DP.src;if(!src||src.kind!=="pdf"||!DP.links||DP.links.i!==DP.i)return null;
+  const pane=DP.panes[1],cv=pane.querySelector("canvas");if(!cv)return null;const r=pane.getBoundingClientRect(),k=Math.min(r.width/cv.width,r.height/cv.height),dw=cv.width*k,dh=cv.height*k;
+  const u=(cx-r.left-(r.width-dw)/2)/dw,v0=(cy-r.top-(r.height-dh)/2)/dh;if(u<0||u>1||v0<0||v0>1)return null;
+  const v=src.per>1?(DP.i%2?.46+v0*.54:v0*.54):v0,l=litLinkHit(DP.links.ls,u,v);if(!l)return null;
+  return {l,x:(r.width-dw)/2+l[0]*dw,y:(r.height-dh)/2+((src.per>1?((l[1]-(DP.i%2?.46:0))/.54):l[1]))*dh,w:(l[2]-l[0])*dw,h:((l[3]-l[1])/(src.per>1?.54:1))*dh};}
+function dpFollow(h){const src=DP.src,pane=DP.panes[1],f=document.createElement("div");f.className="dp-flash";f.style.cssText=`left:${h.x}px;top:${h.y}px;width:${h.w}px;height:${h.h}px`;pane.appendChild(f);
+  setTimeout(()=>dpGo((h.l[4]-1)*src.per,false),160);}
+function dpAfter(){const src=DP.src,i=DP.i;
+  if(src.kind==="pdf"){const p=Math.floor(i/src.per)+1;DP.links=null;litLinks(src.b,p).then(ls=>{if(DP.src===src&&DP.i===i){DP.links={i,ls};}});}if(!document.getElementById("dpN"))return;
   document.getElementById("dpN").textContent=(i+1)+" / "+src.n;document.getElementById("dpLab").textContent=src.label(i)||"";document.getElementById("dpRange").value=i+1;
-  let s;try{s=await dpGet(i);}catch(e){if(DP.i===i)st.innerHTML=`<div class="dps"><div class="dps-body"><div class="dps-p">${navigator.onLine?"Cette page n'a pas pu s'ouvrir.":"📴 Télécharge d'abord ce livre pour le projeter sans connexion."}</div></div></div>`;return;}
-  if(DP.i!==i||!document.getElementById("dpStage"))return;
-  st.innerHTML="";if(s.k==="img"){s.cv.className="dp-img";st.appendChild(s.cv);}else st.innerHTML=s.h;
-  dpSend();
-  for(const k of [i+1,i+2,i-1])if(k>=0&&k<src.n)dpGet(k).catch(()=>{});
+  dpSend();if(i+2<src.n)dpGet(i+2).catch(()=>{});
   if(src.kind==="pdf"){litState()[src.b.id]=Math.floor(i/src.per)+1;save();}}
-function dpFont(d){const src=DP.src;if(!src||src.kind!=="html"||!src.rebuild)return;DP.fs=Math.max(28,Math.min(64,DP.fs+d));dpSetPref("fs",DP.fs);
-  const frac=DP.i/Math.max(1,src.n-1),ns=src.rebuild();ns.start=Math.round(frac*(ns.n-1));ns.rebuild=src.rebuild;ns.ds=src.ds;dpOpen(ns);}
+// doigt / souris : la page suit le doigt, puis glisse jusqu'à la suivante
+function dpDrag(tr){let st=null;
+  tr.addEventListener("pointerdown",e=>{if(e.button>0)return;st={x:e.clientX,y:e.clientY,t:performance.now(),dx:0,on:false,id:e.pointerId};});
+  tr.addEventListener("pointermove",e=>{if(!st||e.pointerId!==st.id)return;const dx=e.clientX-st.x,dy=e.clientY-st.y;
+    if(!st.on){if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)){st.on=true;DP.drag=true;try{tr.setPointerCapture(e.pointerId);}catch(x){}if(DP.anim){clearTimeout(dpTimer);dpFinish();}}else return;}
+    let d=dx;if((DP.i===0&&d>0)||(DP.i===DP.src.n-1&&d<0))d=d/3;st.dx=d;dpLayout(d,false);});
+  const end=e=>{if(!st||e.pointerId!==st.id)return;const s=st;st=null;DP.drag=false;
+    if(!s.on){if(e.type==="pointercancel")return;const lk=dpLinkAt(e.clientX,e.clientY);if(lk){dpFollow(lk);return;}const w=tr.clientWidth,x=e.clientX-tr.getBoundingClientRect().left;
+      if(x<w*.3)dpGo(DP.i-1);else if(x>w*.7)dpGo(DP.i+1);else dpToggleUi();return;}
+    const w=tr.clientWidth,v=Math.abs(s.dx)/Math.max(1,performance.now()-s.t);
+    if((Math.abs(s.dx)>w*.18||(Math.abs(s.dx)>30&&v>.45))&&!((DP.i===0&&s.dx>0)||(DP.i===DP.src.n-1&&s.dx<0))){const dir=s.dx<0?1:-1,i=DP.i+dir;DP.anim={dir,i};dpLayout(-dir*w,true);dpTimer=setTimeout(dpFinish,300);}
+    else dpLayout(0,true);};
+  tr.addEventListener("pointerup",end);tr.addEventListener("pointercancel",end);}
+let dpRT=null;
+function dpResize(){clearTimeout(dpRT);dpRT=setTimeout(()=>{if(!DP.on)return;const src=DP.src;
+  if(src.kind==="html"&&src.rebuild&&!DP.out){const S=dpStage();if(S.w!==src.S.w||S.h!==src.S.h){dpRebuild();return;}}
+  const old=DP.boxKey;dpCalcBox();if(DP.boxKey!==old)dpFillAll();else DP.panes.forEach(dpFitPane);dpLayout(0,false);},180);}
+function dpRebuild(){const src=DP.src;if(!src||!src.rebuild)return;const frac=DP.i/Math.max(1,src.n-1),ns=src.rebuild();ns.start=Math.round(frac*(ns.n-1));ns.rebuild=src.rebuild;ns.ds=src.ds;dpOpen(ns);}
+function dpFont(d){const src=DP.src;if(!src||src.kind!=="html"||!src.rebuild)return;DP.fs=Math.max(28,Math.min(64,DP.fs+d));dpSetPref("fs",DP.fs);dpRebuild();}
+function dpMarks(){const sh=document.getElementById("dpSheet"),src=DP.src;if(!sh.hidden){sh.hidden=true;return;}
+  sh.innerHTML=`<div class="dp-sh-h"><b>Aller à…</b><button class="dp-b" id="dpShX">✕</button></div><ol>${src.marks.map(m=>`<li${m.h?' class="h"':""}><button data-dpi="${m.i}">${esc(m.t)}</button></li>`).join("")}</ol>`;
+  sh.hidden=false;document.getElementById("dpShX").onclick=()=>{sh.hidden=true;};
+  sh.querySelectorAll("[data-dpi]").forEach(b=>b.onclick=()=>{sh.hidden=true;dpGo(+b.dataset.dpi,false);});
+  let cur=null;for(const b of sh.querySelectorAll("[data-dpi]"))if(+b.dataset.dpi<=DP.i)cur=b;if(cur){cur.classList.add("on");cur.scrollIntoView({block:"center"});}}
 async function dpL2Menu(){const sh=document.getElementById("dpSheet"),l=msLang(),cur=dpPref().l2||"";const have=[];for(const k in MS_L)if(k!==l&&await msHas(k))have.push(k);
-  sh.innerHTML=`<div class="dp-sh-h"><b>🌐 Deux langues côte à côte</b><button class="dp-b" id="dpShX">✕</button></div><div class="dp-tvo"><p class="small muted">Montre une 2e langue à côté de ${MS_L[l].n}, verset par verset (comme à l'église).</p><div class="dp-l2">${[["","Une seule langue"],...have.map(k=>[k,MS_L[k].n])].map(([k,n])=>`<button class="btn ${k===cur||(!k&&!have.includes(cur))?"main":"ghost"}" data-l2="${k}">${n}</button>`).join("")}</div>${have.length<2?`<p class="small muted">Pour avoir plus de langues, télécharge-les dans l'onglet Messe (boutons Français, English, عربي).</p>`:""}</div>`;
+  sh.innerHTML=`<div class="dp-sh-h"><b>🌐 Deux langues</b><button class="dp-b" id="dpShX">✕</button></div><div class="dp-tvo"><p class="small muted">Montre une 2e langue avec ${MS_L[l].n}, verset par verset (comme à l'église) : côte à côte sur un écran large, l'une sous l'autre sur le téléphone en hauteur.</p><div class="dp-l2">${[["","Une seule langue"],...have.map(k=>[k,MS_L[k].n])].map(([k,n])=>`<button class="btn ${k===cur||(!k&&!have.includes(cur))?"main":"ghost"}" data-l2="${k}">${n}</button>`).join("")}</div>${have.length<2?`<p class="small muted">Pour avoir plus de langues, télécharge-les dans l'onglet Messe (boutons Français, English, عربي).</p>`:""}</div>`;
   sh.hidden=false;document.getElementById("dpShX").onclick=()=>{sh.hidden=true;};
   sh.querySelectorAll("[data-l2]").forEach(b=>b.onclick=()=>{dpSetPref("l2",b.dataset.l2);sh.hidden=true;const frac=DP.i/Math.max(1,DP.src.n-1);dpFromMesse(DP.src.ds,frac);});}
-function dpMarks(){const sh=document.getElementById("dpSheet"),src=DP.src;if(!sh.hidden){sh.hidden=true;return;}
-  sh.innerHTML=`<div class="dp-sh-h"><b>Aller à…</b><button class="dp-b" id="dpShX">✕</button></div><ol>${src.marks.map((m,k)=>`<li${m.h?' class="h"':""}><button data-dpi="${m.i}">${esc(m.t)}</button></li>`).join("")}</ol>`;
-  sh.hidden=false;document.getElementById("dpShX").onclick=()=>{sh.hidden=true;};
-  sh.querySelectorAll("[data-dpi]").forEach(b=>b.onclick=()=>{sh.hidden=true;dpGo(+b.dataset.dpi);});
-  let cur=null;for(const b of sh.querySelectorAll("[data-dpi]"))if(+b.dataset.dpi<=DP.i)cur=b;if(cur){cur.classList.add("on");cur.scrollIntoView({block:"center"});}}
 // --- vers la TV : 2e écran (ordinateur branché à la TV) ou Chromecast (Chrome) ---
 function dpTvMenu(){const sh=document.getElementById("dpSheet");const ios=dpIsIOS(),pres=!!window.PresentationRequest;
   sh.innerHTML=`<div class="dp-sh-h"><b>📺 Afficher sur la TV</b><button class="dp-b" id="dpShX">✕</button></div><div class="dp-tvo">
-  ${ios?`<div class="dp-opt"><h4> AirPlay (iPhone, iPad)</h4><ol><li>Le téléphone et l'Apple TV (ou la TV compatible AirPlay) sont sur le <b>même wifi</b>.</li><li>Ouvre le <b>Centre de contrôle</b> (glisse du coin en haut à droite vers le bas).</li><li>Touche <b>Recopie de l'écran</b> ▭▭ puis choisis ta TV.</li><li>Tourne le téléphone <b>à l'horizontale</b> : la diapo remplit la TV.</li></ol><p class="small muted">La TV montre ce qui est sur le téléphone. Touche à droite ou glisse pour passer à la diapo suivante ; les boutons disparaissent tout seuls.</p></div>`:""}
+  ${ios?`<div class="dp-opt"><h4> AirPlay (iPhone, iPad)</h4><ol><li>Le téléphone et l'Apple TV (ou la TV compatible AirPlay) sont sur le <b>même wifi</b>.</li><li>Ouvre le <b>Centre de contrôle</b> (glisse du coin en haut à droite vers le bas).</li><li>Touche <b>Recopie de l'écran</b> ▭▭ puis choisis ta TV.</li><li>Tourne le téléphone <b>à l'horizontale</b> : la diapo remplit la TV.</li></ol><p class="small muted">La TV montre ce qui est sur le téléphone. Glisse ou touche à droite pour passer à la page suivante ; les boutons disparaissent tout seuls.</p></div>`:""}
   ${pres?`<div class="dp-opt"><h4>📡 Chromecast / TV avec Google Cast</h4><p class="small muted">Le téléphone devient la télécommande, comme Netflix : la TV montre la diapo, toi tu changes de page sur le téléphone.</p><button class="btn main" id="dpCast">📡 Choisir la TV</button></div>`:""}
   <div class="dp-opt"><h4>🖥️ Ordinateur branché à la TV (câble HDMI)</h4><p class="small muted">Ouvre une 2e fenêtre « TV » : glisse-la sur l'écran de la TV et mets-la en plein écran (double-clic). Cette fenêtre-ci devient la télécommande. Une télécommande de présentation (‹ ›) marche aussi.</p><button class="btn ghost" id="dpWin">🖥️ Ouvrir la fenêtre TV</button></div>
   ${!ios?`<div class="dp-opt"><h4>📱 Android : caster l'écran</h4><p class="small muted">Glisse du haut de l'écran vers le bas, touche <b>Caster l'écran</b> (ou Smart View sur Samsung) puis choisis ta TV, et tourne le téléphone à l'horizontale.</p></div>`:`<div class="dp-opt"><h4>🔌 Avec un câble</h4><p class="small muted">Un adaptateur Lightning/USB-C vers HDMI recopie aussi l'écran sur la TV, sans wifi.</p></div>`}
@@ -3899,20 +3982,20 @@ async function dpCast(){try{const req=new PresentationRequest([location.href.spl
     hook();c.onconnect=()=>{hook();dpSend(true);};c.onclose=c.onterminate=()=>{if(DP.conn===c){DP.conn=null;dpTvOff();}};
     if(c.state==="connected")dpSend(true);dpTvOn("cast");}
   catch(e){if(e&&e.name!=="AbortError"&&e.name!=="NotAllowedError")litMsg("📡 Pas de TV trouvée","Vérifie que la TV (Chromecast ou Google Cast) est allumée et sur le même wifi que ton appareil.");}}
-function dpTvOn(how){DP.out=how;const sh=document.getElementById("dpSheet");if(sh)sh.hidden=true;const r=document.getElementById("dpRemote");if(r)r.hidden=false;document.getElementById("dp")?.classList.add("remote");toast("📺 Diapo envoyée sur la TV");dpSend(true);}
-function dpTvOff(){DP.out=null;const r=document.getElementById("dpRemote");if(r)r.hidden=true;document.getElementById("dp")?.classList.remove("remote");}
+function dpTvOn(how){const was=DP.out;DP.out=how;const sh=document.getElementById("dpSheet");if(sh)sh.hidden=true;const r=document.getElementById("dpRemote");if(r)r.hidden=false;document.getElementById("dp")?.classList.add("remote");toast("📺 Diapo envoyée sur la TV");
+  if(!was&&DP.src&&DP.src.kind==="html"&&DP.src.rebuild){dpRebuild();return;}dpSend(true);}
+function dpTvOff(){DP.out=null;const r=document.getElementById("dpRemote");if(r)r.hidden=true;document.getElementById("dp")?.classList.remove("remote");if(DP.on&&DP.src&&DP.src.kind==="html"&&DP.src.rebuild)dpRebuild();}
 function dpTvStop(){dpTvSend({t:"wait"});try{DP.conn&&DP.conn.terminate();}catch(e){}DP.conn=null;try{DP.bc&&DP.bc.close();}catch(e){}DP.bc=null;dpTvOff();}
 function dpTvSend(m){const s=JSON.stringify(m);try{if(DP.bc)DP.bc.postMessage(m);}catch(e){}try{if(DP.conn&&DP.conn.state==="connected")DP.conn.send(s);}catch(e){}}
 let dpLastSent=null,dpKeepHash=false;
 async function dpSend(force){if(!DP.out||!DP.src)return;const i=DP.i,key=DP.src.title+"#"+i+"#"+DP.src.n;if(!force&&key===dpLastSent)return;
-  let s;try{s=await dpGet(i);}catch(e){return;}if(i!==DP.i)return;dpLastSent=key;
-  dpTvSend(s.k==="img"?{t:"slide",k:"img",d:s.cv.toDataURL("image/jpeg",.86),i,n:DP.src.n}:{t:"slide",k:"html",d:s.h,i,n:DP.src.n});}
-// --- la TV (fenêtre ou Chromecast) : écran noir qui montre ce que le téléphone envoie ---
+  let s;try{s=await dpGet(i,DP.src.kind==="pdf");}catch(e){return;}if(i!==DP.i)return;dpLastSent=key;
+  dpTvSend(s.k==="img"?{t:"slide",k:"img",d:s.cv.toDataURL("image/jpeg",.86),bg:s.bg,i,n:DP.src.n}:{t:"slide",k:"html",d:s.h,i,n:DP.src.n});}
+// --- la TV (fenêtre ou Chromecast) : plein écran qui montre ce que le téléphone envoie ---
 function viewTV(){document.body.classList.add("tvmode");document.title="TV · La Sainte Bible copte";
-  app.innerHTML=`<div class="tv-view" id="tvView"><div class="dp-stage" id="tvStage"><div class="dps dps-wait"><img src="${MS_CROSS}" alt=""><div>En attente du téléphone…</div><small>Choisis une liturgie puis « 📺 Diapo ».</small></div></div></div>`;
-  const st=document.getElementById("tvStage"),fit=()=>{const v=document.getElementById("tvView");if(!v)return;const k=Math.min(v.clientWidth/DP_W,v.clientHeight/DP_H);st.style.transform=`translate(-50%,-50%) scale(${k})`;};
-  fit();window.addEventListener("resize",fit);
-  const wait=st.innerHTML,handle=m=>{if(!m)return;if(m.t==="slide"){st.innerHTML=m.k==="img"?`<img class="dp-img" alt="" src="${m.d}">`:m.d;}else if(m.t==="wait")st.innerHTML=wait;};
+  app.innerHTML=`<div class="tv-view" id="tvView"><div class="dp-pane tv-pane" id="tvPane"><div class="dp-fit"><div class="dps dps-wait" style="width:1280px;height:720px"><img src="${MS_CROSS}" alt=""><div>En attente du téléphone…</div><small>Choisis une liturgie puis « 📺 Diapo ».</small></div></div></div></div>`;
+  const pane=document.getElementById("tvPane"),wait=pane.innerHTML;dpFitPane(pane);window.addEventListener("resize",()=>dpFitPane(pane));
+  const handle=m=>{if(!m)return;if(m.t==="slide"){pane.style.background=m.bg||"#000";pane.innerHTML=m.k==="img"?`<img class="dp-img" alt="" src="${m.d}">`:`<div class="dp-fit">${m.d}</div>`;dpFitPane(pane);}else if(m.t==="wait"){pane.style.background="#000";pane.innerHTML=wait;dpFitPane(pane);}};
   const send=[];try{const bc=new BroadcastChannel(DP_CH);bc.onmessage=e=>handle(e.data);bc.postMessage({t:"hello"});send.push(m=>bc.postMessage(m));}catch(e){}
   if(navigator.presentation&&navigator.presentation.receiver){navigator.presentation.receiver.connectionList.then(l=>{const add=c=>{c.onmessage=e=>{try{handle(JSON.parse(e.data));}catch(x){}};try{c.send(JSON.stringify({t:"hello"}));}catch(x){}send.push(m=>{try{c.send(JSON.stringify(m));}catch(x){}});};l.connections.forEach(add);l.onconnectionavailable=e=>add(e.connection);});}
   window.addEventListener("keydown",e=>{const d=["ArrowRight","PageDown"," ","Enter","ArrowDown"].includes(e.key)?1:["ArrowLeft","PageUp","ArrowUp"].includes(e.key)?-1:0;if(d){e.preventDefault();send.forEach(f=>f({t:"key",d}));}else if(e.key==="f"){try{document.documentElement.requestFullscreen();}catch(x){}}});
@@ -3922,10 +4005,13 @@ function dpFromBook(id,page){const b=litBook(id);if(!b||!b.n)return;dpOpen(dpBoo
 function dpChantSrc(page){const b=litBook("chants-cantiques"),src=dpBookSrc(b,page,{marks:[]});src.marks=CHANTS.map(x=>({t:x[1]+". "+x[2],i:(x[3]-1)*src.per}));src.reopen=dpChantSrc;
   src.label=i=>{const p=Math.floor(i/src.per)+1;let cc=null;for(const x of CHANTS)if(x[3]<=p)cc=x;return (cc?cc[1]+". "+cc[2]+" · ":"")+"p. "+p+(src.per>1?(i%2?" (bas)":" (haut)"):"");};return src;}
 function dpFromChant(key){const b=litBook("chants-cantiques"),c=CHANTS.find(x=>x[0]===key);if(!b||!c)return;dpOpen(dpChantSrc(c[3]));}
-async function dpFromMesse(ds,frac){const l=msLang(),data=await msLoad(l);if(!data)return;DP.fs=+dpPref().fs||40;
+async function dpFromMesse(ds,frac){if(!DP.on)dpFS();const l=msLang(),data=await msLoad(l);if(!data)return;DP.fs=+dpPref().fs||40;
   try{await Promise.all(['40px "Atkinson Hyperlegible Next"','40px ScheherazadeNew','40px "Suez One"'].map(f=>document.fonts.load(f,"Aaب")));}catch(e){}
   const l2=dpPref().l2&&dpPref().l2!==l&&MS_L[dpPref().l2]?dpPref().l2:null,data2=l2?await msLoad(l2):null;
-  const mk=()=>{const x=dpMesseSrc(data,l,ds,data2,data2?l2:null);x.ds=ds;return x;},s=mk();s.rebuild=mk;if(frac)s.start=Math.round(frac*(s.n-1));dpOpen(s);}
+  // la diapo s'ouvre d'abord (pour connaître la taille de l'écran), puis les pages sont calculées
+  const mk=()=>{const x=dpMesseSrc(data,l,ds,data2,data2?l2:null,dpStage());x.ds=ds;return x;};
+  if(!DP.on){dpOpen({kind:"html",n:1,title:"Messe",marks:[],start:0,label:()=>"",async render(){return {k:"html",h:`<div class="dps dps-day" style="width:1280px;height:720px"><img src="${MS_CROSS}" alt=""></div>`};}});}
+  const s=mk();s.rebuild=mk;if(frac)s.start=Math.round(frac*(s.n-1));dpOpen(s);}
 // ---------- Router ----------
 function route(){
   hideGloss(); if(typeof ttsStop==='function'&&TTS.on) ttsStop(); if(document.getElementById('notepanel').classList.contains('open')) closeNotes();

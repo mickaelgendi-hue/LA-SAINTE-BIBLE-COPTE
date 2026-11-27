@@ -1,5 +1,5 @@
 // Lecture hors connexion : La Sainte Bible copte
-const CACHE = "bible-copte-v24";
+const CACHE = "bible-copte-v25";
 const CORE = ["./", "index.html", "manifest.json", "logo.svg", "favicon-32.png", "apple-touch-icon.png", "logo-192.png", "logo-512.png", "cat/chants.jpg", "cat/fetes.jpg", "cat/laVieDesSaints.jpg", "cat/lecturesDimanche.jpg", "cat/livresSpirituels.jpg", "cat/messe-jour.jpg", "cat/messe.jpg", "cat/sacrementAutresRites.jpg", "cat/semaineSainte.jpg", "cat/tasbeha.jpg"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).catch(() => {}));
